@@ -3,7 +3,7 @@
 
 /*
  TODO:
- _reserve()
+ _clear()
  _insert()
 */
 
@@ -36,7 +36,7 @@ namespace std {
 
             //! Assignment operator
             vector &operator=(vector const &other) {
-            free(d_data);
+                free(d_data);
                 d_size=other.d_size;
                 d_capacity=other.d_capacity;
                 d_data=(Data *)malloc(d_capacity * sizeof(Data));
@@ -131,6 +131,20 @@ namespace std {
             //! Returns pointer to the underlying array serving as element storage.
             Data* data(void) {
                 return(d_data);
+            }
+
+            //! Erase an element from vector
+            Data erase(size_t idx) {
+                for (size_t ix=idx; ix<d_capacity-1; ix++) {
+                    d_data[ix]=d_data[idx+1];
+                }
+                resize(d_size-1);
+
+                if (idx >= d_size) {
+                    return(d_data[d_size-1]);
+                }
+
+                return(d_data[idx]);
             }
     };
 }
