@@ -303,14 +303,16 @@ void DStepper::SetFreq(uint16_t FreqHz, uint8_t DutyCyclePerc)
     }
  * @endcode
  * 
- * @param Rpm           ->  Rpm value to set.
  * @param RampMillis    ->  Duration of ramp in milliseconds. Setting a value if 0, immedialtly apply Rpm value.
- * @param StopPin       ->  Pin used to emergency stop motor. Can be a micro-switch connected to Pin.
- * @param StopLevel     ->  The StopPin level that trigger the emergency stop.
+ * @param Rpm           ->  Rpm value to set.
+ * @param RotationDir   ->  Specify rotation direction ROT_CC or ROT_CW. ROT_CURRENT will not change it.
+ * @param FaultPin      ->  Pin used to emergency stop motor, when this pin is in FaultLevel, motor will be stopped.
+ *                          A value of -1 disable the check (!! BE CAREFULLY !!).
+ * @param FaultLevel    ->  The FaultPin level that triggers the emergency stop.
  * 
- * @return false if StopPin has triggered the emergency stop, otherwise, after RampMillis time, return true.
+ * @return false if FaultPin has triggered an emergency stop, otherwise, after RampMillis time, return true.
  */
-bool DStepper::RampRpm(uint16_t RampMillis, uint16_t Rpm, DRotationDir RotationDir, int8_t StopPin, DPinLevel StopLevel)
+bool DStepper::RampRpm(uint16_t RampMillis, uint16_t Rpm, DRotationDir RotationDir, int8_t FaultPin, DPinLevel FaultLevel)
 {
     if (RampMillis > 0) {
         unsigned long StartRamp=millis();
@@ -322,16 +324,20 @@ bool DStepper::RampRpm(uint16_t RampMillis, uint16_t Rpm, DRotationDir RotationD
         }
 
         uint16_t DelayMillis=RampMillis/((Rpm-CurrRpm)*Inc); // Delay time after each rpm increment
-        SetDir(RotationDir);
+        if (RotationDir != ROT_CURRENT) {
+            SetDir(RotationDir);
+        }
         dPwmOut->On();
         while (millis()-StartRamp < RampMillis) {
             CurrRpm+=Inc;
             dPwmOut->SetFreq((CurrRpm*StepsPerRevol)/60,CurrDutyCycle);
             unsigned long StartDelay=millis();
             while (millis()-StartDelay < DelayMillis) {
-                if (ReadPin(StopPin) == StopLevel) {
-                    dPwmOut->Off();
-                    return false;
+                if (FaultPin >= 0) {
+                    if (ReadPin(FaultPin) == FaultLevel) {
+                        dPwmOut->Off();
+                        return false;
+                    }
                 }
             };
         }

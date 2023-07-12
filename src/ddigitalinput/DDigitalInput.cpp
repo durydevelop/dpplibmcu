@@ -206,7 +206,7 @@ void DDigitalInput::SetPullUp(void) {
 /**
  * @return input pin number.
  */
-uint8_t DDigitalInput::GetPin(void)
+short int DDigitalInput::GetPin(void)
 {
 	return(Pin);
 }

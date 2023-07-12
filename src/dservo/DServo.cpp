@@ -35,7 +35,8 @@ _softPwmWrite(1,20) out 20 steps of 100 us so, 20 pulse units * 100us = 2ms full
 
 DServo::DServo()
 {
-    Init();
+    dPwmOut=nullptr;
+    SetDefaultValues(false);
 }
 
 /**
@@ -44,7 +45,8 @@ DServo::DServo()
 */
 DServo::DServo(short int Pin)
 {
-    Init();
+    dPwmOut=nullptr;
+    SetDefaultValues(false);
     attach(Pin);
 }
 
@@ -53,17 +55,10 @@ DServo::~DServo()
     detach();
 }
 
-void DServo::Init(void)
-{
-    ServoPin=0;
-    Attached=false;
-    SetDefaultValues(false);
-}
-
 /**
  * N.B. Only values are chaged (no servo re-positioning)
  */
-void DServo::SetDefaultValues(bool MoveServo)
+void DServo::SetDefaultValues(bool OutServo)
 {
     MinPulseUs=DEFAULT_MIN_PULSE_US;
     MaxPulseUs=DEFAULT_MAX_PULSE_US;
@@ -72,7 +67,7 @@ void DServo::SetDefaultValues(bool MoveServo)
     CurrDegrees=90;
     CurrPulseUs=DegreesToUs(CurrDegrees);
 
-    if (MoveServo) {
+    if (OutServo) {
         ServoOut();
     }
 }
@@ -82,9 +77,16 @@ void DServo::SetDefaultValues(bool MoveServo)
 **/
 void DServo::attach(int Pin)
 {
-    ServoPin=Pin;
-    dPwmOut=new DPwmOut(ClkPin);
-    Attached=InitPin(ServoPin,OUTPUT);
+    // Create software pwm for clock pin
+    if (dPwmOut) {
+        delete dPwmOut;
+    }
+
+    dPwmOut=new DPwmOut(Pin);
+    dPwmOut->begin();
+    dPwmOut->SetFreq(50);
+    dPwmOut->SetMicros(1500);
+    dPwmOut->On();
 }
 
 /**
@@ -92,13 +94,12 @@ void DServo::attach(int Pin)
 **/
 void DServo::detach(void)
 {
-    if (Attached) {
+    if (dPwmOut) {
         CurrPulseUs=0;
         ServoOut();
-        Attached=false;
-        #ifdef PIGPIO_VERSION
-            gpioTerminate();
-        #endif
+        delete dPwmOut;
+        dPwmOut=nullptr;
+        ShutdownGpio();
     }
 }
 
@@ -107,7 +108,7 @@ void DServo::detach(void)
 **/
 bool DServo::attached(void)
 {
-    return(Attached);
+    return(dPwmOut->IsReady());
 }
 
 /**
@@ -146,6 +147,14 @@ void DServo::writeMicroseconds(int Us)
     ServoOut();
 }
 
+/**
+ * @param Us -> Micro seconds value. It can be a value from 500 to 2500 but the reaction depends on servo motor.
+ */
+void DServo::WriteMicroseconds(int Us)
+{
+    writeMicroseconds(Us);
+}
+
 //! @return current servo position in degrees from 0 to 180
 short int DServo::read(void)
 {
@@ -173,14 +182,6 @@ void DServo::WriteRange(float Pos)
 void DServo::WriteDegrees(short int Degrees)
 {
     write(Degrees);
-}
-
-/**
- * @param Us -> Micro seconds value. It can be a value from 500 to 2500 but the reaction depends on servo motor.
- */
-void DServo::WriteMicroseconds(int Us)
-{
-    writeMicroseconds(Us);
 }
 
 void DServo::FullCCW(void)
@@ -389,27 +390,18 @@ int DServo::ResetHomeValue(void)
     return(CurrHomeUs);
 }
 
-/*
-bool DServo::InitPin(unsigned short int Pin)
-{
-    #ifdef ARDUINO
-        pinMode(Pin,OUTPUT);
-    #else
-        if (gpioInitialise() == PI_INIT_FAILED) {
-            return false;
-        }
-        gpioSetMode(Pin,PI_OUTPUT);
-    #endif
-    return true;
-}
-*/
 void DServo::ServoOut(void)
 {
-    if (Attached) {
+    if (dPwmOut) {
         #ifdef ARDUINO
-            PwmWriteUs(ServoPin,CurrPulseUs);
+            dPwmOut->SetMicros(CurrPulseUs);
         #else
-            gpioServo(ServoPin,CurrPulseUs);
+            #ifdef PIGPIO_VERSION
+                gpioServo(ServoPin,CurrPulseUs);
+            #else
+                // TODO
+            #endif
+            
         #endif
     }
 
@@ -427,5 +419,5 @@ short int DServo::UsToDegrees(int Us)
 
 short int DServo::GetServoPin(void)
 {
-    return(ServoPin);
+    return(dPwmOut->GetPin());
 }

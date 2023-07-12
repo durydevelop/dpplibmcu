@@ -128,6 +128,13 @@ void SetPullUp(short Pin) {
 	}
 #endif
 
+void ShutdownGpio(void)
+{
+    #ifdef PIGPIO_VERSION
+        gpioTerminate();
+    #endif
+}
+
 unsigned long Now(void)
 {
     #ifdef ARDUINO

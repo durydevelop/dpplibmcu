@@ -1,18 +1,16 @@
 #include <Arduino.h>
 #include <dstepper.h>
 
-DStepper dStepper(0,2);
+DStepper dStepper(12,13);
 
 void setup() {
     dStepper.begin();
     dStepper.On();
 }
 
-unsigned long now=millis();
-int f=1;
-int inc=1;
 void loop() {
-    dStepper.Ramp(120,4000);
+    dStepper.RampRpm(4000,120,DStepper::ROT_CC);
     delay(4000);
-    dStepper.Ramp(0,4000);
+    dStepper.RampRpm(4000,0,DStepper::ROT_CC);
+    delay(2000);
 }

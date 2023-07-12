@@ -1,5 +1,8 @@
 #include "DMenu.h"
 
+#define DMENU_DEFAULT_MAX_ITEM_TEXT_LEN 21
+#define DMENU_MAX_ITEMS 255
+
 /**
  * @brief Construct a new DMenu::DMenu object
  * 
@@ -8,7 +11,7 @@
  * @param ParentItem    ->	pointer to the parent item of the new one. If parameter is NULL the menu item is the root one and Back() does't fire the Callback.
  * @param CallbackFunc  ->	pointer to the DMenuListener function that will be called on Select() or Back() call.
   */
-DMenu::DMenu(const char MenuItemName[], uint8_t MenuID, DMenu *ParentItem, DMenuListener CallbackFunc)
+DMenu::DMenu(const char MenuItemName[], int MenuID, DMenu *ParentItem, DMenuListener CallbackFunc)
 {
     Init(MenuItemName,MenuID,ParentItem,CallbackFunc);
 }
@@ -18,10 +21,11 @@ DMenu::DMenu(const char MenuItemName[], uint8_t MenuID, DMenu *ParentItem, DMenu
  * 
  * @param MenuItemName  ->	name of new menu item.
  * @param MenuID        ->  ID of this menu. You can use it to handle it by id instead of by name. Can be a value from 0 to 254.
+ *                          A value of -1 means "no id set".
  * @param ParentItem    ->	pointer to the parent item of the new one. If parameter is NULL the menu item is the root one and Back() does't fire the Callback.
  * @param CallbackFunc  ->	pointer to the DMenuListener function that will be called on Select() or Back() call.
  */
-void DMenu::Init(const char MenuItemName[], uint8_t MenuID, DMenu *ParentItem, DMenuListener CallbackFunc)
+void DMenu::Init(const char MenuItemName[], int MenuID, DMenu *ParentItem, DMenuListener CallbackFunc)
 {
 	Callback=CallbackFunc;
 
@@ -31,27 +35,35 @@ void DMenu::Init(const char MenuItemName[], uint8_t MenuID, DMenu *ParentItem, D
 	else {
         Parent=ParentItem;
 	}
-    
-	//ID=rand() % DMENU_MAX_ITEMS + 1;
-    MenuID=ID;
+
+    Items=nullptr;
+    ID=MenuID;
 	ItemIndex=-1;
 	ItemsCount=0;
 	Loop=false;
 	MaxItemTextLen=DMENU_DEFAULT_MAX_ITEM_TEXT_LEN;
-	Name=NULL;
+	Name=nullptr;
 	SetName(MenuItemName);
 }
 
 //! Destructor
 DMenu::~DMenu()
 {
-	// free all created Items
-	if (ItemsCount > 0) {
-		for (short int ixI=0;ixI<ItemsCount;ixI++) {
-			delete Items[ixI];
-		}
-		free(Items);
-	}
+    //Serial.print("--destructor ");Serial.println(GetName());
+
+    if (Name) {
+        delete Name;
+    }
+
+    for (uint8_t ixI=0; ixI<ItemsCount; ixI++) {
+        //Serial.print("delete ");Serial.println(Items[ixI]->GetName());
+        delete Items[ixI];
+    }
+
+    if (Items) {
+        //Serial.println("free(Items)");
+        free(Items);
+    }
 }
 
 /**
@@ -67,11 +79,26 @@ void DMenu::SetName(const char ItemName[])
 	if (len > MaxItemTextLen) {
         len=MaxItemTextLen;
 	}
-	if (Name == NULL) {
+	if (Name == nullptr) {
         Name=new char[len+1];
     }
 	strncpy(Name,ItemName,len);
 	Name[len]='\0';
+}
+
+bool DMenu::AddItem(const char ItemName[])
+{
+    return(AddItem(ItemName,-1,false));
+}
+
+bool DMenu::AddItem(const char ItemName[], int ItemID)
+{
+    return(AddItem(ItemName,ItemID,false));
+}
+
+bool DMenu::AddItem(const char ItemName[], bool SetCurrent)
+{
+    return(AddItem(ItemName,-1,false));
 }
 
 /**
@@ -83,30 +110,31 @@ void DMenu::SetName(const char ItemName[])
  *
  * @return true of the created item or false if any error occours.
  */
-bool DMenu::AddItem(const char ItemName[], uint8_t ItemID, bool SetCurrent)
+bool DMenu::AddItem(const char ItemName[], int ItemID, bool SetCurrent)
 {
 		if (ItemsCount == 0) {
 			// No Items yet
 			// Allocate first DMenu pointer
 			Items=(DMenu **) malloc(sizeof(DMenu*));
-			if (Items == NULL) {
-				return 0;
+			if (Items == nullptr) {
+				return false;
 			}
 		}
 		else {
 			// Items alreay present
 			// try to allocate an other DMenu pointer
 			DMenu **tmp=(DMenu **) realloc(Items,sizeof(DMenu*)*(ItemsCount+1));
-			if (tmp == NULL) {
-				return 0;
+			if (tmp == nullptr) {
+				return false;
 			}
+            // new Items pointer
 			Items=tmp;
 		}
 
 		// Create new DMenu and assign it to last array pointer
 		DMenu *NewItem=new DMenu(ItemName,ItemID,this,Callback);
-		if (NewItem == NULL) {
-            return 0;
+		if (NewItem == nullptr) {
+            return true;
 		}
 
 		Items[ItemsCount]=NewItem;
@@ -118,7 +146,7 @@ bool DMenu::AddItem(const char ItemName[], uint8_t ItemID, bool SetCurrent)
             ItemIndex=ItemsCount-1;
 		}
 
-		return(NewItem->GetID());
+		return true;
 }
 
 //! @return Item at Index position

@@ -5,7 +5,7 @@ class DDigitalInput{
 
 	public:
 		DDigitalInput(int DigitalPin, bool PullUp = false, unsigned int MsecDebounce = 0);
-		void SetPullUp(void);
+		//void SetPullUp(void);
         #ifdef PIGPIO_VERSION
             void SetPullDown(void);
             void SetFloat(void);
@@ -14,14 +14,14 @@ class DDigitalInput{
 		bool IsChangedToLow(void);
 		bool IsChangedToHigh(void);
 		short int Read(void);
-        uint8_t GetPin(void);
+        short int GetPin(void);
         bool attached(void);
 		operator int();
 
 	private:
         //bool InitPin(bool PullUp);
         //unsigned long NowMillis(void);
-		uint8_t Pin;
+		short int Pin;
 		int CurrLevel;
 		int PrevLevel;
 		unsigned long CurrMsec;

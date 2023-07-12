@@ -3,22 +3,10 @@
 
 // Defaults
 #define DEFAULT_STEP_VALUE  10      //! Default vel step inc/dec value
+#define PWM_FREQ 480
 
 // Ranges limits
-#define DEFAULT_CAL_LIMIT MAX_PWM
-
-/**
- * @brief Construct a new DDCMotor::DDCMotor object
- * 
- */
-DDCMotor::DDCMotor()
-{
-    PwmPin=0;
-	DirPwmPin=0;
-	ControlMode=DIR_PWM;
-	Attached=false;
-    Running=false;
-}
+#define DEFAULT_CAL_LIMIT MAX_PWM_VALUE
 
 /**
  * @brief Construct a new DDCMotor::DDCMotor object
@@ -33,7 +21,10 @@ DDCMotor::DDCMotor()
  */
 DDCMotor::DDCMotor(unsigned short int PinPwm, unsigned short int PinDirPwm, DControlMode Mode)
 {
-    attach(PinPwm,PinDirPwm,Mode);
+    PwmOut1=new DPwmOut(PinPwm);
+    PwmOut2=new DPwmOut(PinDirPwm);
+	ControlMode=Mode;
+    Running=false;
 }
 
 /**
@@ -46,22 +37,42 @@ DDCMotor::~DDCMotor()
 
 /**
  * @brief Initialize Hardware.
- * 
- * @param PwmPin    ->  In PHASE_ENABLE mode pin is xENABLE(PWM).
- *                      In IN_IN mode pin is PWM pin.
- * @param DirPwmPin ->  In PHASE_ENABLE mode pin is xPHASE(DIR).
- *                      In IN_IN mode pin is PWM pin.
- * @param Mode      ->  The IN_IN mode all 4 pins are used in pwm mode.
- *                      The PHASE_ENABLE mode only 2 pin are used pwm mode (use it with board like "Pololu DRV8825 Dual Motor Driver Kit")
+ * Must be called before use this class.
  */
-void DDCMotor::attach(unsigned short int PinPwm, unsigned short int PinDirPwm, DControlMode Mode)
+void DDCMotor::attach(void)
 {
-    PwmPin=PinPwm;
-    DirPwmPin=PinDirPwm;
-    ControlMode=Mode;
-
-    Attached=InitPin(PinPwm,OUTPUT);
-    Attached=InitPin(DirPwmPin,OUTPUT);
+    // **** Pwm Out 1 ****
+/*
+    if (PwmOut1) {
+        // Already istantiated
+        if (PinPwm != PwmOut1->getPin()) {
+            // on different pin
+            delete PwmOut1;
+        }
+    }
+*/
+    // Pwm settings
+    // 480 Hz 50% duty
+//    PwmOut1=new DPwmOut(PinPwm);
+    PwmOut1->begin(PWM_FREQ,50,true);
+    // Max Value used for WriteMicros()
+    MAX_PWM_VALUE=PwmOut1->getPeriodUs();
+    // Max value for calibration
+    MIN_CAL_PWM_VALUE=MAX_PWM_VALUE/3;
+/*
+    // **** Pwm Out 2 / Dir Pin****
+    if (PwmOut2) {
+        // Already istantiated
+        if (PinDirPwm != PwmOut2->getPin()) {
+            // on different pin
+            delete PwmOut2;
+        }
+    }
+    PwmOut2=new DPwmOut(PinDirPwm);
+*/
+    // Pwm settings
+    // 480 Hz 50% duty
+    PwmOut2->begin(PWM_FREQ,50,true);
 
     // Defaults
 	ResetCalLimit();
@@ -69,7 +80,6 @@ void DDCMotor::attach(unsigned short int PinPwm, unsigned short int PinDirPwm, D
 	CurrVel=0;
     SwappedDir=0;
     Running=false;
-
 	Stop();
 }
 
@@ -78,9 +88,11 @@ void DDCMotor::attach(unsigned short int PinPwm, unsigned short int PinDirPwm, D
  */
 void DDCMotor::detach(void)
 {
-    if (Attached) {
+    if (attached()) {
         Stop();
-        Attached=false;
+//        Attached=false;
+        PwmOut1->release();
+        PwmOut2->release();
         #ifdef PIGPIO_VERSION
             gpioTerminate();
         #endif
@@ -92,7 +104,7 @@ void DDCMotor::detach(void)
  */
 bool DDCMotor::attached(void)
 {
-    return(Attached);
+    return(PwmOut1->isReady() & PwmOut2->isReady());
 }
 
 /**
@@ -112,7 +124,7 @@ void DDCMotor::ResetCalLimitFw(void)
     PwmLimitFw=DEFAULT_CAL_LIMIT;
     if (CurrVel != 0) {
         // Motor is running, update vel
-        Set(CurrVel);
+        SetVel(CurrVel);
 	}
 }
 
@@ -124,7 +136,7 @@ void DDCMotor::ResetCalLimitRev(void)
     PwmLimitRev=DEFAULT_CAL_LIMIT;
     if (Running) {
         // Motor is running, update vel
-        Set(CurrVel);
+        SetVel(CurrVel);
 	}
 }
 
@@ -160,11 +172,11 @@ unsigned short int DDCMotor::GetCalLimitRev(void)
  */
 void DDCMotor::SetCalLimitFw(unsigned short int NewPwmLimitFw)
 {
-    if (NewPwmLimitFw > MAX_PWM) {
-        PwmLimitFw=MAX_PWM;
+    if (NewPwmLimitFw > MAX_PWM_VALUE) {
+        PwmLimitFw=MAX_PWM_VALUE;
     }
-    else if (NewPwmLimitFw < MIN_CAL_PWM) {
-        PwmLimitFw=MIN_CAL_PWM;
+    else if (NewPwmLimitFw < MIN_CAL_PWM_VALUE) {
+        PwmLimitFw=MIN_CAL_PWM_VALUE;
     }
     else {
         PwmLimitFw=NewPwmLimitFw;
@@ -172,7 +184,7 @@ void DDCMotor::SetCalLimitFw(unsigned short int NewPwmLimitFw)
 
     if (Running) {
         // Motor is running, update vel
-        Set(CurrVel);
+        SetVel(CurrVel);
 	}
 }
 
@@ -184,11 +196,11 @@ void DDCMotor::SetCalLimitFw(unsigned short int NewPwmLimitFw)
  */
 void DDCMotor::SetCalLimitRev(unsigned short int NewPwmLimitRev)
 {
-    if (NewPwmLimitRev > MAX_PWM) {
-        PwmLimitRev=MAX_PWM;
+    if (NewPwmLimitRev > MAX_PWM_VALUE) {
+        PwmLimitRev=MAX_PWM_VALUE;
     }
-    else if (NewPwmLimitRev < MIN_CAL_PWM) {
-        PwmLimitRev=MIN_CAL_PWM;
+    else if (NewPwmLimitRev < MIN_CAL_PWM_VALUE) {
+        PwmLimitRev=MIN_CAL_PWM_VALUE;
     }
     else {
         PwmLimitRev=NewPwmLimitRev;
@@ -196,7 +208,7 @@ void DDCMotor::SetCalLimitRev(unsigned short int NewPwmLimitRev)
 
     if (Running) {
         // Motor is running, update vel
-        Set(CurrVel);
+        SetVel(CurrVel);
 	}
 }
 
@@ -204,15 +216,15 @@ void DDCMotor::SetCalLimitRev(unsigned short int NewPwmLimitRev)
  * @brief Runs motor in clockwise direction at specific speed value.
  * N.B. If Engaged is true the value is applied to motor, otherwise only CurrVel is set.
  * 
- * @param Speed Speed value from 1 to 100. If Vel is 0 CurrVel is used.
+ * @param Vel Speed value from 1 to 100. If Vel is 0 CurrVel is used.
  */
-void DDCMotor::CW(unsigned short int Speed)
+void DDCMotor::CW(unsigned short int Vel)
 {
-    if (Speed == 0) {
-        Set(abs(CurrVel));
+    if (Vel == 0) {
+        SetVel(abs(CurrVel));
     }
     else {
-	    Set(Speed);
+	    SetVel(Vel);
     }
 }
 
@@ -220,15 +232,15 @@ void DDCMotor::CW(unsigned short int Speed)
  * @brief Runs motor in counter clockwise direction at specific speed value.
  * N.B. If Engaged is true the value is applied to motor, otherwise only CurrVel is set.
  * 
- * @param Speed Speed value from 1 to 100. If Vel is 0 CurrVel is used.
+ * @param Vel Speed value from 1 to 100. If Vel is 0 CurrVel is used.
  */
-void DDCMotor::CC(unsigned short int Speed)
+void DDCMotor::CC(unsigned short int Vel)
 {
-    if (Speed == 0) {
-        Set(-abs(CurrVel));
+    if (Vel == 0) {
+        SetVel(-abs(CurrVel));
     }
     else {
-	    Set(-Speed);
+	    SetVel(-Vel);
     }
 }
 
@@ -238,7 +250,7 @@ void DDCMotor::CC(unsigned short int Speed)
  */
 void DDCMotor::Stop(void)
 {
-	Set(0);
+	SetVel(0);
 }
 
 /**
@@ -306,15 +318,15 @@ void DDCMotor::SwappedDirMode(bool Enabled)
 /**
  * @brief Run motor.
  * Vel is value from -100 to 100 where positive values runs motor in forward direction and negatives ones runs motor in backward direction.
- * A value of 0 stop motor.
+ * A value of 0 stops motor.
  * 
  * @param Vel    ->  Absolute velocity value for motor: from -100 to 100, 0 stops the motor.
  */
-void DDCMotor::Set(short Speed)
+void DDCMotor::SetVel(int Speed)
 {
     // Store vel
     CurrVel=Speed ^ SwappedDir;
-    
+
     // Correct over value
     //if (CurrVel > 0 && CurrVel > MAX_ABS_VEL) {
     if (CurrVel > 0 && CurrVel > MAX_VEL) {
@@ -330,12 +342,13 @@ void DDCMotor::Set(short Speed)
         unsigned short int PwmValue=map(abs(CurrVel),0,MAX_VEL,0,PwmLimitFw);
         // Forward
         if (ControlMode == PWM_PWM) {
-            PwmWrite(PwmPin,0);
-            PwmWrite(DirPwmPin,PwmValue);
+            PwmOut1->setMicros(0);
+            PwmOut2->setMicros(PwmValue);
 		}
 		else {
-		    PwmWrite(PwmPin,PwmValue);
-            WritePin(DirPwmPin,LOW);
+            PwmOut2->high();
+            PwmOut1->setMicros(PwmValue);
+            
 		}
         Running=true;
 	}
@@ -344,25 +357,26 @@ void DDCMotor::Set(short Speed)
         unsigned short int PwmValue=map(abs(CurrVel),0,MAX_VEL,0,PwmLimitRev);
         // Reverse
         if (ControlMode == PWM_PWM) {
-            PwmWrite(PwmPin,PwmValue);
-            PwmWrite(DirPwmPin,0);
+            PwmOut1->setMicros(PwmValue);
+            PwmOut2->setMicros(0);
 		}
 		else {
-		    PwmWrite(PwmPin,PwmValue);
-            WritePin(DirPwmPin,HIGH);
+            PwmOut2->low();
+		    PwmOut1->setMicros(PwmValue);
+            
 		}
         Running=true;
 	}
 	else {
         // Stop
 		if (ControlMode == PWM_PWM) {
-            PwmWrite(PwmPin,0);
-            PwmWrite(DirPwmPin,0);
+            PwmOut1->setMicros(0);
+            PwmOut2->setMicros(0);
 
         }
         else {
-		    PwmWrite(PwmPin,0);
-            WritePin(DirPwmPin,LOW);
+		    PwmOut1->low();
+            PwmOut2->low();
         }
         Running=false;
 	}
@@ -375,13 +389,13 @@ void DDCMotor::Set(short Speed)
 void DDCMotor::Brake(void)
 {
     if (ControlMode == PWM_PWM) {
-        PwmWrite(PwmPin,MAX_PWM);
-        PwmWrite(DirPwmPin,MAX_PWM);
+        PwmOut1->setMicros(MAX_PWM_VALUE);
+        PwmOut2->setMicros(MAX_PWM_VALUE);
     }
     else {
         // DIR_PWM
-        PwmWrite(PwmPin,0);
-        WritePin(DirPwmPin,LOW);
+        PwmOut1->low();
+        PwmOut2->low();
     }
     CurrVel=0;
     Running=false;
@@ -402,15 +416,15 @@ bool DDCMotor::IsRunning(void)
  */
 unsigned short int DDCMotor::GetPinPwm(void)
 {
-    return(PwmPin);
+    return(PwmOut1->getPin());
 }
 
 /**
  * @brief Get pin number that is use as DIR (in PHASE_ENABLED mode) or PWM (in IN_IN mode).
  * 
- * @return pin b of Motor 1
+ * @return DIR / PWN pin number.
  */
 unsigned short int DDCMotor::GetPinDirPwm(void)
 {
-    return(DirPwmPin);
+    return(PwmOut2->getPin());
 }

@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "ddigitalinput": "cpp",
+        "dstepper": "cpp",
+        "dpplib-gpio": "cpp",
+        "ddigitalbutton": "cpp",
+        "dmenu": "cpp",
+        "string": "cpp"
+    }
+}

@@ -38,7 +38,7 @@ class DStepper
         // Pin modes
         enum DPinMode   { INPUT_MODE, OUTPUT_MODE, INPUT_PULLUP_MODE };
         // Rotation direction
-        enum DRotationDir { ROT_CC, ROT_CW };
+        enum DRotationDir { ROT_CC, ROT_CW, ROT_CURRENT };
 
         DStepper(uint8_t PinDir, uint8_t PinClk, uint16_t StepsPerRev = 200);
         ~DStepper();
@@ -68,7 +68,7 @@ class DStepper
 
         void SetRpm(uint16_t Rpm);
         void SetRpm(uint16_t Rpm, DRotationDir RotationDir);
-        bool RampRpm(uint16_t RampMillis, uint16_t Rpm, DRotationDir RotationDir, int8_t StopPin, DPinLevel StopLevel);
+        bool RampRpm(uint16_t RampMillis, uint16_t Rpm, DRotationDir RotationDir = ROT_CURRENT, int8_t FaultPin = -1, DPinLevel FaultLevel = LOW_LEVEL);
 
         void SetDir(DRotationDir RotationDir);
         void SetDirCW(void);
@@ -76,9 +76,9 @@ class DStepper
         void RevertDir(void);
 
         // HARDWARE CONTROL API
-        bool InitPin(uint8_t Pin, uint8_t Mode);
-        uint8_t ReadPin(uint8_t Pin);
-        void WritePin(uint8_t Pin, uint8_t Level);
+        //bool InitPin(uint8_t Pin, uint8_t Mode);
+        //uint8_t ReadPin(uint8_t Pin);
+        //void WritePin(uint8_t Pin, uint8_t Level);
             
     private:
         const uint8_t DirPin;     

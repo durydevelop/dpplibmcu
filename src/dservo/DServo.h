@@ -37,11 +37,8 @@ class DServo {
         //! Constructor 2
         DServo(short int Pin);
 
-        //! Distructor
+        //! Destructor
         ~DServo();
-
-        //! Initilize all stuffs
-        void Init();
 
         //! Set servo position in range from 0.0 to 1.0 where 0.05 is centre position.
         void WriteRange(float Pos);
@@ -115,7 +112,7 @@ class DServo {
         //! Reset pulse-width to default: (DEFAULT_MAX_PULSE_US-DEFAULT_MIN_PULSE_US)/2
         int ResetHomeValue(void);
         //! Set all params to default values.
-        void SetDefaultValues(bool MoveServo);
+        void SetDefaultValues(bool OutServo);
 
         //! Convert degrees value to pulse-width Us for this servo
         int DegreesToUs(short int Degrees);
@@ -132,11 +129,9 @@ class DServo {
         */
 
     private:
-        //bool InitPin(unsigned short int Pin);                           //! Set Pin in pwm mode.
         void ServoOut();            //! Output pwm signal to servo pin.
 
-        bool Attached;              //! If pigpio library is enabled is set to true.
-        short int ServoPin;         //! Pin number on which servo is connected.
+        DPwmOut *dPwmOut;
 
         int CurrPulseUs;            //! Current pulse-width in us.
         short int CurrDegrees;      //! Current servo position in degrees from 0 to 180 where 90 is centre position.
