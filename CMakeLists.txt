@@ -1,9 +1,9 @@
 ## CMakeLists file for adding this library to a cmake project
 ## How to use:
 ## If the folder is inside project tree use add_subdirectory(<path to this folder>)
-## If the folder is outside project tree use add_subdirectory(<path to this folder> /deps/dncurses)
+## If the folder is outside project tree use add_subdirectory(<path to this folder> /deps/dpptools-mcu)
 
-set(LIB_NAME "DDigitalIO")
+set(LIB_NAME "dpptools-mcu")
 message(${DSTATUS} "Configuring ${LIB_NAME} library...")
 
 # Add sources to project
