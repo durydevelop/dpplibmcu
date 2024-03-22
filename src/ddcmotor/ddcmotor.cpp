@@ -1,5 +1,5 @@
 #include <dpplib-gpio.h>
-#include "DDCMotor.h"
+#include "ddcmotor.h"
 
 // Defaults
 #define DEFAULT_STEP_VALUE  10      //! Default vel step inc/dec value

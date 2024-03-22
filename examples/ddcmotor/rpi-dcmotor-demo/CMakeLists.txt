@@ -17,11 +17,18 @@ if(MSVC)
 endif(MSVC)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
 add_executable(${PROJECT_NAME}
     main.cpp
 )
 
-add_subdirectory(../.. lib/ddcmotor)
+add_subdirectory(../../.. _dep/dpplib-mcu)
+target_sources(${PROJECT_NAME} PUBLIC ${SRC_FILES})
+target_include_directories(${PROJECT_NAME} PUBLIC ${SRC_DIRS})
+
+message(">> SRC_FILES: ${SRC_FILES}")
+message(">> SRC_DIRS: ${SRC_DIRS}")
 
 #pgpio
 find_package(pigpio REQUIRED)

@@ -16,6 +16,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #include(DPrintHelpers)
 
 ## Setup Target
+message(${DSTATUS} "Configuring ${LIB_NAME} library...")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
 add_library(${PROJECT_NAME} INTERFACE) # TODO ${SRC_FILES})
 
@@ -27,7 +28,7 @@ set(SRC_DIRS ${SRC_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 #[[
 ## How to use:
 ## If the folder is inside project tree use add_subdirectory(<path to this folder>)
-## If the folder is outside project tree use add_subdirectory(<path to this folder> /deps/dpptools-mcu)
+## If the folder is outside project tree use add_subdirectory(<path to this folder> /deps/libdpp-mcu)
 
 set(LIB_NAME "dpptools-mcu")
 message(${DSTATUS} "Configuring ${LIB_NAME} library...")

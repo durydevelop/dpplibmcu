@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "DDigitalInput.h"
+#include <ddigitalinput>
 
 using namespace std;
 

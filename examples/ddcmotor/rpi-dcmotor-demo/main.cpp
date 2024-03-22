@@ -4,7 +4,7 @@
 //#include <string>
 #include <chrono>
 #include <thread>
-#include "DDCMotor.h"
+#include <ddcmotor.h>
 
 using namespace std;
 
@@ -18,11 +18,11 @@ int main(int argc, char** argv) {
     
     short PwmPin=atoi(argv[1]);
     short DirPwmPin=atoi(argv[2]);
-    DDCMotor::DControlMode Mode=DDCMotor::DControlMode::PHASE_ENABLED;
+    DDCMotor::DControlMode Mode=DDCMotor::DControlMode::DIR_PWM;
 
     if (argc >= 4) {
         if (string(argv[3]) == "IN_IN") {
-            Mode=DDCMotor::DControlMode::IN_IN;
+            Mode=DDCMotor::DControlMode::PWM_PWM;
         }
     }
         
