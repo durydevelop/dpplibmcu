@@ -17,9 +17,10 @@
 class DMPacket {
 	private:
     	std::vector<uint8_t>PacketBuff;
+        uint16_t ShiftIndex;
     public:
         DMPacket();
-        DMPacket(uint8_t Buff[], uint8_t BuffLen);
+        DMPacket(uint8_t Buff[], uint16_t BuffLen);
         DMPacket(const std::vector<uint8_t>& BuffVec);
         ~DMPacket();
 
@@ -38,22 +39,13 @@ class DMPacket {
         int8_t ReadInt8(uint16_t Offset);
         int16_t ReadInt16(uint16_t Offset);
         float ReadFloat(uint16_t Offset);
-
-        std::string ReadString(uint16_t Offset = 0, uint16_t Lenght = 0);
         std::vector<uint8_t> ReadBytes(uint16_t Offset, uint16_t Count = 0);
         uint16_t ReadBytes(std::vector<uint8_t>& Dest, uint16_t Offset, uint16_t Count = 0);
         std::vector<uint16_t> ReadWords(uint16_t Offset, uint16_t Count = 0);
         std::vector<uint32_t> ReadDWords(uint16_t Offset, uint16_t Count = 0);
-        std::string ToHexString(uint16_t offset = 0);
-        std::string ToAsciiString(uint16_t offset = 0);
+        std::string ReadString(uint16_t Offset = 0, uint16_t Lenght = 0);
 
-        void PushByte(uint8_t Byte);
-        void PushWord(uint16_t Word);
-        void PushDWord(uint32_t DWord);
-        void PushInt16(int16_t Int);
-        void PushFloat(float Float);
-        void PushString(std::string Str);
-/*
+        /*
         // TODO
         void WriteByte(uint8_t Byte, uint16_t Offset);
         void WriteWord(uint16_t Word, uint16_t Offset);
@@ -62,6 +54,21 @@ class DMPacket {
         void WriteFloat(float Float, uint16_t Offset);
         void WriteString(std::string Str, uint16_t Offset);
 */
+
+        void PushByte(uint8_t Byte);
+        void PushWord(uint16_t Word);
+        void PushDWord(uint32_t DWord);
+        void PushInt16(int16_t Int);
+        void PushFloat(float Float);
+        void PushData(const std::vector<uint8_t>& BuffVec);
+        void PushString(std::string Str);
+
+        uint8_t ShiftByte(void);
+        std::string ShiftString(uint16_t Lenght = 0);
+
+        std::string ToHexString(uint16_t Offset = 0);
+        std::string ToAsciiString(uint16_t Offset = 0);
+
 };
 
 #endif // DMPACKET_H

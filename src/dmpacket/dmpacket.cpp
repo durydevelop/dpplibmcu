@@ -58,7 +58,7 @@ DMPacket::DMPacket(const std::vector<uint8_t>& BuffVec) {
  * @brief Crea un pacchetto eseguendo il parsing del buffer passato
  * @param BuffVec	->  un std::vector<uint8_t>.
  */
-DMPacket::DMPacket(uint8_t Buff[], uint8_t BuffLen) {
+DMPacket::DMPacket(uint8_t Buff[], uint16_t BuffLen) {
 	SetBuffer(Buff,BuffLen);
 };
 
@@ -70,10 +70,12 @@ DMPacket::~DMPacket() {
  * @brief Resetta il pacchetto.
  * -Riporta la dimensione a HDR_SIZE.
  * -Azzera il contenuto.
+ * -Azzera li ShiftIndex
  */
 void DMPacket::Clear() {
 	PacketBuff.resize(0);
 	PacketBuff.shrink_to_fit();
+    ShiftIndex=0;
 }
 
 //! @return la lunghezza in bytes del paccketto
@@ -96,6 +98,8 @@ void DMPacket::SetBuffer(const uint8_t Buff[], uint16_t BuffSize) {
 	for (uint8_t ixB=0; ixB<BuffSize; ixB++) {
 		PacketBuff[ixB]=Buff[ixB];
 	}
+    // Zeros shift index
+    ShiftIndex=0;
 }
 
 void DMPacket::SetBuffer(const char Buff[], uint16_t BuffSize) {
@@ -111,6 +115,7 @@ void DMPacket::SetBuffer(const char Buff[], uint16_t BuffSize) {
  */
 void DMPacket::SetBuffer(const std::vector<uint8_t>& BuffVec) {
 	PacketBuff=BuffVec;
+    ShiftIndex=0;
 }
 
 //! @return un puntatore all'intero buffer del pacchetto.
@@ -286,29 +291,29 @@ std::vector<uint32_t> DMPacket::ReadDWords(uint16_t Offset, uint16_t Count)
 	return(Data);
 }
 
-std::string DMPacket::ToHexString(uint16_t offset) {
+std::string DMPacket::ToHexString(uint16_t Offset) {
     if (PacketBuff.empty()) {
         return std::string();
     }
-    uint16_t MemSize=(PacketBuff.size()-offset)*3; // 2 bytes + ':' for each byte
+    uint16_t MemSize=(PacketBuff.size()-Offset)*3; // 2 bytes + ':' for each byte
     char HexStr[MemSize];
     char *itr=&HexStr[0]; // iterator pointer
     //size_t ixP;
-    for (size_t ixP=offset; ixP<PacketBuff.size(); ixP++) {
+    for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
         itr+=sprintf(itr,"%02X:",PacketBuff[ixP]);
     }
     return (std::string(HexStr,MemSize-1)); // (-1 because last byte have no ':' to the end)
 }
 
-std::string DMPacket::ToAsciiString(uint16_t offset) {
+std::string DMPacket::ToAsciiString(uint16_t Offset) {
     if (PacketBuff.empty()) {
         return std::string();
     }
-    uint16_t MemSize=(PacketBuff.size()-offset)*3;
+    uint16_t MemSize=(PacketBuff.size()-Offset)*3;
     char AsciiStr[MemSize];
     char *itr=&AsciiStr[0]; // iterator pointer
     //size_t ixP;
-    for (size_t ixP=offset; ixP<PacketBuff.size(); ixP++) {
+    for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
         itr+=sprintf(itr,"%c  ",std::isprint(PacketBuff[ixP]) ? PacketBuff[ixP] : '.');
     }
     return (std::string(AsciiStr,MemSize)); // (-1 because last byte have no ':' to the end)
@@ -483,8 +488,6 @@ void DMPacket::PushFloat(float Float)
  */
 void DMPacket::PushString(std::string Str)
 {
-    
-    
     #ifdef ARDUINO
         size_t Len=PacketBuff.size();
 	    PacketBuff.resize(Len+Str.size());
@@ -504,4 +507,41 @@ std::transform(headers.begin(), headers.end(), std::back_inserter(response),
 );
 */
     #endif
+}
+
+void DMPacket::PushData(const std::vector<uint8_t>& BuffVec) {
+    PacketBuff.resize(PacketBuff.size() + BuffVec.size());
+    for (uint8_t b : BuffVec) {
+        PacketBuff.emplace_back(b);
+    }
+}
+
+/**
+ * @brief Pop a byte from begin of the buffer.
+ * It does not really shift the buffer, use a shift index to set the current pop posision
+ * (shifting a vector can be an expensive operation on vector).
+ * 
+ * @return uint8_t 
+ */
+uint8_t DMPacket::ShiftByte(void) {
+    if (PacketBuff.size() > 0) {
+        //return PacketBuff[ShiftIndex++];
+        uint8_t data=PacketBuff[ShiftIndex];
+        ShiftIndex++;
+        return data;
+    }
+    return 0;
+}
+
+std::string DMPacket::ShiftString(uint16_t Lenght) {
+    if (PacketBuff.size() > 0) {
+        std::string s=ReadString(ShiftIndex,Lenght);
+        ShiftIndex+=s.size();
+        // TODO: needs?
+        //if (ShiftIndex >= PacketBuff.size()) {
+        //    ShiftIndex=PacketBuff.size()-1;
+        //}
+        return s;
+    }
+    return std::string();
 }
