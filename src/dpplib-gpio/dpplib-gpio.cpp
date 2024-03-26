@@ -1,7 +1,29 @@
 #include "dpplib-gpio.h"
+#ifdef PIGPIO_VERSION
+    #include <chrono>
+    #include <thread>
+    void delay(unsigned long ms) {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    unsigned long millis(void) {
+        // c++ equivalent of arduino millis()
+        return(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+    }
+
+    unsigned long micros(void) {
+        // c++ equivalent of arduino millis()
+        return(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+    }
+#endif
 
 // TODO: USE_DSOFT_PWM
-
+/*
+    pinMode(pin,OUTPUT);    ->  InitPin(pin,OUTPUT_MODE);
+    digitalWrite(pin,HIGH); ->  WritePin(pin,HIGH);
+    digitalRead(pin);       ->  ReadPin(pin);
+    
+*/
 bool InitPin(uint8_t Pin, uint8_t Mode)
 {
     #ifdef ARDUINO
@@ -24,7 +46,7 @@ bool InitPin(uint8_t Pin, uint8_t Mode)
             }
 
             // Set mode
-            if (Mode == OUTPUT_PWM) {
+            if (Mode == OUTPUT_PWM_MODE) {
                 gpioSetMode(Pin,PI_OUTPUT);
             }
             else {
@@ -115,7 +137,7 @@ void SetPullUp(short Pin) {
         #endif
     #endif
 }
-
+/*
 #ifdef PIGPIO_VERSION
 	void DDigitalInput::SetPullDown(short Pin) {
 		if (!Attached) return;
@@ -127,7 +149,7 @@ void SetPullUp(short Pin) {
 		gpioSetPullUpDown(Pin,PI_PUD_OFF);
 	}
 #endif
-
+*/
 void ShutdownGpio(void)
 {
     #ifdef PIGPIO_VERSION

@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/ddigitalinput/rpi-input-demo/main.cpp
+iostream
+-
+chrono
+-
+thread
+-
+iostream
+-
+dmpacket
+-
+ddigitalinput
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.h
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/ddigitalinput
+DDigitalInput.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.h
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket
+dmpacket.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.h
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.h
+Arduino.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/Arduino.h
+wiring.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/wiring.h
+WProgram.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/WProgram.h
+vector
+-
+string
+-
+

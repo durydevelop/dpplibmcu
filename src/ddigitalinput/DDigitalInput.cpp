@@ -46,7 +46,7 @@ void loop()
 DDigitalInput::DDigitalInput(int DigitalPin, bool PullUp, unsigned int MsecDebounce)
 {
 	Pin=DigitalPin;
-	Attached=InitPin(DigitalPin,PullUp ? INPUT_PULLUP : INPUT);
+	Attached=InitPin(DigitalPin,PullUp ? INPUT_PULLUP_MODE : INPUT_MODE);
 
 	// Read current input state
 	CurrLevel=Read();

@@ -30,8 +30,11 @@ void WritePin(uint8_t Pin, uint8_t Level);
 //void PwmWrite(unsigned short int Pin, unsigned short int Value);
 void SetPullUp(short Pin);
 #ifdef PIGPIO_VERSION
-	void SetPullDown(short Pin);
-	void SetFloating(short Pin);
+    void delay(unsigned long ms);
+    unsigned long millis(void);
+    unsigned long micros(void);
+//	void SetPullDown(short Pin);
+//	void SetFloating(short Pin);
 #endif
 void ShutdownGpio(void);
 

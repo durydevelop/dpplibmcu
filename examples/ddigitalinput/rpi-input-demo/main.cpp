@@ -1,9 +1,9 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <iostream>
+#include <dmpacket>
 #include <ddigitalinput>
-
-using namespace std;
 
 int main(int argc, char** argv) {
 
@@ -12,26 +12,26 @@ int main(int argc, char** argv) {
         Pin=atoi(argv[1]);
     }
     else {
-        cout << "Missing Pin argument, must specify Pin nr" << endl;
+        std::cout << "Missing Pin argument, must specify Pin nr" << std::endl;
         exit(1);
     }
 
     if (Pin <= 0 || Pin > 32) {
-        cout << "Pin nr not valid." << endl;
+        std::cout << "Pin nr not valid." << std::endl;
         exit(1);
     }
 
     DDigitalInput *input=new DDigitalInput(Pin);
     
-    cout << "Start monitoring pin " << Pin << "..." << endl;
-    cout << "Press CTRL+C to stop" << endl;
+    std::cout << "Start monitoring pin " << Pin << "..." << std::endl;
+    std::cout << "Press CTRL+C to stop" << std::endl;
     do {
         if (input->IsChanged()) {
-            cout << input->Read() << endl;
+            std::cout << input->Read() << std::endl;
         }
     }while(true);
     //this_thread::sleep_for(chrono::milliseconds(2000));
-    cout << "Stop" << endl;
+    std::cout << "Stop" << std::endl;
     delete input;
     return 0;
 }

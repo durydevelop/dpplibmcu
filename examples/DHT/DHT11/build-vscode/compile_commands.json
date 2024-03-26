@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu -g -std=gnu++17 -o CMakeFiles/dht.dir/main.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/main.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/main.cpp"
+},
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu -g -std=gnu++17 -o CMakeFiles/dht.dir/DHT.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/DHT.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/DHT.cpp"
+},
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu -g -std=gnu++17 -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp"
+},
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu -g -std=gnu++17 -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp"
+},
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu -g -std=gnu++17 -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp"
+}
+]

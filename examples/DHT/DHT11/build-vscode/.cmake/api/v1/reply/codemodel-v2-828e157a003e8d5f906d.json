@@ -1,0 +1,139 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "_deps/dpplib-mcu",
+					"childIndexes" : 
+					[
+						2
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu"
+				},
+				{
+					"build" : "_deps/dpplib-mcu/src",
+					"childIndexes" : 
+					[
+						3,
+						4,
+						5
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src"
+				},
+				{
+					"build" : "_deps/dpplib-mcu/src/dpplib-gpio",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio"
+				},
+				{
+					"build" : "_deps/dpplib-mcu/src/ddigitalinput",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput"
+				},
+				{
+					"build" : "_deps/dpplib-mcu/src/dmpacket",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "dht",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"name" : "dpplib-mcu",
+					"parentIndex" : 0
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "dht::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dht-Debug-b62594ddbe4a9b0684f2.json",
+					"name" : "dht",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode",
+		"source" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}
