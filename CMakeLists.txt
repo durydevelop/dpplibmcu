@@ -16,9 +16,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #include(DPrintHelpers)
 
 ## Setup Target
-message(${DSTATUS} "Configuring ${LIB_NAME} library...")
+message(${DSTATUS} "Configuring ${PROJECT_NAME} library...")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
-add_library(${PROJECT_NAME} INTERFACE) # TODO ${SRC_FILES})
+add_library(${PROJECT_NAME} INTERFACE ${SRC_FILES})
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${SRC_DIRS})
 
