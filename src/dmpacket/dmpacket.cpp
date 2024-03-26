@@ -173,6 +173,11 @@ std::vector<uint8_t> DMPacket::ReadBytes(uint16_t Offset, uint16_t Count)
             Count=PacketBuff.size()-Offset;
         #endif
     }
+
+    if (Count == 0) {
+        Count=PacketBuff.size()-Offset;
+    }
+    
 	std::vector<uint8_t> Data(Count);
 
 //    #ifdef ARDUINO
@@ -182,8 +187,12 @@ std::vector<uint8_t> DMPacket::ReadBytes(uint16_t Offset, uint16_t Count)
 //    #else
 //	    Data.assign(PacketBuff.begin()+Count,PacketBuff.end());
     //#endif
-	
-	return(Data);
+
+	#ifdef ARDUINO
+	    return Data;
+    #else
+        return std::move(Data);
+    #endif
 }
 
 /**
@@ -202,7 +211,12 @@ uint16_t DMPacket::ReadBytes(std::vector<uint8_t>& Dest, uint16_t Offset, uint16
             Count=PacketBuff.size()-Offset;
         #endif
     }
-	Dest.reserve(Count);
+
+    if (Count == 0) {
+        Count=PacketBuff.size()-Offset;
+    }
+    
+	Dest.resize(Count);
 
 	//#ifdef ARDUINO
         for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
@@ -366,7 +380,7 @@ uint16_t DMPacket::ReadWord(uint16_t Offset)
  */
 uint32_t DMPacket::ReadDWord(uint16_t Offset)
 {
-    if (Offset+4 >= PacketBuff.size()) {
+    if (Offset+4 > PacketBuff.size()) {
         #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
             throw("Reading over buffer operation not permitted");
         #else
@@ -406,7 +420,13 @@ float DMPacket::ReadFloat(uint16_t Offset)
 	uint32_t DWord=ReadDWord(Offset);
 	// Important cast from dword to float
 	//return(*(float*)&DWord);
-	return(float(DWord));
+	//return(float(DWord));
+    union {
+        float ff;
+        uint32_t ii;
+    }d;
+    d.ii=DWord;
+    return d.ff;
 }
 
 /**
@@ -473,11 +493,16 @@ void DMPacket::PushFloat(float Float)
 	PacketBuff.resize(Ix+4);
 	// Important cast from float to dword
 	//uint32_t f=*(uint32_t*)&Float;
-	uint32_t f=float(Float);
-	PacketBuff[Ix]=HIBYTE(HIWORD(f));
-	PacketBuff[Ix+1]=LOBYTE(HIWORD(f));
-	PacketBuff[Ix+2]=HIBYTE(LOWORD(f));
-	PacketBuff[Ix+3]=LOBYTE(LOWORD(f));
+	//uint32_t f=float(Float);
+    union {
+        float ff;
+        uint32_t ii;
+    }d;
+    d.ff=Float;
+	PacketBuff[Ix]=HIBYTE(HIWORD(d.ii));
+	PacketBuff[Ix+1]=LOBYTE(HIWORD(d.ii));
+	PacketBuff[Ix+2]=HIBYTE(LOWORD(d.ii));
+	PacketBuff[Ix+3]=LOBYTE(LOWORD(d.ii));
 }
 
 /**
@@ -510,10 +535,18 @@ std::transform(headers.begin(), headers.end(), std::back_inserter(response),
 }
 
 void DMPacket::PushData(const std::vector<uint8_t>& BuffVec) {
-    PacketBuff.resize(PacketBuff.size() + BuffVec.size());
+    PacketBuff.reserve(PacketBuff.size() + BuffVec.size());
     for (uint8_t b : BuffVec) {
         PacketBuff.emplace_back(b);
     }
+}
+
+void DMPacket::pushData(const uint8_t buff[], const uint16_t buffSize) {
+    uint16_t startByte=PacketBuff.size();
+    PacketBuff.resize(startByte + buffSize);
+    for (uint8_t ixB=startByte; ixB<buffSize; ixB++) {
+		PacketBuff[ixB]=*buff++;
+	}
 }
 
 /**

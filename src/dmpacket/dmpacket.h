@@ -61,6 +61,7 @@ class DMPacket {
         void PushInt16(int16_t Int);
         void PushFloat(float Float);
         void PushData(const std::vector<uint8_t>& BuffVec);
+        void pushData(const uint8_t buff[], const uint16_t buffSize);
         void PushString(std::string Str);
 
         uint8_t ShiftByte(void);
