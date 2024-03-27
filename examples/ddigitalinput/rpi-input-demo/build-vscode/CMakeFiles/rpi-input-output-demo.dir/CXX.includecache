@@ -20,6 +20,12 @@ dmpacket
 ddigitalinput
 -
 
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp
+dpplib-gpio
+-
+DDigitalInput.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.h
+
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.h
 
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/ddigitalinput
@@ -29,6 +35,16 @@ DDigitalInput.h
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket
 dmpacket.h
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.h
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp
+dmpacket.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.h
+sstream
+-
+iomanip
+-
+algorithm
+-
 
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.h
 Arduino.h
@@ -40,5 +56,29 @@ WProgram.h
 vector
 -
 string
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio
+dpplib-gpio.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.h
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp
+dpplib-gpio.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.h
+chrono
+-
+thread
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.h
+Arduino.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/Arduino.h
+wiring.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/wiring.h
+WProgram.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/WProgram.h
+cstdlib
+-
+pigpio.h
 -
 
