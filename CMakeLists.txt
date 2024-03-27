@@ -13,29 +13,50 @@ project(dpplib-mcu
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #set(CMAKE_CXX_STANDARD 20)
 
+option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static ones (.lib/.a)" OFF)
+
 ## Cmake modules helper
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(DMainHelper)
 include(DPrintHelpers)
 
-## Setup Target
-message(${DSTATUS} "Configuring ${PROJECT_NAME} library...")
+message_c(${BOLD_MAGENTA} "Configuring ${PROJECT_NAME} library...")
+
+## Add platform indipendent modules
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
 
-## pgpio
+## Add pigpio dependend modules
 find_package(pigpio)
+if(pigpio_FOUND)
+    message_c("pigpio lib found, gpio are enabled")
+    add_subdirectory(src/dpplib-gpio)
+    add_subdirectory(src/ddigitalinput)
+else()
+    message_c("pigpio lib not found, gpio are NOT enabled")
+endif()
 
+## Setup Target
+if(BUILD_SHARED_LIBS)
+    # Building shared library
+    if(MSVC)
+        # Workaround for some projects
+        set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    endif()
+
+    add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
+
+    # Set library version
+    set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${CMAKE_PROJECT_VERSION})
+
+else()
+    # Static library
+    add_library(${PROJECT_NAME} ${SRC_FILES})
+    target_include_directories(${PROJECT_NAME} PUBLIC ${SRC_DIRS})
+endif()
+## TODO: interface
 #set(SRC_FILES ${SRC_FILES} ${FILES} PARENT_SCOPE)
 #set(SRC_DIRS ${SRC_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 
-add_library(${PROJECT_NAME} ${SRC_FILES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${SRC_DIRS})
-
-if (pigpio_FOUND)
-    message_c("pigpio lib found, enable gpio")
-    add_subdirectory(src/dpplib-gpio)
-    add_subdirectory(src/ddigitalinput)
+if(pigpio_FOUND)
     target_link_libraries(${PROJECT_NAME} PUBLIC pigpio)
-else()
-    message_c("pigpio lib not found, gpio is not enabled")
 endif()

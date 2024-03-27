@@ -20,7 +20,7 @@
 
 if (NOT DCOLOR)
     set(DCOLOR TRUE CACHE BOOL "Colors enabled")
-    message(${RED} "Colors enabled: this is Red${END_COLOR}")
+    message(${BOLD_MAGENTA} "Colors enabled: this is BOLD_MAGENTA${END_COLOR}")
 endif()
 
 # Funcion for colored log
