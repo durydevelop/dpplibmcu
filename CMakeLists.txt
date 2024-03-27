@@ -23,7 +23,7 @@ message(${DSTATUS} "Configuring ${PROJECT_NAME} library...")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
 
 ## pgpio
-find_package(pigpio REQUIRED)
+find_package(pigpio)
 
 #set(SRC_FILES ${SRC_FILES} ${FILES} PARENT_SCOPE)
 #set(SRC_DIRS ${SRC_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
