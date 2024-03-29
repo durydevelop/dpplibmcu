@@ -1,3 +1,0 @@
-#ifdef ARDUINO
-    #include "arduino/DVector.h"
-#endif

@@ -142,6 +142,19 @@ dht/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/build
 .PHONY : dht/fast
 
+#=============================================================================
+# Target rules for targets named dpplib-mcu
+
+# Build rule for target.
+dpplib-mcu: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dpplib-mcu
+.PHONY : dpplib-mcu
+
+# fast build rule for target.
+dpplib-mcu/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/dpplib-mcu/CMakeFiles/dpplib-mcu.dir/build.make _deps/dpplib-mcu/CMakeFiles/dpplib-mcu.dir/build
+.PHONY : dpplib-mcu/fast
+
 DHT.o: DHT.cpp.o
 
 .PHONY : DHT.o
@@ -168,87 +181,6 @@ DHT.s: DHT.cpp.s
 DHT.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/DHT.cpp.s
 .PHONY : DHT.cpp.s
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.o: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.o
-
-# target to build an object file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.i: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.i
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.i
-
-# target to preprocess a source file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.i
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.i
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.s: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.s
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.s
-
-# target to generate assembly for a file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.s
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.s
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.o: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.o
-
-# target to build an object file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.i: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.i
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.i
-
-# target to preprocess a source file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.i
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.i
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.s: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.s
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.s
-
-# target to generate assembly for a file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.s
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.s
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.o: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.o
-
-# target to build an object file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.i: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.i
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.i
-
-# target to preprocess a source file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.i
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.i
-
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.s: home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.s
-
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.s
-
-# target to generate assembly for a file
-home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dht.dir/build.make CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.s
-.PHONY : home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.s
 
 main.o: main.cpp.o
 
@@ -286,18 +218,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... dht"
+	@echo "... dpplib-mcu"
 	@echo "... DHT.o"
 	@echo "... DHT.i"
 	@echo "... DHT.s"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.o"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.i"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.s"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.o"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.i"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.s"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.o"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.i"
-	@echo "... home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -8,11 +8,14 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/CMakeLists.txt"
+  "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/cmake/DCMakeColors.cmake"
+  "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/cmake/DMainHelper.cmake"
+  "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/cmake/DPrintHelpers.cmake"
+  "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/cmake/generate_product_version.cmake"
   "../CMakeLists.txt"
   "CMakeFiles/3.18.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeSystem.cmake"
   "../cmake/Findpigpio.cmake"
-  "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/CMakeLists.txt"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/CMakeLists.txt"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/CMakeLists.txt"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/CMakeLists.txt"
@@ -22,6 +25,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.18/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.18/Modules/CMakeInitializeConfigs.cmake"
   "/usr/share/cmake-3.18/Modules/CMakeLanguageInformation.cmake"
+  "/usr/share/cmake-3.18/Modules/CMakeParseArguments.cmake"
   "/usr/share/cmake-3.18/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.18/Modules/CMakeSystemSpecificInitialize.cmake"
   "/usr/share/cmake-3.18/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
@@ -46,13 +50,13 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/dpplib-mcu/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "_deps/dpplib-mcu/src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "_deps/dpplib-mcu/src/dmpacket/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/dpplib-mcu/src/dpplib-gpio/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/dpplib-mcu/src/ddigitalinput/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "_deps/dpplib-mcu/src/dmpacket/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/dht.dir/DependInfo.cmake"
+  "_deps/dpplib-mcu/CMakeFiles/dpplib-mcu.dir/DependInfo.cmake"
   )

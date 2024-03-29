@@ -20,9 +20,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 add_executable(${PROJECT_NAME}
-    main.cpp
-    DHTXXD.h
-    DHTXXD.c
+    mainnod.cpp
+    DHTnod.h
+    DHTnod.c
 )
 
 message(">> Get dpplib-mcu...")

@@ -33,7 +33,7 @@ int main(){
             
            delay(500);
         }
-        //printf("Humidity is %.2f %%, \t Temperature is %.2f *C\n\n",dht.humidity, dht.temperature);
+        printf("Humidity is %.2f %%, \t Temperature is %.2f *C\n\n",dht.humidity, dht.temperature);
         delay(2000);
     }
     return 1;

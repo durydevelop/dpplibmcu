@@ -44,7 +44,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/_deps/dpplib-mcu/src/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/_deps/dpplib-mcu/src/dmpacket/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/_deps/dpplib-mcu/src/dpplib-gpio/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/_deps/dpplib-mcu/src/ddigitalinput/cmake_install.cmake")
 
 endif()
 

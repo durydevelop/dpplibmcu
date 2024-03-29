@@ -10,6 +10,8 @@
 #include "DHT.hpp"
 #include <dpplib-gpio>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 DHT::DHT(){
     //wiringPiSetup();
@@ -33,22 +35,23 @@ int DHT::readSensor(int pin,int wakeupDelay){
 	}
 	// Clear sda
 	//pinMode(pin,OUTPUT);
-    InitPin(pin,OUTPUT_MODE);
+    gpioSetMode(pin,OUTPUT_MODE);
 	//digitalWrite(pin,HIGH);
-    WritePin(pin,HIGH);
+    gpioWrite(pin,HIGH);
 	delay(500);
 	// Start signal
-	WritePin(pin,LOW);
+	gpioWrite(pin,LOW);
 	delay(wakeupDelay);
-	WritePin(pin,HIGH);
-	// delayMicroseconds(40);
-	InitPin(pin,INPUT_MODE);
+	gpioWrite(pin,HIGH);
+	//delayMicroseconds(40);
+	std::this_thread::sleep_for(std::chrono::microseconds(40));
+	gpioSetMode(pin,INPUT_MODE);
 	
 	int32_t loopCnt = DHTLIB_TIMEOUT;
 	t = micros();
 	// Waiting echo
 	while(1){
-		if(ReadPin(pin) == LOW){
+		if(gpioRead(pin) == LOW){
 			break;
 		}
 		if((micros() - t) > loopCnt){
@@ -59,7 +62,7 @@ int DHT::readSensor(int pin,int wakeupDelay){
 	loopCnt = DHTLIB_TIMEOUT;
 	t = micros();
 	// Waiting echo low level end
-	while(ReadPin(pin) == LOW){
+	while(gpioRead(pin) == LOW){
 		if((micros() - t) > loopCnt){
 			return DHTLIB_ERROR_TIMEOUT;
 		}
@@ -68,7 +71,7 @@ int DHT::readSensor(int pin,int wakeupDelay){
 	loopCnt = DHTLIB_TIMEOUT;
 	t = micros();
 	// Waiting echo high level end
-	while(ReadPin(pin)==HIGH){
+	while(gpioRead(pin)==HIGH){
 		if((micros() - t) > loopCnt){
 			return DHTLIB_ERROR_TIMEOUT;
 		}
@@ -76,13 +79,13 @@ int DHT::readSensor(int pin,int wakeupDelay){
 	for (i = 0; i<40;i++){
 		loopCnt = DHTLIB_TIMEOUT;
 		t = micros();
-		while(ReadPin(pin)==LOW){
+		while(gpioRead(pin)==LOW){
 			if((micros() - t) > loopCnt)
 				return DHTLIB_ERROR_TIMEOUT;
 		}
 		t = micros();
 		loopCnt = DHTLIB_TIMEOUT;
-		while(ReadPin(pin)==HIGH){
+		while(gpioRead(pin)==HIGH){
 			if((micros() - t) > loopCnt){
 				return DHTLIB_ERROR_TIMEOUT;
 			}
@@ -96,8 +99,8 @@ int DHT::readSensor(int pin,int wakeupDelay){
 			idx++;
 		}
 	}
-	InitPin(pin,OUTPUT_MODE);
-	WritePin(pin,HIGH);
+	gpioSetMode(pin,OUTPUT_MODE);
+	gpioWrite(pin,HIGH);
 	printf("bits:\t%d,\t%d,\t%d,\t%d,\t%d\n",bits[0],bits[1],bits[2],bits[3],bits[4]);
 	return DHTLIB_OK;
 }

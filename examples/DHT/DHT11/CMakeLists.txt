@@ -29,10 +29,11 @@ message(">> Get dpplib-mcu...")
 get_filename_component(dpplib-mcu_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../.. ABSOLUTE)
 message(">> from ${dpplib-mcu_ROOT}")
 add_subdirectory(${dpplib-mcu_ROOT} _deps/dpplib-mcu)
+target_link_libraries(${PROJECT_NAME} PUBLIC dpplib-mcu)
 
 target_sources(${PROJECT_NAME} PUBLIC ${SRC_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${SRC_DIRS})
 
 #pgpio
-find_package(pigpio REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE pigpio)
+#find_package(pigpio REQUIRED)
+#target_link_libraries(${PROJECT_NAME} PRIVATE pigpio)

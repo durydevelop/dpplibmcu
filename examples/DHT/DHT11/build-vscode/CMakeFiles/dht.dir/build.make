@@ -102,64 +102,20 @@ CMakeFiles/dht.dir/DHT.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dht.dir/DHT.cpp.s"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/DHT.cpp -o CMakeFiles/dht.dir/DHT.cpp.s
 
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o: CMakeFiles/dht.dir/flags.make
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o: /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.i"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp > CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.i
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.s"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.s
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o: CMakeFiles/dht.dir/flags.make
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o: /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.i"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp > CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.i
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.s"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.s
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o: CMakeFiles/dht.dir/flags.make
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o: /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.i"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp > CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.i
-
-CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.s"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp -o CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.s
-
 # Object files for target dht
 dht_OBJECTS = \
 "CMakeFiles/dht.dir/main.cpp.o" \
-"CMakeFiles/dht.dir/DHT.cpp.o" \
-"CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o" \
-"CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o" \
-"CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o"
+"CMakeFiles/dht.dir/DHT.cpp.o"
 
 # External object files for target dht
 dht_EXTERNAL_OBJECTS =
 
 dht: CMakeFiles/dht.dir/main.cpp.o
 dht: CMakeFiles/dht.dir/DHT.cpp.o
-dht: CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio.cpp.o
-dht: CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/DDigitalInput.cpp.o
-dht: CMakeFiles/dht.dir/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp.o
 dht: CMakeFiles/dht.dir/build.make
+dht: _deps/dpplib-mcu/libdpplib-mcu.a
 dht: CMakeFiles/dht.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable dht"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable dht"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/dht.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

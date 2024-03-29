@@ -1,7 +1,7 @@
 set(FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/ddigitalinput
-    ${CMAKE_CURRENT_SOURCE_DIR}/DDigitalInput.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/DDigitalInput.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ddigitalinput.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ddigitalinput.h
 )
 
 set(SRC_FILES ${SRC_FILES} ${FILES} PARENT_SCOPE)

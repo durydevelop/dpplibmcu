@@ -20,19 +20,20 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(DMainHelper)
 include(DPrintHelpers)
 
-message_c(${BOLD_MAGENTA} "Configuring ${PROJECT_NAME} library...")
-
 ## Add platform indipendent modules
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/utils)
 
-## Add pigpio dependend modules
-find_package(pigpio)
-if(pigpio_FOUND)
-    message_c("pigpio lib found, gpio are enabled")
-    add_subdirectory(src/dpplib-gpio)
+## Add lg dependend modules
+find_package(lg)
+if(lg_FOUND)
+    message_c(${BOLD_WHITE} "Library lg found, gpio control are enabled")
+    add_subdirectory(src/dgpio)
     add_subdirectory(src/ddigitalinput)
+    add_subdirectory(src/ddigitaloutput)
+    add_subdirectory(src/ddigitalbutton)
 else()
-    message_c("pigpio lib not found, gpio are NOT enabled")
+    message_c(${BOLD_WHITE} "Library pigpio not found, gpio control are NOT enabled")
 endif()
 
 ## Setup Target
@@ -57,6 +58,10 @@ endif()
 #set(SRC_FILES ${SRC_FILES} ${FILES} PARENT_SCOPE)
 #set(SRC_DIRS ${SRC_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 
-if(pigpio_FOUND)
-    target_link_libraries(${PROJECT_NAME} PUBLIC pigpio)
+if(lp_FOUND)
+    target_link_libraries(${PROJECT_NAME} PUBLIC lgpio)
 endif()
+
+#include(DInstall)
+
+print_project_summary()

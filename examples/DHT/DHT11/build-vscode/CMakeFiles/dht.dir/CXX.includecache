@@ -6,22 +6,22 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/DHT.hpp
-stdio.h
--
-stdint.h
--
-
-/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/main.cpp
-stdio.h
--
-stdint.h
--
-dpplib-gpio
--
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/DHT.cpp
 DHT.hpp
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/DHT.hpp
+dpplib-gpio
+-
+iostream
+-
 chrono
+-
+thread
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/DHT/DHT11/DHT.hpp
+stdio.h
+-
+stdint.h
 -
 
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpplib-gpio/dpplib-gpio
