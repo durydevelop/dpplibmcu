@@ -1,1 +1,0 @@
-/usr/bin/arm-linux-gnueabihf-g++ -g CMakeFiles/dht.dir/main.cpp.o CMakeFiles/dht.dir/DHT.cpp.o -o dht  _deps/dpplib-mcu/libdpplib-mcu.a -lpigpio 

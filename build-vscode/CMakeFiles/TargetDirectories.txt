@@ -1,0 +1,15 @@
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/rebuild_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/edit_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dmpacket/CMakeFiles/rebuild_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dmpacket/CMakeFiles/edit_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/utils/CMakeFiles/rebuild_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/utils/CMakeFiles/edit_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dgpio/CMakeFiles/rebuild_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dgpio/CMakeFiles/edit_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitalinput/CMakeFiles/rebuild_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitalinput/CMakeFiles/edit_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitaloutput/CMakeFiles/rebuild_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitaloutput/CMakeFiles/edit_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitalbutton/CMakeFiles/rebuild_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitalbutton/CMakeFiles/edit_cache.dir

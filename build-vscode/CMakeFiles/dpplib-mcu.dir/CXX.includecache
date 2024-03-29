@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/dgpio/dgpio
+dgpio.h
+../src/dgpio/dgpio.h
+
+../src/dgpio/dgpio.h
+Arduino.h
+../src/dgpio/Arduino.h
+wiring.h
+../src/dgpio/wiring.h
+WProgram.h
+../src/dgpio/WProgram.h
+lgpio.h
+-
+utils.h
+-
+
+../src/utils/utils.h
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.cpp
+ddigitalbutton.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.h
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.h
+dgpio
+-
+

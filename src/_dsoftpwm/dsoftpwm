@@ -1,0 +1,4 @@
+
+#ifdef ARDUINO_ARCH_AVR
+    #include "avr/DSoftPwm.h"
+#endif
