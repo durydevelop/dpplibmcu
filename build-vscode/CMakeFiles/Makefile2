@@ -74,34 +74,95 @@ CMAKE_BINARY_DIR = /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode
 # The main recursive "all" target.
 all: CMakeFiles/dpplib-mcu.dir/all
 all: src/dmpacket/all
-all: src/utils/all
+all: src/dutils/all
 all: src/dgpio/all
 all: src/ddigitalinput/all
 all: src/ddigitaloutput/all
 all: src/ddigitalbutton/all
+all: src/dpwm/all
+all: src/dservo/all
+all: src/di2c/all
+all: drivers/all
+all: examples/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: src/dmpacket/preinstall
-preinstall: src/utils/preinstall
+preinstall: src/dutils/preinstall
 preinstall: src/dgpio/preinstall
 preinstall: src/ddigitalinput/preinstall
 preinstall: src/ddigitaloutput/preinstall
 preinstall: src/ddigitalbutton/preinstall
+preinstall: src/dpwm/preinstall
+preinstall: src/dservo/preinstall
+preinstall: src/di2c/preinstall
+preinstall: drivers/preinstall
+preinstall: examples/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/dpplib-mcu.dir/clean
 clean: src/dmpacket/clean
-clean: src/utils/clean
+clean: src/dutils/clean
 clean: src/dgpio/clean
 clean: src/ddigitalinput/clean
 clean: src/ddigitaloutput/clean
 clean: src/ddigitalbutton/clean
+clean: src/dpwm/clean
+clean: src/dservo/clean
+clean: src/di2c/clean
+clean: drivers/clean
+clean: examples/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory drivers
+
+# Recursive "all" directory target.
+drivers/all:
+
+.PHONY : drivers/all
+
+# Recursive "preinstall" directory target.
+drivers/preinstall:
+
+.PHONY : drivers/preinstall
+
+# Recursive "clean" directory target.
+drivers/clean:
+
+.PHONY : drivers/clean
+
+#=============================================================================
+# Directory level rules for directory examples
+
+# Recursive "all" directory target.
+examples/all: examples/CMakeFiles/ina226.dir/all
+examples/all: examples/CMakeFiles/ina228.dir/all
+examples/all: examples/CMakeFiles/i2c-bus-info.dir/all
+examples/all: examples/CMakeFiles/servo-demo.dir/all
+examples/all: examples/CMakeFiles/pwm-demo.dir/all
+examples/all: examples/CMakeFiles/io-demo.dir/all
+
+.PHONY : examples/all
+
+# Recursive "preinstall" directory target.
+examples/preinstall:
+
+.PHONY : examples/preinstall
+
+# Recursive "clean" directory target.
+examples/clean: examples/CMakeFiles/ina226.dir/clean
+examples/clean: examples/CMakeFiles/ina228.dir/clean
+examples/clean: examples/CMakeFiles/i2c-bus-info.dir/clean
+examples/clean: examples/CMakeFiles/servo-demo.dir/clean
+examples/clean: examples/CMakeFiles/pwm-demo.dir/clean
+examples/clean: examples/CMakeFiles/io-demo.dir/clean
+
+.PHONY : examples/clean
 
 #=============================================================================
 # Directory level rules for directory src/ddigitalbutton
@@ -176,6 +237,24 @@ src/dgpio/clean:
 .PHONY : src/dgpio/clean
 
 #=============================================================================
+# Directory level rules for directory src/di2c
+
+# Recursive "all" directory target.
+src/di2c/all:
+
+.PHONY : src/di2c/all
+
+# Recursive "preinstall" directory target.
+src/di2c/preinstall:
+
+.PHONY : src/di2c/preinstall
+
+# Recursive "clean" directory target.
+src/di2c/clean:
+
+.PHONY : src/di2c/clean
+
+#=============================================================================
 # Directory level rules for directory src/dmpacket
 
 # Recursive "all" directory target.
@@ -194,22 +273,76 @@ src/dmpacket/clean:
 .PHONY : src/dmpacket/clean
 
 #=============================================================================
-# Directory level rules for directory src/utils
+# Directory level rules for directory src/dpwm
 
 # Recursive "all" directory target.
-src/utils/all:
+src/dpwm/all: src/dpwm/sbc/all
 
-.PHONY : src/utils/all
+.PHONY : src/dpwm/all
 
 # Recursive "preinstall" directory target.
-src/utils/preinstall:
+src/dpwm/preinstall: src/dpwm/sbc/preinstall
 
-.PHONY : src/utils/preinstall
+.PHONY : src/dpwm/preinstall
 
 # Recursive "clean" directory target.
-src/utils/clean:
+src/dpwm/clean: src/dpwm/sbc/clean
 
-.PHONY : src/utils/clean
+.PHONY : src/dpwm/clean
+
+#=============================================================================
+# Directory level rules for directory src/dpwm/sbc
+
+# Recursive "all" directory target.
+src/dpwm/sbc/all:
+
+.PHONY : src/dpwm/sbc/all
+
+# Recursive "preinstall" directory target.
+src/dpwm/sbc/preinstall:
+
+.PHONY : src/dpwm/sbc/preinstall
+
+# Recursive "clean" directory target.
+src/dpwm/sbc/clean:
+
+.PHONY : src/dpwm/sbc/clean
+
+#=============================================================================
+# Directory level rules for directory src/dservo
+
+# Recursive "all" directory target.
+src/dservo/all:
+
+.PHONY : src/dservo/all
+
+# Recursive "preinstall" directory target.
+src/dservo/preinstall:
+
+.PHONY : src/dservo/preinstall
+
+# Recursive "clean" directory target.
+src/dservo/clean:
+
+.PHONY : src/dservo/clean
+
+#=============================================================================
+# Directory level rules for directory src/dutils
+
+# Recursive "all" directory target.
+src/dutils/all:
+
+.PHONY : src/dutils/all
+
+# Recursive "preinstall" directory target.
+src/dutils/preinstall:
+
+.PHONY : src/dutils/preinstall
+
+# Recursive "clean" directory target.
+src/dutils/clean:
+
+.PHONY : src/dutils/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/dpplib-mcu.dir
@@ -218,12 +351,12 @@ src/utils/clean:
 CMakeFiles/dpplib-mcu.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target dpplib-mcu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target dpplib-mcu"
 .PHONY : CMakeFiles/dpplib-mcu.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/dpplib-mcu.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/dpplib-mcu.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 0
 .PHONY : CMakeFiles/dpplib-mcu.dir/rule
@@ -237,6 +370,168 @@ dpplib-mcu: CMakeFiles/dpplib-mcu.dir/rule
 CMakeFiles/dpplib-mcu.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/clean
 .PHONY : CMakeFiles/dpplib-mcu.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/ina226.dir
+
+# All Build rule for target.
+examples/CMakeFiles/ina226.dir/all: CMakeFiles/dpplib-mcu.dir/all
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina226.dir/build.make examples/CMakeFiles/ina226.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina226.dir/build.make examples/CMakeFiles/ina226.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=17,18 "Built target ina226"
+.PHONY : examples/CMakeFiles/ina226.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/ina226.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 16
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/ina226.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 0
+.PHONY : examples/CMakeFiles/ina226.dir/rule
+
+# Convenience name for target.
+ina226: examples/CMakeFiles/ina226.dir/rule
+
+.PHONY : ina226
+
+# clean rule for target.
+examples/CMakeFiles/ina226.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina226.dir/build.make examples/CMakeFiles/ina226.dir/clean
+.PHONY : examples/CMakeFiles/ina226.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/ina228.dir
+
+# All Build rule for target.
+examples/CMakeFiles/ina228.dir/all: CMakeFiles/dpplib-mcu.dir/all
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina228.dir/build.make examples/CMakeFiles/ina228.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina228.dir/build.make examples/CMakeFiles/ina228.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=19,20 "Built target ina228"
+.PHONY : examples/CMakeFiles/ina228.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/ina228.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 16
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/ina228.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 0
+.PHONY : examples/CMakeFiles/ina228.dir/rule
+
+# Convenience name for target.
+ina228: examples/CMakeFiles/ina228.dir/rule
+
+.PHONY : ina228
+
+# clean rule for target.
+examples/CMakeFiles/ina228.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina228.dir/build.make examples/CMakeFiles/ina228.dir/clean
+.PHONY : examples/CMakeFiles/ina228.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/i2c-bus-info.dir
+
+# All Build rule for target.
+examples/CMakeFiles/i2c-bus-info.dir/all: CMakeFiles/dpplib-mcu.dir/all
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-info.dir/build.make examples/CMakeFiles/i2c-bus-info.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-info.dir/build.make examples/CMakeFiles/i2c-bus-info.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=15,16 "Built target i2c-bus-info"
+.PHONY : examples/CMakeFiles/i2c-bus-info.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/i2c-bus-info.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 16
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/i2c-bus-info.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 0
+.PHONY : examples/CMakeFiles/i2c-bus-info.dir/rule
+
+# Convenience name for target.
+i2c-bus-info: examples/CMakeFiles/i2c-bus-info.dir/rule
+
+.PHONY : i2c-bus-info
+
+# clean rule for target.
+examples/CMakeFiles/i2c-bus-info.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-info.dir/build.make examples/CMakeFiles/i2c-bus-info.dir/clean
+.PHONY : examples/CMakeFiles/i2c-bus-info.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/servo-demo.dir
+
+# All Build rule for target.
+examples/CMakeFiles/servo-demo.dir/all: CMakeFiles/dpplib-mcu.dir/all
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/servo-demo.dir/build.make examples/CMakeFiles/servo-demo.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/servo-demo.dir/build.make examples/CMakeFiles/servo-demo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=25,26 "Built target servo-demo"
+.PHONY : examples/CMakeFiles/servo-demo.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/servo-demo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 16
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/servo-demo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 0
+.PHONY : examples/CMakeFiles/servo-demo.dir/rule
+
+# Convenience name for target.
+servo-demo: examples/CMakeFiles/servo-demo.dir/rule
+
+.PHONY : servo-demo
+
+# clean rule for target.
+examples/CMakeFiles/servo-demo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/servo-demo.dir/build.make examples/CMakeFiles/servo-demo.dir/clean
+.PHONY : examples/CMakeFiles/servo-demo.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/pwm-demo.dir
+
+# All Build rule for target.
+examples/CMakeFiles/pwm-demo.dir/all: CMakeFiles/dpplib-mcu.dir/all
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pwm-demo.dir/build.make examples/CMakeFiles/pwm-demo.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pwm-demo.dir/build.make examples/CMakeFiles/pwm-demo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=23,24 "Built target pwm-demo"
+.PHONY : examples/CMakeFiles/pwm-demo.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/pwm-demo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 16
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/pwm-demo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 0
+.PHONY : examples/CMakeFiles/pwm-demo.dir/rule
+
+# Convenience name for target.
+pwm-demo: examples/CMakeFiles/pwm-demo.dir/rule
+
+.PHONY : pwm-demo
+
+# clean rule for target.
+examples/CMakeFiles/pwm-demo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pwm-demo.dir/build.make examples/CMakeFiles/pwm-demo.dir/clean
+.PHONY : examples/CMakeFiles/pwm-demo.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/io-demo.dir
+
+# All Build rule for target.
+examples/CMakeFiles/io-demo.dir/all: CMakeFiles/dpplib-mcu.dir/all
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/io-demo.dir/build.make examples/CMakeFiles/io-demo.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/io-demo.dir/build.make examples/CMakeFiles/io-demo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=21,22 "Built target io-demo"
+.PHONY : examples/CMakeFiles/io-demo.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/io-demo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 16
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/io-demo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles 0
+.PHONY : examples/CMakeFiles/io-demo.dir/rule
+
+# Convenience name for target.
+io-demo: examples/CMakeFiles/io-demo.dir/rule
+
+.PHONY : io-demo
+
+# clean rule for target.
+examples/CMakeFiles/io-demo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/io-demo.dir/build.make examples/CMakeFiles/io-demo.dir/clean
+.PHONY : examples/CMakeFiles/io-demo.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

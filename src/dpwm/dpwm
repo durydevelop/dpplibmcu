@@ -1,0 +1,6 @@
+
+#ifdef ARDUINO_ARCH_AVR
+    #include "avr/dpwm.h"
+#else
+    #include "sbc/dpwm.h"
+#endif

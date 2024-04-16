@@ -1,5 +1,5 @@
 #ifndef DGpio_H
-#define DGpio_h
+#define DGpio_H
 
 // Platform check
 #ifdef ARDUINO
@@ -12,25 +12,33 @@
 #else
     // Not arduino (rpi or linux sbc)
     #include <lgpio.h>
+    #include <derrorcodes.h>
+    #include <dgpiochip>
 
-    #define map(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
+    #define mapValue(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
+
     #ifndef LOW
         #define LOW LG_LOW
     #endif
     #ifndef HIGH
         #define HIGH LG_HIGH
     #endif
-
-    static int chip=-1;
-    
-    bool initGpio(int gpioDevice = 0);
-    bool shutdownGpio(int gpioDevice = 0);
+/*
+    #define bitRead(x, n) (((x) >> (n)) & 0x01)
+    #define LOWORD(l) ((unsigned short)(l))
+    #define HIWORD(l) ((unsigned short)(((unsigned int)(l) >> 16) & 0xFFFF))
+    #define LOBYTE(w) ((char)(w&0x00FF))
+    #define HIBYTE(w) ((char)((w>>8)&0x00FF))
+    #define WORD(msb,lsb) ((msb << 8) | lsb)
+    #define DWORD(msw,lsw) ((msw << 16) | lsw)
+    #define DWORD_B(msb,next_msb,next_lsb,lsb) (msb << 24) | (next_msb << 16) | (next_lsb << 8) | lsb
+*/    
 #endif
 
-#include <utils.h>
+#include <dutils>
 
 // Enumations
-enum DPinMode { INPUT, OUTPUT, INPUT_PULLUP }; //, OUTPUT_PWM };
+enum DPinMode { INPUT, OUTPUT, INPUT_PULLUP, SOFT_PWM }; //, OUTPUT_PWM };
 enum DPinFlags {
     NO_FLAGS=    0,
     ACTIVE_LOW=  4,
@@ -41,10 +49,13 @@ enum DPinFlags {
     PULL_NONE=   128
 };
 
-bool initPin(uint8_t pin, DPinMode mode, DPinFlags flags = NO_FLAGS);
-
-uint8_t readPin(uint8_t pin);
-bool writePin(uint8_t pin, uint8_t level);
-bool writeAnalog(unsigned short int pin, unsigned short int value);
+DResult initGpio(int gpioDevice, DGpioHandle& handle);
+bool isGpioReady(DGpioHandle& handle);
+DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags, DGpioHandle handle);
+int readPin(uint8_t pin, DGpioHandle handle);
+DResult writePin(uint8_t pin, uint8_t level, DGpioHandle handle);
+DResult writeAnalog(unsigned short int pin, unsigned short int value, DGpioHandle handle);
+DResult releasePin(uint8_t pin, DGpioHandle handle);
+DResult shutdownGpio(DGpioHandle handle);
 
 #endif

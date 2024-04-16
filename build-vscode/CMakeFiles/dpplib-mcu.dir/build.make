@@ -89,22 +89,35 @@ CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.s"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp -o CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.s
 
-CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
-CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.o: ../src/utils/utils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.o"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/utils/utils.cpp
+CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.o: ../src/dutils/dutils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils/dutils.cpp
 
-CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.i"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/utils/utils.cpp > CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.i
+CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils/dutils.cpp > CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.i
 
-CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.s"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/utils/utils.cpp -o CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.s
+CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils/dutils.cpp -o CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.s
+
+CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o: ../src/dgpio/dgpiochip.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpiochip.cpp
+
+CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpiochip.cpp > CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.i
+
+CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpiochip.cpp -o CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.s
 
 CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
 CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o: ../src/dgpio/dgpio.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpio.cpp
 
 CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.i: cmake_force
@@ -117,7 +130,7 @@ CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.s: cmake_force
 
 CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
 CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.o: ../src/ddigitalinput/ddigitalinput.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.o"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput/ddigitalinput.cpp
 
 CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.i: cmake_force
@@ -130,7 +143,7 @@ CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.s: cmake_force
 
 CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
 CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o: ../src/ddigitaloutput/ddigitaloutput.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput/ddigitaloutput.cpp
 
 CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.i: cmake_force
@@ -143,7 +156,7 @@ CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.s: cmake_force
 
 CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
 CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o: ../src/ddigitalbutton/ddigitalbutton.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.cpp
 
 CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.i: cmake_force
@@ -154,27 +167,119 @@ CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.s"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.cpp -o CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.s
 
+CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o: ../src/dpwm/sbc/dpwm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc/dpwm.cpp
+
+CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc/dpwm.cpp > CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.i
+
+CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc/dpwm.cpp -o CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.s
+
+CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o: ../src/dservo/dservo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo/dservo.cpp
+
+CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo/dservo.cpp > CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.i
+
+CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo/dservo.cpp -o CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.s
+
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o: ../src/di2c/di2c.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp
+
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp > CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i
+
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s
+
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o: ../src/di2c/di2cmaster.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cmaster.cpp
+
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cmaster.cpp > CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.i
+
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cmaster.cpp -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.s
+
+CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o: ../drivers/INA226/INA226.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA226/INA226.cpp
+
+CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA226/INA226.cpp > CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.i
+
+CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA226/INA226.cpp -o CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.s
+
+CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o: ../drivers/INA228/INA228.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA228/INA228.cpp
+
+CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA228/INA228.cpp > CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.i
+
+CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA228/INA228.cpp -o CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.s
+
 # Object files for target dpplib-mcu
 dpplib__mcu_OBJECTS = \
 "CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.o" \
-"CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o" \
-"CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o"
+"CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o"
 
 # External object files for target dpplib-mcu
 dpplib__mcu_EXTERNAL_OBJECTS =
 
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.o
-libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/ddigitalinput/ddigitalinput.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/build.make
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libdpplib-mcu.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX static library libdpplib-mcu.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/dpplib-mcu.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/dpplib-mcu.dir/link.txt --verbose=$(VERBOSE)
 

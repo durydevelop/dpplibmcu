@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/di2c/di2c
+di2c.h
+../src/di2c/di2c.h
+
+../src/di2c/di2c.h
+cstdint
+-
+string
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/rpi-i2c-demo/main.cpp
+iostream
+-
+di2c
+-
+

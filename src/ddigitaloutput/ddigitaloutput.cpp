@@ -38,28 +38,55 @@ void loop()
 
 #include "ddigitaloutput.h"
 
-//! Costruttore 1
-/**
- * @param DigitalPin	->	pin da utilizzare come output
- */
-DDigitalOutput::DDigitalOutput(uint8_t digitalPin)
-{
-	pin=digitalPin;
-	gpioAttached=initPin(digitalPin,DPinMode::OUTPUT);
-	currLevel=read();
-}
-
-//! Costruttore 2
 /**
  * @param DigitalPin	->	pin da utilizzare come output
  * @param InitialState	-> Stato logico iniziale da attivare: [HIGH,LOW] oppure [1,0]
  */
-DDigitalOutput::DDigitalOutput(uint8_t digitalPin, uint8_t initalLevel)
+DDigitalOutput::DDigitalOutput(int digitalPin, DGpioHandle gpioHandle)
 {
-	pin=digitalPin;
-	gpioAttached=initPin(digitalPin,DPinMode::OUTPUT);
-	write(initalLevel);
-	currLevel=read();
+    pin=digitalPin;
+    currLevel=LOW;
+    lastResult=DERR_CLASS_NOT_BEGUN;
+
+    //std::cout << "DDigitalOutput() digitalPin=" << digitalPin<< " gpioHandle=" << gpioHandle << std::endl;
+
+    if (gpioHandle < 0) {
+        // Try init on first device
+        //std::cout << "auto set handle" << std::endl;
+        lastResult=initGpio(0,handle);
+    }
+    else {
+        if (isGpioReady(gpioHandle)) {
+            handle=gpioHandle;
+        }
+        else {
+            lastResult=DERR_GPIO_NOT_READY;
+        }
+    }
+}
+
+/**
+ * @brief Destroy the DDigitalOutput::DDigitalOutput object and free pin use.
+ */
+DDigitalOutput::~DDigitalOutput()
+{
+    releasePin(pin,handle);
+}
+
+bool DDigitalOutput::begin(int initialLevel)
+{
+    if (handle >= 0) {
+        lastResult=initPin(pin,DPinMode::OUTPUT,DPinFlags::NO_FLAGS,handle);
+        if (lastResult == DRES_OK) {
+            // Set initial level
+            write(initialLevel);
+            // Read current input state
+            //currLevel=read();
+            currLevel=initialLevel;
+            return true;
+        }
+    }
+    return false;
 }
 
 //! Porta il pin di uscita a livello logico 1 (5V)
@@ -95,12 +122,17 @@ DDigitalOutput& DDigitalOutput::operator= (bool level)
 
 //! Legge lo stato del pin
 /**
- * @return lo stato logico dell'ingresso: HIGH o LOW
+ * @return lo stato logico dell'ingresso: HIGH o LOW (negative value is error code).
  * N.B. aggiorna currLevel.
  */
-short int DDigitalOutput::read(void) {
-    if (!gpioAttached) return -1;
-    currLevel=readPin(pin);
+int DDigitalOutput::read(void) {
+    currLevel=readPin(pin,handle);
+    if (currLevel < 0) {
+        lastResult=currLevel;
+    }
+    else {
+        lastResult=DRES_OK;
+    }
     return currLevel;
 }
 
@@ -108,24 +140,27 @@ short int DDigitalOutput::read(void) {
 /**
  * @param State	->	Il livello logico da impostare [HIGH,LOW] oppure [1,0]
  */
-short int DDigitalOutput::write(uint8_t level)
+int DDigitalOutput::write(int level)
 {
-    if (!gpioAttached) return -1;
-    writePin(pin,level);
-
+    lastResult=writePin(pin,level,handle);
 	currLevel=level;
-    return currLevel;
+    return lastResult;
 }
 
 /**
  * @return input pin number.
  */
-uint8_t DDigitalOutput::getPin(void)
+int DDigitalOutput::getPin(void)
 {
 	return(pin);
 }
 
 bool DDigitalOutput::isAttached(void)
 {
-    return(gpioAttached);
+    return lastResult == DRES_OK;
+}
+
+std::string DDigitalOutput::getLastError(void)
+{
+    return getErrorCode(lastResult);
 }

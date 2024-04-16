@@ -45,11 +45,16 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dmpacket/cmake_install.cmake")
-  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/utils/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dutils/cmake_install.cmake")
   include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dgpio/cmake_install.cmake")
   include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitalinput/cmake_install.cmake")
   include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitaloutput/cmake_install.cmake")
   include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/ddigitalbutton/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dpwm/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/dservo/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/src/di2c/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/drivers/cmake_install.cmake")
+  include("/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/cmake_install.cmake")
 
 endif()
 

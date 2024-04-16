@@ -6,29 +6,35 @@
 
 #IncludeRegexTransform: 
 
-../src/dgpio/dgpio
-dgpio.h
-../src/dgpio/dgpio.h
+../src/di2c/di2c
+di2c.h
+../src/di2c/di2c.h
 
-../src/dgpio/dgpio.h
-Arduino.h
-../src/dgpio/Arduino.h
-wiring.h
-../src/dgpio/wiring.h
-WProgram.h
-../src/dgpio/WProgram.h
-lgpio.h
+../src/di2c/di2c.h
+cstdint
 -
-utils.h
+string
 -
 
-../src/utils/utils.h
+../src/di2c/di2cmaster
+di2cmaster.h
+../src/di2c/di2cmaster.h
 
-/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.cpp
-ddigitalbutton.h
-/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.h
+../src/di2c/di2cmaster.h
+cstdint
+-
+string
+-
+di2c
+-
 
-/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton/ddigitalbutton.h
-dgpio
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA228/INA228.cpp
+INA228.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA228/INA228.h
+byteswap.h
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA228/INA228.h
+di2cmaster
 -
 

@@ -142,6 +142,138 @@ dpplib-mcu/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/build
 .PHONY : dpplib-mcu/fast
 
+#=============================================================================
+# Target rules for targets named ina226
+
+# Build rule for target.
+ina226: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ina226
+.PHONY : ina226
+
+# fast build rule for target.
+ina226/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina226.dir/build.make examples/CMakeFiles/ina226.dir/build
+.PHONY : ina226/fast
+
+#=============================================================================
+# Target rules for targets named ina228
+
+# Build rule for target.
+ina228: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ina228
+.PHONY : ina228
+
+# fast build rule for target.
+ina228/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/ina228.dir/build.make examples/CMakeFiles/ina228.dir/build
+.PHONY : ina228/fast
+
+#=============================================================================
+# Target rules for targets named i2c-bus-info
+
+# Build rule for target.
+i2c-bus-info: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 i2c-bus-info
+.PHONY : i2c-bus-info
+
+# fast build rule for target.
+i2c-bus-info/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-info.dir/build.make examples/CMakeFiles/i2c-bus-info.dir/build
+.PHONY : i2c-bus-info/fast
+
+#=============================================================================
+# Target rules for targets named servo-demo
+
+# Build rule for target.
+servo-demo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 servo-demo
+.PHONY : servo-demo
+
+# fast build rule for target.
+servo-demo/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/servo-demo.dir/build.make examples/CMakeFiles/servo-demo.dir/build
+.PHONY : servo-demo/fast
+
+#=============================================================================
+# Target rules for targets named pwm-demo
+
+# Build rule for target.
+pwm-demo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pwm-demo
+.PHONY : pwm-demo
+
+# fast build rule for target.
+pwm-demo/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pwm-demo.dir/build.make examples/CMakeFiles/pwm-demo.dir/build
+.PHONY : pwm-demo/fast
+
+#=============================================================================
+# Target rules for targets named io-demo
+
+# Build rule for target.
+io-demo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 io-demo
+.PHONY : io-demo
+
+# fast build rule for target.
+io-demo/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/io-demo.dir/build.make examples/CMakeFiles/io-demo.dir/build
+.PHONY : io-demo/fast
+
+drivers/INA226/INA226.o: drivers/INA226/INA226.cpp.o
+
+.PHONY : drivers/INA226/INA226.o
+
+# target to build an object file
+drivers/INA226/INA226.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o
+.PHONY : drivers/INA226/INA226.cpp.o
+
+drivers/INA226/INA226.i: drivers/INA226/INA226.cpp.i
+
+.PHONY : drivers/INA226/INA226.i
+
+# target to preprocess a source file
+drivers/INA226/INA226.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.i
+.PHONY : drivers/INA226/INA226.cpp.i
+
+drivers/INA226/INA226.s: drivers/INA226/INA226.cpp.s
+
+.PHONY : drivers/INA226/INA226.s
+
+# target to generate assembly for a file
+drivers/INA226/INA226.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.s
+.PHONY : drivers/INA226/INA226.cpp.s
+
+drivers/INA228/INA228.o: drivers/INA228/INA228.cpp.o
+
+.PHONY : drivers/INA228/INA228.o
+
+# target to build an object file
+drivers/INA228/INA228.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o
+.PHONY : drivers/INA228/INA228.cpp.o
+
+drivers/INA228/INA228.i: drivers/INA228/INA228.cpp.i
+
+.PHONY : drivers/INA228/INA228.i
+
+# target to preprocess a source file
+drivers/INA228/INA228.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.i
+.PHONY : drivers/INA228/INA228.cpp.i
+
+drivers/INA228/INA228.s: drivers/INA228/INA228.cpp.s
+
+.PHONY : drivers/INA228/INA228.s
+
+# target to generate assembly for a file
+drivers/INA228/INA228.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.s
+.PHONY : drivers/INA228/INA228.cpp.s
+
 src/ddigitalbutton/ddigitalbutton.o: src/ddigitalbutton/ddigitalbutton.cpp.o
 
 .PHONY : src/ddigitalbutton/ddigitalbutton.o
@@ -250,6 +382,87 @@ src/dgpio/dgpio.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.s
 .PHONY : src/dgpio/dgpio.cpp.s
 
+src/dgpio/dgpiochip.o: src/dgpio/dgpiochip.cpp.o
+
+.PHONY : src/dgpio/dgpiochip.o
+
+# target to build an object file
+src/dgpio/dgpiochip.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o
+.PHONY : src/dgpio/dgpiochip.cpp.o
+
+src/dgpio/dgpiochip.i: src/dgpio/dgpiochip.cpp.i
+
+.PHONY : src/dgpio/dgpiochip.i
+
+# target to preprocess a source file
+src/dgpio/dgpiochip.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.i
+.PHONY : src/dgpio/dgpiochip.cpp.i
+
+src/dgpio/dgpiochip.s: src/dgpio/dgpiochip.cpp.s
+
+.PHONY : src/dgpio/dgpiochip.s
+
+# target to generate assembly for a file
+src/dgpio/dgpiochip.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.s
+.PHONY : src/dgpio/dgpiochip.cpp.s
+
+src/di2c/di2c.o: src/di2c/di2c.cpp.o
+
+.PHONY : src/di2c/di2c.o
+
+# target to build an object file
+src/di2c/di2c.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o
+.PHONY : src/di2c/di2c.cpp.o
+
+src/di2c/di2c.i: src/di2c/di2c.cpp.i
+
+.PHONY : src/di2c/di2c.i
+
+# target to preprocess a source file
+src/di2c/di2c.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i
+.PHONY : src/di2c/di2c.cpp.i
+
+src/di2c/di2c.s: src/di2c/di2c.cpp.s
+
+.PHONY : src/di2c/di2c.s
+
+# target to generate assembly for a file
+src/di2c/di2c.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s
+.PHONY : src/di2c/di2c.cpp.s
+
+src/di2c/di2cmaster.o: src/di2c/di2cmaster.cpp.o
+
+.PHONY : src/di2c/di2cmaster.o
+
+# target to build an object file
+src/di2c/di2cmaster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o
+.PHONY : src/di2c/di2cmaster.cpp.o
+
+src/di2c/di2cmaster.i: src/di2c/di2cmaster.cpp.i
+
+.PHONY : src/di2c/di2cmaster.i
+
+# target to preprocess a source file
+src/di2c/di2cmaster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.i
+.PHONY : src/di2c/di2cmaster.cpp.i
+
+src/di2c/di2cmaster.s: src/di2c/di2cmaster.cpp.s
+
+.PHONY : src/di2c/di2cmaster.s
+
+# target to generate assembly for a file
+src/di2c/di2cmaster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.s
+.PHONY : src/di2c/di2cmaster.cpp.s
+
 src/dmpacket/dmpacket.o: src/dmpacket/dmpacket.cpp.o
 
 .PHONY : src/dmpacket/dmpacket.o
@@ -277,32 +490,86 @@ src/dmpacket/dmpacket.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.s
 .PHONY : src/dmpacket/dmpacket.cpp.s
 
-src/utils/utils.o: src/utils/utils.cpp.o
+src/dpwm/sbc/dpwm.o: src/dpwm/sbc/dpwm.cpp.o
 
-.PHONY : src/utils/utils.o
+.PHONY : src/dpwm/sbc/dpwm.o
 
 # target to build an object file
-src/utils/utils.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.o
-.PHONY : src/utils/utils.cpp.o
+src/dpwm/sbc/dpwm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o
+.PHONY : src/dpwm/sbc/dpwm.cpp.o
 
-src/utils/utils.i: src/utils/utils.cpp.i
+src/dpwm/sbc/dpwm.i: src/dpwm/sbc/dpwm.cpp.i
 
-.PHONY : src/utils/utils.i
+.PHONY : src/dpwm/sbc/dpwm.i
 
 # target to preprocess a source file
-src/utils/utils.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.i
-.PHONY : src/utils/utils.cpp.i
+src/dpwm/sbc/dpwm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.i
+.PHONY : src/dpwm/sbc/dpwm.cpp.i
 
-src/utils/utils.s: src/utils/utils.cpp.s
+src/dpwm/sbc/dpwm.s: src/dpwm/sbc/dpwm.cpp.s
 
-.PHONY : src/utils/utils.s
+.PHONY : src/dpwm/sbc/dpwm.s
 
 # target to generate assembly for a file
-src/utils/utils.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/utils/utils.cpp.s
-.PHONY : src/utils/utils.cpp.s
+src/dpwm/sbc/dpwm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.s
+.PHONY : src/dpwm/sbc/dpwm.cpp.s
+
+src/dservo/dservo.o: src/dservo/dservo.cpp.o
+
+.PHONY : src/dservo/dservo.o
+
+# target to build an object file
+src/dservo/dservo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o
+.PHONY : src/dservo/dservo.cpp.o
+
+src/dservo/dservo.i: src/dservo/dservo.cpp.i
+
+.PHONY : src/dservo/dservo.i
+
+# target to preprocess a source file
+src/dservo/dservo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.i
+.PHONY : src/dservo/dservo.cpp.i
+
+src/dservo/dservo.s: src/dservo/dservo.cpp.s
+
+.PHONY : src/dservo/dservo.s
+
+# target to generate assembly for a file
+src/dservo/dservo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.s
+.PHONY : src/dservo/dservo.cpp.s
+
+src/dutils/dutils.o: src/dutils/dutils.cpp.o
+
+.PHONY : src/dutils/dutils.o
+
+# target to build an object file
+src/dutils/dutils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.o
+.PHONY : src/dutils/dutils.cpp.o
+
+src/dutils/dutils.i: src/dutils/dutils.cpp.i
+
+.PHONY : src/dutils/dutils.i
+
+# target to preprocess a source file
+src/dutils/dutils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.i
+.PHONY : src/dutils/dutils.cpp.i
+
+src/dutils/dutils.s: src/dutils/dutils.cpp.s
+
+.PHONY : src/dutils/dutils.s
+
+# target to generate assembly for a file
+src/dutils/dutils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dutils/dutils.cpp.s
+.PHONY : src/dutils/dutils.cpp.s
 
 # Help Target
 help:
@@ -313,6 +580,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... dpplib-mcu"
+	@echo "... i2c-bus-info"
+	@echo "... ina226"
+	@echo "... ina228"
+	@echo "... io-demo"
+	@echo "... pwm-demo"
+	@echo "... servo-demo"
+	@echo "... drivers/INA226/INA226.o"
+	@echo "... drivers/INA226/INA226.i"
+	@echo "... drivers/INA226/INA226.s"
+	@echo "... drivers/INA228/INA228.o"
+	@echo "... drivers/INA228/INA228.i"
+	@echo "... drivers/INA228/INA228.s"
 	@echo "... src/ddigitalbutton/ddigitalbutton.o"
 	@echo "... src/ddigitalbutton/ddigitalbutton.i"
 	@echo "... src/ddigitalbutton/ddigitalbutton.s"
@@ -325,12 +604,27 @@ help:
 	@echo "... src/dgpio/dgpio.o"
 	@echo "... src/dgpio/dgpio.i"
 	@echo "... src/dgpio/dgpio.s"
+	@echo "... src/dgpio/dgpiochip.o"
+	@echo "... src/dgpio/dgpiochip.i"
+	@echo "... src/dgpio/dgpiochip.s"
+	@echo "... src/di2c/di2c.o"
+	@echo "... src/di2c/di2c.i"
+	@echo "... src/di2c/di2c.s"
+	@echo "... src/di2c/di2cmaster.o"
+	@echo "... src/di2c/di2cmaster.i"
+	@echo "... src/di2c/di2cmaster.s"
 	@echo "... src/dmpacket/dmpacket.o"
 	@echo "... src/dmpacket/dmpacket.i"
 	@echo "... src/dmpacket/dmpacket.s"
-	@echo "... src/utils/utils.o"
-	@echo "... src/utils/utils.i"
-	@echo "... src/utils/utils.s"
+	@echo "... src/dpwm/sbc/dpwm.o"
+	@echo "... src/dpwm/sbc/dpwm.i"
+	@echo "... src/dpwm/sbc/dpwm.s"
+	@echo "... src/dservo/dservo.o"
+	@echo "... src/dservo/dservo.i"
+	@echo "... src/dservo/dservo.s"
+	@echo "... src/dutils/dutils.o"
+	@echo "... src/dutils/dutils.i"
+	@echo "... src/dutils/dutils.s"
 .PHONY : help
 
 

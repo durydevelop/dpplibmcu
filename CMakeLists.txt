@@ -7,22 +7,24 @@ cmake_minimum_required(VERSION 3.13)
 
 ## Create project
 project(dpplib-mcu
-    VERSION 0.0.1
+    VERSION 0.0.8
     LANGUAGES CXX
 )
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-#set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)
 
 option(BUILD_SHARED_LIBS "Build shared libraries (.dll/.so) instead of static ones (.lib/.a)" OFF)
+option(BUILD_EXAMPLES "Build examples" ON)
+option(BUILD_DRIVERS "Build drivers for some external peripherlas (sensors, etc)" ON)
 
 ## Cmake modules helper
-list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(DMainHelper)
 include(DPrintHelpers)
 
 ## Add platform indipendent modules
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/utils)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/dmpacket)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/dutils)
 
 ## Add lg dependend modules
 find_package(lg)
@@ -32,8 +34,17 @@ if(lg_FOUND)
     add_subdirectory(src/ddigitalinput)
     add_subdirectory(src/ddigitaloutput)
     add_subdirectory(src/ddigitalbutton)
+    add_subdirectory(src/dpwm)
+    add_subdirectory(src/dservo)
+    add_subdirectory(src/di2c)
 else()
     message_c(${BOLD_WHITE} "Library pigpio not found, gpio control are NOT enabled")
+endif()
+
+## Drivers for some external peripherlas (sensors, etc)
+if (BUILD_DRIVERS)
+    message_c("Builing drivers for peripherals")
+    add_subdirectory(${CMAKE_SOURCE_DIR}/drivers)
 endif()
 
 ## Setup Target
@@ -60,6 +71,13 @@ endif()
 
 if(lp_FOUND)
     target_link_libraries(${PROJECT_NAME} PUBLIC lgpio)
+endif()
+
+if (BUILD_EXAMPLES)
+    message_c("Builing examples")
+    add_subdirectory(${CMAKE_SOURCE_DIR}/examples)
+    # ...also force external peripherals drivers
+    set(BUILD_DRIVERS ON)
 endif()
 
 #include(DInstall)

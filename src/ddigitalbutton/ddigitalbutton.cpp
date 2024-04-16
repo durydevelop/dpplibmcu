@@ -28,23 +28,57 @@
 
 #include "ddigitalbutton.h"
 
+DDigitalButton::DDigitalButton(int digitalPin, DGpioHandle gpioHandle)
+{
+    pin=digitalPin;
+    lastResult=DERR_CLASS_NOT_BEGUN;
+
+    if (gpioHandle < 0) {
+        // Try init on first device
+        lastResult=initGpio(0,handle);
+    }
+    else {
+        if (isGpioReady(gpioHandle)) {
+            handle=gpioHandle;
+        }
+        else {
+            lastResult=DERR_GPIO_NOT_READY;
+        }
+    }
+
+//	begin();
+    if (lastResult == DRES_OK) {
+        lastResult=DERR_CLASS_NOT_BEGUN;
+    }
+}
+
+/**
+ * @brief Destroy the DDigitalButton::DDigitalButton object and free pin use.
+ */
+DDigitalButton::~DDigitalButton()
+{
+    releasePin(pin,handle);
+}
+
 /**
  * @brief Constructor
- * @param DigitalPin			->	Pin number where button is connected.
- * @param PressedState			->	Can be HIGH or LOW and it is the pin level for which the button is considered to be pressed.
- * @param PullUp				->	If true the internal pull-up resistor is connected.
- * @param PressedMillis			->	Time in milliseconds after which "press and release" is triggered as PRESSED.
- * @param LongPressedMillis		->	Time in milliseconds after which a "keeping press" is triggered as LONG_PRESSED.
- * @param DblPressSpeedMillis	->	Time in milliseconds before which "press, release, press" is triggered as DBL_PRESSED.
+ * @param digitalPin			->	gpio pin.
+ * @param pressedState			->	The level for which the button "is considered pressed", be HIGH or LOW.
+ * @param pullUp				->	If true the internal pull-up resistor is connected.
+ * @param pressedMillis			->	Time in milliseconds after which "press and release" is triggered as PRESSED.
+ * @param longPressedMillis		->	Time in milliseconds after which a "keeping press" is triggered as LONG_PRESSED.
+ * @param dblPressSpeedMillis	->	Time in milliseconds before which "press, release, press" is triggered as DBL_PRESSED.
  */
-DDigitalButton::DDigitalButton(int digitalPin, uint8_t pressedState, bool pullUp, unsigned int pressedMillis, unsigned int longPressedMillis, unsigned int dblPressSpeedMillis)
+bool DDigitalButton::begin(int pressedState, bool pullUp, unsigned int pressedMillis, unsigned int longPressedMillis, unsigned int dblPressSpeedMillis)
 {
-	// User settings
-	pin=digitalPin;
-	statePressed=pressedState;
+    pressedLevel=pressedState;
 	pressedDuration=pressedMillis;
 	longPressedDuration=longPressedMillis;
 	dblPressSpeedDuration=dblPressSpeedMillis;
+    
+    if (handle >= 0) {
+        lastResult=initPin(pin,pullUp ? DPinMode::INPUT_PULLUP : DPinMode::INPUT,DPinFlags::NO_FLAGS,handle);
+    }
 
 	// Init timers
 	releaseMs=millis();
@@ -54,16 +88,12 @@ DDigitalButton::DDigitalButton(int digitalPin, uint8_t pressedState, bool pullUp
 	// Trigger Callback
 	callback=NULL;
 
-	// Pull-up
-	if (pullUp)	{
-		initPin(pin,DPinMode::INPUT_PULLUP);
-	}
-	else {
-		initPin(pin,DPinMode::INPUT);
-	}
+    if (lastResult == DRES_OK) {
+        // Read current input state
+    	read();
+    }
 
-	// Read current input state
-	read();
+    return lastResult == DRES_OK;
 }
 
 /**
@@ -83,7 +113,7 @@ void DDigitalButton::setEventCallback(DCallback eventCallback)
 }
 
 //! @return the current button State.
-DDigitalButton::State DDigitalButton::read(void)
+DDigitalButton::DButtonState DDigitalButton::read(void)
 {
 	bool trig=false;
 
@@ -94,7 +124,12 @@ DDigitalButton::State DDigitalButton::read(void)
 		currState=PRESS;
 	}
 
-	if (readPin(pin) == statePressed) {
+    lastResult=readPin(pin,handle);
+    if (lastResult < 0) {
+        return ERROR_STATE;
+    }
+
+	if (lastResult == pressedLevel) {
 		pressMs=millis(); // Press time
 		if (prevState == RELEASE) {
 			if ((pressMs-releaseMs) > 50) {
@@ -150,7 +185,12 @@ DDigitalButton::State DDigitalButton::read(void)
 }
 
 //! Overload operator ==
-DDigitalButton::operator DDigitalButton::State()
+DDigitalButton::operator DDigitalButton::DButtonState()
 {
 	return read();
+}
+
+std::string DDigitalButton::getLastError(void)
+{
+    return getErrorCode(lastResult);
 }

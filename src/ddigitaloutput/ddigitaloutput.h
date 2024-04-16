@@ -8,27 +8,34 @@
 #ifndef DDigitalOutputH
 #define DDigitalOutputH
 
-#include<dgpio>
+#include <dgpio>
 
 class DDigitalOutput
 {
 	public:
-		DDigitalOutput(uint8_t digitalPin);
-		DDigitalOutput(uint8_t digitalPin, uint8_t initialLevel);
-        short int read(void);
-		short int write(uint8_t level);
+        DDigitalOutput(int digitalPin, DGpioHandle gpioHandle = -1);
+        ~DDigitalOutput();
+
+        bool begin(int initialLevel = LOW);
+        int read(void);
+		int write(int level);
 		void high(void);
 		void low(void);
 		void toggle(void);
-        uint8_t getPin(void);
+        int getPin(void);
         bool isAttached(void);
+        std::string getLastError(void);
+        
 		operator bool();
 		DDigitalOutput& operator= (bool level);
 
 	private:
-		uint8_t pin;
+		int pin;
 		bool currLevel;
-        bool gpioAttached;
+        //bool gpioAttached;
+
+        DGpioHandle handle;
+        DResult lastResult;
 };
 
 

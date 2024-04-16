@@ -1,7 +1,11 @@
 set(FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/dgpiochip
+    ${CMAKE_CURRENT_SOURCE_DIR}/dgpiochip.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dgpiochip.h
     ${CMAKE_CURRENT_SOURCE_DIR}/dgpio
     ${CMAKE_CURRENT_SOURCE_DIR}/dgpio.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/dgpio.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/derrorcodes.h
 )
 
 set(SRC_FILES ${SRC_FILES} ${FILES} PARENT_SCOPE)

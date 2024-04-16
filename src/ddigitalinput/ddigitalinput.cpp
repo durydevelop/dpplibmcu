@@ -36,30 +36,64 @@ void loop()
 */
 
 #include "ddigitalinput.h"
-#include <dgpio>
 
 /**
  * @param digitalPin	->	pin da utilizzare come input
  * @param pullUp		->	se true viene attivata la resistena interna di pull-up
  */
-DDigitalInput::DDigitalInput(int digitalPin, bool pullUp, unsigned int msecDebounce)
+DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
 {
 	pin=digitalPin;
-	gpioAttached=initPin(digitalPin,pullUp ? INPUT_PULLUP : INPUT);
+    currLevel=LOW;
+    prevLevel=currLevel;
+    lastResult=DERR_CLASS_NOT_BEGUN;
 
-	// Read current input state
-	currLevel=read();
-	prevLevel=currLevel;
+    //std::cout << "DDigitalInput() digitalPin=" << digitalPin<< " gpioHandle=" << gpioHandle << std::endl;
+
+    if (gpioHandle < 0) {
+        // Try init on first device
+        //std::cout << "auto set handle" << std::endl;
+        lastResult=initGpio(0,handle);
+    }
+    else {
+        if (isGpioReady(gpioHandle)) {
+            handle=gpioHandle;
+        }
+        else {
+            lastResult=DERR_GPIO_NOT_READY;
+        }
+    }
+}
+
+/**
+ * @brief Destroy the DDigitalInput::DDigitalInput object and free pin use.
+ */
+DDigitalInput::~DDigitalInput()
+{
+    releasePin(pin,handle);
+}
+
+bool DDigitalInput::begin(bool pullUp, unsigned int msecDebounce)
+{
+    if (handle >= 0) {
+        lastResult=initPin(pin,pullUp ? INPUT_PULLUP : INPUT,DPinFlags::NO_FLAGS,handle);
+        if (lastResult == DRES_OK) {
+            // Read current input state
+            read();
+        }
+        prevLevel=currLevel;
+    }
 
 	// Debounce msec
 	debounceMsec=msecDebounce;
 	prevMsec=millis();
+    return lastResult == DRES_OK;
 }
 
 /**
  * @brief 
  * 
- * @param NewLevel	->	Puntatore alla variabile che conterrà il nuovo stato (se null virnr ignorata)
+ * @param NewLevel	->	Puntatore alla variabile che conterrà il nuovo stato (se null viene ignorata)
  * @return
  * true		se cambiato
  * false	se non cambiato
@@ -67,12 +101,20 @@ DDigitalInput::DDigitalInput(int digitalPin, bool pullUp, unsigned int msecDebou
 bool DDigitalInput::isChanged(short int *newLevel)
 {
 	bool changed=false;
-	currLevel=read();
-	currMsec=millis();
-	if (currLevel != prevLevel && (currMsec-prevMsec) > debounceMsec) {
-		prevMsec=currMsec;
-		changed=true;
-	}
+	read();
+
+    if (currLevel != prevLevel) {
+        if (debounceMsec > 0) {
+            currMsec=millis();
+            if ((currMsec-prevMsec) >= debounceMsec) {
+                prevMsec=currMsec;
+		        changed=true;
+            }
+        }
+        else {
+            changed=true;
+        }
+    }
 
 	prevLevel=currLevel;
 	if (newLevel != nullptr) {
@@ -90,7 +132,7 @@ bool DDigitalInput::isChanged(short int *newLevel)
 bool DDigitalInput::isChangedToLow(void)
 {
 	bool ret=false;
-	currLevel=read();
+	read();
 	currMsec=millis();
 	if (currLevel != prevLevel && (currMsec-prevMsec) > debounceMsec) {
 		prevMsec=currMsec;
@@ -112,7 +154,7 @@ bool DDigitalInput::isChangedToLow(void)
 bool DDigitalInput::isChangedToHigh(void)
 {
 	bool ret=false;
-	currLevel=read();
+	read();
 	currMsec=millis();
 	if (currLevel != prevLevel && (currMsec-prevMsec) > debounceMsec) {
 		prevMsec=currMsec;
@@ -136,21 +178,31 @@ DDigitalInput::operator int()
  * @return lo stato logico dell'ingresso: HIGH o LOW
  * N.B. aggiorna currLevel.
  */
-short int DDigitalInput::read(void) {
-	if (!gpioAttached) return(-1);
-    currLevel=readPin(pin);
-    return(currLevel);
+int DDigitalInput::read(void) {
+    currLevel=readPin(pin,handle);
+    if (currLevel < 0) {
+        lastResult=currLevel;
+    }
+    else {
+        lastResult=DRES_OK;
+    }
+    return currLevel;
 }
 
 /**
  * @return input pin number.
  */
-short int DDigitalInput::getPin(void)
+int DDigitalInput::getPin(void)
 {
 	return(pin);
 }
 
 bool DDigitalInput::isAttached(void)
 {
-    return(gpioAttached);
+    return lastResult == DRES_OK;
+}
+
+std::string DDigitalInput::getLastError(void)
+{
+    return getErrorCode(lastResult);
 }
