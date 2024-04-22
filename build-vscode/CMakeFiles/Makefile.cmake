@@ -74,9 +74,12 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/dpplib-mcu.dir/DependInfo.cmake"
+  "examples/CMakeFiles/i2c-master.dir/DependInfo.cmake"
+  "examples/CMakeFiles/i2c-scan.dir/DependInfo.cmake"
   "examples/CMakeFiles/ina226.dir/DependInfo.cmake"
   "examples/CMakeFiles/ina228.dir/DependInfo.cmake"
   "examples/CMakeFiles/i2c-bus-info.dir/DependInfo.cmake"
+  "examples/CMakeFiles/i2c-bus-list.dir/DependInfo.cmake"
   "examples/CMakeFiles/servo-demo.dir/DependInfo.cmake"
   "examples/CMakeFiles/pwm-demo.dir/DependInfo.cmake"
   "examples/CMakeFiles/io-demo.dir/DependInfo.cmake"

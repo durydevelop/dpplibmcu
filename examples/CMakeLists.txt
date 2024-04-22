@@ -16,6 +16,12 @@ if(lg_FOUND)
     add_executable(servo-demo ${CMAKE_CURRENT_SOURCE_DIR}/dservo/sbc-servo-demo/main.cpp)
     target_link_libraries(servo-demo PUBLIC dpplib-mcu)
     target_link_libraries(servo-demo PUBLIC lgpio)
+
+    # i2c-bus-list
+    add_executable(i2c-bus-list
+        ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/i2c-bus-list.cpp
+    )
+    target_link_libraries(i2c-bus-list PUBLIC dpplib-mcu)
     
     # i2c-bus-info
     add_executable(i2c-bus-info
@@ -23,15 +29,29 @@ if(lg_FOUND)
     )
     target_link_libraries(i2c-bus-info PUBLIC dpplib-mcu)
 
-    # ina226 / ina228
+    # ina226 (current / voltage sensor)
     add_executable(ina226
         ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/ina226.cpp
     )
+
+    # ina228 (current / voltage sensor)
+    target_link_libraries(ina226 PUBLIC dpplib-mcu)
     add_executable(ina228
         ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/ina228.cpp
     )
-    target_link_libraries(ina226 PUBLIC dpplib-mcu)
     target_link_libraries(ina228 PUBLIC dpplib-mcu)
+
+    # i2c-dev-scan
+    add_executable(i2c-scan
+        ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/i2c-scan.cpp
+    )
+    target_link_libraries(i2c-scan PUBLIC dpplib-mcu)
+
+    # i2c-master
+    add_executable(i2c-master
+        ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/i2c-master.cpp
+    )
+    target_link_libraries(i2c-master PUBLIC dpplib-mcu)
 
     #target_link_libraries(rpi-i2c-demo PUBLIC lgpio)
 endif()

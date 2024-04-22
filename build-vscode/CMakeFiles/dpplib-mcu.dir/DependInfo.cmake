@@ -11,7 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput/ddigitaloutput.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpio.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpiochip.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o"
-  "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o"
+  "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cmaster.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket/dmpacket.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.o"
   "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc/dpwm.cpp" "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o"

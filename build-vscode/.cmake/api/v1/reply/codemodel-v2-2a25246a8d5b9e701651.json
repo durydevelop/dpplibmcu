@@ -161,7 +161,10 @@
 						3,
 						4,
 						5,
-						6
+						6,
+						7,
+						8,
+						9
 					]
 				}
 			],
@@ -194,7 +197,10 @@
 						3,
 						4,
 						5,
-						6
+						6,
+						7,
+						8,
+						9
 					]
 				}
 			],
@@ -203,28 +209,49 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "dpplib-mcu::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-dpplib-mcu-Debug-41be3654e01fb9f784f8.json",
+					"jsonFile" : "target-dpplib-mcu-Debug-5007a6002cc741df61b4.json",
 					"name" : "dpplib-mcu",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 12,
 					"id" : "i2c-bus-info::@714eac15f71a94114fdf",
-					"jsonFile" : "target-i2c-bus-info-Debug-8e388e273044fb2afb9e.json",
+					"jsonFile" : "target-i2c-bus-info-Debug-ef2c8a5eb3fa1d65c920.json",
 					"name" : "i2c-bus-info",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 12,
+					"id" : "i2c-bus-list::@714eac15f71a94114fdf",
+					"jsonFile" : "target-i2c-bus-list-Debug-4eeae27af066f35c75be.json",
+					"name" : "i2c-bus-list",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "i2c-master::@714eac15f71a94114fdf",
+					"jsonFile" : "target-i2c-master-Debug-b2b555b55369bdd4be7c.json",
+					"name" : "i2c-master",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "i2c-scan::@714eac15f71a94114fdf",
+					"jsonFile" : "target-i2c-scan-Debug-1517c4b1ddb5cde2d368.json",
+					"name" : "i2c-scan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
 					"id" : "ina226::@714eac15f71a94114fdf",
-					"jsonFile" : "target-ina226-Debug-54eba65eea6f17f1e3c4.json",
+					"jsonFile" : "target-ina226-Debug-0fa962cb645ff6631add.json",
 					"name" : "ina226",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 12,
 					"id" : "ina228::@714eac15f71a94114fdf",
-					"jsonFile" : "target-ina228-Debug-cf7a80044e6ed29f4121.json",
+					"jsonFile" : "target-ina228-Debug-636ce4a21644bf20ee15.json",
 					"name" : "ina228",
 					"projectIndex" : 0
 				},

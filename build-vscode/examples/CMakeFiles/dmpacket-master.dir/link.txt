@@ -1,0 +1,1 @@
+/usr/bin/arm-linux-gnueabihf-g++ -g CMakeFiles/dmpacket-master.dir/i2c/sbc-i2c-demo/dmpacket-master.cpp.o -o dmpacket-master  ../libdpplib-mcu.a 

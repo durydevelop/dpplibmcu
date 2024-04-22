@@ -130,6 +130,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+examples/CMakeFiles/i2c-master.dir/rule:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/i2c-master.dir/rule
+.PHONY : examples/CMakeFiles/i2c-master.dir/rule
+
+# Convenience name for target.
+i2c-master: examples/CMakeFiles/i2c-master.dir/rule
+
+.PHONY : i2c-master
+
+# fast build rule for target.
+i2c-master/fast:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-master.dir/build.make examples/CMakeFiles/i2c-master.dir/build
+.PHONY : i2c-master/fast
+
+# Convenience name for target.
+examples/CMakeFiles/i2c-scan.dir/rule:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/i2c-scan.dir/rule
+.PHONY : examples/CMakeFiles/i2c-scan.dir/rule
+
+# Convenience name for target.
+i2c-scan: examples/CMakeFiles/i2c-scan.dir/rule
+
+.PHONY : i2c-scan
+
+# fast build rule for target.
+i2c-scan/fast:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-scan.dir/build.make examples/CMakeFiles/i2c-scan.dir/build
+.PHONY : i2c-scan/fast
+
+# Convenience name for target.
 examples/CMakeFiles/ina226.dir/rule:
 	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/ina226.dir/rule
 .PHONY : examples/CMakeFiles/ina226.dir/rule
@@ -173,6 +203,21 @@ i2c-bus-info: examples/CMakeFiles/i2c-bus-info.dir/rule
 i2c-bus-info/fast:
 	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-info.dir/build.make examples/CMakeFiles/i2c-bus-info.dir/build
 .PHONY : i2c-bus-info/fast
+
+# Convenience name for target.
+examples/CMakeFiles/i2c-bus-list.dir/rule:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/i2c-bus-list.dir/rule
+.PHONY : examples/CMakeFiles/i2c-bus-list.dir/rule
+
+# Convenience name for target.
+i2c-bus-list: examples/CMakeFiles/i2c-bus-list.dir/rule
+
+.PHONY : i2c-bus-list
+
+# fast build rule for target.
+i2c-bus-list/fast:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-list.dir/build.make examples/CMakeFiles/i2c-bus-list.dir/build
+.PHONY : i2c-bus-list/fast
 
 # Convenience name for target.
 examples/CMakeFiles/servo-demo.dir/rule:
@@ -327,6 +372,87 @@ i2c/sbc-i2c-demo/i2c-bus-info.cpp.s:
 	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-info.dir/build.make examples/CMakeFiles/i2c-bus-info.dir/i2c/sbc-i2c-demo/i2c-bus-info.cpp.s
 .PHONY : i2c/sbc-i2c-demo/i2c-bus-info.cpp.s
 
+i2c/sbc-i2c-demo/i2c-bus-list.o: i2c/sbc-i2c-demo/i2c-bus-list.cpp.o
+
+.PHONY : i2c/sbc-i2c-demo/i2c-bus-list.o
+
+# target to build an object file
+i2c/sbc-i2c-demo/i2c-bus-list.cpp.o:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-list.dir/build.make examples/CMakeFiles/i2c-bus-list.dir/i2c/sbc-i2c-demo/i2c-bus-list.cpp.o
+.PHONY : i2c/sbc-i2c-demo/i2c-bus-list.cpp.o
+
+i2c/sbc-i2c-demo/i2c-bus-list.i: i2c/sbc-i2c-demo/i2c-bus-list.cpp.i
+
+.PHONY : i2c/sbc-i2c-demo/i2c-bus-list.i
+
+# target to preprocess a source file
+i2c/sbc-i2c-demo/i2c-bus-list.cpp.i:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-list.dir/build.make examples/CMakeFiles/i2c-bus-list.dir/i2c/sbc-i2c-demo/i2c-bus-list.cpp.i
+.PHONY : i2c/sbc-i2c-demo/i2c-bus-list.cpp.i
+
+i2c/sbc-i2c-demo/i2c-bus-list.s: i2c/sbc-i2c-demo/i2c-bus-list.cpp.s
+
+.PHONY : i2c/sbc-i2c-demo/i2c-bus-list.s
+
+# target to generate assembly for a file
+i2c/sbc-i2c-demo/i2c-bus-list.cpp.s:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-list.dir/build.make examples/CMakeFiles/i2c-bus-list.dir/i2c/sbc-i2c-demo/i2c-bus-list.cpp.s
+.PHONY : i2c/sbc-i2c-demo/i2c-bus-list.cpp.s
+
+i2c/sbc-i2c-demo/i2c-master.o: i2c/sbc-i2c-demo/i2c-master.cpp.o
+
+.PHONY : i2c/sbc-i2c-demo/i2c-master.o
+
+# target to build an object file
+i2c/sbc-i2c-demo/i2c-master.cpp.o:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-master.dir/build.make examples/CMakeFiles/i2c-master.dir/i2c/sbc-i2c-demo/i2c-master.cpp.o
+.PHONY : i2c/sbc-i2c-demo/i2c-master.cpp.o
+
+i2c/sbc-i2c-demo/i2c-master.i: i2c/sbc-i2c-demo/i2c-master.cpp.i
+
+.PHONY : i2c/sbc-i2c-demo/i2c-master.i
+
+# target to preprocess a source file
+i2c/sbc-i2c-demo/i2c-master.cpp.i:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-master.dir/build.make examples/CMakeFiles/i2c-master.dir/i2c/sbc-i2c-demo/i2c-master.cpp.i
+.PHONY : i2c/sbc-i2c-demo/i2c-master.cpp.i
+
+i2c/sbc-i2c-demo/i2c-master.s: i2c/sbc-i2c-demo/i2c-master.cpp.s
+
+.PHONY : i2c/sbc-i2c-demo/i2c-master.s
+
+# target to generate assembly for a file
+i2c/sbc-i2c-demo/i2c-master.cpp.s:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-master.dir/build.make examples/CMakeFiles/i2c-master.dir/i2c/sbc-i2c-demo/i2c-master.cpp.s
+.PHONY : i2c/sbc-i2c-demo/i2c-master.cpp.s
+
+i2c/sbc-i2c-demo/i2c-scan.o: i2c/sbc-i2c-demo/i2c-scan.cpp.o
+
+.PHONY : i2c/sbc-i2c-demo/i2c-scan.o
+
+# target to build an object file
+i2c/sbc-i2c-demo/i2c-scan.cpp.o:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-scan.dir/build.make examples/CMakeFiles/i2c-scan.dir/i2c/sbc-i2c-demo/i2c-scan.cpp.o
+.PHONY : i2c/sbc-i2c-demo/i2c-scan.cpp.o
+
+i2c/sbc-i2c-demo/i2c-scan.i: i2c/sbc-i2c-demo/i2c-scan.cpp.i
+
+.PHONY : i2c/sbc-i2c-demo/i2c-scan.i
+
+# target to preprocess a source file
+i2c/sbc-i2c-demo/i2c-scan.cpp.i:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-scan.dir/build.make examples/CMakeFiles/i2c-scan.dir/i2c/sbc-i2c-demo/i2c-scan.cpp.i
+.PHONY : i2c/sbc-i2c-demo/i2c-scan.cpp.i
+
+i2c/sbc-i2c-demo/i2c-scan.s: i2c/sbc-i2c-demo/i2c-scan.cpp.s
+
+.PHONY : i2c/sbc-i2c-demo/i2c-scan.s
+
+# target to generate assembly for a file
+i2c/sbc-i2c-demo/i2c-scan.cpp.s:
+	cd /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-scan.dir/build.make examples/CMakeFiles/i2c-scan.dir/i2c/sbc-i2c-demo/i2c-scan.cpp.s
+.PHONY : i2c/sbc-i2c-demo/i2c-scan.cpp.s
+
 i2c/sbc-i2c-demo/ina226.o: i2c/sbc-i2c-demo/ina226.cpp.o
 
 .PHONY : i2c/sbc-i2c-demo/ina226.o
@@ -390,6 +516,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... i2c-bus-info"
+	@echo "... i2c-bus-list"
+	@echo "... i2c-master"
+	@echo "... i2c-scan"
 	@echo "... ina226"
 	@echo "... ina228"
 	@echo "... io-demo"
@@ -407,6 +536,15 @@ help:
 	@echo "... i2c/sbc-i2c-demo/i2c-bus-info.o"
 	@echo "... i2c/sbc-i2c-demo/i2c-bus-info.i"
 	@echo "... i2c/sbc-i2c-demo/i2c-bus-info.s"
+	@echo "... i2c/sbc-i2c-demo/i2c-bus-list.o"
+	@echo "... i2c/sbc-i2c-demo/i2c-bus-list.i"
+	@echo "... i2c/sbc-i2c-demo/i2c-bus-list.s"
+	@echo "... i2c/sbc-i2c-demo/i2c-master.o"
+	@echo "... i2c/sbc-i2c-demo/i2c-master.i"
+	@echo "... i2c/sbc-i2c-demo/i2c-master.s"
+	@echo "... i2c/sbc-i2c-demo/i2c-scan.o"
+	@echo "... i2c/sbc-i2c-demo/i2c-scan.i"
+	@echo "... i2c/sbc-i2c-demo/i2c-scan.s"
 	@echo "... i2c/sbc-i2c-demo/ina226.o"
 	@echo "... i2c/sbc-i2c-demo/ina226.i"
 	@echo "... i2c/sbc-i2c-demo/ina226.s"

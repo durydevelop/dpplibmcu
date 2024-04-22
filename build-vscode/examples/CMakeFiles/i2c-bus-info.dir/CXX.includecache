@@ -6,3 +6,31 @@
 
 #IncludeRegexTransform: 
 
+../src/di2c/di2c
+di2cbus.h
+../src/di2c/di2cbus.h
+di2cmaster.h
+../src/di2c/di2cmaster.h
+
+../src/di2c/di2cbus.h
+cstdint
+-
+string
+-
+vector
+-
+
+../src/di2c/di2cmaster.h
+cstdint
+-
+string
+-
+di2c
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-bus-info.cpp
+iostream
+-
+di2c
+-
+

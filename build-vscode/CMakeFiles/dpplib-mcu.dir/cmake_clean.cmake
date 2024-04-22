@@ -6,7 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp.o"
   "CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpio.cpp.o"
   "CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o"
-  "CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o"
+  "CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o"
   "CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o"
   "CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.o"
   "CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o"

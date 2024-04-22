@@ -3,7 +3,7 @@
 
 examples/CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o: ../drivers/INA226/INA226.h
 examples/CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o: ../src/di2c/di2c
-examples/CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o: ../src/di2c/di2c.h
+examples/CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o: ../src/di2c/di2cbus.h
 examples/CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o: ../src/di2c/di2cmaster
 examples/CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o: ../src/di2c/di2cmaster.h
 examples/CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o: ../src/dutils/dutils

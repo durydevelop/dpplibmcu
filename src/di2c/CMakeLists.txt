@@ -1,7 +1,8 @@
 set(FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/di2c
-    ${CMAKE_CURRENT_SOURCE_DIR}/di2c.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/di2c.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/di2cbus
+    ${CMAKE_CURRENT_SOURCE_DIR}/di2cbus.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/di2cbus.h
     ${CMAKE_CURRENT_SOURCE_DIR}/di2cmaster
     ${CMAKE_CURRENT_SOURCE_DIR}/di2cmaster.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/di2cmaster.h

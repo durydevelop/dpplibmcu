@@ -1,1 +1,2 @@
-#include "di2c.h"
+#include "di2cbus.h"
+#include "di2cmaster.h"

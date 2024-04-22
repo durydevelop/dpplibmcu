@@ -15,8 +15,9 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    std::cout << "Capility of bus /dev/i2c-" << busID << ":" << std::endl;
-    DI2C i2c(busID);
+    std::cout << "Capility of bus /dev/i2c-" << busID << std::endl;
+    std::cout << "------------------------------" << std::endl;
+    DI2CBus i2c(busID);
     std::cout << i2c.getInfo() << std::endl;
     return 0;
 }

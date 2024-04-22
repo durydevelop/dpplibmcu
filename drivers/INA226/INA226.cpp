@@ -34,9 +34,9 @@ INA226::~INA226()
 
 bool INA226::begin(void)
 {
-	bool ret=writeWord(devAddr,INA226_CFG_REG, 0x8000);	// Reset
-	ret&=writeWord(devAddr,INA226_CFG_REG, 0x4527);	// Average over 16 Samples
-	ret&=writeWord(devAddr, INA226_CAL_REG, 1024);	// 1A, 0.100Ohm Resistor
+	bool ret=writeWord(devAddr,INA226_CFG_REG, 0x8000); // Reset
+	ret&=writeWord(devAddr,INA226_CFG_REG, 0x4527);     // Average over 16 Samples
+	ret&=writeWord(devAddr, INA226_CAL_REG, 1024);      // 1A, 0.100Ohm Resistor
     return ret;
 }
 

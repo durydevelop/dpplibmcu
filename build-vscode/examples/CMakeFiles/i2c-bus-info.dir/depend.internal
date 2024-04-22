@@ -3,5 +3,6 @@
 
 examples/CMakeFiles/i2c-bus-info.dir/i2c/sbc-i2c-demo/i2c-bus-info.cpp.o
  ../src/di2c/di2c
- ../src/di2c/di2c.h
+ ../src/di2c/di2cbus.h
+ ../src/di2c/di2cmaster.h
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-bus-info.cpp

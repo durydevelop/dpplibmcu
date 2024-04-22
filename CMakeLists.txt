@@ -18,13 +18,13 @@ option(BUILD_EXAMPLES "Build examples" ON)
 option(BUILD_DRIVERS "Build drivers for some external peripherlas (sensors, etc)" ON)
 
 ## Cmake modules helper
-list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(DMainHelper)
 include(DPrintHelpers)
 
 ## Add platform indipendent modules
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/dmpacket)
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/dutils)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dutils)
 
 ## Add lg dependend modules
 find_package(lg)
@@ -44,7 +44,7 @@ endif()
 ## Drivers for some external peripherlas (sensors, etc)
 if (BUILD_DRIVERS)
     message_c("Builing drivers for peripherals")
-    add_subdirectory(${CMAKE_SOURCE_DIR}/drivers)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/drivers)
 endif()
 
 ## Setup Target
@@ -74,8 +74,8 @@ if(lp_FOUND)
 endif()
 
 if (BUILD_EXAMPLES)
-    message_c("Builing examples")
-    add_subdirectory(${CMAKE_SOURCE_DIR}/examples)
+    message_c("Building examples")
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
     # ...also force external peripherals drivers
     set(BUILD_DRIVERS ON)
 endif()

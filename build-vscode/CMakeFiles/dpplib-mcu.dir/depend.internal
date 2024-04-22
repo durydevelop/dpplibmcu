@@ -3,14 +3,14 @@
 
 CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o
  ../src/di2c/di2c
- ../src/di2c/di2c.h
+ ../src/di2c/di2cbus.h
  ../src/di2c/di2cmaster
  ../src/di2c/di2cmaster.h
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA226/INA226.cpp
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA226/INA226.h
 CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o
  ../src/di2c/di2c
- ../src/di2c/di2c.h
+ ../src/di2c/di2cbus.h
  ../src/di2c/di2cmaster
  ../src/di2c/di2cmaster.h
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers/INA228/INA228.cpp
@@ -57,12 +57,14 @@ CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.o
  ../src/dgpio/derrorcodes.h
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpiochip.cpp
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio/dgpiochip.h
-CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o
- /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp
- /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.h
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o
+ ../src/dutils/dutils
+ ../src/dutils/dutils.h
+ /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.cpp
+ /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.h
 CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o
  ../src/di2c/di2c
- ../src/di2c/di2c.h
+ ../src/di2c/di2cbus.h
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cmaster.cpp
  /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cmaster.h
 CMakeFiles/dpplib-mcu.dir/src/dmpacket/dmpacket.cpp.o

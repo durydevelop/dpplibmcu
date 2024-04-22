@@ -119,6 +119,11 @@ void DMPacket::SetBuffer(const std::vector<uint8_t>& BuffVec) {
 }
 
 //! @return un puntatore all'intero buffer del pacchetto.
+/**
+ * @brief 
+ * Non usare per inserire dati
+ * @return uint8_t* 
+ */
 uint8_t* DMPacket::BufferRaw() {
 	return(PacketBuff.data());
 }

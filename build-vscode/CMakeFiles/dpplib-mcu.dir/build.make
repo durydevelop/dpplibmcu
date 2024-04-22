@@ -193,18 +193,18 @@ CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.s"
 	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo/dservo.cpp -o CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.s
 
-CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
-CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o: ../src/di2c/di2c.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o: ../src/di2c/di2cbus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.cpp
 
-CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp > CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.i"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.cpp > CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.i
 
-CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s
+CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.s"
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.cpp -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.s
 
 CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o: CMakeFiles/dpplib-mcu.dir/flags.make
 CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o: ../src/di2c/di2cmaster.cpp
@@ -256,7 +256,7 @@ dpplib__mcu_OBJECTS = \
 "CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o" \
-"CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o" \
+"CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o" \
 "CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o"
@@ -273,7 +273,7 @@ libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/ddigitaloutput/ddigitaloutput.cpp
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/ddigitalbutton/ddigitalbutton.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dpwm/sbc/dpwm.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/dservo/dservo.cpp.o
-libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o
+libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/src/di2c/di2cmaster.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/drivers/INA226/INA226.cpp.o
 libdpplib-mcu.a: CMakeFiles/dpplib-mcu.dir/drivers/INA228/INA228.cpp.o

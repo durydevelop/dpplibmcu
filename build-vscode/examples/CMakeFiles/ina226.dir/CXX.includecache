@@ -11,13 +11,17 @@ di2cmaster
 -
 
 ../src/di2c/di2c
-di2c.h
-../src/di2c/di2c.h
+di2cbus.h
+../src/di2c/di2cbus.h
+di2cmaster.h
+../src/di2c/di2cmaster.h
 
-../src/di2c/di2c.h
+../src/di2c/di2cbus.h
 cstdint
 -
 string
+-
+vector
 -
 
 ../src/di2c/di2cmaster

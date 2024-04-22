@@ -8,8 +8,8 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug example rpi-servo-demo",
-            "program": "${workspaceFolder}/build-vscode/examples/rpi-servo-demo",
+            "name": "Debug example i2c",
+            "program": "${workspaceFolder}/build-vscode/examples/i2c-master",
             "args": [],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "CMake: build"

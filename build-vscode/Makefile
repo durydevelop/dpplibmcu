@@ -143,6 +143,32 @@ dpplib-mcu/fast:
 .PHONY : dpplib-mcu/fast
 
 #=============================================================================
+# Target rules for targets named i2c-master
+
+# Build rule for target.
+i2c-master: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 i2c-master
+.PHONY : i2c-master
+
+# fast build rule for target.
+i2c-master/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-master.dir/build.make examples/CMakeFiles/i2c-master.dir/build
+.PHONY : i2c-master/fast
+
+#=============================================================================
+# Target rules for targets named i2c-scan
+
+# Build rule for target.
+i2c-scan: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 i2c-scan
+.PHONY : i2c-scan
+
+# fast build rule for target.
+i2c-scan/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-scan.dir/build.make examples/CMakeFiles/i2c-scan.dir/build
+.PHONY : i2c-scan/fast
+
+#=============================================================================
 # Target rules for targets named ina226
 
 # Build rule for target.
@@ -180,6 +206,19 @@ i2c-bus-info: cmake_check_build_system
 i2c-bus-info/fast:
 	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-info.dir/build.make examples/CMakeFiles/i2c-bus-info.dir/build
 .PHONY : i2c-bus-info/fast
+
+#=============================================================================
+# Target rules for targets named i2c-bus-list
+
+# Build rule for target.
+i2c-bus-list: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 i2c-bus-list
+.PHONY : i2c-bus-list
+
+# fast build rule for target.
+i2c-bus-list/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/i2c-bus-list.dir/build.make examples/CMakeFiles/i2c-bus-list.dir/build
+.PHONY : i2c-bus-list/fast
 
 #=============================================================================
 # Target rules for targets named servo-demo
@@ -409,32 +448,32 @@ src/dgpio/dgpiochip.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/dgpio/dgpiochip.cpp.s
 .PHONY : src/dgpio/dgpiochip.cpp.s
 
-src/di2c/di2c.o: src/di2c/di2c.cpp.o
+src/di2c/di2cbus.o: src/di2c/di2cbus.cpp.o
 
-.PHONY : src/di2c/di2c.o
+.PHONY : src/di2c/di2cbus.o
 
 # target to build an object file
-src/di2c/di2c.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o
-.PHONY : src/di2c/di2c.cpp.o
+src/di2c/di2cbus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o
+.PHONY : src/di2c/di2cbus.cpp.o
 
-src/di2c/di2c.i: src/di2c/di2c.cpp.i
+src/di2c/di2cbus.i: src/di2c/di2cbus.cpp.i
 
-.PHONY : src/di2c/di2c.i
+.PHONY : src/di2c/di2cbus.i
 
 # target to preprocess a source file
-src/di2c/di2c.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.i
-.PHONY : src/di2c/di2c.cpp.i
+src/di2c/di2cbus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.i
+.PHONY : src/di2c/di2cbus.cpp.i
 
-src/di2c/di2c.s: src/di2c/di2c.cpp.s
+src/di2c/di2cbus.s: src/di2c/di2cbus.cpp.s
 
-.PHONY : src/di2c/di2c.s
+.PHONY : src/di2c/di2cbus.s
 
 # target to generate assembly for a file
-src/di2c/di2c.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.s
-.PHONY : src/di2c/di2c.cpp.s
+src/di2c/di2cbus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dpplib-mcu.dir/build.make CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.s
+.PHONY : src/di2c/di2cbus.cpp.s
 
 src/di2c/di2cmaster.o: src/di2c/di2cmaster.cpp.o
 
@@ -581,6 +620,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... dpplib-mcu"
 	@echo "... i2c-bus-info"
+	@echo "... i2c-bus-list"
+	@echo "... i2c-master"
+	@echo "... i2c-scan"
 	@echo "... ina226"
 	@echo "... ina228"
 	@echo "... io-demo"
@@ -607,9 +649,9 @@ help:
 	@echo "... src/dgpio/dgpiochip.o"
 	@echo "... src/dgpio/dgpiochip.i"
 	@echo "... src/dgpio/dgpiochip.s"
-	@echo "... src/di2c/di2c.o"
-	@echo "... src/di2c/di2c.i"
-	@echo "... src/di2c/di2c.s"
+	@echo "... src/di2c/di2cbus.o"
+	@echo "... src/di2c/di2cbus.i"
+	@echo "... src/di2c/di2cbus.s"
 	@echo "... src/di2c/di2cmaster.o"
 	@echo "... src/di2c/di2cmaster.i"
 	@echo "... src/di2c/di2cmaster.s"

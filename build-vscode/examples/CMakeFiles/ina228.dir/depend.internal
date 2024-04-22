@@ -4,7 +4,7 @@
 examples/CMakeFiles/ina228.dir/i2c/sbc-i2c-demo/ina228.cpp.o
  ../drivers/INA228/INA228.h
  ../src/di2c/di2c
- ../src/di2c/di2c.h
+ ../src/di2c/di2cbus.h
  ../src/di2c/di2cmaster
  ../src/di2c/di2cmaster.h
  ../src/dutils/dutils

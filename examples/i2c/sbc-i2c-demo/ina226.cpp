@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "Capibility of bus /dev/i2c-" << busID << ":" << std::endl;
-    DI2C i2c(busID);
+    DI2CBus i2c(busID);
 
     INA226 ina226(devAddr,i2c.handle());
     ina226.begin();

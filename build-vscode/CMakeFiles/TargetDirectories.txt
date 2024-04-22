@@ -25,9 +25,12 @@
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/drivers/CMakeFiles/edit_cache.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/rebuild_cache.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/edit_cache.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/i2c-master.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/i2c-scan.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/ina226.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/ina228.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/i2c-bus-info.dir
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/i2c-bus-list.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/servo-demo.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/pwm-demo.dir
 /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples/CMakeFiles/io-demo.dir

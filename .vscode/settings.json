@@ -76,6 +76,7 @@
         "charconv": "cpp",
         "i2c.h": "c",
         "unistd.h": "c",
-        "di2cmaster": "cpp"
+        "di2cmaster": "cpp",
+        "fstream": "cpp"
     }
 }

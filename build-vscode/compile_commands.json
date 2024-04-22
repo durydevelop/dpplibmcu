@@ -46,8 +46,8 @@
 },
 {
   "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode",
-  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers -g -std=gnu++2a -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2c.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp",
-  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2c.cpp"
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers -g -std=gnu++2a -o CMakeFiles/dpplib-mcu.dir/src/di2c/di2cbus.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/di2cbus.cpp"
 },
 {
   "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode",
@@ -66,6 +66,16 @@
 },
 {
   "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers -g -std=gnu++2a -o CMakeFiles/i2c-master.dir/i2c/sbc-i2c-demo/i2c-master.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-master.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-master.cpp"
+},
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers -g -std=gnu++2a -o CMakeFiles/i2c-scan.dir/i2c/sbc-i2c-demo/i2c-scan.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-scan.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-scan.cpp"
+},
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples",
   "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers -g -std=gnu++2a -o CMakeFiles/ina226.dir/i2c/sbc-i2c-demo/ina226.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/ina226.cpp",
   "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/ina226.cpp"
 },
@@ -78,6 +88,11 @@
   "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples",
   "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers -g -std=gnu++2a -o CMakeFiles/i2c-bus-info.dir/i2c/sbc-i2c-demo/i2c-bus-info.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-bus-info.cpp",
   "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-bus-info.cpp"
+},
+{
+  "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++  -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c -I/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers -g -std=gnu++2a -o CMakeFiles/i2c-bus-list.dir/i2c/sbc-i2c-demo/i2c-bus-list.cpp.o -c /home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-bus-list.cpp",
+  "file": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples/i2c/sbc-i2c-demo/i2c-bus-list.cpp"
 },
 {
   "directory": "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples",
