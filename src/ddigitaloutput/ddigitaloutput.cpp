@@ -5,7 +5,7 @@
  *      Author: dury
  */
 
-/*! \mainpage Classe DDigitalOutput per Arduino
+/** \mainpage Classe DDigitalOutput per Arduino
 *
 * \section intro_sec Introduzione
 *

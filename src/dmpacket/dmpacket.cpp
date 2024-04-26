@@ -328,7 +328,7 @@ std::string DMPacket::ToAsciiString(uint16_t Offset) {
     char *itr=&AsciiStr[0]; // iterator pointer
     //size_t ixP;
     for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
-        itr+=sprintf(itr,"%c  ",std::isprint(PacketBuff[ixP]) ? PacketBuff[ixP] : '.');
+        itr+=sprintf(itr,"%c  ",isprint(PacketBuff[ixP]) ? PacketBuff[ixP] : '.');
     }
     return (std::string(AsciiStr,MemSize)); // (-1 because last byte have no ':' to the end)
 }
@@ -514,10 +514,10 @@ void DMPacket::PushFloat(float Float)
 void DMPacket::PushString(std::string Str)
 {
     #ifdef ARDUINO
-        size_t Len=PacketBuff.size();
-	    PacketBuff.resize(Len+Str.size());
-        for (size_t ixP=Len; ixP<PacketBuff.size(); ixP++) {
-            Dest[ixP-Len]=PacketBuff[ixP];
+        size_t currSize=PacketBuff.size();
+	    PacketBuff.resize(currSize+Str.size());
+        for (size_t ixP=currSize; ixP<PacketBuff.size(); ixP++) {
+            PacketBuff[ixP]=Str[ixP-currSize];
         }
     #else
         const auto response_size = PacketBuff.size();
@@ -536,9 +536,14 @@ std::transform(headers.begin(), headers.end(), std::back_inserter(response),
 
 void DMPacket::PushData(const std::vector<uint8_t>& BuffVec) {
     PacketBuff.reserve(PacketBuff.size() + BuffVec.size());
+    for(uint16_t ixV=0; ixV<BuffVec.size(); ixV++) {
+        PacketBuff.emplace_back(BuffVec[ixV]);
+    }
+    /*
     for (uint8_t b : BuffVec) {
         PacketBuff.emplace_back(b);
     }
+    */
 }
 
 void DMPacket::pushData(const uint8_t buff[], const uint16_t buffSize) {
