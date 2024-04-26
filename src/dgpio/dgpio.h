@@ -54,7 +54,7 @@ bool isGpioReady(DGpioHandle& handle);
 DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags, DGpioHandle handle);
 int readPin(uint8_t pin, DGpioHandle handle);
 DResult writePin(uint8_t pin, uint8_t level, DGpioHandle handle);
-DResult writeAnalog(unsigned short int pin, unsigned short int value, DGpioHandle handle);
+DResult writeAnalog(uint8_t pin, uint8_t value, DGpioHandle handle);
 DResult releasePin(uint8_t pin, DGpioHandle handle);
 DResult shutdownGpio(DGpioHandle handle);
 

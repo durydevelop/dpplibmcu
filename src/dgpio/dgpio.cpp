@@ -173,13 +173,13 @@ DResult writePin(uint8_t pin, uint8_t level, DGpioHandle handle)
  * @param DGpioHandle   ->  handle from initGpio(), on ARDUINO is ignored.
  * @return true on success otherwise false.
  */
-DResult writeAnalog(unsigned short int pin, unsigned short int value, DGpioHandle handle)
+DResult writeAnalog(uint8_t pin, uint8_t value, DGpioHandle handle)
 {
     #ifdef ARDUINO
         analogWrite(pin,value);
         return DRES_OK;
     #elif defined LGPIO_VERSION
-        float dutyCycle=mapValue(value,0,255,0.0,100.0);
+        float dutyCycle=mapValue(value,0,255,0,100);
         return lgTxPwm(handle,pin,500,dutyCycle,0,0);
     #elif defined PIGPIO_VERSION
         // TODO: deprecate

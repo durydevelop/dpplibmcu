@@ -38,7 +38,10 @@ static const std::map<ulong,std::string> I2CFuncList = {
 
 DI2CBus::DI2CBus(uint8_t busID)
 {
-    busHandle=DI2CBus::openI2CBus(busID);
+    //busHandle=DI2CBus::openI2CBus(busID);
+    busName=DI2C_BUS_DEV_PREFIX "-" + std::to_string(busID);
+        busHandle = open(busName.c_str(), O_RDWR);
+        std::cout << strerror(errno) << std::endl;
     lastErrorString=strerror(errno);
 }
 
@@ -121,10 +124,12 @@ int DI2CBus::openI2CBus(int busID)
     // Try first "/dev/i2c/%d"
     std::string busName=DI2C_BUS_DEV_PREFIX "/" + std::to_string(busID);
     int busHandle = open(busName.c_str(), O_RDWR);
+    std::cout << strerror(errno) << std::endl;
     if (busHandle < 0 && (errno == ENOENT || errno == ENOTDIR)) {
         // Then "/dev/i2c-%d"
         busName=DI2C_BUS_DEV_PREFIX "-" + std::to_string(busID);
         busHandle = open(busName.c_str(), O_RDWR);
+        std::cout << strerror(errno) << std::endl;
     }
 
     return busHandle;
