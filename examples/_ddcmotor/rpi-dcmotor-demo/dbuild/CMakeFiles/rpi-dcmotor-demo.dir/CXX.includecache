@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/examples/rpi-dcmotor-demo/main.cpp
+iostream
+-
+chrono
+-
+thread
+-
+DDCMotor.h
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/examples/rpi-dcmotor-demo/DDCMotor.h
+
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotor.cpp
+DDCMotor.h
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotor.h
+Arduino.h
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/Arduino.h
+wiring.h
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/wiring.h
+WProgram.h
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/WProgram.h
+cstdlib
+-
+pigpio.h
+-
+
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotor.h
+
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotorWheels.cpp
+DDCMotorWheels.h
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotorWheels.h
+cstdlib
+-
+
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotorWheels.h
+DDCMotor.h
+/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotor.h
+

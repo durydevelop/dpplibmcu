@@ -1,0 +1,8 @@
+*Doxyfile*
+html/
+help/
+bin/
+obj/
+build/
+*.cmd
+*.sh

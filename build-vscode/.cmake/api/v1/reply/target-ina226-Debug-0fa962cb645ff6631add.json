@@ -1,0 +1,166 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "examples/ina226"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"examples/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 38,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"fragment" : "-std=gnu++2a"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/build-vscode/examples"
+				},
+				{
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/examples"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dmpacket"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dutils"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dgpio"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalinput"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitaloutput"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/ddigitalbutton"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm/sbc"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dpwm"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/dservo"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/drivers"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "dpplib-mcu::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "ina226::@714eac15f71a94114fdf",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../libdpplib-mcu.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "ina226",
+	"nameOnDisk" : "ina226",
+	"paths" : 
+	{
+		"build" : "examples",
+		"source" : "examples"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "examples/i2c/sbc-i2c-demo/ina226.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

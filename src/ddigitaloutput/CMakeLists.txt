@@ -1,0 +1,8 @@
+set(FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/ddigitaloutput
+    ${CMAKE_CURRENT_SOURCE_DIR}/ddigitaloutput.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ddigitaloutput.h
+)
+
+set(SRC_FILES ${SRC_FILES} ${FILES} PARENT_SCOPE)
+set(SRC_DIRS ${SRC_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)

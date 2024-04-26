@@ -1,0 +1,1 @@
+/usr/bin/arm-linux-gnueabihf-g++ -g CMakeFiles/pwm-demo.dir/dpwm/sbc-pwm-demo/main.cpp.o -o pwm-demo  ../libdpplib-mcu.a -llgpio 

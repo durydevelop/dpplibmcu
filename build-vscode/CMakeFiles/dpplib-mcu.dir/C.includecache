@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/i2cbusses.c
+sys/types.h
+-
+sys/stat.h
+-
+sys/param.h
+-
+sys/ioctl.h
+-
+string.h
+-
+strings.h
+-
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+limits.h
+-
+dirent.h
+-
+fcntl.h
+-
+errno.h
+-
+i2cbusses.h
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/i2cbusses.h
+linux/i2c.h
+-
+linux/i2c-dev.h
+-
+
+/home/pi/Dev/cpp/lib-mcu/dpplib-mcu/src/di2c/i2cbusses.h
+unistd.h
+-
+

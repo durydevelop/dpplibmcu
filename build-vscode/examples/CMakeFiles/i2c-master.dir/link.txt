@@ -1,0 +1,1 @@
+/usr/bin/arm-linux-gnueabihf-g++ -g CMakeFiles/i2c-master.dir/i2c/sbc-i2c-demo/i2c-master.cpp.o -o i2c-master  ../libdpplib-mcu.a 
