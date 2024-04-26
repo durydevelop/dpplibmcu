@@ -1,8 +1,0 @@
-{
-  "name": "dmpacket",
-  "dependencies":
-  [
-	  {"name": "dvector"},
-	  {"name": "dstring"}
-  ]
-}
