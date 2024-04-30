@@ -26,7 +26,7 @@ class DDigitalOutput
         bool isAttached(void);
         std::string getLastError(void);
         
-		operator bool();
+		operator int();
 		DDigitalOutput& operator= (bool level);
 
 	private:
