@@ -21,7 +21,7 @@ option(BUILD_DRIVERS "Build drivers for some external peripherlas (sensors, etc)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(DMainHelper)
 include(DPrintHelpers)
-include(SetupDoxygen)
+#include(SetupDoxygen)
 include(FeatureSummary)
 
 ## Add platform indipendent modules
@@ -83,6 +83,6 @@ if (BUILD_EXAMPLES)
 endif()
 
 #include(DInstall)
-add_subdirectory(doc)
+add_subdirectory(doxygen)
 print_project_summary()
 feature_summary(WHAT ALL)
