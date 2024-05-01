@@ -45,7 +45,7 @@ if(DOXYGEN_FOUND)
 
     # https://cmake.org/cmake/help/latest/module/FindDoxygen.html#command:doxygen_add_docs
     doxygen_add_docs(docs
-      src/hikogui
+      src
       docs
       WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
       COMMENT "Generate Documentation"
