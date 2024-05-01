@@ -2,7 +2,7 @@
 # DPPLIB
 ##[[ Sorgenti in locale
 ## usa DPPLIB_ROOT
-message_c(${BOLD_MAGENTA} "Finding DPPLIB...")
+message_c(${BOLD_MAGENTA} "Finding dpplib...")
 if (NOT ${dpplib_ROOT} STREQUAL "")
     message_c(${BOLD_MAGENTA} "dpplib_ROOT set to ${dpplib_ROOT}")
 endif()

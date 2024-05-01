@@ -108,7 +108,7 @@ void DDigitalOutput::toggle(void)
 }
 
 //! overload operatore ==
-DDigitalOutput::operator bool()
+DDigitalOutput::operator int()
 {
 	return read();
 }

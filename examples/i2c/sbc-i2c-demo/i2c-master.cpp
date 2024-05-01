@@ -30,13 +30,13 @@ int main(int argc, char** argv)
     std::cout << "askForBuf() -> " << attiny.getLastError() << std::endl;
     std::cout << rxPacket.ReadInt16(0) << std::endl;
 */
+/*
     rxPacket.Clear();
-    uint16_t r=attiny.askForWord(0x10,0);
+    uint16_t r=attiny.askForWord(0x08,0);
     std::cout << "askForWord() -> " << attiny.getLastError() << std::endl;
     rxPacket.PushWord(r);
     std::cout << "data: " << rxPacket.ReadInt16(0) << std::endl;
-
-/*
+*/
     std::string buf="abcd12345678901234567890123411dcba";
     do {
         //attiny.sendByte(8,'a');
@@ -44,6 +44,6 @@ int main(int argc, char** argv)
         std::cout << "sendBuf() -> " << attiny.getLastError() << std::endl;
         delay(1000);
     }while(true);
-*/
+
     return 0;
 }
