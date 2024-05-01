@@ -83,6 +83,6 @@ if (BUILD_EXAMPLES)
 endif()
 
 #include(DInstall)
-
+add_subdirectory(doc)
 print_project_summary()
 feature_summary(WHAT ALL)
