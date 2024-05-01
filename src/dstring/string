@@ -1,1 +1,3 @@
-#include <DArduinoString.h>
+#ifdef ARDUINO
+	#include "arduino/DArduinoString.h"
+#endif

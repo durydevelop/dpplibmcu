@@ -25,7 +25,7 @@ endfunction()
 ########################################################################
 ## Print all TARGET VARIABLES
 # Varialble are listed using COMMAND cmake --help-property-list
-# If an argument is given, only varialbles containing ARGV0 are printed.
+# If an argument is given, only varialbles containing ARGV0 (${tgt}) are printed.
 function(print_target_prop tgt)
     message("#### Variables founds for TARGET " ${tgt} " ####")
     if (ARGV1)
@@ -69,7 +69,7 @@ endfunction()
 ########################################################################
 ## Print all TARGET VARIABLES
 # Varialble are listed using get_cmake_property(CMAKE_PROPERTY_LIST VARIABLES)
-# If an argument is given, only varialbles containing ARGV0 are printed.
+# If an argument is given, only varialbles containing ARGV0 (${tgt}) are printed.
 function(print_target_set tgt)
     message("#### Variables founds for TARGET " ${tgt} " ####")
     if(NOT TARGET ${tgt})

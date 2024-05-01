@@ -16,11 +16,19 @@ namespace std {
         Data *d_data;       // Stores data
 
         public:
-            //! Default constructor
+            /// @brief Default constructor
             vector() { //: d_size(0), d_capacity(0), d_data(0) {};
                 d_size=0;
                 d_capacity=0;
                 d_data=nullptr;
+            }
+
+            /**
+             * @brief Construct a new vector object
+             * 
+             */
+            vector(size_t elementsCount) : vector() {
+                resize(elementsCount);
             }
 
             //! Copy constuctor
@@ -145,6 +153,10 @@ namespace std {
                 }
 
                 return(d_data[idx]);
+            }
+
+            bool empty(void) {
+                return d_size == 0;
             }
     };
 }
