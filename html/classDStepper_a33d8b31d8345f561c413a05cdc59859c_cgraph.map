@@ -1,0 +1,4 @@
+<map id="DStepper::SetRpm" name="DStepper::SetRpm">
+<area shape="rect" id="node1" title="Set speed and direction (output directly on pin)." alt="" coords="5,5,147,32"/>
+<area shape="rect" id="node2" href="$classDStepper.html#ad26a00b8689d3684ffd9066f165c770f" title="Set direction (output directly on pin)." alt="" coords="195,5,325,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="DStepper::SetFreq" name="DStepper::SetFreq">
+<area shape="rect" id="node1" title="Set frequency to apply on clock pin." alt="" coords="180,5,319,32"/>
+<area shape="rect" id="node2" href="$classDStepper.html#ae9b4949c6c7248bd515a7c3f977ab8bc" title="Initialize all needed stuffs to start lib, set clock frequency and enable it on pin (if required)." alt="" coords="5,5,132,32"/>
+</map>

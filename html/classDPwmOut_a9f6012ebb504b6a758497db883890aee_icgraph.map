@@ -1,0 +1,13 @@
+<map id="DPwmOut::isReady" name="DPwmOut::isReady">
+<area shape="rect" id="node1" title=" " alt="" coords="728,171,875,197"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#ae0cd68ca0f349af35e64534dbd2d4c0d" title=" " alt="" coords="525,112,680,139"/>
+<area shape="rect" id="node10" href="$classDServo.html#a1c617c7c205519b6e057f0db0835aa44" title="Check if servo pin is configurated as pwm (Arduino api compatibility)" alt="" coords="535,196,670,223"/>
+<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a303b8c468b1bef37b20732a16210bcf6" title="Initialize hardware pins for motores." alt="" coords="278,61,465,88"/>
+<area shape="rect" id="node5" href="$__mega-demo_2src_2main_8cpp.html#a96b4a8e67e177db1b31d074461169978" title=" " alt="" coords="306,112,437,139"/>
+<area shape="rect" id="node7" href="$classDDCMotorWheels.html#ab224bcafb3e11711245195e653a3f824" title="Construct a new DDCMotorWheels::DDCMotorWheels object using previously created DDCMotor objects." alt="" coords="265,163,477,205"/>
+<area shape="rect" id="node8" href="$classDDCMotor.html#a38940c56d106d35bdd38f32d80722a73" title="Release hardware." alt="" coords="301,7,442,33"/>
+<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a6fe559252dda7c6bd1c29989df7e6e51" title="Construct a new DDCMotorWheels::DDCMotorWheels object and initialize motors." alt="" coords="5,57,217,98"/>
+<area shape="rect" id="node6" href="$__mega-demo_2src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="86,173,137,200"/>
+<area shape="rect" id="node9" href="$classDDCMotor.html#a469e5615b031fa6b3e58b880c75544fa" title="Destroy the DDCMotor::DDCMotor object." alt="" coords="24,5,199,32"/>
+<area shape="rect" id="node11" href="$__mega-demo_2src_2main_8cpp.html#aa29b0e7a465274b2bb4363773cfd35fa" title=" " alt="" coords="316,229,427,256"/>
+</map>

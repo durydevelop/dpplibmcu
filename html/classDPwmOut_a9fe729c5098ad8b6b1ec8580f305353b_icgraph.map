@@ -1,0 +1,5 @@
+<map id="DPwmOut::release" name="DPwmOut::release">
+<area shape="rect" id="node1" title=" " alt="" coords="417,5,560,32"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#a38940c56d106d35bdd38f32d80722a73" title="Release hardware." alt="" coords="228,5,369,32"/>
+<area shape="rect" id="node3" href="$classDDCMotor.html#a469e5615b031fa6b3e58b880c75544fa" title="Destroy the DDCMotor::DDCMotor object." alt="" coords="5,5,180,32"/>
+</map>

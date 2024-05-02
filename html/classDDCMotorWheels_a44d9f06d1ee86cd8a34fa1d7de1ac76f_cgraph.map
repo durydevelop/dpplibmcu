@@ -1,0 +1,4 @@
+<map id="DDCMotorWheels::SXRev" name="DDCMotorWheels::SXRev">
+<area shape="rect" id="node1" title="Runs sx motor in backward direction at specific speed value." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="240,5,443,32"/>
+</map>

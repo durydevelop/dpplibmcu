@@ -1,0 +1,4 @@
+<map id="DStepper::DStepper" name="DStepper::DStepper">
+<area shape="rect" id="node1" title="TODO: _GetMaxRpm() _Step() _Optional Enable pin _Ramp StopPin _RampFreq." alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node2" href="$classDStepper.html#ad26a00b8689d3684ffd9066f165c770f" title="Set direction (output directly on pin)." alt="" coords="204,5,335,32"/>
+</map>

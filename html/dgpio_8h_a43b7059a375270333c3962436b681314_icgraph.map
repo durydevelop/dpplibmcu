@@ -1,0 +1,8 @@
+<map id="releasePin" name="releasePin">
+<area shape="rect" id="node1" title="Free a pin that can be claimed for an other use." alt="" coords="244,143,335,170"/>
+<area shape="rect" id="node2" href="$classDDigitalButton.html#acc735d0e1c55b83e2bd54a3f4ae01007" title="Destroy the DDigitalButton::DDigitalButton object and free pin use." alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node3" href="$classDDigitalInput.html#a794d98c1beb80a8195b6d944757d6a6b" title="Destroy the DDigitalInput::DDigitalInput object and free pin use." alt="" coords="11,71,191,112"/>
+<area shape="rect" id="node4" href="$classDDigitalOutput.html#af94283448d38029202cf2a80554800f4" title="Destroy the DDigitalOutput::DDigitalOutput object and free pin use." alt="" coords="5,136,196,177"/>
+<area shape="rect" id="node5" href="$classDHTXX.html#a3574aa5c3e989d43f7451ec8d553491e" title="Destroy the DHTXX::DHTXX object and free pin use." alt="" coords="34,202,167,229"/>
+<area shape="rect" id="node6" href="$classDPwmOut.html#a0c6f09a1cce81cfe69a7de1856a531c5" title="Destroy the DPwmOut::DPwmOut object and free pin use." alt="" coords="15,253,186,279"/>
+</map>

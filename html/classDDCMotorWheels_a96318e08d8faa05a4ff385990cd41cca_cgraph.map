@@ -1,0 +1,4 @@
+<map id="DDCMotorWheels::SXGetPwm" name="DDCMotorWheels::SXGetPwm">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,223,32"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#af4dcc6f0ee2475cc671fb06428dcd3cb" title="Calculate real pwm value corresponding to CurrVel." alt="" coords="271,5,423,32"/>
+</map>

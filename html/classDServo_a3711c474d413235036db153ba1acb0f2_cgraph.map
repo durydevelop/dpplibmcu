@@ -1,0 +1,5 @@
+<map id="DServo::servoOut" name="DServo::servoOut">
+<area shape="rect" id="node1" title="TODO: Shorthand for the write and read functions." alt="" coords="5,5,141,32"/>
+<area shape="rect" id="node2" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="189,5,348,32"/>
+<area shape="rect" id="node3" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="396,5,571,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="DDigitalOutput::write" name="DDigitalOutput::write">
+<area shape="rect" id="node1" title="Uso interno: Setta il pin di uscita al livello logico richiesto." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node2" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="213,5,288,32"/>
+</map>

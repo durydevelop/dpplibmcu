@@ -1,0 +1,7 @@
+<map id="DStepper::RampRpm" name="DStepper::RampRpm">
+<area shape="rect" id="node1" title="Reach Rpm speed using ramp (output directly on pin)." alt="" coords="5,81,164,108"/>
+<area shape="rect" id="node2" href="$classDStepper.html#a87d1168ceaa870819a35075dbc49fb58" title="Get current rpm value." alt="" coords="212,5,355,32"/>
+<area shape="rect" id="node3" href="$dutils_8cpp.html#a1871228c14c912ca1479cf826ddcb07f" title="Get current timestamp in milliseconds (c++ equivalent of arduino millis())." alt="" coords="254,56,313,83"/>
+<area shape="rect" id="node4" href="$classDStepper.html#ad26a00b8689d3684ffd9066f165c770f" title="Set direction (output directly on pin)." alt="" coords="218,107,349,133"/>
+<area shape="rect" id="node5" href="$classDStepper.html#a058b1d92299235ac417da525c8112e62" title="Set speed (output directly on pin)." alt="" coords="213,157,354,184"/>
+</map>

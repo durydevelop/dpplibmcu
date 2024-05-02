@@ -1,0 +1,8 @@
+<map id="DDigitalButton::begin" name="DDigitalButton::begin">
+<area shape="rect" id="node1" title="Constructor." alt="" coords="5,56,168,83"/>
+<area shape="rect" id="node2" href="$dgpio_8cpp.html#a70a896c64300c133e9fe98439406949e" title="Configures a pin to be used as input, output or whatever." alt="" coords="262,5,325,32"/>
+<area shape="rect" id="node5" href="$dutils_8cpp.html#a1871228c14c912ca1479cf826ddcb07f" title="Get current timestamp in milliseconds (c++ equivalent of arduino millis())." alt="" coords="264,56,323,83"/>
+<area shape="rect" id="node6" href="$classDDigitalButton.html#a1c4b4eba35a3e9bd4ef064cd001fa443" title=" " alt="" coords="216,107,371,133"/>
+<area shape="rect" id="node3" href="$dgpio_8cpp.html#aa3b0c0206321919731d29ae214cca157" title="Initilize gpio chip." alt="" coords="419,5,492,32"/>
+<area shape="rect" id="node4" href="$derrorcodes_8h.html#ad8161c61a54c1dc9d7cc93861e3ca30c" title=" " alt="" coords="540,5,592,32"/>
+</map>

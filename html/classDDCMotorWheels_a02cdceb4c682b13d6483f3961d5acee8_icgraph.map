@@ -1,0 +1,16 @@
+<map id="DDCMotorWheels::DXSetVel" name="DDCMotorWheels::DXSetVel">
+<area shape="rect" id="node1" title="Set velocity value for dx motor." alt="" coords="1003,132,1208,159"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a9db634084cbb88698db0091c724e2487" title="Decrement dx motor speed by specific value." alt="" coords="745,5,955,32"/>
+<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a0932695b7e788229531accf51b530d44" title="Runs dx motor in forward direction at specific speed value." alt="" coords="759,56,941,83"/>
+<area shape="rect" id="node6" href="$classDDCMotorWheels.html#a931ad0e836dd133a9e76d498564ecb63" title="Increment dx motor speed by specific value." alt="" coords="749,107,951,133"/>
+<area shape="rect" id="node8" href="$classDDCMotorWheels.html#a6aad43304a2c6dfe46bcdec6cf81501c" title="Runs dx motor in backward direction at specific speed value." alt="" coords="755,157,945,184"/>
+<area shape="rect" id="node10" href="$classDDCMotorWheels.html#a7e5a8eb4db9bfc45e286bf8519dcfff2" title="Stop dx motor (set vel to 0)" alt="" coords="753,208,947,235"/>
+<area shape="rect" id="node14" href="$classDDCMotorWheels.html#a31eabf4236368ce9a7051c939540612d" title="Set absolute vel values for both motors." alt="" coords="757,259,943,285"/>
+<area shape="rect" id="node3" href="$classDDCMotorWheels.html#ad1c6dd0604704772746d5709cd09c379" title="Decrement both motors speed by specific value." alt="" coords="507,5,697,32"/>
+<area shape="rect" id="node5" href="$classDDCMotorWheels.html#af15c3b1eab16bd72ac5fd67c326920e1" title="Runs both motors in forward direction at specific speed value." alt="" coords="520,56,684,83"/>
+<area shape="rect" id="node7" href="$classDDCMotorWheels.html#a246fbe946425244b6634e3c932dbd4ca" title="Increment both motors speed by specific value." alt="" coords="510,107,694,133"/>
+<area shape="rect" id="node9" href="$classDDCMotorWheels.html#ab15a3d72ea264e40d3828da319b79a7f" title="Runs both motors in backward direction at specific speed value." alt="" coords="517,157,687,184"/>
+<area shape="rect" id="node11" href="$classDDCMotorWheels.html#a4a559c6b941c646fa59c1d01dd7fc445" title="Stop both motor (set vel to 0)" alt="" coords="515,208,689,235"/>
+<area shape="rect" id="node12" href="$classDDCMotorWheels.html#ae6f218e1b78ea6f6881383d005dc20fa" title="Engage/disengage motors." alt="" coords="265,208,459,235"/>
+<area shape="rect" id="node13" href="$classDDCMotorWheels.html#affe6b6c42989dc0225a90dfaddebc6d3" title="Disengage motors." alt="" coords="5,208,217,235"/>
+</map>

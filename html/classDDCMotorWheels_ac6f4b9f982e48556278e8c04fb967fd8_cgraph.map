@@ -1,0 +1,12 @@
+<map id="DDCMotorWheels::SetBalancingRev" name="DDCMotorWheels::SetBalancingRev">
+<area shape="rect" id="node1" title="Set wheels balancing value for backward direction." alt="" coords="5,56,260,83"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#a450b1ca92540ab947b09afcf667a139e" title=" " alt="" coords="315,5,514,32"/>
+<area shape="rect" id="node3" href="$classDDCMotor.html#a4c9a8464b3d1599a4e101a49ba845876" title="Reset reverse PWM calibration value to default." alt="" coords="308,56,521,83"/>
+<area shape="rect" id="node10" href="$classDDCMotor.html#a86535e0a1468ec7681e8a76f200badc2" title="Set PWM calibration for backward direction." alt="" coords="316,107,513,133"/>
+<area shape="rect" id="node4" href="$classDDCMotor.html#ac2d71dfe51ce64d76171e8e532d17140" title="Run motor." alt="" coords="569,81,708,108"/>
+<area shape="rect" id="node5" href="$classDPwmOut.html#abb93056445b67d66609686527abbcb5c" title="Set still HIGH value on pin." alt="" coords="774,31,897,57"/>
+<area shape="rect" id="node7" href="$classDPwmOut.html#aa63257b572ab748858080eb28be0b490" title="Set still LOW value on pin." alt="" coords="776,81,895,108"/>
+<area shape="rect" id="node8" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="756,132,915,159"/>
+<area shape="rect" id="node6" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="1013,56,1087,83"/>
+<area shape="rect" id="node9" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="963,132,1137,159"/>
+</map>

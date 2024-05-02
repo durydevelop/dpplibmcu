@@ -1,0 +1,6 @@
+<map id="DDCMotorWheels::DDCMotorWheels" name="DDCMotorWheels::DDCMotorWheels">
+<area shape="rect" id="node1" title="Construct a new DDCMotorWheels::DDCMotorWheels object using previously created DDCMotor objects." alt="" coords="5,23,217,65"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#ae0cd68ca0f349af35e64534dbd2d4c0d" title=" " alt="" coords="275,5,429,32"/>
+<area shape="rect" id="node4" href="$classDDCMotor.html#a9833c3d4f3a2c18d3889d53b656d1d8f" title="Set step value used by functions for direct increment &#45; decrecrement speed." alt="" coords="265,56,439,83"/>
+<area shape="rect" id="node3" href="$classDPwmOut.html#a9f6012ebb504b6a758497db883890aee" title=" " alt="" coords="487,5,633,32"/>
+</map>

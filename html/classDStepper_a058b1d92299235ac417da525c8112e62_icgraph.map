@@ -1,0 +1,5 @@
+<map id="DStepper::SetRpm" name="DStepper::SetRpm">
+<area shape="rect" id="node1" title="Set speed (output directly on pin)." alt="" coords="212,31,353,57"/>
+<area shape="rect" id="node2" href="$classDStepper.html#a396880430f1018776d9566204fc4bbe8" title="Initialize all needed stuffs to start lib, set rpm value and enable it on pin (if required)." alt="" coords="21,5,148,32"/>
+<area shape="rect" id="node3" href="$classDStepper.html#a4956f759f7d82f149fd1336ec1df05cb" title="Reach Rpm speed using ramp (output directly on pin)." alt="" coords="5,56,164,83"/>
+</map>

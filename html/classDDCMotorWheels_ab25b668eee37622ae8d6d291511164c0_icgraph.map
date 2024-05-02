@@ -1,0 +1,4 @@
+<map id="DDCMotorWheels::DXBrake" name="DDCMotorWheels::DXBrake">
+<area shape="rect" id="node1" title="Brake dx motor (set pins level to brake motor)" alt="" coords="236,5,437,32"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a207916715985bf23771b830f87d2a4c4" title="Brake both motor (set pins level to brake motors)" alt="" coords="5,5,188,32"/>
+</map>

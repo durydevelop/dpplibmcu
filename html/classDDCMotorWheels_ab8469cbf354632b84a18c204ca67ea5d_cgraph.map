@@ -1,0 +1,4 @@
+<map id="DDCMotorWheels::SetStepValue" name="DDCMotorWheels::SetStepValue">
+<area shape="rect" id="node1" title="Set step value used by functions for direct increment &#45; decrecrement speed." alt="" coords="5,5,236,32"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#a9833c3d4f3a2c18d3889d53b656d1d8f" title="Set step value used by functions for direct increment &#45; decrecrement speed." alt="" coords="284,5,457,32"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="millis" name="millis">
+<area shape="rect" id="node1" title="Get current timestamp in milliseconds (c++ equivalent of arduino millis())." alt="" coords="340,187,399,213"/>
+<area shape="rect" id="node2" href="$classDDigitalInput.html#a09836aab587efb4c8f14bbb311cc8024" title=" " alt="" coords="124,5,276,32"/>
+<area shape="rect" id="node4" href="$classDDigitalButton.html#adbfe8db7038469e4274e4c905ece9867" title="Constructor." alt="" coords="119,56,281,83"/>
+<area shape="rect" id="node5" href="$__mega-demo_2src_2main_8cpp.html#a96b4a8e67e177db1b31d074461169978" title=" " alt="" coords="135,157,265,184"/>
+<area shape="rect" id="node7" href="$classDDigitalInput.html#ac659a7b2a04ad493dc025e2976fe0055" title=" " alt="" coords="108,107,292,133"/>
+<area shape="rect" id="node8" href="$classDDigitalInput.html#a3fdb6811a91b810a19642deaafeeb25a" title="Verifica se lo stato del pin è cambiato da LOW in HIGH rispetto all&#39;ultimo controllo." alt="" coords="108,209,292,250"/>
+<area shape="rect" id="node9" href="$classDDigitalInput.html#a7be636651805affedff36bee2973de4a" title="Verifica se lo stato del pin è cambiato da HIGH in LOW rispetto all&#39;ultimo controllo." alt="" coords="108,274,292,315"/>
+<area shape="rect" id="node10" href="$classDStepper.html#a4956f759f7d82f149fd1336ec1df05cb" title="Reach Rpm speed using ramp (output directly on pin)." alt="" coords="121,340,279,367"/>
+<area shape="rect" id="node11" href="$__mega-demo_2src_2main_8cpp.html#aa29b0e7a465274b2bb4363773cfd35fa" title=" " alt="" coords="145,391,255,417"/>
+<area shape="rect" id="node3" href="$ddigitalio_2sbc-io-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,60,83"/>
+<area shape="rect" id="node6" href="$__mega-demo_2src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="7,223,58,249"/>
+</map>

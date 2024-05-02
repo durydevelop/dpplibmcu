@@ -1,0 +1,21 @@
+<map id="loop" name="loop">
+<area shape="rect" id="node1" title=" " alt="" coords="5,208,56,235"/>
+<area shape="rect" id="node2" href="$__ddigitalbutton_2arduino-vscode-one-button-menu_2src_2main_8cpp.html#ab0fa39f173ce251bad858bb55ef7e29a" title=" " alt="" coords="117,5,250,32"/>
+<area shape="rect" id="node8" href="$__ddigitalbutton_2arduino-vscode-one-button-menu_2src_2main_8cpp.html#a021566f01d75be9d626302de3e4dd127" title=" " alt="" coords="117,56,250,83"/>
+<area shape="rect" id="node9" href="$__ddigitalbutton_2arduino-vscode-one-button-menu_2src_2main_8cpp.html#aef7f2fb195033b989879f4d9c4c90aa2" title=" " alt="" coords="117,107,250,133"/>
+<area shape="rect" id="node10" href="$__ddigitalbutton_2arduino-vscode-one-button-menu_2src_2main_8cpp.html#a6d69fe487612ef04cd02c51c18ad62a6" title=" " alt="" coords="151,157,215,184"/>
+<area shape="rect" id="node11" href="$classDMenu.html#a2ce83bf9908afa53a899e1d571969eb7" title="Change current selected Item to next one." alt="" coords="127,208,240,235"/>
+<area shape="rect" id="node12" href="$classDMenu.html#ad24e6c5761fd16c10e3397bd0bf44982" title=" " alt="" coords="337,233,476,260"/>
+<area shape="rect" id="node13" href="$__ddigitalbutton_2arduino-vscode-one-button-menu_2src_2main_8cpp.html#aee7fab303cea45998868e8df970647d6" title=" " alt="" coords="139,309,227,336"/>
+<area shape="rect" id="node18" href="$classDDigitalButton.html#a06c0677882e4c5af7f3e2103127f33e3" title=" " alt="" coords="104,360,263,387"/>
+<area shape="rect" id="node19" href="$classDMenu.html#acb5b41b265ca2e34ffb1713b54c34eda" title="Fire a Callback event sending the current selected Item as argument." alt="" coords="125,411,241,437"/>
+<area shape="rect" id="node3" href="$classDMenu.html#a1815ae7ab55c9e47b19c7914bedf8666" title="Add a new Item to menu." alt="" coords="341,56,472,83"/>
+<area shape="rect" id="node4" href="$classDMenu.html#a2e78ea4ee9bb5ba659786cf41fdcf008" title="Contructor." alt="" coords="551,31,673,57"/>
+<area shape="rect" id="node7" href="$classDMenu.html#a694cc97d62d983844cbfc12f595fe394" title=" " alt="" coords="555,81,669,108"/>
+<area shape="rect" id="node5" href="$classDMenu.html#a7c0a82c00ac8246ebb230044fe4c4855" title="Initialize all stuffs from constructors." alt="" coords="721,31,819,57"/>
+<area shape="rect" id="node6" href="$classDMenu.html#af635c9a35f803298407823ecc86361e7" title="Set the name of Item." alt="" coords="867,31,1003,57"/>
+<area shape="rect" id="node14" href="$classDMenu.html#a3c02c975a9dc6f9a59c2f718e2bb749b" title="if &#45;1 is returned, no item is selected" alt="" coords="311,284,503,311"/>
+<area shape="rect" id="node15" href="$classDMenu.html#a9206a29db71618ac81d5552c1d05dceb" title="Add a list of Items." alt="" coords="342,335,471,361"/>
+<area shape="rect" id="node16" href="$classDMenu.html#a92ef4aa79853464b3d40fe500627fdf1" title=" " alt="" coords="319,385,494,412"/>
+<area shape="rect" id="node17" href="$__ddigitalbutton_2arduino-vscode-one-button-menu_2src_2main_8cpp.html#aa1f830b6ee033f89b624a2aefa9d1dbc" title=" " alt="" coords="379,436,434,463"/>
+</map>

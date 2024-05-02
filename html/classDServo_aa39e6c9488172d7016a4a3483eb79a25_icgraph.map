@@ -1,0 +1,20 @@
+<map id="DServo::usToDegrees" name="DServo::usToDegrees">
+<area shape="rect" id="node1" title="Convert Us pulse&#45;width value degrees for this servo." alt="" coords="672,81,832,108"/>
+<area shape="rect" id="node2" href="$classDServo.html#a7ca0521d4750bcb58abb51eef90f4162" title="Get current pulse&#45;width used for home position." alt="" coords="429,5,620,32"/>
+<area shape="rect" id="node3" href="$classDServo.html#a49a529a320ec3a949207be5789fbc282" title="Reset step pulse&#45;width to default DEFAULT_STEP_VALUE." alt="" coords="437,56,612,83"/>
+<area shape="rect" id="node6" href="$classDServo.html#ac3ff81f55fa9cc39330365b225812821" title="Set pulse&#45;width value to use in step moving functions." alt="" coords="453,107,596,133"/>
+<area shape="rect" id="node7" href="$classDServo.html#aa086c011845e539500a63141ca213a02" title="Set servo position in micro seconds from 1000 to 2000 where 1500 is centre position (Arduino api comp..." alt="" coords="425,208,624,235"/>
+<area shape="rect" id="node4" href="$classDServo.html#ad52ca6c8ce59d854fee7f4a1ded0d041" title="Set all params to default values." alt="" coords="189,5,377,32"/>
+<area shape="rect" id="node5" href="$classDServo.html#a0d4658332ed4895aa7d14a425ba63dbc" title="Constructor 2." alt="" coords="11,5,135,32"/>
+<area shape="rect" id="node8" href="$classDServo.html#a48d3eeb83cbae39ba67634fe758cd368" title="Move servo to home position CurrHomeUs." alt="" coords="226,56,341,83"/>
+<area shape="rect" id="node9" href="$dservo_2arduino-servo-demo_2src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="258,107,309,133"/>
+<area shape="rect" id="node10" href="$dservo_2sbc-servo-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="256,157,311,184"/>
+<area shape="rect" id="node11" href="$__mega-demo_2src_2main_8cpp.html#aa29b0e7a465274b2bb4363773cfd35fa" title=" " alt="" coords="228,208,339,235"/>
+<area shape="rect" id="node13" href="$classDServo.html#af9138c62fc8f0eb1712078a54aebe2af" title="Set maximum pulse&#45;width that can be set." alt="" coords="195,259,372,285"/>
+<area shape="rect" id="node14" href="$classDServo.html#af626cf1d6ee3c39e2ec6a63c6cb791fb" title="Set minimum pulse&#45;witdh that can be set." alt="" coords="197,309,370,336"/>
+<area shape="rect" id="node15" href="$classDServo.html#a999fdf6ccc0da4640f6e07ccb42cae57" title="Move servo counterclockwise by custom pulse&#45;width." alt="" coords="207,360,360,387"/>
+<area shape="rect" id="node17" href="$classDServo.html#a1c8f28b631180e5a36e66c8c4054d071" title="Move servo clockwise by custom pulse&#45;width." alt="" coords="211,411,355,437"/>
+<area shape="rect" id="node12" href="$__mega-demo_2src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="48,208,99,235"/>
+<area shape="rect" id="node16" href="$classDServo.html#a78944b34c8dc9282185d1535d35d8c18" title="Move servo counterclockwise by CurrStepUs pulse&#45;width." alt="" coords="5,360,141,387"/>
+<area shape="rect" id="node18" href="$classDServo.html#a8ab5cd37a0b8a1f1a2743c8321518f79" title="Move servo clockwise by CurrStepUs pulse&#45;width." alt="" coords="10,411,137,437"/>
+</map>

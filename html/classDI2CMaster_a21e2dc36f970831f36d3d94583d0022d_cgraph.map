@@ -1,0 +1,4 @@
+<map id="DI2CMaster::askForWord" name="DI2CMaster::askForWord">
+<area shape="rect" id="node1" title="Read a WORD from specified i2c register of the slave device." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$classDI2CMaster.html#a6662f3aab4750c7e48ddc2aea67938ee" title="Read a WORD(2 bytes) from an i2c slave device." alt="" coords="236,5,403,32"/>
+</map>

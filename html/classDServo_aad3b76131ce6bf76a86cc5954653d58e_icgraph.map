@@ -1,0 +1,4 @@
+<map id="DServo::read" name="DServo::read">
+<area shape="rect" id="node1" title="Read the current angle of the servo, that is the value passed to the last call to write() (Arduino ap..." alt="" coords="141,5,248,32"/>
+<area shape="rect" id="node2" href="$__mega-demo_2src_2main_8cpp.html#a910206aca1f0019ef0a7a00a4d8807ce" title=" " alt="" coords="5,5,93,32"/>
+</map>

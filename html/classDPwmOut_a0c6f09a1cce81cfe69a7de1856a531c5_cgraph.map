@@ -1,0 +1,4 @@
+<map id="DPwmOut::~DPwmOut" name="DPwmOut::~DPwmOut">
+<area shape="rect" id="node1" title="Destroy the DPwmOut::DPwmOut object and free pin use." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$dgpio_8cpp.html#a43b7059a375270333c3962436b681314" title="Free a pin that can be claimed for an other use." alt="" coords="224,5,315,32"/>
+</map>

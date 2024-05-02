@@ -1,0 +1,8 @@
+<map id="DDCMotorWheels::DXBrake" name="DDCMotorWheels::DXBrake">
+<area shape="rect" id="node1" title="Brake dx motor (set pins level to brake motor)" alt="" coords="5,31,207,57"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#ad183f16e25c79d3647a7de827c56aa96" title="Brake motor." alt="" coords="255,31,389,57"/>
+<area shape="rect" id="node3" href="$classDPwmOut.html#aa63257b572ab748858080eb28be0b490" title="Set still LOW value on pin." alt="" coords="457,5,576,32"/>
+<area shape="rect" id="node5" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="437,56,596,83"/>
+<area shape="rect" id="node4" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="694,5,769,32"/>
+<area shape="rect" id="node6" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="644,56,819,83"/>
+</map>

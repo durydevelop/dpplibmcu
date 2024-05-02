@@ -1,0 +1,4 @@
+<map id="DDCMotorWheels::DXDecVel" name="DDCMotorWheels::DXDecVel">
+<area shape="rect" id="node1" title="Decrement dx motor speed by specific value." alt="" coords="5,5,215,32"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a02cdceb4c682b13d6483f3961d5acee8" title="Set velocity value for dx motor." alt="" coords="263,5,468,32"/>
+</map>

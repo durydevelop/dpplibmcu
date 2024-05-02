@@ -1,0 +1,4 @@
+<map id="DMPacket::ReadFloat" name="DMPacket::ReadFloat">
+<area shape="rect" id="node1" title="Read a 32 bit float from data." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node2" href="$classDMPacket.html#a636f5b3933ba3777e398bcf95cc54a81" title="Read a double&#45;word from data payload." alt="" coords="213,5,384,32"/>
+</map>

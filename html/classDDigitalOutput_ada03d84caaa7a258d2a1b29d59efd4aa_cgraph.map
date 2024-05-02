@@ -1,0 +1,5 @@
+<map id="DDigitalOutput::toggle" name="DDigitalOutput::toggle">
+<area shape="rect" id="node1" title="Cambia lo stato del pin di uscita." alt="" coords="5,5,173,32"/>
+<area shape="rect" id="node2" href="$classDDigitalOutput.html#ad87cebca3779f52e3a5da3dc819fa1ad" title="Uso interno: Setta il pin di uscita al livello logico richiesto." alt="" coords="221,5,381,32"/>
+<area shape="rect" id="node3" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="429,5,504,32"/>
+</map>

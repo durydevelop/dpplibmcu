@@ -1,0 +1,8 @@
+<map id="MenuDCMotorSetupPin" name="MenuDCMotorSetupPin">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,177,57"/>
+<area shape="rect" id="node2" href="$classDMenu.html#a1815ae7ab55c9e47b19c7914bedf8666" title="Add a new Item to menu." alt="" coords="225,31,356,57"/>
+<area shape="rect" id="node3" href="$classDMenu.html#a2e78ea4ee9bb5ba659786cf41fdcf008" title="Contructor." alt="" coords="404,5,527,32"/>
+<area shape="rect" id="node6" href="$classDMenu.html#a694cc97d62d983844cbfc12f595fe394" title=" " alt="" coords="409,56,522,83"/>
+<area shape="rect" id="node4" href="$classDMenu.html#a7c0a82c00ac8246ebb230044fe4c4855" title="Initialize all stuffs from constructors." alt="" coords="575,5,672,32"/>
+<area shape="rect" id="node5" href="$classDMenu.html#af635c9a35f803298407823ecc86361e7" title="Set the name of Item." alt="" coords="720,5,856,32"/>
+</map>

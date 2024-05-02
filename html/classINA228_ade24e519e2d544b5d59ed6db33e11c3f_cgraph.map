@@ -1,0 +1,5 @@
+<map id="INA228::dietemp" name="INA228::dietemp">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node2" href="$classDI2CMaster.html#a21e2dc36f970831f36d3d94583d0022d" title="Read a WORD from specified i2c register of the slave device." alt="" coords="184,5,367,32"/>
+<area shape="rect" id="node3" href="$classDI2CMaster.html#a6662f3aab4750c7e48ddc2aea67938ee" title="Read a WORD(2 bytes) from an i2c slave device." alt="" coords="415,5,581,32"/>
+</map>

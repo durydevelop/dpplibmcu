@@ -1,0 +1,26 @@
+<map id="DDCMotor::SetVel" name="DDCMotor::SetVel">
+<area shape="rect" id="node1" title="Run motor." alt="" coords="1193,157,1332,184"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#a17262db103746f0145b7693ce4c36b0d" title="Runs motor in counter clockwise direction at specific speed value." alt="" coords="981,5,1096,32"/>
+<area shape="rect" id="node3" href="$classDDCMotor.html#a5dd7275b48e67a50948e37f565c01e2c" title="Runs motor in clockwise direction at specific speed value." alt="" coords="979,56,1098,83"/>
+<area shape="rect" id="node4" href="$classDDCMotor.html#a156eaca2cfb51b82a39839991d039163" title="Reset forward PWM calibration value to default." alt="" coords="935,157,1142,184"/>
+<area shape="rect" id="node14" href="$classDDCMotor.html#a4c9a8464b3d1599a4e101a49ba845876" title="Reset reverse PWM calibration value to default." alt="" coords="932,208,1145,235"/>
+<area shape="rect" id="node19" href="$classDDCMotor.html#aa69625c52889594c252975d3dee347f2" title="Set PWM calibration for forward direction." alt="" coords="943,107,1134,133"/>
+<area shape="rect" id="node20" href="$classDDCMotor.html#a86535e0a1468ec7681e8a76f200badc2" title="Set PWM calibration for backward direction." alt="" coords="940,259,1137,285"/>
+<area shape="rect" id="node21" href="$classDDCMotor.html#afc24c0bff426d580308f46a1e4b1fc8a" title="Stop motor (set vel to 0)." alt="" coords="975,335,1102,361"/>
+<area shape="rect" id="node5" href="$classDDCMotorWheels.html#a0159e428d80d2f0d35ca14f634ef0a00" title="Reset balancing value for forward direction to 0." alt="" coords="616,107,881,133"/>
+<area shape="rect" id="node6" href="$classDDCMotor.html#a61a79b26ec8113c0a54e48f4bef7f5b4" title="Reset all PWM calibration values to default." alt="" coords="655,157,843,184"/>
+<area shape="rect" id="node11" href="$classDDCMotorWheels.html#a59a82d219e13b223faec7ad155344b2b" title="Set wheels balancing value for forward direction." alt="" coords="624,56,873,83"/>
+<area shape="rect" id="node7" href="$classDDCMotor.html#a7a13200b90b8fcb1e022f686186c75a1" title="Initialize Hardware." alt="" coords="355,284,493,311"/>
+<area shape="rect" id="node10" href="$classDDCMotorWheels.html#a0ee49498d4adfb2983d7770f2630c3da" title="Reset all balancing values to 0." alt="" coords="301,157,547,184"/>
+<area shape="rect" id="node8" href="$__mega-demo_2src_2main_8cpp.html#a96b4a8e67e177db1b31d074461169978" title=" " alt="" coords="104,284,235,311"/>
+<area shape="rect" id="node9" href="$__mega-demo_2src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,284,56,311"/>
+<area shape="rect" id="node12" href="$classDDCMotorWheels.html#a56841dbd19dc675f8d6f7b9470cdc4ff" title="Move balancing FW to DX by Value." alt="" coords="283,81,565,108"/>
+<area shape="rect" id="node13" href="$classDDCMotorWheels.html#ac8e86174877c68ffef4734d07454e8c2" title="Move balancing FW to SX by Value." alt="" coords="283,31,565,57"/>
+<area shape="rect" id="node15" href="$classDDCMotorWheels.html#a727b001a88b7e56228bc05b45eab04b1" title="Reset balancing value for backward direction to 0." alt="" coords="613,208,884,235"/>
+<area shape="rect" id="node16" href="$classDDCMotorWheels.html#ac6f4b9f982e48556278e8c04fb967fd8" title="Set wheels balancing value for backward direction." alt="" coords="621,259,876,285"/>
+<area shape="rect" id="node17" href="$classDDCMotorWheels.html#aaca2694affa2ce26fddf42811688085c" title="Move balancing REV to DX by Value." alt="" coords="301,335,547,377"/>
+<area shape="rect" id="node18" href="$classDDCMotorWheels.html#a471d832ccdd4c35a3db64500499db61f" title="Move balancing REV to SX by Value." alt="" coords="301,218,547,259"/>
+<area shape="rect" id="node22" href="$classDDCMotor.html#a38940c56d106d35bdd38f32d80722a73" title="Release hardware." alt="" coords="678,411,819,437"/>
+<area shape="rect" id="node24" href="$__ddcmotor_2rpi-dcmotor-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="721,360,776,387"/>
+<area shape="rect" id="node23" href="$classDDCMotor.html#a469e5615b031fa6b3e58b880c75544fa" title="Destroy the DDCMotor::DDCMotor object." alt="" coords="337,411,511,437"/>
+</map>

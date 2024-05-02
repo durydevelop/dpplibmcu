@@ -1,0 +1,8 @@
+<map id="MenuDCMotorSetup" name="MenuDCMotorSetup">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,157,57"/>
+<area shape="rect" id="node2" href="$classDMenu.html#a1815ae7ab55c9e47b19c7914bedf8666" title="Add a new Item to menu." alt="" coords="205,31,336,57"/>
+<area shape="rect" id="node3" href="$classDMenu.html#a2e78ea4ee9bb5ba659786cf41fdcf008" title="Contructor." alt="" coords="384,5,507,32"/>
+<area shape="rect" id="node6" href="$classDMenu.html#a694cc97d62d983844cbfc12f595fe394" title=" " alt="" coords="389,56,502,83"/>
+<area shape="rect" id="node4" href="$classDMenu.html#a7c0a82c00ac8246ebb230044fe4c4855" title="Initialize all stuffs from constructors." alt="" coords="555,5,652,32"/>
+<area shape="rect" id="node5" href="$classDMenu.html#af635c9a35f803298407823ecc86361e7" title="Set the name of Item." alt="" coords="700,5,836,32"/>
+</map>

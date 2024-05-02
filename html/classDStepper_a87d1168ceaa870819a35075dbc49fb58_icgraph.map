@@ -1,0 +1,4 @@
+<map id="DStepper::GetRpm" name="DStepper::GetRpm">
+<area shape="rect" id="node1" title="Get current rpm value." alt="" coords="212,5,355,32"/>
+<area shape="rect" id="node2" href="$classDStepper.html#a4956f759f7d82f149fd1336ec1df05cb" title="Reach Rpm speed using ramp (output directly on pin)." alt="" coords="5,5,164,32"/>
+</map>

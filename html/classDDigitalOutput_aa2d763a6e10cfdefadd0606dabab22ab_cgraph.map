@@ -1,0 +1,4 @@
+<map id="DDigitalOutput::read" name="DDigitalOutput::read">
+<area shape="rect" id="node1" title="Legge lo stato del pin." alt="" coords="5,5,161,32"/>
+<area shape="rect" id="node2" href="$dgpio_8cpp.html#a30860939cdc98142246fb707ce354e13" title="Read pin level." alt="" coords="209,5,280,32"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="DDCMotor::CW" name="DDCMotor::CW">
+<area shape="rect" id="node1" title="Runs motor in clockwise direction at specific speed value." alt="" coords="5,56,124,83"/>
+<area shape="rect" id="node2" href="$classDDCMotor.html#ac2d71dfe51ce64d76171e8e532d17140" title="Run motor." alt="" coords="172,56,311,83"/>
+<area shape="rect" id="node3" href="$classDPwmOut.html#abb93056445b67d66609686527abbcb5c" title="Set still HIGH value on pin." alt="" coords="377,5,499,32"/>
+<area shape="rect" id="node5" href="$classDPwmOut.html#aa63257b572ab748858080eb28be0b490" title="Set still LOW value on pin." alt="" coords="379,56,497,83"/>
+<area shape="rect" id="node6" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="359,107,517,133"/>
+<area shape="rect" id="node4" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="615,31,690,57"/>
+<area shape="rect" id="node7" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="565,107,740,133"/>
+</map>

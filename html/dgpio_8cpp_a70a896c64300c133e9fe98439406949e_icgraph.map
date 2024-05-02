@@ -1,0 +1,10 @@
+<map id="initPin" name="initPin">
+<area shape="rect" id="node1" title="Configures a pin to be used as input, output or whatever." alt="" coords="319,107,381,133"/>
+<area shape="rect" id="node2" href="$classDDigitalInput.html#a09836aab587efb4c8f14bbb311cc8024" title=" " alt="" coords="113,56,265,83"/>
+<area shape="rect" id="node4" href="$classDHTXX.html#a052cea504e356d879d062200fa202f63" title=" " alt="" coords="133,5,245,32"/>
+<area shape="rect" id="node6" href="$classDPwmOut.html#ac0c1666cd3db5d7042609e5cb1c1e7d1" title="Init all stuff for starting pwm on GpioPin." alt="" coords="124,107,255,133"/>
+<area shape="rect" id="node7" href="$classDDigitalOutput.html#aacca8aaf9fd6cb887681eb5acd85ec4d" title=" " alt="" coords="108,157,271,184"/>
+<area shape="rect" id="node8" href="$classDDigitalButton.html#adbfe8db7038469e4274e4c905ece9867" title="Constructor." alt="" coords="108,208,271,235"/>
+<area shape="rect" id="node3" href="$ddigitalio_2sbc-io-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,107,60,133"/>
+<area shape="rect" id="node5" href="$__dhtxx_2rpi-dhtxx-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>

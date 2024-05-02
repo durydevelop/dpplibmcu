@@ -1,0 +1,7 @@
+<map id="DServo::~DServo" name="DServo::~DServo">
+<area shape="rect" id="node1" title="Destructor." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$classDServo.html#ab83b887b0ca9a006ef7d71ab856fb0c6" title="Unset servo pin as pwm (Arduino api compatibility)" alt="" coords="188,5,309,32"/>
+<area shape="rect" id="node3" href="$classDServo.html#a3711c474d413235036db153ba1acb0f2" title="TODO: Shorthand for the write and read functions." alt="" coords="357,5,493,32"/>
+<area shape="rect" id="node4" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="541,5,700,32"/>
+<area shape="rect" id="node5" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="748,5,923,32"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="DDCMotorWheels::Stop" name="DDCMotorWheels::Stop">
+<area shape="rect" id="node1" title="Stop both motor (set vel to 0)" alt="" coords="5,31,180,57"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a7e5a8eb4db9bfc45e286bf8519dcfff2" title="Stop dx motor (set vel to 0)" alt="" coords="228,5,421,32"/>
+<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a5d771c69daac24f0a167596814e01b7a" title="Stop sx motor (set vel to 0)" alt="" coords="229,56,420,83"/>
+<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a02cdceb4c682b13d6483f3961d5acee8" title="Set velocity value for dx motor." alt="" coords="469,5,675,32"/>
+<area shape="rect" id="node5" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="471,56,673,83"/>
+</map>

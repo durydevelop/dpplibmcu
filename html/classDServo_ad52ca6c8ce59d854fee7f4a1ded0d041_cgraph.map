@@ -1,0 +1,10 @@
+<map id="DServo::setDefaultValues" name="DServo::setDefaultValues">
+<area shape="rect" id="node1" title="Set all params to default values." alt="" coords="5,81,193,108"/>
+<area shape="rect" id="node2" href="$classDServo.html#a91331c0da571f58b0bb87bf9d3df33fb" title="Convert degrees value to pulse&#45;width Us for this servo." alt="" coords="254,5,414,32"/>
+<area shape="rect" id="node3" href="$classDServo.html#a9c306b1153ddef5c68f81f9675714c84" title="Reset pulse&#45;width to default: (DEFAULT_MAX_PULSE_US&#45;DEFAULT_MIN_PULSE_US)/2." alt="" coords="241,56,427,83"/>
+<area shape="rect" id="node4" href="$classDServo.html#a49a529a320ec3a949207be5789fbc282" title="Reset step pulse&#45;width to default DEFAULT_STEP_VALUE." alt="" coords="247,107,421,133"/>
+<area shape="rect" id="node6" href="$classDServo.html#a3711c474d413235036db153ba1acb0f2" title="TODO: Shorthand for the write and read functions." alt="" coords="266,157,402,184"/>
+<area shape="rect" id="node5" href="$classDServo.html#aa39e6c9488172d7016a4a3483eb79a25" title="Convert Us pulse&#45;width value degrees for this servo." alt="" coords="475,107,635,133"/>
+<area shape="rect" id="node7" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="475,157,634,184"/>
+<area shape="rect" id="node8" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="683,157,857,184"/>
+</map>

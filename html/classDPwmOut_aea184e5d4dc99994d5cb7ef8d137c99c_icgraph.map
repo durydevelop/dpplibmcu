@@ -1,0 +1,6 @@
+<map id="DPwmOut::getPin" name="DPwmOut::getPin">
+<area shape="rect" id="node1" title=" " alt="" coords="244,56,380,83"/>
+<area shape="rect" id="node2" href="$classDServo.html#aea063535ebc6982448110756f1e51a2c" title="Get attached pin number." alt="" coords="41,5,160,32"/>
+<area shape="rect" id="node3" href="$classDDCMotor.html#ab4930209fae0d2245f98516a59740b42" title="Get pin number that is use as DIR (in PHASE_ENABLED mode) or PWM (in IN_IN mode)." alt="" coords="5,56,196,83"/>
+<area shape="rect" id="node4" href="$classDDCMotor.html#a0d2d166207dc68cf45a971ea0fcc0889" title="Get pin number that is only used as PWM." alt="" coords="15,107,187,133"/>
+</map>

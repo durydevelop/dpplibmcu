@@ -1,0 +1,4 @@
+<map id="DHTXX::~DHTXX" name="DHTXX::~DHTXX">
+<area shape="rect" id="node1" title="Destroy the DHTXX::DHTXX object and free pin use." alt="" coords="5,5,139,32"/>
+<area shape="rect" id="node2" href="$dgpio_8cpp.html#a43b7059a375270333c3962436b681314" title="Free a pin that can be claimed for an other use." alt="" coords="187,5,277,32"/>
+</map>

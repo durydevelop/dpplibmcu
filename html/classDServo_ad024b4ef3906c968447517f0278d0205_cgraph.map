@@ -1,0 +1,7 @@
+<map id="DServo::writeRange" name="DServo::writeRange">
+<area shape="rect" id="node1" title="Set servo position in range from 0.0 to 1.0 where 0.05 is centre position." alt="" coords="5,31,156,57"/>
+<area shape="rect" id="node2" href="$classDServo.html#a91331c0da571f58b0bb87bf9d3df33fb" title="Convert degrees value to pulse&#45;width Us for this servo." alt="" coords="204,5,364,32"/>
+<area shape="rect" id="node3" href="$classDServo.html#a3711c474d413235036db153ba1acb0f2" title="TODO: Shorthand for the write and read functions." alt="" coords="216,56,352,83"/>
+<area shape="rect" id="node4" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="412,56,571,83"/>
+<area shape="rect" id="node5" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="619,56,793,83"/>
+</map>

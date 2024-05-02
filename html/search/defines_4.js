@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['debug_1182',['Debug',['../avr_2dpwm_8cpp.html#a67f3e541905ee6cc2edc3ca641dbe7c7',1,'dpwm.cpp']]],
+  ['dec_1183',['DEC',['../build_2CMakeFiles_23_828_81_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCXXCompilerId.cpp'],['../examples_2__ddcmotor_2rpi-dcmotor-demo_2dbuild_2CMakeFiles_23_816_83_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCXXCompilerId.cpp']]],
+  ['default_5fcal_5flimit_1184',['DEFAULT_CAL_LIMIT',['../ddcmotor_8cpp.html#a3b84f22b3388f8bfe30f0658c7446279',1,'ddcmotor.cpp']]],
+  ['default_5fincremental_5fvalue_1185',['DEFAULT_INCREMENTAL_VALUE',['../DDCMotorWheels_8cpp.html#a823f0402fef9385f892e37e3f543e803',1,'DDCMotorWheels.cpp']]],
+  ['default_5fstep_5fus_1186',['DEFAULT_STEP_US',['../dservo_8cpp.html#aae23ef8c093f4cd2638fa06174ac0c00',1,'dservo.cpp']]],
+  ['default_5fstep_5fvalue_1187',['DEFAULT_STEP_VALUE',['../ddcmotor_8cpp.html#ab814e70e639df0b0fff0c103deeb96da',1,'ddcmotor.cpp']]],
+  ['derr_5fclass_5fnot_5fbegun_1188',['DERR_CLASS_NOT_BEGUN',['../derrorcodes_8h.html#a5f094e5b8fbf56962705343dcb826bbb',1,'derrorcodes.h']]],
+  ['derr_5fgpio_5fnot_5fattached_1189',['DERR_GPIO_NOT_ATTACHED',['../derrorcodes_8h.html#ab3920bb4810d4785f2cd0fe7fe625b3b',1,'derrorcodes.h']]],
+  ['derr_5fgpio_5fnot_5fready_1190',['DERR_GPIO_NOT_READY',['../derrorcodes_8h.html#a80d72c5f20623389bd7d9cb710c7ba0b',1,'derrorcodes.h']]],
+  ['derr_5funkown_5fpin_5fmode_1191',['DERR_UNKOWN_PIN_MODE',['../derrorcodes_8h.html#aee699e76780bfac7b3de1da6fc33731d',1,'derrorcodes.h']]],
+  ['di2c_5fbus_5fdev_5fprefix_1192',['DI2C_BUS_DEV_PREFIX',['../di2cbus_8cpp.html#a21ccb00f9232c67674f68627cab0ca25',1,'di2cbus.cpp']]],
+  ['dmenu_5faction_5fback_1193',['DMENU_ACTION_BACK',['../examples_2__ddigitalbutton_2arduino-ide-ddigitalbutton-demo_2DMenu_8h.html#a43bb1ae8befe39e2c5287c44fa24cdf3',1,'DMenu.h']]],
+  ['dmenu_5faction_5fdown_1194',['DMENU_ACTION_DOWN',['../examples_2__ddigitalbutton_2arduino-ide-ddigitalbutton-demo_2DMenu_8h.html#aba9b1f5eba402eda6fd304b9f26f617a',1,'DMenu.h']]],
+  ['dmenu_5faction_5fselect_1195',['DMENU_ACTION_SELECT',['../examples_2__ddigitalbutton_2arduino-ide-ddigitalbutton-demo_2DMenu_8h.html#ae31cbb55a61bfae1d5f002429840fabf',1,'DMenu.h']]],
+  ['dmenu_5faction_5fup_1196',['DMENU_ACTION_UP',['../examples_2__ddigitalbutton_2arduino-ide-ddigitalbutton-demo_2DMenu_8h.html#aae341d776bdf2b3685e82a489b843cd9',1,'DMenu.h']]],
+  ['dmenu_5fdefault_5fmax_5fitem_5ftext_5flen_1197',['DMENU_DEFAULT_MAX_ITEM_TEXT_LEN',['../examples_2__ddigitalbutton_2arduino-ide-ddigitalbutton-demo_2DMenu_8h.html#a14417f46ebde91dfe6287ce829bbe344',1,'DMENU_DEFAULT_MAX_ITEM_TEXT_LEN():&#160;DMenu.h'],['../src_2__dmenu_2DMenu_8cpp.html#a14417f46ebde91dfe6287ce829bbe344',1,'DMENU_DEFAULT_MAX_ITEM_TEXT_LEN():&#160;DMenu.cpp']]],
+  ['dmenu_5fmax_5fitems_1198',['DMENU_MAX_ITEMS',['../examples_2__ddigitalbutton_2arduino-ide-ddigitalbutton-demo_2DMenu_8h.html#a7f13292b709c5921c3660b1522ba5ec5',1,'DMENU_MAX_ITEMS():&#160;DMenu.h'],['../src_2__dmenu_2DMenu_8cpp.html#a7f13292b709c5921c3660b1522ba5ec5',1,'DMENU_MAX_ITEMS():&#160;DMenu.cpp']]],
+  ['dres_5fok_1199',['DRES_OK',['../derrorcodes_8h.html#a1bc6d3d147c8e574f45b9e19ec0d6740',1,'derrorcodes.h']]],
+  ['dword_1200',['DWORD',['../di2cmaster_8cpp.html#a1034fc7902bf508a2413dfa8f3ef6751',1,'DWORD():&#160;di2cmaster.cpp'],['../dmpacket_8cpp.html#a1034fc7902bf508a2413dfa8f3ef6751',1,'DWORD():&#160;dmpacket.cpp']]],
+  ['dword_5fb_1201',['DWORD_B',['../di2cmaster_8cpp.html#a27ddf1e74c041bdeb9c9f03db313ac5d',1,'DWORD_B():&#160;di2cmaster.cpp'],['../dmpacket_8cpp.html#a27ddf1e74c041bdeb9c9f03db313ac5d',1,'DWORD_B():&#160;dmpacket.cpp']]]
+];

@@ -1,0 +1,4 @@
+<map id="DDCMotorWheels::SXIncVel" name="DDCMotorWheels::SXIncVel">
+<area shape="rect" id="node1" title="Increment sx motor speed by specific value." alt="" coords="5,5,207,32"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="255,5,457,32"/>
+</map>

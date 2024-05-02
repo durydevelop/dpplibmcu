@@ -1,0 +1,5 @@
+<map id="DMPacket::SetBuffer" name="DMPacket::SetBuffer">
+<area shape="rect" id="node1" title="Copia Buff direttamente nel buffer del pacchetto." alt="" coords="212,31,367,57"/>
+<area shape="rect" id="node2" href="$classDMPacket.html#a0789a31d285db86c0c6cc32312a4fdb9" title="Crea un pacchetto eseguendo il parsing del buffer passato." alt="" coords="5,5,164,32"/>
+<area shape="rect" id="node3" href="$classDMPacket.html#acbb1c635daeec1c6a132eb58c186418f" title=" " alt="" coords="7,56,162,83"/>
+</map>

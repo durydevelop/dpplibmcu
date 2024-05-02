@@ -1,0 +1,4 @@
+<map id="DServo::setHomeDegrees" name="DServo::setHomeDegrees">
+<area shape="rect" id="node1" title="Set degrees value used for home position." alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node2" href="$classDServo.html#a91331c0da571f58b0bb87bf9d3df33fb" title="Convert degrees value to pulse&#45;width Us for this servo." alt="" coords="244,5,404,32"/>
+</map>

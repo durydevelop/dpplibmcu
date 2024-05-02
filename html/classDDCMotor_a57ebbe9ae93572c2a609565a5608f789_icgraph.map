@@ -1,0 +1,7 @@
+<map id="DDCMotor::GetCalLimitFw" name="DDCMotor::GetCalLimitFw">
+<area shape="rect" id="node1" title=" " alt="" coords="635,31,828,57"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a268d8beefe396760653d230a8a5d0bfd" title=" " alt="" coords="336,5,587,32"/>
+<area shape="rect" id="node5" href="$classDDCMotorWheels.html#a59a82d219e13b223faec7ad155344b2b" title="Set wheels balancing value for forward direction." alt="" coords="337,56,586,83"/>
+<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a56841dbd19dc675f8d6f7b9470cdc4ff" title="Move balancing FW to DX by Value." alt="" coords="5,5,288,32"/>
+<area shape="rect" id="node4" href="$classDDCMotorWheels.html#ac8e86174877c68ffef4734d07454e8c2" title="Move balancing FW to SX by Value." alt="" coords="6,56,287,83"/>
+</map>

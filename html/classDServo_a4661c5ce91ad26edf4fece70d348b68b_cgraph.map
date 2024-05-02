@@ -1,0 +1,8 @@
+<map id="DServo::resetMinPulseValue" name="DServo::resetMinPulseValue">
+<area shape="rect" id="node1" title="Reset minimum pulse&#45;width to default DEFAULT_MIN_PULSE_US." alt="" coords="5,31,211,57"/>
+<area shape="rect" id="node2" href="$classDServo.html#a604ff5f690d5e8ec1a0bf8bd41089cb0" title="Set servo position in Degrees from 0 to 180 where 90 is the centre position (Arduino api compatibilit..." alt="" coords="259,31,369,57"/>
+<area shape="rect" id="node3" href="$classDServo.html#a91331c0da571f58b0bb87bf9d3df33fb" title="Convert degrees value to pulse&#45;width Us for this servo." alt="" coords="417,5,577,32"/>
+<area shape="rect" id="node4" href="$classDServo.html#a3711c474d413235036db153ba1acb0f2" title="TODO: Shorthand for the write and read functions." alt="" coords="429,56,565,83"/>
+<area shape="rect" id="node5" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="625,56,784,83"/>
+<area shape="rect" id="node6" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="832,56,1007,83"/>
+</map>

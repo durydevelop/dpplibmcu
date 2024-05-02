@@ -1,0 +1,4 @@
+<map id="DI2CMaster::writeByte" name="DI2CMaster::writeByte">
+<area shape="rect" id="node1" title="Write a BYTE at specified i2c register of the slave device." alt="" coords="5,5,175,32"/>
+<area shape="rect" id="node2" href="$classDI2CMaster.html#a3f638767647944c78b28d9b70aeb3df5" title="Send a BUFFER to a slave device." alt="" coords="223,5,381,32"/>
+</map>

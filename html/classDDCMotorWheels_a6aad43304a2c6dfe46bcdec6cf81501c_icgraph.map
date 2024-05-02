@@ -1,0 +1,4 @@
+<map id="DDCMotorWheels::DXRev" name="DDCMotorWheels::DXRev">
+<area shape="rect" id="node1" title="Runs dx motor in backward direction at specific speed value." alt="" coords="224,5,413,32"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#ab15a3d72ea264e40d3828da319b79a7f" title="Runs both motors in backward direction at specific speed value." alt="" coords="5,5,176,32"/>
+</map>

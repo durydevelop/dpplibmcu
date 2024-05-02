@@ -1,0 +1,5 @@
+<map id="DDCMotorWheels::detach" name="DDCMotorWheels::detach">
+<area shape="rect" id="node1" title="Free hardware resources." alt="" coords="500,13,689,39"/>
+<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a303b8c468b1bef37b20732a16210bcf6" title="Initialize hardware pins for motores." alt="" coords="265,13,452,39"/>
+<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a6fe559252dda7c6bd1c29989df7e6e51" title="Construct a new DDCMotorWheels::DDCMotorWheels object and initialize motors." alt="" coords="5,5,217,47"/>
+</map>

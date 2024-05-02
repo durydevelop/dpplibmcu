@@ -1,0 +1,6 @@
+<map id="DDigitalInput::isChanged" name="DDigitalInput::isChanged">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,189,57"/>
+<area shape="rect" id="node2" href="$dutils_8cpp.html#a1871228c14c912ca1479cf826ddcb07f" title="Get current timestamp in milliseconds (c++ equivalent of arduino millis())." alt="" coords="281,5,339,32"/>
+<area shape="rect" id="node3" href="$classDDigitalInput.html#aa2b3156c0ed51b87dece225488625b6e" title="Legge lo stato del pin." alt="" coords="237,56,383,83"/>
+<area shape="rect" id="node4" href="$dgpio_8cpp.html#a30860939cdc98142246fb707ce354e13" title="Read pin level." alt="" coords="431,56,501,83"/>
+</map>
