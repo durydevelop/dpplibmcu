@@ -76,7 +76,7 @@ DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags, DGpioHandle handle)
     #ifdef ARDUINO
         if (Mode == DPinMode::SOFT_PWM) {
             #ifdef USE_DSOFT_PWM
-                // TODO: dPwmOut=new DPwmOut(Pin);
+                /// @todo dPwmOut=new DPwmOut(Pin);
             #else
                 pinMode(Pin,OUTPUT);
             #endif

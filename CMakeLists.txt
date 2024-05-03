@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.13)
 
 ## Create project
 project(dpplib-mcu
-    VERSION 0.0.8
+    VERSION 0.1.0
     LANGUAGES CXX
 )
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -21,8 +21,11 @@ option(BUILD_DRIVERS "Build drivers for some external peripherlas (sensors, etc)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(DMainHelper)
 include(DPrintHelpers)
-#include(SetupDoxygen)
 include(FeatureSummary)
+
+## Doxygen support
+set(DOXYGEN_THEME_FOLDER custom1)
+add_subdirectory(doxygen)
 
 ## Add platform indipendent modules
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
@@ -83,6 +86,6 @@ if (BUILD_EXAMPLES)
 endif()
 
 #include(DInstall)
-add_subdirectory(doxygen)
+
 print_project_summary()
 feature_summary(WHAT ALL)
