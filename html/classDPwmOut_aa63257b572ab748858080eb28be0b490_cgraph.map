@@ -1,4 +1,0 @@
-<map id="DPwmOut::low" name="DPwmOut::low">
-<area shape="rect" id="node1" title="Set still LOW value on pin." alt="" coords="5,5,124,32"/>
-<area shape="rect" id="node2" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="172,5,247,32"/>
-</map>

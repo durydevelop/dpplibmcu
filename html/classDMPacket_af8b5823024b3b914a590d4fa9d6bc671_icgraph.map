@@ -1,4 +1,0 @@
-<map id="DMPacket::ReadByte" name="DMPacket::ReadByte">
-<area shape="rect" id="node1" title="Read a byte from data payload." alt="" coords="205,5,363,32"/>
-<area shape="rect" id="node2" href="$classDMPacket.html#ad0c56ffe0f07ac9bb357fe7819c7780f" title="Read a 8 bit signed integer from data payload." alt="" coords="5,5,157,32"/>
-</map>

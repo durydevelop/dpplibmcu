@@ -1,4 +1,0 @@
-<map id="DI2CMaster::askForByte" name="DI2CMaster::askForByte">
-<area shape="rect" id="node1" title="Read a BYTE from specified i2c register of the slave device." alt="" coords="5,5,184,32"/>
-<area shape="rect" id="node2" href="$classDI2CMaster.html#aa7b019b574eb2299c3d923acabcbaafa" title="Read a BYTE from an i2c slave device." alt="" coords="232,5,396,32"/>
-</map>

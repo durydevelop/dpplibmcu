@@ -1,7 +1,0 @@
-<map id="DPwmOut::begin" name="DPwmOut::begin">
-<area shape="rect" id="node1" title="Init all stuff for starting pwm on GpioPin." alt="" coords="5,31,136,57"/>
-<area shape="rect" id="node2" href="$dgpio_8cpp.html#a70a896c64300c133e9fe98439406949e" title="Configures a pin to be used as input, output or whatever." alt="" coords="210,5,273,32"/>
-<area shape="rect" id="node5" href="$classDPwmOut.html#aeea9d41d6f888f4a178987184dd94596" title=" " alt="" coords="184,56,299,83"/>
-<area shape="rect" id="node3" href="$dgpio_8cpp.html#aa3b0c0206321919731d29ae214cca157" title="Initilize gpio chip." alt="" coords="347,5,420,32"/>
-<area shape="rect" id="node4" href="$derrorcodes_8h.html#ad8161c61a54c1dc9d7cc93861e3ca30c" title=" " alt="" coords="468,5,520,32"/>
-</map>

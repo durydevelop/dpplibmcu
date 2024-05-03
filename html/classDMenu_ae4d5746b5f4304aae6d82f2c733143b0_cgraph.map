@@ -1,6 +1,0 @@
-<map id="DMenu::AddItem" name="DMenu::AddItem">
-<area shape="rect" id="node1" title="Add new menu item." alt="" coords="5,5,136,32"/>
-<area shape="rect" id="node2" href="$classDMenu.html#a2e78ea4ee9bb5ba659786cf41fdcf008" title="Contructor." alt="" coords="184,5,307,32"/>
-<area shape="rect" id="node3" href="$classDMenu.html#a7c0a82c00ac8246ebb230044fe4c4855" title="Initialize all stuffs from constructors." alt="" coords="355,5,452,32"/>
-<area shape="rect" id="node4" href="$classDMenu.html#af635c9a35f803298407823ecc86361e7" title="Set the name of Item." alt="" coords="500,5,636,32"/>
-</map>

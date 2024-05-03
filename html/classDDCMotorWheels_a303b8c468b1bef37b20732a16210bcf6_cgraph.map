@@ -1,6 +1,0 @@
-<map id="DDCMotorWheels::attach" name="DDCMotorWheels::attach">
-<area shape="rect" id="node1" title="Initialize hardware pins for motores." alt="" coords="5,31,192,57"/>
-<area shape="rect" id="node2" href="$classDDCMotor.html#ae0cd68ca0f349af35e64534dbd2d4c0d" title=" " alt="" coords="257,5,412,32"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a1047cb59eee21df13dd4f20aaa0b8e0d" title="Free hardware resources." alt="" coords="240,56,429,83"/>
-<area shape="rect" id="node3" href="$classDPwmOut.html#a9f6012ebb504b6a758497db883890aee" title=" " alt="" coords="477,5,624,32"/>
-</map>

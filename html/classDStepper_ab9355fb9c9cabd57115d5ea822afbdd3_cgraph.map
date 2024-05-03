@@ -1,4 +1,0 @@
-<map id="DStepper::SetFreq" name="DStepper::SetFreq">
-<area shape="rect" id="node1" title="Set frequency to apply on clock pin and rotation direction." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node2" href="$classDStepper.html#ad26a00b8689d3684ffd9066f165c770f" title="Set direction (output directly on pin)." alt="" coords="192,5,323,32"/>
-</map>

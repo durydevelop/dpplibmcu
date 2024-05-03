@@ -1,9 +1,0 @@
-<map id="DServo::stepCCW" name="DServo::stepCCW">
-<area shape="rect" id="node1" title="Move servo counterclockwise by CurrStepUs pulse&#45;width." alt="" coords="5,31,141,57"/>
-<area shape="rect" id="node2" href="$classDServo.html#a999fdf6ccc0da4640f6e07ccb42cae57" title="Move servo counterclockwise by custom pulse&#45;width." alt="" coords="189,31,343,57"/>
-<area shape="rect" id="node3" href="$classDServo.html#aa086c011845e539500a63141ca213a02" title="Set servo position in micro seconds from 1000 to 2000 where 1500 is centre position (Arduino api comp..." alt="" coords="391,31,589,57"/>
-<area shape="rect" id="node4" href="$classDServo.html#a3711c474d413235036db153ba1acb0f2" title="TODO: Shorthand for the write and read functions." alt="" coords="649,5,785,32"/>
-<area shape="rect" id="node7" href="$classDServo.html#aa39e6c9488172d7016a4a3483eb79a25" title="Convert Us pulse&#45;width value degrees for this servo." alt="" coords="637,56,797,83"/>
-<area shape="rect" id="node5" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="845,5,1004,32"/>
-<area shape="rect" id="node6" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="1052,5,1227,32"/>
-</map>

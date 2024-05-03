@@ -1,4 +1,0 @@
-<map id="DStepper::SetDirCW" name="DStepper::SetDirCW">
-<area shape="rect" id="node1" title="Set rotation direction clockwise (output directly on pin)." alt="" coords="5,5,157,32"/>
-<area shape="rect" id="node2" href="$classDStepper.html#ad26a00b8689d3684ffd9066f165c770f" title="Set direction (output directly on pin)." alt="" coords="205,5,336,32"/>
-</map>

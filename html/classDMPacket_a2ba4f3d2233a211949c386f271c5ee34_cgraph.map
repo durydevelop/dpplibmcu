@@ -1,4 +1,0 @@
-<map id="DMPacket::ReadInt16" name="DMPacket::ReadInt16">
-<area shape="rect" id="node1" title="Read a 16 bit signed integer from data payload." alt="" coords="5,5,165,32"/>
-<area shape="rect" id="node2" href="$classDMPacket.html#a8e5e1f5de5180c86bf2609bf2350c1c7" title="Read a word from data payload." alt="" coords="213,5,373,32"/>
-</map>

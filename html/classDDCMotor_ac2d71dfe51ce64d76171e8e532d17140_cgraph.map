@@ -1,8 +1,0 @@
-<map id="DDCMotor::SetVel" name="DDCMotor::SetVel">
-<area shape="rect" id="node1" title="Run motor." alt="" coords="5,56,144,83"/>
-<area shape="rect" id="node2" href="$classDPwmOut.html#abb93056445b67d66609686527abbcb5c" title="Set still HIGH value on pin." alt="" coords="210,5,333,32"/>
-<area shape="rect" id="node4" href="$classDPwmOut.html#aa63257b572ab748858080eb28be0b490" title="Set still LOW value on pin." alt="" coords="212,56,331,83"/>
-<area shape="rect" id="node5" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="192,107,351,133"/>
-<area shape="rect" id="node3" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="449,31,523,57"/>
-<area shape="rect" id="node6" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="399,107,573,133"/>
-</map>

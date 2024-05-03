@@ -1,9 +1,0 @@
-<map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,60,159"/>
-<area shape="rect" id="node2" href="$dutils_8cpp.html#a6bc5f943544a887f8b23cadfb26a5e30" title="Stops thread for milliseconds." alt="" coords="171,5,230,32"/>
-<area shape="rect" id="node3" href="$classDI2CBus.html#a784bdd862f68cafee93491b7f7a91631" title=" " alt="" coords="135,56,266,83"/>
-<area shape="rect" id="node4" href="$classDI2CBus.html#ae6df3060c7aca32110e006f0d4a76b53" title=" " alt="" coords="341,81,505,108"/>
-<area shape="rect" id="node5" href="$classDI2CMaster.html#a949b4b1fd0616cdb870cd1cfc4b4fd01" title=" " alt="" coords="108,157,293,184"/>
-<area shape="rect" id="node6" href="$classDI2CBus.html#a0e120fec52a6724c324bb9ea2ce4e6ab" title=" " alt="" coords="136,208,265,235"/>
-<area shape="rect" id="node7" href="$classDI2CMaster.html#a3f638767647944c78b28d9b70aeb3df5" title="Send a BUFFER to a slave device." alt="" coords="121,259,280,285"/>
-</map>

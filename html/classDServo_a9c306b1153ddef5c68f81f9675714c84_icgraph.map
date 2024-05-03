@@ -1,5 +1,0 @@
-<map id="DServo::resetHomeValue" name="DServo::resetHomeValue">
-<area shape="rect" id="node1" title="Reset pulse&#45;width to default: (DEFAULT_MAX_PULSE_US&#45;DEFAULT_MIN_PULSE_US)/2." alt="" coords="413,5,599,32"/>
-<area shape="rect" id="node2" href="$classDServo.html#ad52ca6c8ce59d854fee7f4a1ded0d041" title="Set all params to default values." alt="" coords="177,5,365,32"/>
-<area shape="rect" id="node3" href="$classDServo.html#a0d4658332ed4895aa7d14a425ba63dbc" title="Constructor 2." alt="" coords="5,5,129,32"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="isGpioReady" name="isGpioReady">
-<area shape="rect" id="node1" title="Check if gpio chip is initilized." alt="" coords="256,130,360,157"/>
-<area shape="rect" id="node2" href="$classDDigitalButton.html#af0134ed749cf1e3189891c6795d4d6c1" title=" " alt="" coords="17,5,196,47"/>
-<area shape="rect" id="node3" href="$classDDigitalInput.html#a89dffa144a9cc029584bcc2807f776b1" title=" " alt="" coords="5,71,208,98"/>
-<area shape="rect" id="node4" href="$classDDigitalOutput.html#ae5dd48814f1ec65cba3934bae920b333" title=" " alt="" coords="17,123,197,164"/>
-<area shape="rect" id="node5" href="$classDHTXX.html#ab5a41c54337653bf55d00ee844113aaa" title=" " alt="" coords="45,189,168,215"/>
-<area shape="rect" id="node6" href="$classDPwmOut.html#a709feb7b906648e1494ad661e3c2567b" title="Construct a new DPwmOut::DPwmOut object." alt="" coords="27,239,187,266"/>
-</map>

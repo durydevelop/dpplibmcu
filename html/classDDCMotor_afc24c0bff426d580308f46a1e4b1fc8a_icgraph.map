@@ -1,9 +1,0 @@
-<map id="DDCMotor::Stop" name="DDCMotor::Stop">
-<area shape="rect" id="node1" title="Stop motor (set vel to 0)." alt="" coords="516,56,643,83"/>
-<area shape="rect" id="node2" href="$classDDCMotor.html#a7a13200b90b8fcb1e022f686186c75a1" title="Initialize Hardware." alt="" coords="328,5,467,32"/>
-<area shape="rect" id="node5" href="$classDDCMotor.html#a38940c56d106d35bdd38f32d80722a73" title="Release hardware." alt="" coords="327,56,468,83"/>
-<area shape="rect" id="node7" href="$__ddcmotor_2rpi-dcmotor-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="370,107,425,133"/>
-<area shape="rect" id="node3" href="$__mega-demo_2src_2main_8cpp.html#a96b4a8e67e177db1b31d074461169978" title=" " alt="" coords="126,5,257,32"/>
-<area shape="rect" id="node4" href="$__mega-demo_2src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,56,32"/>
-<area shape="rect" id="node6" href="$classDDCMotor.html#a469e5615b031fa6b3e58b880c75544fa" title="Destroy the DDCMotor::DDCMotor object." alt="" coords="104,56,279,83"/>
-</map>

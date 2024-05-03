@@ -1,6 +1,0 @@
-<map id="DDCMotor::SetCalLimitRev" name="DDCMotor::SetCalLimitRev">
-<area shape="rect" id="node1" title="Set PWM calibration for backward direction." alt="" coords="601,46,799,73"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#ac6f4b9f982e48556278e8c04fb967fd8" title="Set wheels balancing value for backward direction." alt="" coords="299,46,553,73"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#aaca2694affa2ce26fddf42811688085c" title="Move balancing REV to DX by Value." alt="" coords="5,5,251,47"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a471d832ccdd4c35a3db64500499db61f" title="Move balancing REV to SX by Value." alt="" coords="5,71,251,112"/>
-</map>

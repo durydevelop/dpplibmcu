@@ -1,4 +1,0 @@
-<map id="DDCMotor::GetPinPwm" name="DDCMotor::GetPinPwm">
-<area shape="rect" id="node1" title="Get pin number that is only used as PWM." alt="" coords="5,5,177,32"/>
-<area shape="rect" id="node2" href="$classDPwmOut.html#aea184e5d4dc99994d5cb7ef8d137c99c" title=" " alt="" coords="225,5,361,32"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="DDCMotorWheels::Rev" name="DDCMotorWheels::Rev">
-<area shape="rect" id="node1" title="Runs both motors in backward direction at specific speed value." alt="" coords="5,31,176,57"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a6aad43304a2c6dfe46bcdec6cf81501c" title="Runs dx motor in backward direction at specific speed value." alt="" coords="224,5,413,32"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a44d9f06d1ee86cd8a34fa1d7de1ac76f" title="Runs sx motor in backward direction at specific speed value." alt="" coords="225,56,412,83"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a02cdceb4c682b13d6483f3961d5acee8" title="Set velocity value for dx motor." alt="" coords="461,5,667,32"/>
-<area shape="rect" id="node5" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="463,56,665,83"/>
-</map>

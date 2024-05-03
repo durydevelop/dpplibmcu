@@ -363,7 +363,7 @@ bool DI2CMaster::askForBuf(uint8_t slaveAddr, uint8_t cmdReg, uint8_t *recvBuffe
     if (maxBufLenght > 0) {
         if (recvLen > maxBufLenght) {
             // Limit receive lenght
-            // TODO: or return error?
+            /// @todo or return error?
             recvLen=maxBufLenght;
         }
     }

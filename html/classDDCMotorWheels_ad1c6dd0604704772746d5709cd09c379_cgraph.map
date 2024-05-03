@@ -1,7 +1,0 @@
-<map id="DDCMotorWheels::DecVel" name="DDCMotorWheels::DecVel">
-<area shape="rect" id="node1" title="Decrement both motors speed by specific value." alt="" coords="5,31,196,57"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a9db634084cbb88698db0091c724e2487" title="Decrement dx motor speed by specific value." alt="" coords="244,5,453,32"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#ada9eda94511b351c675196796474abde" title="Decrement sx motor speed by specific value." alt="" coords="245,56,452,83"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a02cdceb4c682b13d6483f3961d5acee8" title="Set velocity value for dx motor." alt="" coords="501,5,707,32"/>
-<area shape="rect" id="node5" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="503,56,705,83"/>
-</map>

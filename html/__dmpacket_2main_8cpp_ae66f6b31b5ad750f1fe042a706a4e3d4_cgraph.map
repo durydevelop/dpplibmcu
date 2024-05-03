@@ -1,7 +1,0 @@
-<map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,57,60,84"/>
-<area shape="rect" id="node2" href="$classDMPacket.html#a636f5b3933ba3777e398bcf95cc54a81" title="Read a double&#45;word from data payload." alt="" coords="316,20,487,47"/>
-<area shape="rect" id="node3" href="$classDMPacket.html#a1fcf409cf320d88c1b7af511ea4a8ee6" title="Read a 32 bit float from data." alt="" coords="108,32,268,59"/>
-<area shape="rect" id="node4" href="$classDMPacket.html#a2ba4f3d2233a211949c386f271c5ee34" title="Read a 16 bit signed integer from data payload." alt="" coords="108,83,268,109"/>
-<area shape="rect" id="node5" href="$classDMPacket.html#a8e5e1f5de5180c86bf2609bf2350c1c7" title="Read a word from data payload." alt="" coords="321,96,481,123"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="DDCMotorWheels::engage" name="DDCMotorWheels::engage">
-<area shape="rect" id="node1" title="Engage/disengage motors." alt="" coords="5,31,199,57"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a4a559c6b941c646fa59c1d01dd7fc445" title="Stop both motor (set vel to 0)" alt="" coords="247,31,421,57"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a7e5a8eb4db9bfc45e286bf8519dcfff2" title="Stop dx motor (set vel to 0)" alt="" coords="469,5,663,32"/>
-<area shape="rect" id="node5" href="$classDDCMotorWheels.html#a5d771c69daac24f0a167596814e01b7a" title="Stop sx motor (set vel to 0)" alt="" coords="471,56,661,83"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a02cdceb4c682b13d6483f3961d5acee8" title="Set velocity value for dx motor." alt="" coords="711,5,916,32"/>
-<area shape="rect" id="node6" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="712,56,915,83"/>
-</map>

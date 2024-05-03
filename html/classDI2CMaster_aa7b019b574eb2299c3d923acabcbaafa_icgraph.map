@@ -1,4 +1,0 @@
-<map id="DI2CMaster::recvByte" name="DI2CMaster::recvByte">
-<area shape="rect" id="node1" title="Read a BYTE from an i2c slave device." alt="" coords="232,5,396,32"/>
-<area shape="rect" id="node2" href="$classDI2CMaster.html#a9a3d4d84ac796fd1be486b33bd2b89a4" title="Read a BYTE from specified i2c register of the slave device." alt="" coords="5,5,184,32"/>
-</map>

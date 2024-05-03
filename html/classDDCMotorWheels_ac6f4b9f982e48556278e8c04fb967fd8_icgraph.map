@@ -1,5 +1,0 @@
-<map id="DDCMotorWheels::SetBalancingRev" name="DDCMotorWheels::SetBalancingRev">
-<area shape="rect" id="node1" title="Set wheels balancing value for backward direction." alt="" coords="299,46,553,73"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#aaca2694affa2ce26fddf42811688085c" title="Move balancing REV to DX by Value." alt="" coords="5,5,251,47"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a471d832ccdd4c35a3db64500499db61f" title="Move balancing REV to SX by Value." alt="" coords="5,71,251,112"/>
-</map>

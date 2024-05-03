@@ -1,6 +1,0 @@
-<map id="DHTXX::DHTXX" name="DHTXX::DHTXX">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,128,57"/>
-<area shape="rect" id="node2" href="$dgpio_8cpp.html#aa3b0c0206321919731d29ae214cca157" title="Initilize gpio chip." alt="" coords="191,5,265,32"/>
-<area shape="rect" id="node4" href="$dgpio_8cpp.html#a3d6d7d063fb72edf682c2f87f2ae971e" title="Check if gpio chip is initilized." alt="" coords="176,56,280,83"/>
-<area shape="rect" id="node3" href="$derrorcodes_8h.html#ad8161c61a54c1dc9d7cc93861e3ca30c" title=" " alt="" coords="328,5,380,32"/>
-</map>

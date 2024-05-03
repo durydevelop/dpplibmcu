@@ -1,7 +1,0 @@
-<map id="DServo::detach" name="DServo::detach">
-<area shape="rect" id="node1" title="Unset servo pin as pwm (Arduino api compatibility)" alt="" coords="287,56,408,83"/>
-<area shape="rect" id="node2" href="$__mega-demo_2src_2main_8cpp.html#a96b4a8e67e177db1b31d074461169978" title=" " alt="" coords="106,5,237,32"/>
-<area shape="rect" id="node4" href="$__mega-demo_2src_2main_8cpp.html#aa29b0e7a465274b2bb4363773cfd35fa" title=" " alt="" coords="116,56,227,83"/>
-<area shape="rect" id="node5" href="$classDServo.html#abe1802c049cf29395886d3b5af6bc394" title="Destructor." alt="" coords="104,107,239,133"/>
-<area shape="rect" id="node3" href="$__mega-demo_2src_2main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,56,57"/>
-</map>

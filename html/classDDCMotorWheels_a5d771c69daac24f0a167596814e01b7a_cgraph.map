@@ -1,4 +1,0 @@
-<map id="DDCMotorWheels::SXStop" name="DDCMotorWheels::SXStop">
-<area shape="rect" id="node1" title="Stop sx motor (set vel to 0)" alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="244,5,447,32"/>
-</map>

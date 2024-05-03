@@ -1,4 +1,0 @@
-<map id="INA228::power" name="INA228::power">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,123,32"/>
-<area shape="rect" id="node2" href="$classDI2CMaster.html#a7528871830abc013a25f26e060474c6b" title="Read a BUFFER from specified i2c register of the slave device." alt="" coords="171,5,341,32"/>
-</map>

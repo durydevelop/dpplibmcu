@@ -1,4 +1,0 @@
-<map id="DDCMotorWheels::DXFw" name="DDCMotorWheels::DXFw">
-<area shape="rect" id="node1" title="Runs dx motor in forward direction at specific speed value." alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a02cdceb4c682b13d6483f3961d5acee8" title="Set velocity value for dx motor." alt="" coords="236,5,441,32"/>
-</map>

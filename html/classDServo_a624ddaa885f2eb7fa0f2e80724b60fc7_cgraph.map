@@ -1,8 +1,0 @@
-<map id="DServo::writeDegrees" name="DServo::writeDegrees">
-<area shape="rect" id="node1" title="Wrapper for write()" alt="" coords="5,31,169,57"/>
-<area shape="rect" id="node2" href="$classDServo.html#a604ff5f690d5e8ec1a0bf8bd41089cb0" title="Set servo position in Degrees from 0 to 180 where 90 is the centre position (Arduino api compatibilit..." alt="" coords="217,31,328,57"/>
-<area shape="rect" id="node3" href="$classDServo.html#a91331c0da571f58b0bb87bf9d3df33fb" title="Convert degrees value to pulse&#45;width Us for this servo." alt="" coords="376,5,536,32"/>
-<area shape="rect" id="node4" href="$classDServo.html#a3711c474d413235036db153ba1acb0f2" title="TODO: Shorthand for the write and read functions." alt="" coords="388,56,524,83"/>
-<area shape="rect" id="node5" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="584,56,743,83"/>
-<area shape="rect" id="node6" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="791,56,965,83"/>
-</map>

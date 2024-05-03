@@ -1,5 +1,0 @@
-<map id="DDigitalOutput::low" name="DDigitalOutput::low">
-<area shape="rect" id="node1" title="Imposta il pin di uscita a livello logico 0 (GND)" alt="" coords="5,5,156,32"/>
-<area shape="rect" id="node2" href="$classDDigitalOutput.html#ad87cebca3779f52e3a5da3dc819fa1ad" title="Uso interno: Setta il pin di uscita al livello logico richiesto." alt="" coords="204,5,364,32"/>
-<area shape="rect" id="node3" href="$dgpio_8cpp.html#ab0060c68d8e7fb8012d7d1685220ac7f" title="Set pin level." alt="" coords="412,5,487,32"/>
-</map>

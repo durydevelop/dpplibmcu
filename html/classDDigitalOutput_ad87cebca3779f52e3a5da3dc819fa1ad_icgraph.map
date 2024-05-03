@@ -1,9 +1,0 @@
-<map id="DDigitalOutput::write" name="DDigitalOutput::write">
-<area shape="rect" id="node1" title="Uso interno: Setta il pin di uscita al livello logico richiesto." alt="" coords="349,132,509,159"/>
-<area shape="rect" id="node2" href="$classDDigitalOutput.html#aacca8aaf9fd6cb887681eb5acd85ec4d" title=" " alt="" coords="123,5,286,32"/>
-<area shape="rect" id="node3" href="$ddigitalio_2sbc-io-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,31,60,57"/>
-<area shape="rect" id="node4" href="$classDDigitalOutput.html#a49aab4383edd64cfccc72c88b4ba5ac9" title="Porta il pin di uscita a livello logico 1 (5V)" alt="" coords="127,107,282,133"/>
-<area shape="rect" id="node5" href="$classDDigitalOutput.html#af087c16c675f1b58a68c633ac313c71a" title="Imposta il pin di uscita a livello logico 0 (GND)" alt="" coords="129,157,280,184"/>
-<area shape="rect" id="node6" href="$classDDigitalOutput.html#a88b45eb6dbe5651c06ea1a0131e0cddc" title="overload operatore =" alt="" coords="108,208,301,235"/>
-<area shape="rect" id="node7" href="$classDDigitalOutput.html#ada03d84caaa7a258d2a1b29d59efd4aa" title="Cambia lo stato del pin di uscita." alt="" coords="121,259,289,285"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="DDigitalInput::read" name="DDigitalInput::read">
-<area shape="rect" id="node1" title="Legge lo stato del pin." alt="" coords="340,107,485,133"/>
-<area shape="rect" id="node2" href="$classDDigitalInput.html#a09836aab587efb4c8f14bbb311cc8024" title=" " alt="" coords="124,5,276,32"/>
-<area shape="rect" id="node3" href="$ddigitalio_2sbc-io-demo_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,60,83"/>
-<area shape="rect" id="node4" href="$classDDigitalInput.html#ac659a7b2a04ad493dc025e2976fe0055" title=" " alt="" coords="108,107,292,133"/>
-<area shape="rect" id="node5" href="$classDDigitalInput.html#a3fdb6811a91b810a19642deaafeeb25a" title="Verifica se lo stato del pin è cambiato da LOW in HIGH rispetto all&#39;ultimo controllo." alt="" coords="108,158,292,199"/>
-<area shape="rect" id="node6" href="$classDDigitalInput.html#a7be636651805affedff36bee2973de4a" title="Verifica se lo stato del pin è cambiato da HIGH in LOW rispetto all&#39;ultimo controllo." alt="" coords="108,223,292,265"/>
-</map>

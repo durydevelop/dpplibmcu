@@ -1,4 +1,0 @@
-<map id="DServo::attached" name="DServo::attached">
-<area shape="rect" id="node1" title="Check if servo pin is configurated as pwm (Arduino api compatibility)" alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node2" href="$classDPwmOut.html#a9f6012ebb504b6a758497db883890aee" title=" " alt="" coords="188,5,335,32"/>
-</map>

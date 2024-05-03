@@ -1,6 +1,0 @@
-<map id="DServo::detach" name="DServo::detach">
-<area shape="rect" id="node1" title="Unset servo pin as pwm (Arduino api compatibility)" alt="" coords="5,5,127,32"/>
-<area shape="rect" id="node2" href="$classDServo.html#a3711c474d413235036db153ba1acb0f2" title="TODO: Shorthand for the write and read functions." alt="" coords="175,5,311,32"/>
-<area shape="rect" id="node3" href="$classDPwmOut.html#ac04672bcfc3623082c4761fc71c0074b" title="Set duration of pwm pulse in microseconds." alt="" coords="359,5,517,32"/>
-<area shape="rect" id="node4" href="$classDPwmOut.html#a37548c71cfae75af92a64d02401550e1" title=" " alt="" coords="565,5,740,32"/>
-</map>

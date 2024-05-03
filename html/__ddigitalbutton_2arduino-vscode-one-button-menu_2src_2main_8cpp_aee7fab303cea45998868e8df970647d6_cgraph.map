@@ -1,8 +1,0 @@
-<map id="PrintMenu" name="PrintMenu">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,93,133"/>
-<area shape="rect" id="node2" href="$classDMenu.html#a3c02c975a9dc6f9a59c2f718e2bb749b" title="if &#45;1 is returned, no item is selected" alt="" coords="141,5,333,32"/>
-<area shape="rect" id="node3" href="$classDMenu.html#a9206a29db71618ac81d5552c1d05dceb" title="Add a list of Items." alt="" coords="173,56,302,83"/>
-<area shape="rect" id="node4" href="$classDMenu.html#a92ef4aa79853464b3d40fe500627fdf1" title=" " alt="" coords="150,107,325,133"/>
-<area shape="rect" id="node5" href="$classDMenu.html#ad24e6c5761fd16c10e3397bd0bf44982" title=" " alt="" coords="168,157,307,184"/>
-<area shape="rect" id="node6" href="$__ddigitalbutton_2arduino-vscode-one-button-menu_2src_2main_8cpp.html#aa1f830b6ee033f89b624a2aefa9d1dbc" title=" " alt="" coords="210,208,265,235"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="DStepper::begin" name="DStepper::begin">
-<area shape="rect" id="node1" title="Initialize all needed stuffs to start lib, set clock frequency and enable it on pin (if required)." alt="" coords="5,31,132,57"/>
-<area shape="rect" id="node2" href="$classDPwmOut.html#a000113708117f41bbbd6e9d8aa416f11" title=" " alt="" coords="184,5,315,32"/>
-<area shape="rect" id="node3" href="$classDStepper.html#a0aeb6c6075e0e11733a47ae56f1ec364" title="Set frequency to apply on clock pin." alt="" coords="180,56,319,83"/>
-</map>

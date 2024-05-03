@@ -1,4 +1,0 @@
-<map id="DServo::getHomeDegrees" name="DServo::getHomeDegrees">
-<area shape="rect" id="node1" title="Get current pulse&#45;width used for home position." alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node2" href="$classDServo.html#aa39e6c9488172d7016a4a3483eb79a25" title="Convert Us pulse&#45;width value degrees for this servo." alt="" coords="244,5,404,32"/>
-</map>

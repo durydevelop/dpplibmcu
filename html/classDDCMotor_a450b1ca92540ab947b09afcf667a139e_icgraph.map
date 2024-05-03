@@ -1,7 +1,0 @@
-<map id="DDCMotor::GetCalLimitRev" name="DDCMotor::GetCalLimitRev">
-<area shape="rect" id="node1" title=" " alt="" coords="604,46,803,73"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#ae43afbc21f7ca280250ba043f86086d6" title=" " alt="" coords="299,21,556,47"/>
-<area shape="rect" id="node5" href="$classDDCMotorWheels.html#ac6f4b9f982e48556278e8c04fb967fd8" title="Set wheels balancing value for backward direction." alt="" coords="300,71,555,98"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#aaca2694affa2ce26fddf42811688085c" title="Move balancing REV to DX by Value." alt="" coords="5,5,251,47"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#a471d832ccdd4c35a3db64500499db61f" title="Move balancing REV to SX by Value." alt="" coords="5,71,251,112"/>
-</map>

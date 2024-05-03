@@ -1,9 +1,0 @@
-<map id="DStepper::SetDir" name="DStepper::SetDir">
-<area shape="rect" id="node1" title="Set direction (output directly on pin)." alt="" coords="212,132,343,159"/>
-<area shape="rect" id="node2" href="$classDStepper.html#a61a081f44f782de5231b24be26ae78bc" title="TODO: _GetMaxRpm() _Step() _Optional Enable pin _Ramp StopPin _RampFreq." alt="" coords="9,5,160,32"/>
-<area shape="rect" id="node3" href="$classDStepper.html#a4956f759f7d82f149fd1336ec1df05cb" title="Reach Rpm speed using ramp (output directly on pin)." alt="" coords="5,56,164,83"/>
-<area shape="rect" id="node4" href="$classDStepper.html#aa23563b655887efedf7657dc0a711d70" title="Set rotation direction counter&#45;clockwise (output directly on pin)." alt="" coords="11,107,159,133"/>
-<area shape="rect" id="node5" href="$classDStepper.html#ac5580e05283fee1107c8687fae03d7fc" title="Set rotation direction clockwise (output directly on pin)." alt="" coords="9,157,161,184"/>
-<area shape="rect" id="node6" href="$classDStepper.html#ab9355fb9c9cabd57115d5ea822afbdd3" title="Set frequency to apply on clock pin and rotation direction." alt="" coords="15,208,154,235"/>
-<area shape="rect" id="node7" href="$classDStepper.html#a33d8b31d8345f561c413a05cdc59859c" title="Set speed and direction (output directly on pin)." alt="" coords="14,259,155,285"/>
-</map>

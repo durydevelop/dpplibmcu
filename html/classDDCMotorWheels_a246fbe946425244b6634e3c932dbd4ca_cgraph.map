@@ -1,7 +1,0 @@
-<map id="DDCMotorWheels::IncVel" name="DDCMotorWheels::IncVel">
-<area shape="rect" id="node1" title="Increment both motors speed by specific value." alt="" coords="5,31,189,57"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a931ad0e836dd133a9e76d498564ecb63" title="Increment dx motor speed by specific value." alt="" coords="237,5,440,32"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#ab581501c5d5cd1fa036b62a4378bcb2a" title="Increment sx motor speed by specific value." alt="" coords="238,56,439,83"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#a02cdceb4c682b13d6483f3961d5acee8" title="Set velocity value for dx motor." alt="" coords="488,5,693,32"/>
-<area shape="rect" id="node5" href="$classDDCMotorWheels.html#abc56fb15a241ed9ae5b24758f36a5877" title="Set velocity value for sx motor." alt="" coords="489,56,692,83"/>
-</map>

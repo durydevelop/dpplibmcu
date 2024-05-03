@@ -1,4 +1,0 @@
-<map id="DMPacket::PushWord" name="DMPacket::PushWord">
-<area shape="rect" id="node1" title="Add a WORD (2 bytes) to the packet." alt="" coords="212,5,371,32"/>
-<area shape="rect" id="node2" href="$classDMPacket.html#a4aca5a85c33b4daf17a4110b44557fe4" title="Add a 16 bit integer value to the packet." alt="" coords="5,5,164,32"/>
-</map>

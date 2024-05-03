@@ -1,4 +1,0 @@
-<map id="DServo::resetStepValue" name="DServo::resetStepValue">
-<area shape="rect" id="node1" title="Reset step pulse&#45;width to default DEFAULT_STEP_VALUE." alt="" coords="5,5,180,32"/>
-<area shape="rect" id="node2" href="$classDServo.html#aa39e6c9488172d7016a4a3483eb79a25" title="Convert Us pulse&#45;width value degrees for this servo." alt="" coords="228,5,388,32"/>
-</map>

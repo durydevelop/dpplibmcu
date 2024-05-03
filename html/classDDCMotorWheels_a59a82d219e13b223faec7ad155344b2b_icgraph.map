@@ -1,5 +1,0 @@
-<map id="DDCMotorWheels::SetBalancingFw" name="DDCMotorWheels::SetBalancingFw">
-<area shape="rect" id="node1" title="Set wheels balancing value for forward direction." alt="" coords="336,31,585,57"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a56841dbd19dc675f8d6f7b9470cdc4ff" title="Move balancing FW to DX by Value." alt="" coords="5,5,288,32"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#ac8e86174877c68ffef4734d07454e8c2" title="Move balancing FW to SX by Value." alt="" coords="6,56,287,83"/>
-</map>

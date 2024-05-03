@@ -1,4 +1,4 @@
-/*! \mainpage Classe DDigitalInput per Arduino
+/**
 *
 * \section intro_sec Introduzione
 *

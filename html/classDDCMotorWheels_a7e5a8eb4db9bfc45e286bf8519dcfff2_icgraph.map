@@ -1,6 +1,0 @@
-<map id="DDCMotorWheels::DXStop" name="DDCMotorWheels::DXStop">
-<area shape="rect" id="node1" title="Stop dx motor (set vel to 0)" alt="" coords="729,5,923,32"/>
-<area shape="rect" id="node2" href="$classDDCMotorWheels.html#a4a559c6b941c646fa59c1d01dd7fc445" title="Stop both motor (set vel to 0)" alt="" coords="507,5,681,32"/>
-<area shape="rect" id="node3" href="$classDDCMotorWheels.html#ae6f218e1b78ea6f6881383d005dc20fa" title="Engage/disengage motors." alt="" coords="265,5,459,32"/>
-<area shape="rect" id="node4" href="$classDDCMotorWheels.html#affe6b6c42989dc0225a90dfaddebc6d3" title="Disengage motors." alt="" coords="5,5,217,32"/>
-</map>

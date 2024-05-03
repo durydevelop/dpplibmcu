@@ -1,4 +1,4 @@
-/*! \mainpage
+/**
 *	Arduino and Raspberry Pi library for handle button press.
 * \section intro_sec Introduction
 * This library can be used with Arduino or Raspberry Pi, hardware specific api are performed by pre-processor defines.
