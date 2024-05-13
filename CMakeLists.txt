@@ -24,8 +24,11 @@ include(DPrintHelpers)
 include(FeatureSummary)
 
 ## Doxygen support
-set(DOXYGEN_THEME_FOLDER custom1)
-add_subdirectory(doxygen)
+set(DOXYGEN_THEME custom1)
+set(DOXYGEN_LANGUAGE Italian)
+#add_subdirectory(doxygen)
+list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
+include(Doxygen)
 
 ## Add platform indipendent modules
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)

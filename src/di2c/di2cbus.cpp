@@ -40,8 +40,8 @@ DI2CBus::DI2CBus(uint8_t busID)
 {
     //busHandle=DI2CBus::openI2CBus(busID);
     busName=DI2C_BUS_DEV_PREFIX "-" + std::to_string(busID);
-        busHandle = open(busName.c_str(), O_RDWR);
-        std::cout << strerror(errno) << std::endl;
+    busHandle = open(busName.c_str(), O_RDWR);
+    //std::cout << strerror(errno) << std::endl;
     lastErrorString=strerror(errno);
 }
 

@@ -1,20 +1,4 @@
 #include "dmpacket.h"
-/**
- * @brief DPacket is a buffer with a set of extended function to easy store and extract primitive data types.
- * Data type as integer (8, 16 bit) float, byte, word, dword can be easly stored and extracted.o
- * 
- * DPacket is developed with aim to easy send data between MCU, SBC and every device, over trasnsmission data channel like serial, I2C, SPI, CAN and whatever protocol.
- * From une side you can do something like:
- * packet.AddFloat(my_float);
- * and from the other side:
- * float my_float=packet.ExtractFloat();
- * You don't need to serialize and de-serialize bytes to reconstruct the value, DPacket do it for you.
- * Or you can simply use it as a buffer containing a vector of bytes to send raw data.
- * 
- * *\section caratteristiche_sec Caratteristiche
- * 
- */
-
 #ifdef ARDUINO
 	#define HIBYTE(w) highByte(w)
 	#define LOBYTE(w) lowByte(w)
@@ -43,23 +27,23 @@
  * @brief Crea un pacchetto vuoto
  */
 DMPacket::DMPacket() {
-	Clear();
+	clear();
 };
 
 /**
  * @brief Crea un pacchetto eseguendo il parsing del buffer passato
  * @param Buff		->	buffer di bytes.
  */
-DMPacket::DMPacket(const std::vector<uint8_t>& BuffVec) {
-	SetBuffer(BuffVec);
+DMPacket::DMPacket(const std::vector<uint8_t>& buffVec) {
+	setBuffer(buffVec);
 };
 
 /**
  * @brief Crea un pacchetto eseguendo il parsing del buffer passato
- * @param BuffVec	->  un std::vector<uint8_t>.
+ * @param buffVec	->  un std::vector<uint8_t>.
  */
-DMPacket::DMPacket(uint8_t Buff[], uint16_t BuffLen) {
-	SetBuffer(Buff,BuffLen);
+DMPacket::DMPacket(uint8_t buff[], uint16_t buffSize) {
+	setBuffer(buff,buffSize);
 };
 
 //! Distruttore
@@ -70,17 +54,17 @@ DMPacket::~DMPacket() {
  * @brief Resetta il pacchetto.
  * -Riporta la dimensione a HDR_SIZE.
  * -Azzera il contenuto.
- * -Azzera li ShiftIndex
+ * -Azzera li shiftIndex
  */
-void DMPacket::Clear() {
-	PacketBuff.resize(0);
-	PacketBuff.shrink_to_fit();
-    ShiftIndex=0;
+void DMPacket::clear() {
+	packetBuff.resize(0);
+	packetBuff.shrink_to_fit();
+    shiftIndex=0;
 }
 
 //! @return la lunghezza in bytes del paccketto
-uint8_t DMPacket::Size(void) {
-	return(PacketBuff.size());
+uint8_t DMPacket::size(void) {
+	return(packetBuff.size());
 }
 
 /**
@@ -90,32 +74,32 @@ uint8_t DMPacket::Size(void) {
  * @param BuffSize	->	lunghezza del buffer (max 256).
  *
  **/
-void DMPacket::SetBuffer(const uint8_t Buff[], uint16_t BuffSize) {
+void DMPacket::setBuffer(const uint8_t buff[], uint16_t buffSize) {
 	// Set buffer size
-	PacketBuff.resize(BuffSize);
+	packetBuff.resize(buffSize);
 	// Fill it
-	//PacketBuff.assign(Buff,BuffLen);
-	for (uint8_t ixB=0; ixB<BuffSize; ixB++) {
-		PacketBuff[ixB]=Buff[ixB];
+	//packetBuff.assign(Buff,BuffLen);
+	for (uint8_t ixB=0; ixB<buffSize; ixB++) {
+		packetBuff[ixB]=buff[ixB];
 	}
     // Zeros shift index
-    ShiftIndex=0;
+    shiftIndex=0;
 }
 
-void DMPacket::SetBuffer(const char Buff[], uint16_t BuffSize) {
-    SetBuffer((uint8_t *) Buff,BuffSize);
+void DMPacket::setBuffer(const char buff[], uint16_t buffSize) {
+    setBuffer((uint8_t *) buff,buffSize);
 }
 
 /**
- * @brief Copia BuffVect direttamente nel buffer del pacchetto.
+ * @brief Copia buffVect direttamente nel buffer del pacchetto.
  * 
- * @param BuffVec	->  un std::vector<uint8_t>.
+ * @param buffVec	->  un std::vector<uint8_t>.
  * @return true 
  * @return false 
  */
-void DMPacket::SetBuffer(const std::vector<uint8_t>& BuffVec) {
-	PacketBuff=BuffVec;
-    ShiftIndex=0;
+void DMPacket::setBuffer(const std::vector<uint8_t>& buffVec) {
+	packetBuff=buffVec;
+    shiftIndex=0;
 }
 
 //! @return un puntatore all'intero buffer del pacchetto.
@@ -124,295 +108,134 @@ void DMPacket::SetBuffer(const std::vector<uint8_t>& BuffVec) {
  * Non usare per inserire dati
  * @return uint8_t* 
  */
-uint8_t* DMPacket::BufferRaw() {
-	return(PacketBuff.data());
+uint8_t* DMPacket::rawBuffer() {
+	return(packetBuff.data());
 }
 
 //! @return Il riferimeto al buffer totale del pacchetto come vector.
-std::vector<uint8_t>& DMPacket::Buffer() {
-	return(PacketBuff);
+std::vector<uint8_t>& DMPacket::buffer() {
+	return(packetBuff);
 }
 
 /**
- * @brief 
+ * @brief Convert packet content into an hex string.
  * 
- * @param Offset 
- * @param Len 
- * @return std::string 
+ * @param offset    ->  offset in buffer.
+ * @return std::string containing an hex rappresentation of packet content like 01:F2:FF:E6
  */
-std::string DMPacket::ReadString(uint16_t Offset, uint16_t Lenght) {
-    if (PacketBuff.empty()) {
-        // Empy string
-        return(std::string());
-    }
-
-    if ((Offset+Lenght) > PacketBuff.size()) {
-        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
-            throw("Reading over buffer operation not permitted");
-        #else
-            return std::string();
-        #endif
-    }
-
-	#ifdef ARDUINO
-        std::string sData((char*)PacketBuff.data()+Lenght,PacketBuff.size());
-    #else
-	    std::string sData(PacketBuff.begin()+Offset,PacketBuff.end());
-	#endif
-	
-	return(sData);
-}
-
-/**
- * @brief Legge i dati del pacchetto e li mette in un vettore di bytes (uint8_t)
- * 
- * @return un vector<uint8_t> contenente il payload
- */
-std::vector<uint8_t> DMPacket::ReadBytes(uint16_t Offset, uint16_t Count)
-{
-    if ((Offset+Count) > PacketBuff.size()) {
-        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
-            throw("Reading over buffer operation not permitted");
-        #else
-            // tronca
-            Count=PacketBuff.size()-Offset;
-        #endif
-    }
-
-    if (Count == 0) {
-        Count=PacketBuff.size()-Offset;
-    }
-    
-	std::vector<uint8_t> Data(Count);
-
-//    #ifdef ARDUINO
-        for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
-            Data[ixP-Offset]=PacketBuff[ixP];
-        }
-//    #else
-//	    Data.assign(PacketBuff.begin()+Count,PacketBuff.end());
-    //#endif
-
-	#ifdef ARDUINO
-	    return Data;
-    #else
-        return std::move(Data);
-    #endif
-}
-
-/**
- * @brief Legge i dati del pacchetto e li mette in un vettore di bytes (uint8_t)
- * 
- * @param DataDest	->	Vettore di bytes in cui mettere i dati
- * @return false se i dati del pacchetto non sono di tipo byte o se è un pacchetto senza senza dati.
- */
-uint16_t DMPacket::ReadBytes(std::vector<uint8_t>& Dest, uint16_t Offset, uint16_t Count)
-{
-    if ((Offset+Count) > PacketBuff.size()) {
-        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
-            throw("Reading over buffer operation not permitted");
-        #else
-            // tronca
-            Count=PacketBuff.size()-Offset;
-        #endif
-    }
-
-    if (Count == 0) {
-        Count=PacketBuff.size()-Offset;
-    }
-    
-	Dest.resize(Count);
-
-	//#ifdef ARDUINO
-        for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
-            Dest[ixP-Offset]=PacketBuff[ixP];
-        }
-    //#else
-    //    std::copy(PacketBuff.begin()+Count,PacketBuff.end(),Dest);
-    //#endif
-
-	return(Dest.size());
-}
-
-/**
- * @brief Legge i dati del pacchetto e li mette in un vettore di words (uint16_t)
- * 
- * @param Data	->	Vettore di words in cui mettere i dati
- * @return false se i dati del pacchetto non sono di tipo byte o se è un pacchetto senza senza dati.
- */
-std::vector<uint16_t> DMPacket::ReadWords(uint16_t Offset, uint16_t Count)
-{
-	std::vector<uint16_t> Data;
-    if ((Offset+(Count*2)) > PacketBuff.size()) {
-        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
-            throw("Reading over buffer operation not permitted");
-        #else
-            // tronca all'utimo multiplo
-            uint16_t FreeSpace=PacketBuff.size()-Offset;
-            uint16_t FreeBlocks=FreeSpace/2;
-            Count=FreeBlocks*2;
-        #endif
-    }
-	Data.reserve(Count);
-
-    #ifdef ARDUINO
-        // Read 2 bytes at time
-        for (uint16_t ixP=Count; ixP<PacketBuff.size(); ixP+=2) {
-            Data[ixP-Count]=PacketBuff[ixP] | (PacketBuff[ixP+1] << 8);
-        }
-    #else
-        // Read 2 bytes at time
-        auto itr=PacketBuff.begin()+Offset;
-        while(itr != PacketBuff.end()) {
-            // Create word
-            Data.emplace_back(*itr++ | (*itr++ << 8));
-        }
-    #endif
-
-	return(Data);
-}
-
-/**
- * @brief Legge i dati del pacchetto e li mette in un vettore di double words (uint32_t)
- * 
- * @param Data	->	Vettore di words in cui mettere i dati
- * @return false se i dati del pacchetto non sono di tipo byte o se è un pacchetto senza senza dati.
- */
-std::vector<uint32_t> DMPacket::ReadDWords(uint16_t Offset, uint16_t Count)
-{
-	std::vector<uint32_t> Data;
-    if (Offset+(Count*4) > PacketBuff.size()) {
-        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
-            throw("Reading over buffer operation not permitted");
-        #else
-            // tronca all'utimo multiplo
-            uint16_t FreeSpace=PacketBuff.size()-Offset;
-            uint16_t FreeBlocks=FreeSpace/4;
-            Count=FreeBlocks*4;
-        #endif
-    }
-	Data.reserve(Count);
-
-    #ifdef ARDUINO
-        // Read 4 bytes at time
-        for (uint16_t ixP=Count; ixP<PacketBuff.size(); ixP+=4) {
-            Data[ixP-Offset]=DWORD_B(PacketBuff[ixP],PacketBuff[ixP+1],PacketBuff[ixP+2],PacketBuff[ixP+3]);
-        }
-    #else
-        // Read 4 bytes at time
-        auto itr=PacketBuff.begin()+Offset;
-        while(itr != PacketBuff.end()) {
-            // Create double word
-            Data.emplace_back((*itr++ << 24) | (*itr++ << 16) | (*itr++ << 8) | *itr++);
-        }
-    #endif
-
-	return(Data);
-}
-
-std::string DMPacket::ToHexString(uint16_t Offset) {
-    if (PacketBuff.empty()) {
+std::string DMPacket::toHexString(uint16_t offset) {
+    if (packetBuff.empty()) {
         return std::string();
     }
-    uint16_t MemSize=(PacketBuff.size()-Offset)*3; // 2 bytes + ':' for each byte
+    uint16_t MemSize=(packetBuff.size()-offset)*3; // 2 bytes + ':' for each byte
     char HexStr[MemSize];
     char *itr=&HexStr[0]; // iterator pointer
     //size_t ixP;
-    for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
-        itr+=sprintf(itr,"%02X:",PacketBuff[ixP]);
+    for (size_t ixP=offset; ixP<packetBuff.size(); ixP++) {
+        itr+=sprintf(itr,"%02X:",packetBuff[ixP]);
     }
     return (std::string(HexStr,MemSize-1)); // (-1 because last byte have no ':' to the end)
 }
 
-std::string DMPacket::ToAsciiString(uint16_t Offset) {
-    if (PacketBuff.empty()) {
+/**
+ * @brief Convert packet content to an ascii string.
+ * 
+ * @param offset    ->  offset in buffer.
+ * @return std::string a string containing ascii convertion of all bytes in buffer (characters that can not be printed are replaced with '.')
+ */
+std::string DMPacket::toAsciiString(uint16_t offset) {
+    if (packetBuff.empty()) {
         return std::string();
     }
-    uint16_t MemSize=(PacketBuff.size()-Offset)*3;
+    uint16_t MemSize=(packetBuff.size()-offset)*3;
     char AsciiStr[MemSize];
     char *itr=&AsciiStr[0]; // iterator pointer
     //size_t ixP;
-    for (size_t ixP=Offset; ixP<PacketBuff.size(); ixP++) {
-        itr+=sprintf(itr,"%c  ",isprint(PacketBuff[ixP]) ? PacketBuff[ixP] : '.');
+    for (size_t ixP=offset; ixP<packetBuff.size(); ixP++) {
+        itr+=sprintf(itr,"%c  ",isprint(packetBuff[ixP]) ? packetBuff[ixP] : '.');
     }
     return (std::string(AsciiStr,MemSize)); // (-1 because last byte have no ':' to the end)
 }
 
+// ********************************************************************************************************
+// ****************************************** Read...ing methods ******************************************
+// ********************************************************************************************************
+
 /**
  * @brief Read a byte from data payload.
- * @param Index ->  Offset of byte to read in the payload.
+ * @param Index ->  offset of byte to read in the payload.
  * @return 8 bit value.
  */
-uint8_t DMPacket::ReadByte(uint16_t Offset)
+uint8_t DMPacket::readByte(uint16_t offset)
 {
-    if (PacketBuff.empty()) {
-        return 0;
+    if (offset < packetBuff.size()) {
+        return packetBuff[offset];
     }
-
-    if (Offset > PacketBuff.size()) {
+    else {
         #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
             throw("Reading over buffer operation not permitted");
         #else
-            // legge l'ultimo
-            Offset=PacketBuff.size()-1;
-            // TODO: oppure ritorna 0
+            return 0xFF;
         #endif
     }
-    return(PacketBuff[Offset]);
 }
 
 /**
  * @brief Read a word from data payload.
- * @param Index ->  Offset of byte in the payload where to start reading.
+ * @param Index ->  offset of byte in the payload where to start reading.
  * @return 16 bit value.
  */
-uint16_t DMPacket::ReadWord(uint16_t Offset)
+uint16_t DMPacket::readWord(uint16_t offset)
 {
-    if (Offset+2 > PacketBuff.size()) {
+    if (offset+1 < packetBuff.size()) {
+	    return WORD(packetBuff[offset],packetBuff[offset+1]);
+    }
+    else {
         #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
             throw("Reading over buffer operation not permitted");
         #else
-            return 0;
+            return 0xFFFF;
         #endif
     }
-	return(WORD(PacketBuff[Offset],PacketBuff[Offset+1]));
 }
 
 /**
  * @brief Read a double-word from data payload.
- * @param Index ->  Offset of byte in the payload where to start reading.
+ * @param Index ->  offset of byte in the payload where to start reading.
  * @return 32 bit value.
  */
-uint32_t DMPacket::ReadDWord(uint16_t Offset)
+uint32_t DMPacket::readDWord(uint16_t offset)
 {
-    if (Offset+4 > PacketBuff.size()) {
+    if (offset+3 < packetBuff.size()) {
+	    return DWORD_B(packetBuff[offset],packetBuff[offset+1],packetBuff[offset+2],packetBuff[offset+3]);
+    }
+    else {
         #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
             throw("Reading over buffer operation not permitted");
         #else
-            return 0;
+            return 0xFFFFFFFF;
         #endif
     }
-	return(DWORD_B(PacketBuff[Offset],PacketBuff[Offset+1],PacketBuff[Offset+2],PacketBuff[Offset+3]));
-}
-
-/**
- * @brief Read a 16 bit signed integer from data payload.
- * @param Index ->  Offset of byte to read in the payload.
- * @return 16 bit integer value.
- */
-int16_t DMPacket::ReadInt16(uint16_t Offset)
-{
-	return((int16_t)ReadWord(Offset));
 }
 
 /**
  * @brief Read a 8 bit signed integer from data payload.
- * @param Index ->  Offset of byte to read in the payload.
+ * @param Index ->  offset of byte to read in the payload.
  * @return integer value.
  */
-int8_t DMPacket::ReadInt8(uint16_t Offset)
+int8_t DMPacket::readInt8(uint16_t offset)
 {
-	return((int8_t)ReadByte(Offset));
+	return((int8_t)readByte(offset));
+}
+
+/**
+ * @brief Read a 16 bit signed integer from data payload.
+ * @param Index ->  offset of byte to read in the payload.
+ * @return 16 bit integer value.
+ */
+int16_t DMPacket::readInt16(uint16_t offset)
+{
+	return((int16_t)readWord(offset));
 }
 
 /**
@@ -420,9 +243,9 @@ int8_t DMPacket::ReadInt8(uint16_t Offset)
  * @param Index ->  Number of the float to read (first is 1).
  * @return float value.
  */
-float DMPacket::ReadFloat(uint16_t Offset)
+float DMPacket::readFloat(uint16_t offset)
 {
-	uint32_t DWord=ReadDWord(Offset);
+	uint32_t DWord=readDWord(offset);
 	// Important cast from dword to float
 	//return(*(float*)&DWord);
 	//return(float(DWord));
@@ -435,68 +258,266 @@ float DMPacket::ReadFloat(uint16_t Offset)
 }
 
 /**
- * @brief Add a single byte to the packet.
- * N.B. DataType in header is not changed.
+ * @brief 
  * 
- * @param Byte  ->  byte to add.
+ * @param offset 
+ * @param Len 
+ * @return std::string 
  */
-void DMPacket::PushByte(uint8_t Byte)
-{
-	PacketBuff.emplace_back(Byte);
+std::string DMPacket::readString(uint16_t offset, uint16_t lenght) {
+    if (lenght == 0) {
+        // To the end of packetBuffer
+        lenght=packetBuff.size()-offset;
+    }
+    else if ((offset+lenght) > packetBuff.size()) {
+        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
+            throw("Reading over buffer operation not permitted");
+        #else
+            // tronca
+            lenght=packetBuff.size()-offset;
+        #endif
+    }
+
+    std::string sData;
+    sData.resize(lenght);
+    for (size_t ixS=0; ixS<lenght; ixS++) {
+        sData[ixS]=packetBuff[ixS+offset];
+    }
+
+    return(sData);
 }
 
 /**
- * @brief Add a WORD (2 bytes) to the packet.
- * N.B. DataType in header is not changed.
+ * @brief Legge i dati del pacchetto e li mette in un vettore di bytes (uint8_t)
  * 
- * @param Word  -> WORD to add.
+ * @return un vector<uint8_t> contenente il payload
  */
-void DMPacket::PushWord(uint16_t Word)
+std::vector<uint8_t> DMPacket::readBytes(uint16_t offset, uint16_t count)
 {
-	uint8_t Ix=PacketBuff.size();
-	PacketBuff.resize(Ix+2);
-	PacketBuff[Ix]=HIBYTE(Word);
-	PacketBuff[Ix+1]=LOBYTE(Word);
+    if (count == 0) {
+        // To the end of buffer
+        count=packetBuff.size()-offset;
+    }
+    else if ((offset+count) > packetBuff.size()) {
+        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
+            throw("Reading over buffer operation not permitted");
+        #else
+            // Truncate to the end of buffer
+            count=packetBuff.size()-offset;
+        #endif
+    }
+
+	std::vector<uint8_t> data;
+    data.resize(count);
+    for (size_t ixB=0; ixB<count; ixB++) {
+        data[ixB]=packetBuff[ixB+offset];
+    }
+
+	#ifdef ARDUINO
+	    return Data;
+    #else
+        return std::move(data);
+    #endif
 }
 
 /**
- * @brief Add a DWORD (4 bytes) to the packet.
- * N.B. DataType in header is not changed.
+ * @brief Legge i dati del pacchetto e li mette in un vettore di bytes (uint8_t)
  * 
- * @param DWord ->  DWORD to add.
+ * @param Datadest	->	Vettore di bytes in cui mettere i dati
+ * @return false se i dati del pacchetto non sono di tipo byte o se è un pacchetto senza senza dati.
  */
-void DMPacket::PushDWord(uint32_t DWord)
+uint16_t DMPacket::readBytes(std::vector<uint8_t>& dest, uint16_t offset, uint16_t count)
 {
-	uint8_t Ix=PacketBuff.size();
-	PacketBuff.resize(Ix+4);
-	PacketBuff[Ix]=HIBYTE(HIWORD(DWord));
-	PacketBuff[Ix+1]=LOBYTE(HIWORD(DWord));
-	PacketBuff[Ix+2]=HIBYTE(LOWORD(DWord));
-	PacketBuff[Ix+3]=LOBYTE(LOWORD(DWord));
+    if (count == 0) {
+        // To the end of buffer
+        count=packetBuff.size()-offset;
+    }
+    else if ((offset+count) > packetBuff.size()) {
+        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
+            throw("Reading over buffer operation not permitted");
+        #else
+            // Truncate to the end of buffer
+            count=packetBuff.size()-offset;
+        #endif
+    }
+    
+	dest.resize(count);
+
+    for (size_t ixB=0; ixB<count; ixB++) {
+        dest[ixB]=packetBuff[ixB+offset];
+    }
+
+	return(dest.size());
 }
 
 /**
- * @brief Add a 16 bit integer value to the packet.
- * N.B. DataType in header is not changed.
+ * @brief Legge i dati del pacchetto e li mette in un vettore di words (uint16_t)
  * 
- * @param Int16 
+ * @param Data	->	Vettore di words in cui mettere i dati
+ * @return false se i dati del pacchetto non sono di tipo byte o se è un pacchetto senza senza dati.
  */
-void DMPacket::PushInt16(int16_t Int16)
+std::vector<uint16_t> DMPacket::readWords(uint16_t offset, uint16_t count)
 {
-	PushWord(Int16);
+    if (count == 0) {
+        // Truncate to the last block
+        uint16_t FreeSpace=packetBuff.size()-offset;
+        count=FreeSpace/2;
+    }
+    else if ((offset+(count*2)) > packetBuff.size()) {
+        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
+            throw("Reading over buffer operation not permitted");
+        #else
+            // Truncate to the last block
+            uint16_t FreeSpace=packetBuff.size()-offset;
+            count=FreeSpace/2;
+        #endif
+    }
+
+    std::vector<uint16_t> data;
+	data.reserve(count);
+
+    // Read 2 bytes at time
+    for (uint16_t ixD=0; ixD<count; ixD++) {
+        data[ixD]=WORD(packetBuff[offset],packetBuff[offset+1]);
+        offset+=2;
+    }
+
+	#ifdef ARDUINO
+	    return Data;
+    #else
+        return std::move(data);
+    #endif
 }
 
 /**
- * @brief Add a 32 bit floating point value to the packet.
- * N.B. DataType in header is not changed.
+ * @brief Legge i dati del pacchetto e li mette in un vettore di double words (uint32_t)
  * 
- * @param Float -> 32 bit float to add.
+ * @param Data	->	Vettore di words in cui mettere i dati
+ * @return false se i dati del pacchetto non sono di tipo byte o se è un pacchetto senza senza dati.
  */
-void DMPacket::PushFloat(float Float)
+std::vector<uint32_t> DMPacket::readDWords(uint16_t offset, uint16_t count)
 {
-	uint8_t Ix=PacketBuff.size();
-	PacketBuff.resize(Ix+4);
-	// Important cast from float to dword
+    if (count == 0) {
+        // Truncate to the last block
+        uint16_t FreeSpace=packetBuff.size()-offset;
+        count=FreeSpace/4;
+    }
+    else if (offset+(count*4) > packetBuff.size()) {
+        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
+            throw("Reading over buffer operation not permitted");
+        #else
+            // Truncate to the last block
+            uint16_t FreeSpace=packetBuff.size()-offset;
+            count=FreeSpace/4;
+        #endif
+    }
+
+    std::vector<uint32_t> data;
+	data.reserve(count);
+
+    // Read 4 bytes at time
+    for (uint16_t ixD=count; ixD<packetBuff.size(); ixD++) {
+        data[ixD]=DWORD_B(packetBuff[offset],packetBuff[offset+1],packetBuff[offset+2],packetBuff[offset+3]);
+        offset+=4;
+    }
+
+	#ifdef ARDUINO
+	    return Data;
+    #else
+        return std::move(data);
+    #endif
+}
+
+// ********************************************************************************************************
+// ***************************************** Write...ing methods ******************************************
+// ********************************************************************************************************
+
+/**
+ * @brief Write a single byte to a specific index to the packet.
+ * 
+ * @param Byte      ->  byte to write.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B. if offset is out of range, nothing will be done.
+ */
+void DMPacket::writeByte(uint8_t Byte, uint16_t offset)
+{
+    if (offset >= packetBuff.size()) {
+        return;
+    }
+	packetBuff[offset]=Byte;
+}
+
+/**
+ * @brief Write a WORD to a specific index to the packet.
+ * 
+ * @param Word      ->  byte to write.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B.
+ * - If offset is out of range, nothing will be done.
+ */
+void DMPacket::writeWord(uint16_t Word, uint16_t offset)
+{
+    if ((offset+1) >= packetBuff.size()) {
+        return;
+    }
+	packetBuff[offset]=HIBYTE(Word);
+	packetBuff[offset]=LOBYTE(Word);
+}
+
+/**
+ * @brief Write a Double Word to a specific index to the packet.
+ * 
+ * @param DWord     ->  byte to Double Word.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B.
+ * - If offset is out of range or data overflows, nothing will be done.
+ */
+void DMPacket::writeDWord(uint32_t DWord, uint16_t offset)
+{
+    if ((offset+3) >= packetBuff.size()) {
+        return;
+    }
+	packetBuff[offset]=HIBYTE(HIWORD(DWord));
+	packetBuff[offset]=LOBYTE(HIWORD(DWord));
+	packetBuff[offset]=HIBYTE(LOWORD(DWord));
+	packetBuff[offset]=LOBYTE(LOWORD(DWord));
+}
+
+/**
+ * @brief Write a 16 bit integer value to a specific index to the packet.
+ * 
+ * @param Int       ->  integer value to add.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B.
+ * - If offset is out of range or data overflows, nothing will be done.
+ */
+void DMPacket::writeInt16(int16_t Int, uint16_t offset)
+{
+    if ((offset+1) >= packetBuff.size()) {
+        return;
+    }
+	writeWord(Int,offset);
+}
+
+/**
+ * @brief Write a 32 bit floating point value to the packet.
+ * 
+ * @param Float     -> 32 bit float to add.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B.
+ * - If offset is out of range or data overflows, nothing will be done.
+ */
+void DMPacket::writeFloat(float Float, uint16_t offset)
+{
+    if (offset+3 >= packetBuff.size()) {
+        return;
+    }
+	// Important: cast from float to dword
 	//uint32_t f=*(uint32_t*)&Float;
 	//uint32_t f=float(Float);
     union {
@@ -504,30 +525,174 @@ void DMPacket::PushFloat(float Float)
         uint32_t ii;
     }d;
     d.ff=Float;
-	PacketBuff[Ix]=HIBYTE(HIWORD(d.ii));
-	PacketBuff[Ix+1]=LOBYTE(HIWORD(d.ii));
-	PacketBuff[Ix+2]=HIBYTE(LOWORD(d.ii));
-	PacketBuff[Ix+3]=LOBYTE(LOWORD(d.ii));
+	packetBuff[offset]=HIBYTE(HIWORD(d.ii));
+	packetBuff[offset]=LOBYTE(HIWORD(d.ii));
+	packetBuff[offset]=HIBYTE(LOWORD(d.ii));
+	packetBuff[offset]=LOBYTE(LOWORD(d.ii));
+}
+
+/**
+ * @brief Write a string as a sequence of bytes into the packet.
+ * 
+ * @param str       ->  string to add.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B.
+ * - If offset is out of range, nothing will be done.
+ * - If data overflows, string will be truncated to the end of buffer.
+ */
+void DMPacket::writeString(std::string str, uint16_t offset)
+{
+    if (offset >= packetBuff.size()) {
+        return;
+    }
+
+    // @todo Whats the fastest?
+    #ifdef ARDUINO
+        for (size_t ixB=offset; ixB<maxOffset; ixB++) {
+            packetBuff[ixB]=str[ixB-offset];
+        }
+    #else
+        const auto maxSize = packetBuff.size()-offset;
+        std::transform(str.begin(), str.end(), std::next(packetBuff.begin()+offset, maxSize), [](uint8_t c) {
+            return c;
+        });
+    #endif
+}
+
+/**
+ * @brief Write a vector of bytes into the packet.
+ * 
+ * @param buffVect  ->  vector of bytes to add.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B.
+ * - If offset is out of range, nothing will be done.
+ * - If data overflows, buffVect will be truncated to the end of buffer.
+ */
+void DMPacket::writeData(const std::vector<uint8_t>& buffVec, uint16_t offset) {
+    auto maxOffset=offset+buffVec.size();
+    if (maxOffset >= packetBuff.size()) {
+        maxOffset=packetBuff.size();
+    }
+    for(uint16_t ixB=offset; ixB<maxOffset; ixB++) {
+        packetBuff[ixB]=buffVec[ixB-offset];
+    }
+}
+
+/**
+ * @brief Write a buffer into the packet.
+ * 
+ * @param buff      ->  buffer pointer.
+ * @param buffSize  ->  size of buffer.
+ * @param offset    ->  index offset in packetBuffer.
+ * 
+ * N.B.
+ * - If offset is out of range, nothing will be done.
+ * - If data overflows, buffVect will be truncated to the end of buffer.
+ */
+void DMPacket::writeData(const uint8_t buff[], const uint16_t buffSize, uint16_t offset) {
+    auto maxOffset=offset+buffSize;
+    if (maxOffset >= packetBuff.size()) {
+        maxOffset=packetBuff.size();
+    }
+    for (uint8_t ixB=offset; ixB<maxOffset; ixB++) {
+		packetBuff[ixB]=*buff++;
+	}
+}
+
+// ********************************************************************************************************
+// ****************************************** Push...ing methods ******************************************
+// ********************************************************************************************************
+
+/**
+ * @brief Add a single byte to the packet.
+ * 
+ * @param Byte  ->  byte to add.
+ */
+void DMPacket::pushByte(uint8_t Byte)
+{
+	packetBuff.emplace_back(Byte);
+}
+
+/**
+ * @brief Add a WORD (2 bytes) to the packet.
+ * 
+ * @param Word  -> WORD to add.
+ */
+void DMPacket::pushWord(uint16_t Word)
+{
+	uint8_t Ix=packetBuff.size();
+	packetBuff.resize(Ix+2);
+	packetBuff[Ix]=HIBYTE(Word);
+	packetBuff[Ix+1]=LOBYTE(Word);
+}
+
+/**
+ * @brief Add a DWORD (4 bytes) to the packet.
+ * 
+ * @param DWord ->  DWORD to add.
+ */
+void DMPacket::pushDWord(uint32_t DWord)
+{
+	uint8_t Ix=packetBuff.size();
+	packetBuff.resize(Ix+4);
+	packetBuff[Ix]=HIBYTE(HIWORD(DWord));
+	packetBuff[Ix+1]=LOBYTE(HIWORD(DWord));
+	packetBuff[Ix+2]=HIBYTE(LOWORD(DWord));
+	packetBuff[Ix+3]=LOBYTE(LOWORD(DWord));
+}
+
+/**
+ * @brief Add a 16 bit integer value to the packet.
+ * 
+ * @param Int16 
+ */
+void DMPacket::pushInt16(int16_t Int16)
+{
+	pushWord(Int16);
+}
+
+/**
+ * @brief Add a 32 bit floating point value to the packet.
+ * 
+ * @param Float -> 32 bit float to add.
+ */
+void DMPacket::pushFloat(float Float)
+{
+	uint8_t Ix=packetBuff.size();
+	packetBuff.resize(Ix+4);
+	// Important: cast from float to dword
+	//uint32_t f=*(uint32_t*)&Float;
+	//uint32_t f=float(Float);
+    union {
+        float ff;
+        uint32_t ii;
+    }d;
+    d.ff=Float;
+	packetBuff[Ix]=HIBYTE(HIWORD(d.ii));
+	packetBuff[Ix+1]=LOBYTE(HIWORD(d.ii));
+	packetBuff[Ix+2]=HIBYTE(LOWORD(d.ii));
+	packetBuff[Ix+3]=LOBYTE(LOWORD(d.ii));
 }
 
 /**
  * @brief Add a string as a sequence of bytes to the packet.
- * N.B. DataType in header is not changed.
  * 
- * @param Str   ->  string to add.
+ * @param str   ->  string to add.
  */
-void DMPacket::PushString(std::string Str)
+void DMPacket::pushString(std::string str)
 {
     #ifdef ARDUINO
-        size_t currSize=PacketBuff.size();
-	    PacketBuff.resize(currSize+Str.size());
-        for (size_t ixP=currSize; ixP<PacketBuff.size(); ixP++) {
-            PacketBuff[ixP]=Str[ixP-currSize];
+        size_t currSize=packetBuff.size();
+	    packetBuff.resize(currSize+Str.size());
+        for (size_t ixP=currSize; ixP<packetBuff.size(); ixP++) {
+            packetBuff[ixP]=Str[ixP-currSize];
         }
     #else
-        const auto response_size = PacketBuff.size();
-        PacketBuff.resize(response_size + Str.size());
-        std::transform(Str.begin(), Str.end(), std::next(PacketBuff.begin(), response_size), [](uint8_t c) {
+        const auto currSize = packetBuff.size();
+        packetBuff.resize(currSize + str.size());
+        std::transform(str.begin(), str.end(), std::next(packetBuff.begin(), currSize), [](uint8_t c) {
             return c;
         });
 /*
@@ -539,52 +704,117 @@ std::transform(headers.begin(), headers.end(), std::back_inserter(response),
     #endif
 }
 
-void DMPacket::PushData(const std::vector<uint8_t>& BuffVec) {
-    PacketBuff.reserve(PacketBuff.size() + BuffVec.size());
-    for(uint16_t ixV=0; ixV<BuffVec.size(); ixV++) {
-        PacketBuff.emplace_back(BuffVec[ixV]);
+/**
+ * @brief Add a vector of bytes to the packet.
+ * 
+ * @param buffVec   ->  vector of bytes to add.
+ */
+void DMPacket::pushData(const std::vector<uint8_t>& buffVec) {
+    packetBuff.reserve(packetBuff.size() + buffVec.size());
+    for(uint16_t ixV=0; ixV<buffVec.size(); ixV++) {
+        packetBuff.emplace_back(buffVec[ixV]);
     }
     /*
-    for (uint8_t b : BuffVec) {
-        PacketBuff.emplace_back(b);
+    for (uint8_t b : buffVec) {
+        packetBuff.emplace_back(b);
     }
     */
 }
 
+/**
+ * @brief Add a vector of bytes to the packet.
+ * 
+ * @param buff      ->  buffer pointer.
+ * @param buffSize  ->  size of buffer.
+ */
 void DMPacket::pushData(const uint8_t buff[], const uint16_t buffSize) {
-    uint16_t startByte=PacketBuff.size();
-    PacketBuff.resize(startByte + buffSize);
+    uint16_t startByte=packetBuff.size();
+    packetBuff.resize(startByte + buffSize);
     for (uint8_t ixB=startByte; ixB<buffSize; ixB++) {
-		PacketBuff[ixB]=*buff++;
+		packetBuff[ixB]=*buff++;
 	}
 }
 
+// ********************************************************************************************************
+// ***************************************** Shift...ing methods ******************************************
+// ********************************************************************************************************
+
 /**
  * @brief Pop a byte from begin of the buffer.
- * It does not really shift the buffer, use a shift index to set the current pop posision
- * (shifting a vector can be an expensive operation on vector).
+ * It does not really shift the buffer: it use a shift index to set the current pop posision.
+ * Really shifting a vector can be an expensive operation.
  * 
  * @return uint8_t 
  */
-uint8_t DMPacket::ShiftByte(void) {
-    if (PacketBuff.size() > 0) {
-        //return PacketBuff[ShiftIndex++];
-        uint8_t data=PacketBuff[ShiftIndex];
-        ShiftIndex++;
+uint8_t DMPacket::shiftByte(void) {
+    if (packetBuff.size() > 0) {
+        //return packetBuff[shiftIndex++];
+        uint8_t data=packetBuff[shiftIndex];
+        shiftIndex++;
+        return data;
+    }
+    else {
+        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
+            throw("Reading over buffer operation not permitted");
+        #else
+            return 0xFF;
+        #endif
+    }
+}
+
+/**
+ * @brief Pop a WORD from begin of the buffer.
+ * It does not really shift the buffer: it use a shift index to set the current pop posision.
+ * Really shifting a vector can be an expensive operation.
+ * 
+ * @return uint16_t 
+ */
+uint16_t DMPacket::shiftWord(void) {
+    if (packetBuff.size() >= 2) {
+        uint16_t data=readWord(shiftIndex);
+        shiftIndex+=2;
+        return data;
+    }
+    else {
+        #ifdef TROWS_EXCEPTION_ON_READ_OVERFLOW
+            throw("Reading over buffer operation not permitted");
+        #else
+            return 0xFFFF;
+        #endif
+    }
+}
+
+/**
+ * @brief Pop a Double Word from begin of the buffer.
+ * It does not really shift the buffer: it use a shift index to set the current pop posision.
+ * Really shifting a vector can be an expensive operation.
+ * 
+ * @return uint32_t 
+ */
+uint32_t DMPacket::shiftDWord(void) {
+    if (packetBuff.size() > 0) {
+        uint16_t data=readDWord(shiftIndex);
+        shiftIndex+=4;
         return data;
     }
     return 0;
 }
 
-std::string DMPacket::ShiftString(uint16_t Lenght) {
-    if (PacketBuff.size() > 0) {
-        std::string s=ReadString(ShiftIndex,Lenght);
-        ShiftIndex+=s.size();
-        // TODO: needs?
-        //if (ShiftIndex >= PacketBuff.size()) {
-        //    ShiftIndex=PacketBuff.size()-1;
-        //}
-        return s;
-    }
-    return std::string();
+
+/**
+ * @brief Pop a String from begin of the buffer.
+ * It does not really shift the buffer: it use a shift index to set the current pop posision.
+ * Really shifting a vector can be an expensive operation.
+ * 
+ * @param lenght    ->  number of characters to read.
+ * @return uint32_t 
+ */
+std::string DMPacket::shiftString(uint16_t lenght) {
+    std::string s=readString(shiftIndex,lenght);
+    shiftIndex+=s.size();
+    // @todo needs?
+    //if (shiftIndex >= packetBuff.size()) {
+    //    shiftIndex=packetBuff.size()-1;
+    //}
+    return s;
 }

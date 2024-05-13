@@ -15,60 +15,62 @@
 #include <string>
 
 class DMPacket {
-	private:
-    	std::vector<uint8_t>PacketBuff;
-        uint16_t ShiftIndex;
     public:
         DMPacket();
-        DMPacket(uint8_t Buff[], uint16_t BuffLen);
-        DMPacket(const std::vector<uint8_t>& BuffVec);
+        DMPacket(uint8_t buff[], uint16_t buffSize);
+        DMPacket(const std::vector<uint8_t>& buffVec);
         ~DMPacket();
 
-        void Clear();
-        uint8_t Size(void);
-        uint8_t* BufferRaw(void);
-        std::vector<uint8_t>& Buffer(void);
+        void clear();
+        uint8_t size(void);
+        uint8_t* rawBuffer(void);
+        std::vector<uint8_t>& buffer(void);
 
-        void SetBuffer(const uint8_t Buff[], uint16_t BuffLen);
-        void SetBuffer(const char Buff[], uint16_t BuffLen);
-        void SetBuffer(const std::vector<uint8_t>& BuffVec);
+        void setBuffer(const uint8_t buff[], uint16_t buffLen);
+        void setBuffer(const char buff[], uint16_t buffLen);
+        void setBuffer(const std::vector<uint8_t>& buffVec);
 
-        uint8_t ReadByte(uint16_t Offset);
-        uint16_t ReadWord(uint16_t Offset);
-        uint32_t ReadDWord(uint16_t Offset);
-        int8_t ReadInt8(uint16_t Offset);
-        int16_t ReadInt16(uint16_t Offset);
-        float ReadFloat(uint16_t Offset);
-        std::vector<uint8_t> ReadBytes(uint16_t Offset, uint16_t Count = 0);
-        uint16_t ReadBytes(std::vector<uint8_t>& Dest, uint16_t Offset, uint16_t Count = 0);
-        std::vector<uint16_t> ReadWords(uint16_t Offset, uint16_t Count = 0);
-        std::vector<uint32_t> ReadDWords(uint16_t Offset, uint16_t Count = 0);
-        std::string ReadString(uint16_t Offset = 0, uint16_t Lenght = 0);
+        uint8_t readByte(uint16_t offset);
+        uint16_t readWord(uint16_t offset);
+        uint32_t readDWord(uint16_t offset);
+        int8_t readInt8(uint16_t offset);
+        int16_t readInt16(uint16_t offset);
+        float readFloat(uint16_t offset);
+        std::vector<uint8_t> readBytes(uint16_t offset, uint16_t count = 0);
+        uint16_t readBytes(std::vector<uint8_t>& dest, uint16_t offset, uint16_t count = 0);
+        std::vector<uint16_t> readWords(uint16_t offset, uint16_t count = 0);
+        std::vector<uint32_t> readDWords(uint16_t offset, uint16_t count = 0);
+        std::string readString(uint16_t offset = 0, uint16_t lenght = 0);
 
-        /*
-        // TODO
-        void WriteByte(uint8_t Byte, uint16_t Offset);
-        void WriteWord(uint16_t Word, uint16_t Offset);
-        void WriteDWord(uint32_t DWord, uint16_t Offset);
-        void WriteInt16(int16_t Int, uint16_t Offset);
-        void WriteFloat(float Float, uint16_t Offset);
-        void WriteString(std::string Str, uint16_t Offset);
-*/
+        void writeByte(uint8_t Byte, uint16_t offset);
+        void writeWord(uint16_t Word, uint16_t offset);
+        void writeDWord(uint32_t DWord, uint16_t offset);
+        void writeInt16(int16_t Int, uint16_t offset);
+        void writeFloat(float Float, uint16_t offset);
+        void writeString(std::string Str, uint16_t offset);
+        void writeData(const std::vector<uint8_t>& buffVec, uint16_t offset);
+        void writeData(const uint8_t buff[], const uint16_t buffSize, uint16_t offset);
 
-        void PushByte(uint8_t Byte);
-        void PushWord(uint16_t Word);
-        void PushDWord(uint32_t DWord);
-        void PushInt16(int16_t Int);
-        void PushFloat(float Float);
-        void PushData(const std::vector<uint8_t>& BuffVec);
+        void pushByte(uint8_t Byte);
+        void pushWord(uint16_t Word);
+        void pushDWord(uint32_t DWord);
+        void pushInt16(int16_t Int);
+        void pushFloat(float Float);
+        void pushString(std::string str);
+        void pushData(const std::vector<uint8_t>& buffVec);
         void pushData(const uint8_t buff[], const uint16_t buffSize);
-        void PushString(std::string Str);
 
-        uint8_t ShiftByte(void);
-        std::string ShiftString(uint16_t Lenght = 0);
+        uint8_t shiftByte(void);
+        uint16_t shiftWord(void);
+        uint32_t shiftDWord(void);
+        std::string shiftString(uint16_t lenght = 0);
 
-        std::string ToHexString(uint16_t Offset = 0);
-        std::string ToAsciiString(uint16_t Offset = 0);
+        std::string toHexString(uint16_t offset = 0);
+        std::string toAsciiString(uint16_t offset = 0);
+
+    private:
+    	std::vector<uint8_t>packetBuff;
+        uint16_t shiftIndex;
 
 };
 
