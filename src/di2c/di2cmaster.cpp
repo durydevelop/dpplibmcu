@@ -351,6 +351,38 @@ uint16_t DI2CMaster::askForWord(uint8_t slaveAddr, uint8_t cmdReg)
 }
 
 /**
+ * @brief Read a WORD from specified i2c register of the slave device.
+ * ...that means "send 1 command byte and read 2 bytes"...
+ * 
+ * @param slaveAddr -> i2c slave device address.
+ * @param cmdReg    -> i2c device command (aka register).
+ * @return WORD value read. If returned vaue is 0xFFFF can be that something was wrong.
+ */
+uint32_t DI2CMaster::askForDWord(uint8_t slaveAddr, uint8_t cmdReg)
+{
+    // Create recv buffer (4 bytes)
+    uint8_t recvDWord[4]={ 0xFF, 0xFF, 0xFF, 0xFF };
+
+    // Compose i2c messages array
+    struct i2c_msg messages[]={
+        {slaveAddr, 0, 1,  &cmdReg},
+        {slaveAddr, I2C_M_RD | I2C_M_NOSTART, 4, recvDWord},
+    };
+    struct i2c_rdwr_ioctl_data ioctlData = {messages, 2};
+
+    // Perform I/O
+    ioctl(busHandle, I2C_RDWR, &ioctlData);
+    lastErrorString=strerror(errno);
+
+    if (messages[0].len != 1 || messages[1].len != 4) {
+        lastErrorString="WARNING: msgs len missing real size";
+    }
+
+    //printf("recvWord: %02X %02X\r\n",recvDWord[0],recvDWord[1]);
+    return DWORD_B(recvDWord[0],recvDWord[1],recvDWord[2],recvDWord[3]);
+}
+
+/**
  * @brief Read a BUFFER from specified i2c register of the slave device.
  * ...that means "send 1 command byte and read N bytes"...
  * 

@@ -119,6 +119,12 @@ std::string DI2CBus::getInfo(void)
     return resultList;
 }
 
+/**
+ * @brief @todo: provare
+ * 
+ * @param busID 
+ * @return int 
+ */
 int DI2CBus::openI2CBus(int busID)
 {
     // Try first "/dev/i2c/%d"

@@ -26,6 +26,7 @@ class DI2CMaster {
         // Ask (write + read) commands (aka registers) methods
         uint8_t askForByte(uint8_t slaveAddr, uint8_t cmdReg);
         uint16_t askForWord(uint8_t slaveAddr, uint8_t cmdReg);
+        uint32_t askForDWord(uint8_t slaveAddr, uint8_t cmdReg);
         bool askForBuf(uint8_t slaveAddr, uint8_t cmdReg, uint8_t *recvBuf, uint16_t recvLen);
 
         // Raw send methods

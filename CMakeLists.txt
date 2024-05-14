@@ -24,11 +24,14 @@ include(DPrintHelpers)
 include(FeatureSummary)
 
 ## Doxygen support
-set(DOXYGEN_THEME custom1)
-set(DOXYGEN_LANGUAGE Italian)
-#add_subdirectory(doxygen)
-list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
-include(Doxygen)
+if(NOT CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    # Only if stand-alone project
+    set(DOXYGEN_THEME custom1)
+    set(DOXYGEN_LANGUAGE Italian)
+    #add_subdirectory(doxygen)
+    list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/doxygen)
+    include(Doxygen)
+endif()
 
 ## Add platform indipendent modules
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
@@ -45,14 +48,13 @@ if(lg_FOUND)
     add_subdirectory(src/dpwm)
     add_subdirectory(src/dservo)
     add_subdirectory(src/di2c)
+    ## Drivers for some external peripherlas (sensors, etc)
+if (BUILD_DRIVERS)
+    message_c("Building drivers for peripherals")
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/drivers)
+endif()
 else()
     message_c(${BOLD_WHITE} "Library pigpio not found, gpio control are NOT enabled")
-endif()
-
-## Drivers for some external peripherlas (sensors, etc)
-if (BUILD_DRIVERS)
-    message_c("Builing drivers for peripherals")
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/drivers)
 endif()
 
 ## Setup Target
