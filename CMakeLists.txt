@@ -30,36 +30,7 @@ option(BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" ${BUILD_DRIV
 #set(BUILD_SHARED_LIBS OFF) # Build shared libraries (.dll/.so) instead of static ones (.lib/.a)
 
 # Handle STATIC/SHARED/INTERFACE build option
-if (${PROJECT_NAME}_BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
-    # BUILD_SHARED_LIBS has prececence
-    set(LIB_TYPE "SHARED")
-    #message_c(${BOLD_CYAN} "Build as: SHARED LIB")
-    # Set SHARED ON
-    set(${PROJECT_NAME}_BUILD_SHARED_LIBS ON)
-    set(BUILD_SHARED_LIBS ON)
-    # Set INTERFACE OFF
-    set(${PROJECT_NAME}_BUILD_INTERFACE_LIBS OFF)
-    set(BUILD_INTERFACE_LIBS OFF)
-elseif(${PROJECT_NAME}_BUILD_INTERFACE_LIBS OR BUILD_INTERFACE_LIBS)
-    set(LIB_TYPE "INTERFACE")
-    #message_c(${BOLD_CYAN} "Build as: INTERFACE LIB")
-    # Set INTERFACE ON
-    set(${PROJECT_NAME}_BUILD_INTERFACE_LIBS ON)
-    set(BUILD_INTERFACE_LIBS ON)
-    # Set SHARED OFF
-    set(${PROJECT_NAME}_BUILD_SHARED_LIBS OFF)
-    set(BUILD_SHARED_LIBS OFF)
-else()
-    # STATIC (default)
-    set(LIB_TYPE "STATIC")
-    #message_c(${BOLD_CYAN} "Build as: STATIC LIB")
-    # Set SHARED OFF
-    set(${PROJECT_NAME}_BUILD_SHARED_LIBS OFF)
-    set(BUILD_SHARED_LIBS OFF)
-    # Set INTERFACE OFF
-    set(${PROJECT_NAME}_BUILD_INTERFACE_LIBS OFF)
-    set(BUILD_INTERFACE_LIBS OFF)
-endif()
+include(DLibType)
 
 ## Add platform indipendent modules
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dmpacket)
