@@ -16,7 +16,6 @@
   set(BOLD_MAGENTA "${Esc}[1;35m")
   set(BOLD_CYAN    "${Esc}[1;36m")
   set(BOLD_WHITE   "${Esc}[1;37m")
-  set(ORANGE       "${Esc}38;5;208m")
 #endif()
 
 if (NOT DCOLOR)

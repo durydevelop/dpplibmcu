@@ -20,7 +20,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 else()
     # Part of other project
     set(DSTATUS ">>>> ")
-    message_c(${BOLD_MAGENTA} "Library ${PROJECT_NAME} included as external project <<<<")
+    message_c(${BOLD_CYAN} "Library <${PROJECT_NAME}> included as external project <<<<")
 endif()
 
 # CMake helper scripts
@@ -33,15 +33,10 @@ if (CMAKE_CXX_STANDARD)
 	message_c(${BOLD_GREEN} "C++ std: ${CMAKE_CXX_STANDARD}")
 endif()
 
-# Project summary
-function (print_project_summary)
-    message_c(${BOLD_CYAN} "Summary: ${PROJECT_NAME} - Version: ${PROJECT_VERSION}")
-    message_c(${BOLD_CYAN} "Build type: ${CMAKE_BUILD_TYPE}")
+# set everything up for c++ 20 features
+#set(CMAKE_CXX_STANDARD 20)
+#if(MSVC)
+#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++23")
+#endif(MSVC)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-    cmake_host_system_information(RESULT DISTRO QUERY OS_NAME OS_PLATFORM OS_RELEASE)
-
-    foreach(VAR IN LISTS DISTRO)
-    set(OS_INFO "${OS_INFO} ${VAR}")
-    endforeach()
-    message_C(${BOLD_CYAN} "Operating System: ${OS_INFO}")
-endfunction()
