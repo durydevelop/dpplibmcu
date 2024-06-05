@@ -128,13 +128,15 @@ std::string DMPacket::toHexString(uint16_t offset) {
         return std::string();
     }
     uint16_t MemSize=(packetBuff.size()-offset)*3; // 2 bytes + ':' for each byte
-    char HexStr[MemSize];
+    char *HexStr=new char[MemSize];
     char *itr=&HexStr[0]; // iterator pointer
     //size_t ixP;
     for (size_t ixP=offset; ixP<packetBuff.size(); ixP++) {
         itr+=sprintf(itr,"%02X:",packetBuff[ixP]);
     }
-    return (std::string(HexStr,MemSize-1)); // (-1 because last byte have no ':' to the end)
+    std::string Ret=std::string(HexStr,MemSize-1); // (-1 because last byte have no ':' to the end)
+    delete HexStr;
+    return Ret;
 }
 
 /**
@@ -148,13 +150,15 @@ std::string DMPacket::toAsciiString(uint16_t offset) {
         return std::string();
     }
     uint16_t MemSize=(packetBuff.size()-offset)*3;
-    char AsciiStr[MemSize];
+    char *AsciiStr=new char[MemSize];
     char *itr=&AsciiStr[0]; // iterator pointer
     //size_t ixP;
     for (size_t ixP=offset; ixP<packetBuff.size(); ixP++) {
         itr+=sprintf(itr,"%c  ",isprint(packetBuff[ixP]) ? packetBuff[ixP] : '.');
     }
-    return (std::string(AsciiStr,MemSize)); // (-1 because last byte have no ':' to the end)
+    std::string Ret=std::string(AsciiStr,MemSize);
+    delete AsciiStr;
+    return Ret;
 }
 
 // ********************************************************************************************************
@@ -313,11 +317,7 @@ std::vector<uint8_t> DMPacket::readBytes(uint16_t offset, uint16_t count)
         data[ixB]=packetBuff[ixB+offset];
     }
 
-	#ifdef ARDUINO
-	    return Data;
-    #else
-        return std::move(data);
-    #endif
+    return data;
 }
 
 /**
@@ -382,11 +382,7 @@ std::vector<uint16_t> DMPacket::readWords(uint16_t offset, uint16_t count)
         offset+=2;
     }
 
-	#ifdef ARDUINO
-	    return Data;
-    #else
-        return std::move(data);
-    #endif
+	return data;
 }
 
 /**
@@ -421,11 +417,7 @@ std::vector<uint32_t> DMPacket::readDWords(uint16_t offset, uint16_t count)
         offset+=4;
     }
 
-	#ifdef ARDUINO
-	    return Data;
-    #else
-        return std::move(data);
-    #endif
+	return data;
 }
 
 // ********************************************************************************************************

@@ -11,16 +11,17 @@ Use this module by invoking :command:`include` with the form:
 
 .. code-block:: cmake
 
-  include(DBoostFinder [BOOST_FIND_ARGS])
+  set(Boost_FIND_ARGS [BOOST_FIND_ARGS])
+  include(DBoostFinder)
 
-  Where BOOST_FIND_ARGS can be exactly 'find_package' command for Boost:
+  Where BOOST_FIND_ARGS can be the same options used when call 'find_package' command for Boost:
 
     [version] [EXACT]      # Minimum or EXACT version e.g. 1.67.0
     [REQUIRED]             # Fail with error if Boost is not found
     [COMPONENTS <libs>...] # Boost libraries by their canonical name
                            # e.g. "date_time" for "libboost_date_time"
     [OPTIONAL_COMPONENTS <libs>...]
-                           # Optional Boost libraries by their canonical name)
+                           # Optional Boost libraries by their canonical name
                            # e.g. "date_time" for "libboost_date_time"
 
     See :command:`FindBoost` for details.
@@ -36,7 +37,7 @@ Hints
 The all in one variable 'BOOST_FIND_ARGS' can be used set all the BOOST_... variables
 that wil be used by pass to :command:`FindBoost`.
 
-For example yiu can set:
+For example you can set:
 
 ``BOOST_ROOT``, ``BOOSTROOT``
   Preferred installation prefix.
