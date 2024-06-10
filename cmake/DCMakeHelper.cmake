@@ -152,21 +152,8 @@ else()
     message_c(${BOLD_MAGENTA} "Library <${BOLD_CYAN}${PROJECT_NAME}${BOLD_MAGENTA}> included as external project <<<<")
 endif()
 
-#include(generate_product_version)
-
 message_c(${BOLD_GREEN} "CMake version: ${CMAKE_VERSION}")
 message_c(${BOLD_GREEN} "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 if (CMAKE_CXX_STANDARD)
 	message_c(${BOLD_GREEN} "C++ std: ${CMAKE_CXX_STANDARD}")
 endif()
-
-## Debug/Release config
-add_custom_target(debug
-  COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=Debug ${CMAKE_SOURCE_DIR}
-  COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target all
-  COMMENT "Creating the executable in the debug mode.")
-
-add_custom_target(release
-  COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=Release ${CMAKE_SOURCE_DIR}
-  COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target all
-  COMMENT "Creating the executable in the release mode.")
