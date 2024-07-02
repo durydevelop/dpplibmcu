@@ -45,7 +45,7 @@
      * @return unsigned long microseconds value.
      */
     unsigned long micros(void) {
-        // c++ equivalent of arduino millis()
+        // c++ equivalent of arduino micros()
         return(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
     }
 
