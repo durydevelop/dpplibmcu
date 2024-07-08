@@ -62,10 +62,21 @@ option(GPIO_SUPPORT "Enable Gpio support if present." ${lg_FOUND})
 if (${PROJECT_NAME}_BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
     set(${PROJECT_NAME}_BUILD_SHARED_LIBS ON)
 endif()
+# GPIO support
+if (GPIO_SUPPORT)
+    set(${PROJECT_NAME}_GPIO_SUPPORT ON)
+    set(GPIO_SUPPORT ON)
+else()
+    set(${PROJECT_NAME}_GPIO_SUPPORT OFF)
+    set(GPIO_SUPPORT OFF)
+endif()
 # Examples
 if (${PROJECT_NAME}_BUILD_EXAMPLES OR BUILD_EXAMPLES)
     set(${PROJECT_NAME}_BUILD_EXAMPLES ON)
     set(BUILD_EXAMPLES OFF) # to prevent Raylib to build his examples
+else()
+    set(${PROJECT_NAME}_BUILD_EXAMPLES OFF)
+    set(BUILD_EXAMPLES OFF)
 endif()
 # Tests
 if (${PROJECT_NAME}_BUILD_TESTING OR BUILD_TESTING)
@@ -104,7 +115,7 @@ endif()
 if(NOT CMAKE_CONFIGURATION_TYPES)
     if(NOT CMAKE_BUILD_TYPE)
         message(STATUS "Setting build type to 'Debug' as none was specified.")
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE "Debug")
+        set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE "Debug")
     endif()
 endif()
 
@@ -145,7 +156,7 @@ if(GPIO_SUPPORT)
         add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
     endif()
 else()
-    message_c(${BOLD_YELLOW} "Library pigpio not found, gpio control are NOT enabled")
+    message_c(${BOLD_YELLOW} "Library lg not found, gpio control are NOT enabled")
 endif()
 
 #### Setup target
@@ -175,7 +186,7 @@ target_include_directories(${PROJECT_NAME}
         "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-if(GPIO_SUPPORT)
+if (GPIO_SUPPORT)
     target_link_libraries(${PROJECT_NAME} PUBLIC lgpio)
 endif()
 
@@ -239,7 +250,7 @@ message_c(${BOLD_CYAN} "Summary:")
 message_c(${BOLD_CYAN} "Project name:             ${PROJECT_NAME} - Version: ${PROJECT_VERSION}")
 message_c(${BOLD_CYAN} "PROJECT_IS_TOP_LEVEL:     ${PROJECT_IS_TOP_LEVEL}")
 message_c(${BOLD_CYAN} "BUILD_SHARED_LIBS:        ${${PROJECT_NAME}_BUILD_SHARED_LIBS}")
-message_c(${BOLD_CYAN} "GPIO enabled:             ${lg_FOUND}")
+message_c(${BOLD_CYAN} "GPIO enabled:             ${GPIO_SUPPORT}")
 message_c(${BOLD_CYAN} "Build drivers:            ${BUILD_DRIVERS}")
 message_c(${BOLD_CYAN} "Build examples:           ${${PROJECT_NAME}_BUILD_EXAMPLES}")
 message_c(${BOLD_CYAN} "Build testing:            ${${PROJECT_NAME}_BUILD_TESTING}")
