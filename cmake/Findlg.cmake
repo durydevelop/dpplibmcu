@@ -1,23 +1,14 @@
 #### Find Lg lib
 
 function(get_package_from_git)
-    include(FetchContent)
-    set(FETCHCONTENT_QUIET OFF)
-    set(FETCHCONTENT_UPDATES_DISCONNECTED OFF)
-    set(FETCHCONTENT_BASE_DIR _deps)
-    FetchContent_Declare(
-        ${ARGV0}
-        GIT_REPOSITORY ${ARGV1}
-        #GIT_TAG main
-        #GIT_PROGRESS TRUE
+    message_c("Add ${ARGV1} as external project")
+    include(ExternalProject)
+    find_program(MAKE_EXE NAMES gmake nmake make)
+    ExternalProject_Add(${ARGV0}
+        GIT_REPOSITORY    ${ARGV1}
+        #GIT_TAG           origin/release/1.2.3
+        BUILD_COMMAND     make
     )
-    # Check if population has already been performed
-    FetchContent_GetProperties(${ARGV0})
-    if(NOT ${ARGV0}_POPULATED)
-        FetchContent_Populate(${ARGV0})
-        add_subdirectory(${${ARGV0}_SOURCE_DIR} ${${ARGV0}_BINARY_DIR})
-    endif()
-    FetchContent_MakeAvailable(${ARGV0})
 endfunction()
 
 if (USE_EXTERNAL_LG)
@@ -25,6 +16,7 @@ if (USE_EXTERNAL_LG)
     message_c(${BOLD_MAGENTA} "${BOLD_WHITE}${PROJECT_NAME}${BOLD_MAGENTA} is finding <${BOLD_CYAN}lg${BOLD_MAGENTA}>")
     if (lg_GIT_REPOSITORY)
         # GIT forced
+        message_c(${BOLD_MAGENTA} "forced")
         get_package_from_git(lg ${lg_GIT_REPOSITORY})
         if (lg_FOUND)
             message_c(${BOLD_MAGENTA} "${BOLD_WHITE}${PROJECT_NAME}${BOLD_MAGENTA} <${BOLD_CYAN}lg${BOLD_MAGENTA}> loaded custom repo")
