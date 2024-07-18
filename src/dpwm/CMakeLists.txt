@@ -1,13 +1,26 @@
-set(FILES
-    #${CMAKE_CURRENT_SOURCE_DIR}/dsoftpwm
+if(lg_FOUND)
+    set(SRC
+        ${CMAKE_CURRENT_SOURCE_DIR}/sbc/dpwm.cpp
+    )
+    set(HDR
+        ${CMAKE_CURRENT_SOURCE_DIR}/sbc/dpwm.h
+    )
+    set(${PROJECT_NAME}_INCLUDE_DIRS "${${PROJECT_NAME}_INCLUDE_DIRS}" ${CMAKE_CURRENT_SOURCE_DIR}/sbc PARENT_SCOPE)
+else()
+    set(SRC
+        ${CMAKE_CURRENT_SOURCE_DIR}/avr/dpwm.cpp
+    )
+    set(HDR
+        ${CMAKE_CURRENT_SOURCE_DIR}/avr/dpwm.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/avr/DSoftPwmTimer.h
+    )
+    set(${PROJECT_NAME}_INCLUDE_DIRS "${${PROJECT_NAME}_INCLUDE_DIRS}" ${CMAKE_CURRENT_SOURCE_DIR}/avr PARENT_SCOPE)
+endif()
+
+set(HDR ${HDR}
     ${CMAKE_CURRENT_SOURCE_DIR}/dpwm
 )
 
-if(lg_FOUND)
-    add_subdirectory(sbc)
-else()
-    add_subdirectory(avr)
-endif()
-
-set(SRC_FILES ${SRC_FILES} ${FILES} PARENT_SCOPE)
-set(SRC_DIRS ${SRC_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
+set(${PROJECT_NAME}_SRC ${${PROJECT_NAME}_SRC} ${SRC} PARENT_SCOPE)
+set(${PROJECT_NAME}_HDR ${${PROJECT_NAME}_HDR} ${HDR} PARENT_SCOPE)
+set(${PROJECT_NAME}_INCLUDE_DIRS "${${PROJECT_NAME}_INCLUDE_DIRS}" ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <dutils>
 #include <INA228/INA228.h>
 
@@ -9,15 +10,16 @@ int main(int argc, char** argv) {
     
     if (argc == 3) {
         busID=atoi(argv[1]);
-        devAddr=atoi(argv[2]);
+        std::istringstream(argv[2]) >> std::hex >> devAddr;
     }
     else {
-        std::cout << "Usage: " << argv[0] << " <i2c bus> <INA226 address>" << std::endl <<
+        std::cout <<
+            "Usage: " << argv[0] << " <i2c bus> <INA226 address>" << std::endl <<
             "    <i2c bus> is the id of i2c device handled by /dev/i2c-..." << std::endl <<
-            "    <INA226 address> is the i2c address of the sensor, default 0x40 (64 DEC)" << std::endl <<
+            "    <INA226 address> is the i2c address of the sensor, default 0x40" << std::endl <<
             "Example:" << std::endl <<
             "Starts reading on /dev/i2c-1 at address 0x40" << std::endl <<
-            argv[0] << " 1 64" << std::endl;
+            argv[0] << " 1 0x40" << std::endl;
             
         exit(1);
     }

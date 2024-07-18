@@ -1,4 +1,34 @@
-########################################################################
+############################# Colors defines ##############################
+string(ASCII 27 Esc)
+set(END_COLOR   "${Esc}[m")
+set(BOLD        "${Esc}[1m")
+set(RED         "${Esc}[31m")
+set(GREEN       "${Esc}[32m")
+set(YELLOW      "${Esc}[33m")
+set(BLUE        "${Esc}[34m")
+set(MAGENTA     "${Esc}[35m")
+set(CYAN        "${Esc}[36m")
+set(WHITE       "${Esc}[37m")
+set(BOLD_RED     "${Esc}[1;31m")
+set(BOLD_GREEN   "${Esc}[1;32m")
+set(BOLD_YELLOW  "${Esc}[1;33m")
+set(BOLD_BLUE    "${Esc}[1;34m")
+set(BOLD_MAGENTA "${Esc}[1;35m")
+set(BOLD_CYAN    "${Esc}[1;36m")
+set(BOLD_WHITE   "${Esc}[1;37m")
+
+set(DCOLOR TRUE CACHE BOOL "Colors enabled")
+message(${BOLD_MAGENTA} "Colors enabled: this is BOLD_MAGENTA${END_COLOR}")
+
+############################### message_c() ################################
+## Colored log
+# ARGV0 is color
+# ARGV1 is text
+function(message_c)
+  message(${DSTATUS} ${ARGV0} ${ARGV1} ${END_COLOR})
+endfunction()
+
+############################### print_var() ###############################
 ## Print all cmake VARIABLES.
 # If an argument is given, only varialbles containing ARGV0 are printed.
 function(print_var)
@@ -22,10 +52,10 @@ function(print_var)
     endif()
 endfunction()
 
-########################################################################
+########################### print_target_prop() ###########################
 ## Print all TARGET VARIABLES
 # Varialble are listed using COMMAND cmake --help-property-list
-# If an argument is given, only varialbles containing ARGV0 (${tgt}) are printed.
+# If an argument is given, only varialbles containing ARGV0 are printed.
 function(print_target_prop tgt)
     message("#### Variables founds for TARGET " ${tgt} " ####")
     if (ARGV1)
@@ -66,10 +96,10 @@ function(print_target_prop tgt)
     endif()
 endfunction()
 
-########################################################################
+########################### print_target_set() ############################
 ## Print all TARGET VARIABLES
 # Varialble are listed using get_cmake_property(CMAKE_PROPERTY_LIST VARIABLES)
-# If an argument is given, only varialbles containing ARGV0 (${tgt}) are printed.
+# If an argument is given, only varialbles containing ARGV0 are printed.
 function(print_target_set tgt)
     message("#### Variables founds for TARGET " ${tgt} " ####")
     if(NOT TARGET ${tgt})
@@ -102,3 +132,28 @@ function(print_target_set tgt)
         endif()
     endforeach()
 endfunction()
+
+############################### Entrypoint ################################
+# Set stuff for stand-alone or lib project
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    # Stand-alone project
+    set(DSTATUS ">> ")
+	# Disable console popup
+	if(WIN32)
+		set(GUI_TYPE WIN32)
+		message(${DSTATUS} "Set WIN32 gui")
+	elseif(APPLE)
+		set(GUI_TYPE MACOSX_BUNDLE)
+		message(${DSTATUS} "Set APPLE gui")
+	endif()
+else()
+    # Part of other project
+    set(DSTATUS "${DSTATUS}>>>> ")
+    message_c(${BOLD_MAGENTA} "Library <${BOLD_CYAN}${PROJECT_NAME}${BOLD_MAGENTA}> included as external project <<<<")
+endif()
+
+message_c(${BOLD_GREEN} "CMake version: ${CMAKE_VERSION}")
+message_c(${BOLD_GREEN} "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+if (CMAKE_CXX_STANDARD)
+	message_c(${BOLD_GREEN} "C++ std: ${CMAKE_CXX_STANDARD}")
+endif()

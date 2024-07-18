@@ -94,11 +94,11 @@ bool DI2CMaster::writeByte(uint8_t slaveAddr, uint8_t cmdReg, uint8_t data)
 {
     // Compose i2c message (2 bytes)
     uint8_t sendBuf[2]={
-        cmdReg,
-        data
+        cmdReg, // 1 byte command
+        data    // 1 byte data
     };
-    struct i2c_msg message={ slaveAddr, 0, 1, sendBuf};
-    struct i2c_rdwr_ioctl_data ioctlData={ &message, 1 };
+    struct i2c_msg message={slaveAddr, 0, 2, sendBuf};
+    struct i2c_rdwr_ioctl_data ioctlData={&message, 1};
 
     // Perform I/O
     int ret=ioctl(busHandle, I2C_RDWR, &ioctlData);
@@ -108,7 +108,7 @@ bool DI2CMaster::writeByte(uint8_t slaveAddr, uint8_t cmdReg, uint8_t data)
         return false;
     }
 
-    if (message.len != 1) {
+    if (message.len != 2) {
         lastErrorString="msgs len missing real size";
         return false;
     }
@@ -132,8 +132,8 @@ bool DI2CMaster::writeWord(uint8_t slaveAddr, uint8_t cmdReg, uint16_t data)
         cmdReg,                     // 1 byte command (aka register)
         HIBYTE(data), LOBYTE(data)  // 2 bytes data
     };
-    struct i2c_msg message={ slaveAddr, 0, 3, sendBuf};
-    struct i2c_rdwr_ioctl_data ioctlData={ &message, 1 };
+    struct i2c_msg message={slaveAddr, 0, 3, sendBuf};
+    struct i2c_rdwr_ioctl_data ioctlData={&message, 1};
 
     // Perform I/O
     int ret=ioctl(busHandle, I2C_RDWR, ioctlData);
@@ -175,8 +175,8 @@ bool DI2CMaster::writeWord(uint8_t slaveAddr, uint8_t cmdReg, uint16_t data)
     uint8_t sendBuf[realLen]={cmdReg};
     memcpy(&sendBuf[1],data,dataLen);
     
-    struct i2c_msg message={ slaveAddr, 0, realLen, sendBuf};
-    struct i2c_rdwr_ioctl_data ioctlData={ &message, 1 };
+    struct i2c_msg message={slaveAddr, 0, realLen, sendBuf};
+    struct i2c_rdwr_ioctl_data ioctlData={&message, 1};
 
     // Perform I/O
     int ret=ioctl(busHandle, I2C_RDWR, ioctlData);
@@ -186,7 +186,7 @@ bool DI2CMaster::writeWord(uint8_t slaveAddr, uint8_t cmdReg, uint16_t data)
         return false;
     }
 
-    if (message.len != 3) {
+    if (message.len != realLen) {
         lastErrorString="msgs len missing real size";
         return false;
     }
@@ -206,8 +206,8 @@ uint8_t DI2CMaster::recvByte(uint8_t slaveAddr)
     uint8_t recvByte=0xFF;
 
     // Compose i2c message
-    struct i2c_msg message={ slaveAddr, I2C_M_RD, 1, &recvByte };
-    struct i2c_rdwr_ioctl_data ioctlData={ &message, 1 };
+    struct i2c_msg message={slaveAddr, I2C_M_RD, 1, &recvByte};
+    struct i2c_rdwr_ioctl_data ioctlData={&message, 1};
 
     // Perform I/O
     ioctl(busHandle, I2C_RDWR, &ioctlData);
@@ -233,8 +233,8 @@ uint16_t DI2CMaster::recvWord(uint8_t slaveAddr)
     uint8_t recvWord[2]={ 0xFF, 0xFF };
 
     // Compose i2c message
-    struct i2c_msg message={ slaveAddr, I2C_M_RD, 2, recvWord };
-    struct i2c_rdwr_ioctl_data ioctlData={ &message, 1 };
+    struct i2c_msg message={slaveAddr, I2C_M_RD, 2, recvWord};
+    struct i2c_rdwr_ioctl_data ioctlData={&message, 1};
 
     // Perform I/O
     ioctl(busHandle, I2C_RDWR, &ioctlData);
@@ -266,11 +266,11 @@ uint16_t DI2CMaster::recvWord(uint8_t slaveAddr)
     }
 
     // Compose i2c message
-    struct i2c_msg message={ slaveAddr, I2C_M_RD, recvLen, recvBuffer };
-    struct i2c_rdwr_ioctl_data ioctlData={ &message, 1 };
+    struct i2c_msg message = {slaveAddr, I2C_M_RD, recvLen, recvBuffer};
+    struct i2c_rdwr_ioctl_data ioctlData={&message, 1};
 
     // Perform I/O
-    int ret=ioctl(busHandle, I2C_RDWR, &recvBuffer);
+    int ret=ioctl(busHandle, I2C_RDWR, &ioctlData);
     lastErrorString=strerror(errno);
 
     if (ret < 0) {
@@ -301,10 +301,10 @@ uint8_t DI2CMaster::askForByte(uint8_t slaveAddr, uint8_t cmdReg)
 
     // Compose i2c messages array
     struct i2c_msg messages[]={
-        { slaveAddr, 0, 1,  &cmdReg},
-        { slaveAddr, I2C_M_RD | I2C_M_NOSTART, 1, &recvByte },
+        {slaveAddr, 0, 1,  &cmdReg},
+        {slaveAddr, I2C_M_RD | I2C_M_NOSTART, 1, &recvByte},
     };
-    struct i2c_rdwr_ioctl_data ioctlData = { messages, 2 };
+    struct i2c_rdwr_ioctl_data ioctlData = {messages, 2};
 
     // Perform I/O
     ioctl(busHandle, I2C_RDWR, &ioctlData);
@@ -333,10 +333,10 @@ uint16_t DI2CMaster::askForWord(uint8_t slaveAddr, uint8_t cmdReg)
 
     // Compose i2c messages array
     struct i2c_msg messages[]={
-        { slaveAddr, 0, 1,  &cmdReg},
-        { slaveAddr, I2C_M_RD | I2C_M_NOSTART, 2, recvWord },
+        {slaveAddr, 0, 1,  &cmdReg},
+        {slaveAddr, I2C_M_RD | I2C_M_NOSTART, 2, recvWord},
     };
-    struct i2c_rdwr_ioctl_data ioctlData = { messages, 2 };
+    struct i2c_rdwr_ioctl_data ioctlData = {messages, 2};
 
     // Perform I/O
     ioctl(busHandle, I2C_RDWR, &ioctlData);
@@ -346,8 +346,40 @@ uint16_t DI2CMaster::askForWord(uint8_t slaveAddr, uint8_t cmdReg)
         lastErrorString="WARNING: msgs len missing real size";
     }
 
-    //printf("recvWord: %02X %02X\r\n",recvWord[0],recvWord[1]);
+    printf("recvWord: %02X %02X\r\n",recvWord[0],recvWord[1]);
     return WORD(recvWord[0],recvWord[1]);
+}
+
+/**
+ * @brief Read a WORD from specified i2c register of the slave device.
+ * ...that means "send 1 command byte and read 2 bytes"...
+ * 
+ * @param slaveAddr -> i2c slave device address.
+ * @param cmdReg    -> i2c device command (aka register).
+ * @return WORD value read. If returned vaue is 0xFFFF can be that something was wrong.
+ */
+uint32_t DI2CMaster::askForDWord(uint8_t slaveAddr, uint8_t cmdReg)
+{
+    // Create recv buffer (4 bytes)
+    uint8_t recvDWord[4]={ 0xFF, 0xFF, 0xFF, 0xFF };
+
+    // Compose i2c messages array
+    struct i2c_msg messages[]={
+        {slaveAddr, 0, 1,  &cmdReg},
+        {slaveAddr, I2C_M_RD | I2C_M_NOSTART, 4, recvDWord},
+    };
+    struct i2c_rdwr_ioctl_data ioctlData = {messages, 2};
+
+    // Perform I/O
+    ioctl(busHandle, I2C_RDWR, &ioctlData);
+    lastErrorString=strerror(errno);
+
+    if (messages[0].len != 1 || messages[1].len != 4) {
+        lastErrorString="WARNING: msgs len missing real size";
+    }
+
+    //printf("recvWord: %02X %02X\r\n",recvDWord[0],recvDWord[1]);
+    return DWORD_B(recvDWord[0],recvDWord[1],recvDWord[2],recvDWord[3]);
 }
 
 /**
@@ -370,10 +402,10 @@ bool DI2CMaster::askForBuf(uint8_t slaveAddr, uint8_t cmdReg, uint8_t *recvBuffe
 
     // Create i2c messages array
     struct i2c_msg messages[]={
-        { slaveAddr, 0, 1,  &cmdReg},
-        { slaveAddr, I2C_M_RD | I2C_M_NOSTART, recvLen, recvBuffer },
+        {slaveAddr, 0, 1,  &cmdReg},
+        {slaveAddr, I2C_M_RD | I2C_M_NOSTART, recvLen, recvBuffer},
     };
-    struct i2c_rdwr_ioctl_data ioctlData = { messages, 2 };
+    struct i2c_rdwr_ioctl_data ioctlData = {messages, 2};
 
     // Perform I/O
     int ret=ioctl(busHandle, I2C_RDWR, &ioctlData);
@@ -400,8 +432,8 @@ bool DI2CMaster::askForBuf(uint8_t slaveAddr, uint8_t cmdReg, uint8_t *recvBuffe
 bool DI2CMaster::sendByte(uint8_t slaveAddr, uint8_t data)
 {
     // Create i2c message
-    i2c_msg message={slaveAddr,0,1,&data};
-    struct i2c_rdwr_ioctl_data ioctlData = { &message, 1 };
+    i2c_msg message={slaveAddr, 0, 1, &data};
+    struct i2c_rdwr_ioctl_data ioctlData={&message, 1};
 
     // Perform I/O
     int ret=ioctl(busHandle, I2C_RDWR, &ioctlData);
@@ -431,8 +463,8 @@ bool DI2CMaster::sendWord(uint8_t slaveAddr, uint16_t data)
     uint8_t sendWord[2]={HIBYTE(data), LOBYTE(data)};
 
     // Create i2c message
-    i2c_msg message={slaveAddr,0,2,sendWord};
-    struct i2c_rdwr_ioctl_data ioctData = { &message, 1 };
+    i2c_msg message={slaveAddr, 0, 2, sendWord};
+    struct i2c_rdwr_ioctl_data ioctData={&message, 1};
 
     // Perform I/O
     int ret=ioctl(busHandle, I2C_RDWR, &ioctData);
@@ -489,10 +521,10 @@ bool DI2CMaster::sendBuf(uint8_t slaveAddr, uint8_t *data, uint16_t dataLen)
             flags=I2C_M_NOSTART;
         }
         printf("flags=%d\r\n",flags);
-        messages[ixMsg]={slaveAddr,0,msgLen,txData};
+        messages[ixMsg]={slaveAddr, 0, msgLen, txData};
         txData+=msgLen;
     }
-    struct i2c_rdwr_ioctl_data ioctData = { messages, msgCount };
+    struct i2c_rdwr_ioctl_data ioctData={messages, msgCount};
 
     // Perform I/O
     int ret=ioctl(busHandle, I2C_RDWR, &ioctData);

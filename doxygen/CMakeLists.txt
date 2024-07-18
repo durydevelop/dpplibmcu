@@ -1,13 +1,17 @@
-cmake_minimum_required (VERSION 2.8)
 
+
+# https://www.doxygen.nl/manual/customize.html
+# https://cmake.org/cmake/help/latest/module/FindDoxygen.html#command:doxygen_add_docs
+
+# TODO:
 # https://github.com/kracejic/EmptyDoxygenCMake/tree/master?tab=readme-ov-file
-# This CMake file will add doc target for convenient documentation generation.
-#   * PlantUML = for easy generation of custom diagrams
+# PlantUML = for easy generation of custom diagrams
+
 # sudo apt-get install graphviz
 # sudo apt-get install mscgen
 # sudo apt-get install dia
 
-option(DOXYGEN_THEME_FOLDER "Custom theme folder")
+option(DOXYGEN_THEME "Custom theme folder")
 
 find_package(
     Doxygen
@@ -33,10 +37,19 @@ if(DOXYGEN_FOUND)
         *.md
     )
     set(DOXYGEN_EXCLUDE_PATTERNS _*)
+
+    # Navigation
+    set(DOXYGEN_DISABLE_INDEX YES)
+    set(DOXYGEN_GENERATE_TREEVIEW YES)
+    set(DOXYGEN_FULL_SIDEBAR NO)
+
+    # Locale
+    if (DOXYGEN_LANGUAGE)
+        set(DOXYGEN_OUTPUT_LANGUAGE ${DOXYGEN_LANGUAGE})
+    endif()
     
     # Misc
     set(DOXYGEN_USE_MDFILE_AS_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md")
-    set(DOXYGEN_GENERATE_TREEVIEW YES)
     set(DOXYGEN_ALWAYS_DETAILED_SEC YES)
     set(DOXYGEN_DISTRIBUTE_GROUP_DOC YES)
     set(DOXYGEN_QUIET YES)
@@ -46,15 +59,11 @@ if(DOXYGEN_FOUND)
     set(DOXYGEN_WARN_NO_PARAMDOC NO)
 
     # Theme
-    if (DOXYGEN_THEME_FOLDER)
+    if (DOXYGEN_THEME)
         # defined from variable
-        message_c(${BOLD_GREEN} "Theme: ${DOXYGEN_THEME_FOLDER}")
-        add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/themes/${DOXYGEN_THEME_FOLDER})
-        print_var(DOXYGEN)
-    else()
-        # use default
-        message_c(${BOLD_GREEN} "Theme: default")
-        add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/themes/default)
+        message_c(${BOLD_GREEN} "Custom theme: ${DOXYGEN_THEME}")
+        set(DOXYGEN_GENERATE_HTML YES)
+        add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/themes/${DOXYGEN_THEME})
     endif()
         
     # Graphviz
@@ -106,8 +115,6 @@ if(DOXYGEN_FOUND)
 
     # use with: /// @todo Do more stuff.
     set(DOXYGEN_GENERATE_TODOLIST YES)
-
-    set(DOXYGEN_OUTPUT_LANGUAGE Italian)
 
     # https://cmake.org/cmake/help/latest/module/FindDoxygen.html#command:doxygen_add_docs
     doxygen_add_docs(doc
