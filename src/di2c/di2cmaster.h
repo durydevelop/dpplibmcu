@@ -28,6 +28,7 @@ class DI2CMaster {
         uint16_t askForWord(uint8_t slaveAddr, uint8_t cmdReg);
         uint32_t askForDWord(uint8_t slaveAddr, uint8_t cmdReg);
         bool askForBuf(uint8_t slaveAddr, uint8_t cmdReg, uint8_t *recvBuf, uint16_t recvLen);
+        std::string askForString(uint8_t slaveAddr, uint8_t cmdReg);
 
         // Raw send methods
         bool sendByte(uint8_t slaveAddr, uint8_t data);

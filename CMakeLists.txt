@@ -31,14 +31,34 @@ list (REMOVE_DUPLICATES CMAKE_MODULE_PATH)
 include(DCMakeHelper)
 
 ## Default options
-option(${PROJECT_NAME}_BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" OFF)
-option(${PROJECT_NAME}_INSTALL "Create install target" OFF)
-if (PROJECT_IS_TOP_LEVEL)
-    set(${PROJECT_NAME}_BUILD_DRIVERS  ON)
-    set(${PROJECT_NAME}_INSTALL ON)
+if(CMAKE_VERSION VERSION_LESS 3.21)
+    if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+        set(PROJECT_IS_TOP_LEVEL TRUE)
+    else()
+        set(PROJECT_IS_TOP_LEVEL FALSE)
+    endif()
+#[[ oppure
+    get_property(not_top DIRECTORY PROPERTY PARENT_DIRECTORY)
+    if(not_top)
+        set(PROJECT_IS_TOP_LEVEL FALSE)
+    else()
+        set(PROJECT_IS_TOP_LEVEL TRUE)
+    endif()
+]]#
 endif()
-option(${PROJECT_NAME}_BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" OFF)
-option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" OFF)
+
+if (PROJECT_IS_TOP_LEVEL)
+    option(${PROJECT_NAME}_BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" ON)
+    option(${PROJECT_NAME}_INSTALL "Create install target" ON)
+    option(${PROJECT_NAME}_BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" ON)
+    option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" ON)
+else()
+    option(${PROJECT_NAME}_BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" OFF)
+    option(${PROJECT_NAME}_INSTALL "Create install target" OFF)
+    option(${PROJECT_NAME}_BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" OFF)
+    option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" OFF)
+endif()
+
 ## USE_EXTERNAL_DMPACKET
 # TODO: quando DMPacket sarà stand alone
 option(USE_EXTERNAL_DMPACKET "Do not use embedded version of DMPacket library" OFF)
@@ -153,12 +173,12 @@ if(GPIO_SUPPORT)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dservo)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/di2c)
     # Drivers for some external peripherlas (sensors, etc)
-    if (BUILD_DRIVERS)
+    if (${PROJECT_NAME}_BUILD_DRIVERS)
         message_c("Building drivers for peripherals")
         add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/drivers)
     endif()
     # Examples
-    if (BUILD_EXAMPLES)
+    if (${PROJECT_NAME}_BUILD_EXAMPLES)
         message_c("Building examples")
         add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
     endif()
@@ -197,6 +217,11 @@ if (GPIO_SUPPORT)
     target_link_libraries(${PROJECT_NAME} PUBLIC lgpio)
 endif()
 
+if (CMAKE_VERSION VERSION_LESS 3.28)
+    message_c(${BOLD_YELLOW} "Install is not supported, cannot create correct folder structure. You need to use cmake 3.28 or higher")
+    set(${PROJECT_NAME}_INSTALL FALSE)
+endif()
+
 #### Install stuff
 if (${${PROJECT_NAME}_INSTALL})
     # Enable RPATH support for installed binaries and libraries
@@ -219,7 +244,6 @@ if (${${PROJECT_NAME}_INSTALL})
             RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                     COMPONENT bin
             PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}" COMPONENT dev
         )
-        message(FATAL "Install is not supported, cannot create correct folder structure. You need to use cmake 3.28 or higher")
     else()
         # Using FILE_SET
         install(TARGETS ${PROJECT_NAME}
@@ -260,4 +284,4 @@ message_c(${BOLD_CYAN} "BUILD_SHARED_LIBS:        ${${PROJECT_NAME}_BUILD_SHARED
 message_c(${BOLD_CYAN} "GPIO enabled:             ${${PROJECT_NAME}_GPIO_SUPPORT}")
 message_c(${BOLD_CYAN} "Build drivers:            ${${PROJECT_NAME}_BUILD_DRIVERS}")
 message_c(${BOLD_CYAN} "Build examples:           ${${PROJECT_NAME}_BUILD_EXAMPLES}")
-message_c(${BOLD_CYAN} "Build testing:            ${${PROJECT_NAME}_BUILD_TESTING}")
+message_c(${BOLD_CYAN} "Build testing:            ${${PROJECT_NAME}_BUILD_TESTING} (NOT YET)")

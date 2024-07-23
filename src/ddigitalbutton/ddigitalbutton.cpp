@@ -40,6 +40,9 @@ DDigitalButton::DDigitalButton(int digitalPin, DGpioHandle gpioHandle)
     else {
         if (isGpioReady(gpioHandle)) {
             handle=gpioHandle;
+            if (lastResult > 0) {
+            lastResult=DERR_CLASS_NOT_BEGUN;
+        }
         }
         else {
             lastResult=DERR_GPIO_NOT_READY;

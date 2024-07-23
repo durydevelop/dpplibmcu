@@ -28,7 +28,7 @@ DResult initGpio(int gpioDevice, DGpioHandle& handle)
             return false;
         }
     #endif
-    return true;
+    return DRES_OK;
 }
 
 

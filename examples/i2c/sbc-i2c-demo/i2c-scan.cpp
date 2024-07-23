@@ -4,7 +4,7 @@
 #include <di2c>
 #include <dmpacket>
 
-int busID=1;
+int busID=-1;
 uint8_t startAddr=0x08;
 uint8_t endAddr=0x77;
 DI2CBus::DScanMode mode=DI2CBus::SCAN_MODE_READ;
@@ -23,10 +23,15 @@ void showUsage(std::string binaryName)
             "Scan /dev/i2c-1 bus from 0x08 to 0x77 using read mode:" << std::endl <<
             binaryName << " 1" << std::endl <<
             "Scan /dev/i2c-1 bus from 0x00 to 0x7F using write mode:" << std::endl <<
-            binaryName << " 1 -s0x00 -e0x77 -mw" << std::endl;
+            binaryName << " 1 -s0x00 -e0x77 -m w" << std::endl;
 }
 
 bool parseCmdLine(int argc, char *argv[]) {
+    if (argc < 2) {
+        std::cerr << "Missing parameters" << std::endl;
+        showUsage(argv[0]);
+        return false;
+    }
     const std::vector<std::string> args(argv + 1, argv + argc);
 
     for(auto itArg = std::begin(args); itArg != std::end(args); itArg++) {
@@ -65,7 +70,7 @@ bool parseCmdLine(int argc, char *argv[]) {
         }
         else {
             if (busID == -1) {
-                busID=atoi(argv[1]);
+                busID=atoi(sArg.c_str());
             }
             else {
                 std::cerr << "option " << sArg << " is not valid" << std::endl;

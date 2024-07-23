@@ -38,12 +38,12 @@ if(lg_FOUND)
     target_link_libraries(i2c-scan PUBLIC dpplibmcu::dpplibmcu)
     target_link_libraries(i2c-scan PUBLIC dmpacket::dmpacket)
 
-    # i2c-master
-    add_executable(i2c-master
-        ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/i2c-master.cpp
+    # i2c-ask
+    add_executable(i2c-ask
+        ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/i2c-ask.cpp
     )
-    target_link_libraries(i2c-master PUBLIC dpplibmcu::dpplibmcu)
-    target_link_libraries(i2c-master PUBLIC dmpacket::dmpacket)
+    target_link_libraries(i2c-ask PUBLIC dpplibmcu::dpplibmcu)
+    target_link_libraries(i2c-ask PUBLIC dmpacket::dmpacket)
 
     # ina226 (current / voltage sensor)
     add_executable(ina226
