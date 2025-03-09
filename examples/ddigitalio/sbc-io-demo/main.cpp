@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
+    //lguSetInternal(LG_CFG_ID_DEBUG_LEVEL,12);
     DGpioChip chip(0);
     if (!chip.isReady()) {
         std::cout << "DGpioChip not ready: " << chip.getLastError() << std::endl;

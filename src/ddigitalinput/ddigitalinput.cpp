@@ -39,7 +39,6 @@ void loop()
 
 /**
  * @param digitalPin	->	pin da utilizzare come input
- * @param pullUp		->	se true viene attivata la resistena interna di pull-up
  */
 DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
 {

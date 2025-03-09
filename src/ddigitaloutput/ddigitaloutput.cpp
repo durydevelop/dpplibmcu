@@ -165,5 +165,6 @@ bool DDigitalOutput::isAttached(void)
 
 std::string DDigitalOutput::getLastError(void)
 {
+    //return std::string(lguErrorText(lastResult));
     return getErrorCode(lastResult);
 }
