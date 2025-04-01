@@ -59,6 +59,12 @@ DI2CMaster::DI2CMaster(DI2CBusHandle i2cBusHandle, uint16_t i2cMaxBufferLenght)
 {
     busHandle=i2cBusHandle;
     maxBufLenght=i2cMaxBufferLenght;
+    if (busHandle >= 0) {
+        lastErrorString="Success";
+    }
+    else {
+        lastErrorString="Bus handle not valid";
+    }
 }
 
 DI2CMaster::~DI2CMaster()
@@ -386,8 +392,10 @@ uint32_t DI2CMaster::askForDWord(uint8_t slaveAddr, uint8_t cmdReg)
  * @brief Read a BUFFER from specified i2c register of the slave device.
  * ...that means "send 1 command byte and read N bytes"...
  * 
- * @param slaveAddr -> i2c slave device address.
- * @param cmdReg    -> i2c device command (aka register).
+ * @param slaveAddr     -> i2c slave device address.
+ * @param cmdReg        -> i2c device command (aka register).
+ * @param recvBuffer    -> pointer to a buffer for received data.
+ * @param recvLen       -> lenght of data to read.
  * @return true on success, otherwise false (you can retrive the error by calling getLastError()).
  */
 bool DI2CMaster::askForBuf(uint8_t slaveAddr, uint8_t cmdReg, uint8_t *recvBuffer, uint16_t recvLen)
@@ -395,7 +403,6 @@ bool DI2CMaster::askForBuf(uint8_t slaveAddr, uint8_t cmdReg, uint8_t *recvBuffe
     if (maxBufLenght > 0) {
         if (recvLen > maxBufLenght) {
             // Limit receive lenght
-            /// @todo or return error?
             recvLen=maxBufLenght;
         }
     }

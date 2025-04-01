@@ -11,6 +11,7 @@ int main(int argc, char** argv)
     DI2CBus::scanI2CBusses(adapterList);
 
     // Show result
+    printf("I2C bus adapter list:");
     printf("Dev\t%-10s\t%-32s\t%s\n","Type","Name","Algo");
     printf("---------------------------------------------------------------------------\n");
     for (auto adapter : adapterList) {

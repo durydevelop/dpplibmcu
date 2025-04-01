@@ -39,7 +39,6 @@ void loop()
 
 /**
  * @param digitalPin	->	pin da utilizzare come input
- * @param pullUp		->	se true viene attivata la resistena interna di pull-up
  */
 DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
 {
@@ -54,6 +53,9 @@ DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
         // Try init on first device
         //std::cout << "auto set handle" << std::endl;
         lastResult=initGpio(0,handle);
+        if (lastResult > 0) {
+            lastResult=DERR_CLASS_NOT_BEGUN;
+        }
     }
     else {
         if (isGpioReady(gpioHandle)) {

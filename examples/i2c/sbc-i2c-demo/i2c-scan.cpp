@@ -1,62 +1,89 @@
 #include <iostream>
+#include <sstream>
 #include <dutils>
 #include <di2c>
 #include <dmpacket>
 
+int busID=-1;
+uint8_t startAddr=0x08;
+uint8_t endAddr=0x77;
+DI2CBus::DScanMode mode=DI2CBus::SCAN_MODE_READ;
+
+// *********************************************** Command line *************************************************************************
 void showUsage(std::string binaryName)
 {
-    std::cout << "Usage: " << binaryName << " <i2c bus> [start address = 0x08] [end address = 0x77] [mode]" << std::endl <<
-            "    <i2c bus> is the id of i2c device handled by /dev/i2c-..." << std::endl <<
-            "    [star address] scanning start address (default 0x08)" << std::endl <<
-            "    [end address] scanning end address (default 0x77)" << std::endl <<
-            "    [mode] scan mode: \"r\" for read mode or \"w\" for write mode (default \"r\")" << std::endl <<
+    std::cout <<
+        "Usage: " << binaryName << " <bus id> [options]" << std::endl <<
+        "    -h, --help                 Show this help" << std::endl <<
+        "    <bus id>                   Id of the I2C bus. Usually is 1 but you can retrive availables busses using 'i2c-bus-info' tools or by command 'ls /dev/i2c-*'" << std::endl <<
+        "    -s, --start-addr           Scanning start address (default 0x08)" << std::endl <<
+        "    -e, --end-addr             Scanning end address (default 0x77)" << std::endl <<
+        "    -m, --mode                 Scan mode: \"r\" for read mode or \"w\" for write mode (default \"r\")" << std::endl <<
             "Example:" << std::endl <<
-            "Scan from 0x08 to 0x77 (119) using read mode on /dev/i2c-1 bus:" << std::endl <<
+            "Scan /dev/i2c-1 bus from 0x08 to 0x77 using read mode:" << std::endl <<
             binaryName << " 1" << std::endl <<
-            "Scan from 0x00 to 0x7F (127) using write mode on /dev/i2c-1 bus:" << std::endl <<
-            binaryName << " 1 0 127 w" << std::endl;
+            "Scan /dev/i2c-1 bus from 0x00 to 0x7F using write mode:" << std::endl <<
+            binaryName << " 1 -s0x00 -e0x77 -m w" << std::endl;
 }
 
-int main(int argc, char** argv) {
+bool parseCmdLine(int argc, char *argv[]) {
+    if (argc < 2) {
+        std::cerr << "Missing parameters" << std::endl;
+        showUsage(argv[0]);
+        return false;
+    }
+    const std::vector<std::string> args(argv + 1, argv + argc);
 
-    int busID=1;
-    uint8_t startAddr=0x08;
-    uint8_t endAddr=0x77;
-    DI2CBus::DScanMode mode=DI2CBus::SCAN_MODE_READ;
+    for(auto itArg = std::begin(args); itArg != std::end(args); itArg++) {
+        std::string sArg=*itArg;
+        if (sArg == "-h" || sArg == "--help") {
+            showUsage(argv[0]);
+            return false;
+        }
 
-    if (argc > 1) {
-        for (int ixA=1; ixA<argc; ixA++) {
-            std::string arg(argv[ixA]);
-            if (arg.substr(0,2) == "-h" || arg.substr(0,6) == "--help") {
-                // Show usage
-                showUsage(argv[0]);
-                exit(1);
+        // Check for option type
+        if (sArg[0] == '-' && itArg+1 == std::end(args)) {
+            std::cerr << "Option " << sArg << " needs a value"<< std::endl;
+            return false;
+        }
+        else if (sArg == "-s" || sArg == "--start-addr") {
+            // Custom port
+            std::istringstream(*(++itArg)) >> std::hex >> startAddr;
+        }
+        else if (sArg == "-e" || sArg == "--end-addr") {
+            // Costom bind address
+            std::istringstream(*(++itArg)) >> std::hex >> endAddr;
+        }
+        else if (sArg == "-m" || sArg == "--mode") {
+            // Custom web socket url
+            std::string m=*(++itArg);
+            if (m == "r" || m == "R") {
+                mode=DI2CBus::SCAN_MODE_READ;
             }
-            else if (ixA == 1) {
-                busID=atoi(argv[ixA]);
+            else if (m == "w" || m == "W") {
+                mode=DI2CBus::SCAN_MODE_WRITE;
             }
-            else if (ixA == 2) {
-                startAddr=atoi(argv[ixA]);
+            else {
+                std::cerr << "Option " << sArg << " is not supported"<< std::endl;
             }
-            else if (ixA == 3) {
-                endAddr=atoi(argv[ixA]);
+            return true;
+        }
+        else {
+            if (busID == -1) {
+                busID=atoi(sArg.c_str());
             }
-            else if (ixA == 4) {
-                if (std::string(argv[ixA]) == "r") {
-                    mode=DI2CBus::SCAN_MODE_READ;
-                }
-                if (std::string(argv[ixA]) == "w") {
-                    mode=DI2CBus::SCAN_MODE_WRITE;
-                }
-                else {
-                    showUsage(argv[0]);
-                    exit(1);
-                }
+            else {
+                std::cerr << "option " << sArg << " is not valid" << std::endl;
+                return false;
             }
         }
     }
-    else {
-        showUsage(argv[0]);
+    return true;
+}
+// **************************************************************************************************************************************
+
+int main(int argc, char* argv[]) {
+    if (!parseCmdLine(argc,argv)) {
         exit(1);
     }
 

@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.13)
+Phcmake_minimum_required(VERSION 3.13)
 
 ## Create project
 project(dpplibmcu
-    VERSION 0.1.0
+    VERSION 0.2.0
     LANGUAGES CXX
 )
 
@@ -44,15 +44,35 @@ find_package(lg)
 option(GPIO_SUPPORT "Enable Gpio support if present." ${lg_FOUND})
 
 ## Default options
+if(CMAKE_VERSION VERSION_LESS 3.21)
+    if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+        set(PROJECT_IS_TOP_LEVEL TRUE)
+    else()
+        set(PROJECT_IS_TOP_LEVEL FALSE)
+    endif()
+#[[ oppure
+    get_property(not_top DIRECTORY PROPERTY PARENT_DIRECTORY)
+    if(not_top)
+        set(PROJECT_IS_TOP_LEVEL FALSE)
+    else()
+        set(PROJECT_IS_TOP_LEVEL TRUE)
+    endif()
+]]#
+endif()
+
 if (PROJECT_IS_TOP_LEVEL)
     option(BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" ${GPIO_SUPPORT})
     option(${PROJECT_NAME}_INSTALL "Create install target" ${GPIO_SUPPORT})
+    option(${PROJECT_NAME}_BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" ON)
+    option(${PROJECT_NAME}_INSTALL "Create install target" ON)
+    option(${PROJECT_NAME}_BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" ON)
+    option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" ON)
 else()
-    option(BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" OFF)
+    option(${PROJECT_NAME}_BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" OFF)
     option(${PROJECT_NAME}_INSTALL "Create install target" OFF)
+    option(${PROJECT_NAME}_BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" OFF)
+    option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" OFF)
 endif()
-option(BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" ${BUILD_DRIVERS})
-option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" OFF)
 
 ## USE_EXTERNAL_DMPACKET
 # TODO: quando DMPacket sarà stand alone
@@ -80,6 +100,14 @@ if (${PROJECT_NAME}_BUILD_EXAMPLES OR BUILD_EXAMPLES)
 else()
     set(${PROJECT_NAME}_BUILD_EXAMPLES OFF)
     set(BUILD_EXAMPLES OFF)
+endif()
+# Drivers
+if (${PROJECT_NAME}_BUILD_DRIVERS OR BUILD_DRIVERS)
+    set(${PROJECT_NAME}_BUILD_DRIVERS ON)
+    set(BUILD_DRIVERS ON)
+else()
+    set(${PROJECT_NAME}_BUILD_DRIVERS OFF)
+    set(BUILD_DRIVERS OFF)
 endif()
 # Tests
 if (${PROJECT_NAME}_BUILD_TESTING OR BUILD_TESTING)
@@ -193,6 +221,11 @@ if (GPIO_SUPPORT)
     target_link_libraries(${PROJECT_NAME} PUBLIC lgpio)
 endif()
 
+if (CMAKE_VERSION VERSION_LESS 3.28)
+    message_c(${BOLD_YELLOW} "Install is not supported, cannot create correct folder structure. You need to use cmake 3.28 or higher")
+    set(${PROJECT_NAME}_INSTALL FALSE)
+endif()
+
 #### Install stuff
 if (${${PROJECT_NAME}_INSTALL})
     # Enable RPATH support for installed binaries and libraries
@@ -215,7 +248,6 @@ if (${${PROJECT_NAME}_INSTALL})
             RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                     COMPONENT bin
             PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}" COMPONENT dev
         )
-        message(FATAL "Install is not supported, cannot create correct folder structure. You need to use cmake 3.28 or higher")
     else()
         # Using FILE_SET
         install(TARGETS ${PROJECT_NAME}
@@ -253,7 +285,7 @@ message_c(${BOLD_CYAN} "Summary:")
 message_c(${BOLD_CYAN} "Project name:             ${PROJECT_NAME} - Version: ${PROJECT_VERSION}")
 message_c(${BOLD_CYAN} "PROJECT_IS_TOP_LEVEL:     ${PROJECT_IS_TOP_LEVEL}")
 message_c(${BOLD_CYAN} "BUILD_SHARED_LIBS:        ${${PROJECT_NAME}_BUILD_SHARED_LIBS}")
-message_c(${BOLD_CYAN} "GPIO enabled:             ${GPIO_SUPPORT}")
-message_c(${BOLD_CYAN} "Build drivers:            ${BUILD_DRIVERS}")
+message_c(${BOLD_CYAN} "GPIO enabled:             ${${PROJECT_NAME}_GPIO_SUPPORT}")
+message_c(${BOLD_CYAN} "Build drivers:            ${${PROJECT_NAME}_BUILD_DRIVERS}")
 message_c(${BOLD_CYAN} "Build examples:           ${${PROJECT_NAME}_BUILD_EXAMPLES}")
-message_c(${BOLD_CYAN} "Build testing:            ${${PROJECT_NAME}_BUILD_TESTING}")
+message_c(${BOLD_CYAN} "Build testing:            ${${PROJECT_NAME}_BUILD_TESTING} (NOT YET)")

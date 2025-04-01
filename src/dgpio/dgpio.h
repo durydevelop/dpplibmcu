@@ -49,13 +49,24 @@ enum DPinFlags {
     PULL_NONE=   128
 };
 
-DResult initGpio(int gpioDevice, DGpioHandle& handle);
-bool isGpioReady(DGpioHandle& handle);
-DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags, DGpioHandle handle);
-int readPin(uint8_t pin, DGpioHandle handle);
-DResult writePin(uint8_t pin, uint8_t level, DGpioHandle handle);
-DResult writeAnalog(uint8_t pin, uint8_t value, DGpioHandle handle);
-DResult releasePin(uint8_t pin, DGpioHandle handle);
-DResult shutdownGpio(DGpioHandle handle);
+#ifdef ARDUINO
+    DResult initGpio(int gpioDevice);
+    bool isGpioReady(void);
+    DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags);
+    int readPin(uint8_t pin);
+    DResult writePin(uint8_t pin, uint8_t level;
+    DResult writeAnalog(uint8_t pin, uint8_t value);
+    DResult releasePin(uint8_t pin);
+    DResult shutdownGpio(void);
+#else
+    DResult initGpio(int gpioDevice, DGpioHandle& handle);
+    bool isGpioReady(DGpioHandle handle);
+    DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags, DGpioHandle handle);
+    int readPin(uint8_t pin, DGpioHandle handle);
+    DResult writePin(uint8_t pin, uint8_t level, DGpioHandle handle);
+    DResult writeAnalog(uint8_t pin, uint8_t value, DGpioHandle handle);
+    DResult releasePin(uint8_t pin, DGpioHandle handle);
+    DResult shutdownGpio(DGpioHandle handle);
+#endif
 
 #endif

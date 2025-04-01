@@ -16,7 +16,8 @@ namespace std {
 
 			string(char *buff, size_t lenght) {
 				char s[lenght+1];
-				strcpy(s,buff);
+				memcpy(s,buff,lenght);
+                s[lenght]=0;
 				str=s;
 			}
 
@@ -43,6 +44,15 @@ namespace std {
 			size_t size(void) {
 				return(str.length());
 			}
+
+            // Strings Formatting
+            template<typename ... Args>
+            string& format(const char *format,Args ... args) {
+                size_t len = snprintf(nullptr,0,format,args ...);
+                str.reserve(len);
+                snprintf(str.c_str(),len,format,args ...);
+                return this;
+            };
 	};
 
 }

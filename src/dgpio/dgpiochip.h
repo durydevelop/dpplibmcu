@@ -9,7 +9,7 @@ typedef int DGpioHandle;
 class DGpioChip
 {
     public:
-        DGpioChip(int deviceIndex);
+        DGpioChip(int deviceIndex = 0);
         ~DGpioChip();
         DGpioHandle handle(void);
         std::string getLastError(void);

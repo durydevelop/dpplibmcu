@@ -18,6 +18,9 @@ DPwmOut::DPwmOut(int gpioPin, DGpioHandle gpioHandle) {
         handle=gpioHandle;
         //std::cout << "auto set handle" << std::endl;
         lastResult=initGpio(0,handle);
+        if (lastResult > 0) {
+            lastResult=DERR_CLASS_NOT_BEGUN;
+        }
     }
     else {
         if (isGpioReady(gpioHandle)) {
