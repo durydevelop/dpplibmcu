@@ -1,5 +1,5 @@
 #### Find Lg lib
-
+#[[ TODO
 function(get_package_from_git)
     message_c("Add ${ARGV1} as external project")
     include(ExternalProject)
@@ -10,7 +10,7 @@ function(get_package_from_git)
         BUILD_COMMAND     make
     )
 endfunction()
-
+]]#
 if (USE_EXTERNAL_LG)
     # Do not use internal Lg
     message_c(${BOLD_MAGENTA} "${BOLD_WHITE}${PROJECT_NAME}${BOLD_MAGENTA} is finding <${BOLD_CYAN}lg${BOLD_MAGENTA}>")
@@ -64,11 +64,13 @@ if (USE_EXTERNAL_LG)
             #get_target_property(lg_INCLUDE_DIRECTORIES lg INTERFACE_INCLUDE_DIRECTORIES)
             message_c(${BOLD_MAGENTA} "${BOLD_WHITE}${PROJECT_NAME}${BOLD_MAGENTA} <${BOLD_CYAN}lg${BOLD_MAGENTA}> found in system")
         else()
+            #[[ TODO
             # Load from official repo
             message_c(${BOLD_MAGENTA} "loading from official repo")
             get_package_from_git(lg https://github.com/joan2937/lg.git)
             set(lg_FOUND TRUE)
             message_c(${BOLD_MAGENTA} "${BOLD_WHITE}${PROJECT_NAME}${BOLD_MAGENTA} <${BOLD_CYAN}lg${BOLD_MAGENTA}> loaded from official repo")
+            ]]#
         endif()
     endif()
 else()

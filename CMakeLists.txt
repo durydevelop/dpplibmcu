@@ -30,37 +30,40 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 list (REMOVE_DUPLICATES CMAKE_MODULE_PATH)
 include(DCMakeHelper)
 
+## USE_EXTERNAL_LG
+# If USE_EXTERNAL_LG is ON one of these variables can be specified:
+# Use custom git repo, i.e.:
+# NOT YET: set(lg_GIT_REPOSITORY https://github.com/joan2937/lg.git)
+# Use a local folder, i.e.:
+# get_filename_component(ld_ROOT ../../lg ABSOLUTE)
+# If none specified:
+# First:  Try to find it in system
+# NOT YET: Second: Load from default git repo (https://github.com/joan2937/lg.git)
+option(USE_EXTERNAL_LG "Do not use embedded version of Raylib library" ON)
+find_package(lg)
+option(GPIO_SUPPORT "Enable Gpio support if present." ${lg_FOUND})
+
 ## Default options
 if (PROJECT_IS_TOP_LEVEL)
-    option(BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" ON)
-    option(${PROJECT_NAME}_INSTALL "Create install target" ON)
+    option(BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" ${GPIO_SUPPORT})
+    option(${PROJECT_NAME}_INSTALL "Create install target" ${GPIO_SUPPORT})
 else()
     option(BUILD_DRIVERS "Build drivers for some third party peripherals (sensors, etc)" OFF)
     option(${PROJECT_NAME}_INSTALL "Create install target" OFF)
 endif()
 option(BUILD_EXAMPLES "Build examples (need BUILD_DRIVER to be ON)" ${BUILD_DRIVERS})
 option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" OFF)
+
 ## USE_EXTERNAL_DMPACKET
 # TODO: quando DMPacket sarà stand alone
 option(USE_EXTERNAL_DMPACKET "Do not use embedded version of DMPacket library" OFF)
-## USE_EXTERNAL_LG
-# If USE_EXTERNAL_LG is ON one of these variables can be specified:
-# Use custom git repo, i.e.:
-# set(lg_GIT_REPOSITORY https://github.com/)
-# Use a local folder, i.e.:
-# get_filename_component(ld_ROOT ../../lg ABSOLUTE)
-# If none specified:
-# First:  Try to find it in system
-# Second: Load from default git repo (https://github.com/)
-option(USE_EXTERNAL_LG "Do not use embedded version of Raylib library" ON)
-
-find_package(lg)
-option(GPIO_SUPPORT "Enable Gpio support if present." ${lg_FOUND})
 
 ## Handle options
 # Shared / static lib
 if (${PROJECT_NAME}_BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
     set(${PROJECT_NAME}_BUILD_SHARED_LIBS ON)
+else()
+    set(${PROJECT_NAME}_BUILD_SHARED_LIBS OFF)
 endif()
 # GPIO support
 if (GPIO_SUPPORT)
@@ -146,12 +149,12 @@ if(GPIO_SUPPORT)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dservo)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/di2c)
     # Drivers for some external peripherlas (sensors, etc)
-    if (BUILD_DRIVERS)
+    if (${PROJECT_NAME}_BUILD_DRIVERS)
         message_c("Building drivers for peripherals")
         add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/drivers)
     endif()
     # Examples
-    if (BUILD_EXAMPLES)
+    if (${PROJECT_NAME}_BUILD_EXAMPLES)
         message_c("Building examples")
         add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
     endif()
@@ -161,7 +164,8 @@ endif()
 
 #### Setup target
 add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SRC})
-
+message_c(${BOLD_YELLOW} "SRC=${${PROJECT_NAME}_SRC}")
+message_c(${BOLD_YELLOW} "HDR=${${PROJECT_NAME}_HDR}")
 if (CMAKE_VERSION VERSION_LESS 3.28)
     # Use PUBLIC_HEADER
     target_sources(${PROJECT_NAME} PUBLIC ${${PROJECT_NAME}_HDR})
@@ -171,7 +175,6 @@ else()
     target_sources(${PROJECT_NAME}
         PUBLIC
             FILE_SET HEADERS
-            BASE_DIRS include
             FILES ${${PROJECT_NAME}_HDR}
     )
 endif()
