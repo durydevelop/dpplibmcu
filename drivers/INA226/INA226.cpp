@@ -40,6 +40,12 @@ bool INA226::begin(void)
     return ret;
 }
 
+bool INA226::isReady(void)
+{
+    uint16_t id=askForWord(devAddr,INA226_MANUFACTURER_ID);
+    return id != 0xFFFF;
+}
+
 float INA226::voltage()
 {
 	uint16_t iBusVoltage;

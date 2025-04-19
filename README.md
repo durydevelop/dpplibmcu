@@ -1,5 +1,3 @@
-#### 
-
 # dpplib-mcu
 
 dpplib-mcu is a library that allow you (...or aim to) writing program for MCUs (like Arduino) and SBCs (like Raspberry pi) using the same code.
@@ -31,8 +29,8 @@ This code compiles on both Arduino and Raspberry.
 
 #### See [here](src) for modules list and help.
 
-## Doxygen support for doc.
+### Doxygen support for doc.
 
-## Drivers modules for ready to use some sensor board:
+### Drivers modules for ready to use some sensor board:
 
 - INA226 and INA228 current/voltage sensors.

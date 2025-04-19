@@ -352,7 +352,7 @@ uint16_t DI2CMaster::askForWord(uint8_t slaveAddr, uint8_t cmdReg)
         lastErrorString="WARNING: msgs len missing real size";
     }
 
-    printf("recvWord: %02X %02X\r\n",recvWord[0],recvWord[1]);
+    //printf("recvWord: %02X %02X\r\n",recvWord[0],recvWord[1]);
     return WORD(recvWord[0],recvWord[1]);
 }
 

@@ -18,4 +18,5 @@ Usually it is not necessary use them directly, because are used by high level cl
 
 Contains error codes and error handling api.
 
-
+## Arduino notes
+To use unified source code in promrams, some methods need by lg library are available also in Arduino enviroment but are simply dummy methods that returns always a positive result.

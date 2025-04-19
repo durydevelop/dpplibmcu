@@ -42,6 +42,7 @@ class INA226 : public DI2CMaster {
         INA226(uint8_t deviceAddr, DI2CBusHandle i2cBusHandle);
         ~INA226();
         bool begin(void);
+        bool isReady(void);
         float voltage(void);
         float current(void);
         float power(void);
