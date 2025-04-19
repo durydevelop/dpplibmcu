@@ -1,4 +1,5 @@
 #include "dgpiochip.h"
+#ifndef ARDUINO
 #include <lgpio.h>
 #include <derrorcodes.h>
 
@@ -45,3 +46,4 @@ std::string DGpioChip::getInfo(void)
     std::string info="Chip name="+std::string(cInfo.name)+" Label="+std::string(cInfo.label)+" I/O lines="+std::to_string(cInfo.lines)+" Handle="+std::to_string(gpioChipHandle);
     return info;
 }
+#endif

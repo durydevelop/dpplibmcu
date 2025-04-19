@@ -1,5 +1,4 @@
 #include "dgpio.h"
-#include <derrorcodes.h>
 
 /**
  * @brief Initilize gpio chip.
@@ -67,15 +66,15 @@ bool isGpioReady(DGpioHandle handle)
 #ifdef ARDUINO
 DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags)
 {
-        if (Mode == DPinMode::SOFT_PWM) {
+        if (mode == DPinMode::PIN_MODE_SOFT_PWM) {
             #ifdef USE_DSOFT_PWM
                 /// @todo dPwmOut=new DPwmOut(Pin);
             #else
-                pinMode(Pin,OUTPUT);
+                pinMode(pin,OUTPUT);
             #endif
         }
         else {
-            pinMode(Pin,Mode);
+            pinMode(pin,mode);
         }
         return DRES_OK;
 }
@@ -137,7 +136,7 @@ int readPin(uint8_t pin, DGpioHandle handle)
 #ifdef ARDUINO
 DResult writePin(uint8_t pin, uint8_t level)
 {
-    digitalWrite(Pin,Level);
+    digitalWrite(pin,level);
     return DRES_OK;
 }
 #else

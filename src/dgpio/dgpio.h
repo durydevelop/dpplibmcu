@@ -12,7 +12,6 @@
 #else
     // Not arduino (rpi or linux sbc)
     #include <lgpio.h>
-    #include <derrorcodes.h>
     #include <dgpiochip>
 
     #define mapValue(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
@@ -35,10 +34,11 @@
 */    
 #endif
 
+#include <derrorcodes.h>
 #include <dutils>
 
 // Enumations
-enum DPinMode { INPUT, OUTPUT, INPUT_PULLUP, SOFT_PWM }; //, OUTPUT_PWM };
+enum DPinMode { PIN_MODE_INPUT, PIN_MODE_OUTPUT, PIN_MODE_INPUT_PULLUP, PIN_MODE_SOFT_PWM }; //, OUTPUT_PWM };
 enum DPinFlags {
     NO_FLAGS=    0,
     ACTIVE_LOW=  4,
@@ -54,7 +54,7 @@ enum DPinFlags {
     bool isGpioReady(void);
     DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags);
     int readPin(uint8_t pin);
-    DResult writePin(uint8_t pin, uint8_t level;
+    DResult writePin(uint8_t pin, uint8_t level);
     DResult writeAnalog(uint8_t pin, uint8_t value);
     DResult releasePin(uint8_t pin);
     DResult shutdownGpio(void);
