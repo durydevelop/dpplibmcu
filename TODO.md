@@ -1,5 +1,6 @@
 TODO:
 - [ ] DI2cMaster::askForString()
+- [ ] Windows warning
 
 DONE:
 0.2.0

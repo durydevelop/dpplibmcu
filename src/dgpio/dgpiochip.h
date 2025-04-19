@@ -1,24 +1,26 @@
 #ifndef DGpioChip_H
 #define DGpioChip_H
 
-#include <string>
-#include <lgpio.h>
+#ifndef ARDUINO
+    #include <string>
+    #include <lgpio.h>
 
-typedef int DGpioHandle;
+    typedef int DGpioHandle;
 
-class DGpioChip
-{
-    public:
-        DGpioChip(int deviceIndex = 0);
-        ~DGpioChip();
-        DGpioHandle handle(void);
-        std::string getLastError(void);
-        bool isReady(void);
-        std::string getInfo();
+    class DGpioChip
+    {
+        public:
+            DGpioChip(int deviceIndex = 0);
+            ~DGpioChip();
+            DGpioHandle handle(void);
+            std::string getLastError(void);
+            bool isReady(void);
+            std::string getInfo();
 
-    private:
-        DGpioHandle gpioChipHandle;
-        lgChipInfo_t cInfo;
-};
+        private:
+            DGpioHandle gpioChipHandle;
+            lgChipInfo_t cInfo;
+    };
+#endif
 
 #endif

@@ -1,20 +1,25 @@
 #ifndef DErrorCodes_H
 #define DErrorCodes_H
 
-#include <lgpio.h>
-#include <iostream>
-
-#include <map>
-#include <string>
-
-#define DERR_CLASS_NOT_BEGUN    -200
-#define DERR_UNKOWN_PIN_MODE    -201
-#define DERR_GPIO_NOT_ATTACHED  -202
-#define DERR_GPIO_NOT_READY     -203
-
-#define DRES_OK                 LG_OKAY
-
 typedef int DResult;
+
+#ifdef ARDUINO 
+    #define DRES_OK 0
+#else
+    #include <lgpio.h>
+    #include <iostream>
+
+    #include <map>
+    #include <string>
+
+    #define DERR_CLASS_NOT_BEGUN    -200
+    #define DERR_UNKOWN_PIN_MODE    -201
+    #define DERR_GPIO_NOT_ATTACHED  -202
+    #define DERR_GPIO_NOT_READY     -203
+
+    #define DRES_OK                 LG_OKAY
+
+
 
 static const std::map<int,std::string> DErrorCodes = {
     { LG_OKAY                 , "No error" },
@@ -157,5 +162,6 @@ static std::string getErrorCode(int lgErrCode)
         return "Unknown error: "+std::to_string(lgErrCode);
     }
 }
+#endif
 
 #endif
