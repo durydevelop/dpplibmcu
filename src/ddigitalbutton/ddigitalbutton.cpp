@@ -80,7 +80,7 @@ bool DDigitalButton::begin(int pressedState, bool pullUp, unsigned int pressedMi
 	dblPressSpeedDuration=dblPressSpeedMillis;
     
     if (handle >= 0) {
-        lastResult=initPin(pin,pullUp ? DPinMode::INPUT_PULLUP : DPinMode::INPUT,DPinFlags::NO_FLAGS,handle);
+        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS,handle);
     }
 
 	// Init timers

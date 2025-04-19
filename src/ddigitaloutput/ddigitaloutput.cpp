@@ -79,7 +79,7 @@ DDigitalOutput::~DDigitalOutput()
 bool DDigitalOutput::begin(int initialLevel)
 {
     if (handle >= 0) {
-        lastResult=initPin(pin,DPinMode::OUTPUT,DPinFlags::NO_FLAGS,handle);
+        lastResult=initPin(pin,DPinMode::PIN_MODE_OUTPUT,DPinFlags::NO_FLAGS,handle);
         if (lastResult == DRES_OK) {
             // Set initial level
             write(initialLevel);

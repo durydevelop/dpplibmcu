@@ -78,7 +78,7 @@ DDigitalInput::~DDigitalInput()
 bool DDigitalInput::begin(bool pullUp, unsigned int msecDebounce)
 {
     if (handle >= 0) {
-        lastResult=initPin(pin,pullUp ? INPUT_PULLUP : INPUT,DPinFlags::NO_FLAGS,handle);
+        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS,handle);
         if (lastResult == DRES_OK) {
             // Read current input state
             read();

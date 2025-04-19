@@ -89,14 +89,14 @@ DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags, DGpioHandle handle)
         // Set mode
         int ret=DERR_UNKOWN_PIN_MODE;
         switch (mode) {
-            case DPinMode::INPUT:
+            case DPinMode::PIN_MODE_INPUT:
                 ret=lgGpioClaimInput(handle,flags,pin);
                 break;
-            case DPinMode::OUTPUT:
-            case DPinMode::SOFT_PWM:
+            case DPinMode::PIN_MODE_OUTPUT:
+            case DPinMode::PIN_MODE_SOFT_PWM:
                 ret=lgGpioClaimOutput(handle,flags,pin,0);
                 break;
-            case DPinMode::INPUT_PULLUP:
+            case DPinMode::PIN_MODE_INPUT_PULLUP:
                 ret=lgGpioClaimInput(handle,DPinFlags::PULL_UP,pin);
                 break;
             default:
