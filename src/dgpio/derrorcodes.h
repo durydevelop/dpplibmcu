@@ -5,6 +5,7 @@ typedef int DResult;
 
 #ifdef ARDUINO 
     #define DRES_OK 0
+    #define DERR_CLASS_NOT_BEGUN    -200
 #else
     #include <lgpio.h>
     #include <iostream>

@@ -53,6 +53,18 @@ namespace std {
                 snprintf(str.c_str(),len,format,args ...);
                 return this;
             };
+
+            void resize(size_t lenght, char c = ' ') {
+                size_t currLen=str.length();
+                if (lenght < currLen) {
+                    str.reserve(lenght);
+                }
+                else if (lenght > currLen) {
+                    for (size_t ixS=currLen; ixS<lenght; ixS++) {
+                        str+=c;
+                    }
+                }
+            }
 	};
 
 }

@@ -568,7 +568,8 @@ void DMPacket::writeString(std::string str, uint16_t offset)
 
     // @todo Whats the fastest?
     #ifdef ARDUINO
-        for (size_t ixB=offset; ixB<maxOffset; ixB++) {
+        const auto maxSize = packetBuff.size()-offset;
+        for (size_t ixB=offset; ixB<maxSize; ixB++) {
             packetBuff[ixB]=str[ixB-offset];
         }
     #else
@@ -714,9 +715,9 @@ void DMPacket::pushString(std::string str)
 {
     #ifdef ARDUINO
         size_t currSize=packetBuff.size();
-	    packetBuff.resize(currSize+Str.size());
+	    packetBuff.resize(currSize+str.size());
         for (size_t ixP=currSize; ixP<packetBuff.size(); ixP++) {
-            packetBuff[ixP]=Str[ixP-currSize];
+            packetBuff[ixP]=str[ixP-currSize];
         }
     #else
         const auto currSize = packetBuff.size();
