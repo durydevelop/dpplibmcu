@@ -10,12 +10,12 @@ int main(int argc, char** argv) {
         pwmPin=atoi(argv[1]);
     }
     else {
-        std::cout << "Missing Pin argument, must specify servo pin nr" << std::endl;
+        std::cout << "Missing argument." << std::endl;
         exit(1);
     }
 
     if (pwmPin <= 0 || pwmPin > 32) {
-        std::cout << "Servo pin nr not valid." << std::endl;
+        std::cout << "Pin nr not valid." << std::endl;
         exit(1);
     }
 

@@ -1,7 +1,11 @@
-#add_executable(dmpacket)
-
 if(lg_FOUND)
     ## Add gpio examples
+
+    # button-demo
+    add_executable(button-demo ${CMAKE_CURRENT_SOURCE_DIR}/ddigitalio/sbc-button-demo/main.cpp)
+    target_link_libraries(button-demo PUBLIC dpplibmcu::dpplibmcu)
+    target_link_libraries(button-demo PUBLIC lgpio)
+    
     # io-demo
     add_executable(io-demo ${CMAKE_CURRENT_SOURCE_DIR}/ddigitalio/sbc-io-demo/main.cpp)
     target_link_libraries(io-demo PUBLIC dpplibmcu::dpplibmcu)

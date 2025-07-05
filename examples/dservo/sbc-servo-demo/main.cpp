@@ -1,14 +1,38 @@
 #include <iostream>
 #include <dservo>
+#include <filesystem>
+
+void showUsage(std::filesystem::path binaryName)
+{
+    std::cout <<
+        "This program move a servo to minimun position (1 ms pulse), wait 1 sec, move to middle position (1.5 ms pulse), wait 1 sec, move to maximun position (2 ms pulse), wait 1 sec, restart from minimum." << std::endl <<
+        "Usage: " << binaryName.stem().string() << " <INPUT pin> <OUTPUT pin>" << std::endl <<
+        "    <INPUT pin>    GPIO pin number used for INPUT." << std::endl <<
+        "    <OUTPUT pin>   GPIO pin number used for OUTPUT." << std::endl <<
+        "    -h, --help     Show this help" << std::endl <<
+        "Example:" << std::endl <<
+        binaryName.stem().string() << " 4 5" << std::endl <<
+        "will out on GPIO5 the GPIO4 level when changes." << std::endl;
+}
 
 int main(int argc, char** argv) {
 
     int servoPin=0;
-    if (argc == 2) {
-        servoPin=atoi(argv[1]);
+
+    if (argc > 1) {
+        std::string sArg(argv[1]);
+        if (sArg == "-h" || sArg == "--help") {
+            showUsage(argv[0]);
+            exit(1);
+        }
+    
+        if (argc >= 2) {
+            servoPin=atoi(argv[1]);
+        }
     }
     else {
-        std::cout << "Missing Pin argument, must specify servo pin nr" << std::endl;
+        std::cout << "Missing argument." << std::endl;
+        showUsage(argv[0]);
         exit(1);
     }
 
