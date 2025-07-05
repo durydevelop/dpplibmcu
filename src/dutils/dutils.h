@@ -13,7 +13,7 @@
 
 /*@todo
 	#define HIBYTE(w) highByte(w)
-	#define LOBYTE(w) lowByte(w)
+	#define LOBYTE(w) lowByte(w)k
 	#define WORD(hb,lb) word(hb,lb)
 	#define LOWORD(dw) ((uint16_t)(dw))
     #define HIWORD(dw) ((uint16_t)(((uint32_t)(dw) >> 16) & 0xFFFF))

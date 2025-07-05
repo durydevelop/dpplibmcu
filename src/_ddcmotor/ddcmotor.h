@@ -1,7 +1,13 @@
 #ifndef DDCMotorH
 #define DDCMotorH
 
-#include <dsoftpwm>
+#ifdef ARDUINO
+    #ifdef PLATFORMIO
+        #include "../dpwm/dpwm"
+    #endif
+#else
+    #include <dsoftpwm>
+#endif
 
 class DDCMotor {
     public:

@@ -9,6 +9,11 @@
         #include "wiring.h"
         #include "WProgram.h"
     #endif
+
+    #ifdef PLATFORMIO
+        #include "../dutils/dutils.h"
+        #include "../dgpio/derrorcodes.h"
+    #endif
 #else
     // Not arduino (rpi or linux sbc)
     #include <lgpio.h>
@@ -22,6 +27,9 @@
     #ifndef HIGH
         #define HIGH LG_HIGH
     #endif
+
+    #include <dutils>
+    #include <derrorcodes.h>
 /*
     #define bitRead(x, n) (((x) >> (n)) & 0x01)
     #define LOWORD(l) ((unsigned short)(l))
@@ -33,9 +41,6 @@
     #define DWORD_B(msb,next_msb,next_lsb,lsb) (msb << 24) | (next_msb << 16) | (next_lsb << 8) | lsb
 */    
 #endif
-
-#include <derrorcodes.h>
-#include <dutils>
 
 // Enumations
 enum DPinMode { PIN_MODE_INPUT, PIN_MODE_OUTPUT, PIN_MODE_INPUT_PULLUP, PIN_MODE_SOFT_PWM }; //, OUTPUT_PWM };
@@ -56,7 +61,6 @@ enum DPinFlags {
     int readPin(uint8_t pin);
     DResult writePin(uint8_t pin, uint8_t level);
     DResult writeAnalog(uint8_t pin, uint8_t value);
-    DResult releasePin(uint8_t pin);
     DResult shutdownGpio(void);
 #else
     DResult initGpio(int gpioDevice, DGpioHandle& handle);

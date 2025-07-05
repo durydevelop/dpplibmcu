@@ -1,7 +1,13 @@
 #ifndef DDigitalButton_H
 #define DDigitalButton_H
 
-#include <dgpio>
+#ifdef ARDUINO
+    #ifdef PLATFORMIO
+        #include "../dgpio/dgpio.h"
+    #endif
+#else
+    #include <dgpio>
+#endif
 
 class DDigitalButton{
 
@@ -20,13 +26,20 @@ class DDigitalButton{
 
 		typedef void (*DCallback)(DButtonState);
 
-		DDigitalButton(int digitalPin, DGpioHandle gpioHandle = -1);
+        #ifdef ARDUINO
+            DDigitalButton(int digitalPin);
+        #else
+		    DDigitalButton(int digitalPin, DGpioHandle gpioHandle = -1);
+        #endif
         ~DDigitalButton();
 
         bool begin(int pressedState = LOW, bool pullUp = true, unsigned int pressedMillis = 100, unsigned int longPressedMillis = 1000, unsigned int dblPressSpeedMillis=100);
 		void setEventCallback(DCallback eventCallback);
 		DDigitalButton::DButtonState read(void);
-        std::string getLastError(void);
+
+        #ifndef ARDUINO
+            std::string getLastError(void);
+        #endif
         
 		operator DDigitalButton::DButtonState();
 
@@ -44,8 +57,11 @@ class DDigitalButton{
 		unsigned long dblPressSpeedDuration;
 		unsigned long longPressedDuration;
 		DCallback callback;
-
-        DGpioHandle handle;
         DResult lastResult;
+
+        #ifndef ARDUINO
+            DGpioHandle handle;
+        #endif
+        
 };
 #endif

@@ -28,6 +28,13 @@
 
 #include "ddigitalbutton.h"
 
+#ifdef ARDUINO
+DDigitalButton::DDigitalButton(int digitalPin)
+{
+    pin=digitalPin;
+    lastResult=DERR_CLASS_NOT_BEGUN;
+}
+#else
 DDigitalButton::DDigitalButton(int digitalPin, DGpioHandle gpioHandle)
 {
     pin=digitalPin;
@@ -54,13 +61,16 @@ DDigitalButton::DDigitalButton(int digitalPin, DGpioHandle gpioHandle)
         lastResult=DERR_CLASS_NOT_BEGUN;
     }
 }
+#endif
 
 /**
  * @brief Destroy the DDigitalButton::DDigitalButton object and free pin use.
  */
 DDigitalButton::~DDigitalButton()
 {
-    releasePin(pin,handle);
+    #ifndef ARDUINO
+        releasePin(pin,handle);
+    #endif
 }
 
 /**
@@ -79,9 +89,14 @@ bool DDigitalButton::begin(int pressedState, bool pullUp, unsigned int pressedMi
 	longPressedDuration=longPressedMillis;
 	dblPressSpeedDuration=dblPressSpeedMillis;
     
-    if (handle >= 0) {
-        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS,handle);
-    }
+    
+    #ifdef ARDUINO
+        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS);
+    #else
+        if (handle >= 0) {
+            lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS,handle);
+        }
+    #endif
 
 	// Init timers
 	releaseMs=millis();
@@ -127,7 +142,12 @@ DDigitalButton::DButtonState DDigitalButton::read(void)
 		currState=PRESS;
 	}
 
-    lastResult=readPin(pin,handle);
+    #ifdef ARDUINO
+        lastResult=readPin(pin);
+    #else
+        lastResult=readPin(pin,handle);
+    #endif
+    
     if (lastResult < 0) {
         return ERROR_STATE;
     }
@@ -193,7 +213,9 @@ DDigitalButton::operator DDigitalButton::DButtonState()
 	return read();
 }
 
+#ifndef ARDUINO
 std::string DDigitalButton::getLastError(void)
 {
     return getErrorCode(lastResult);
 }
+#endif
