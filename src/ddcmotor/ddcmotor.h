@@ -3,7 +3,7 @@
 
 #ifdef ARDUINO
     #ifdef PLATFORMIO
-        #include "../dpwm/"
+        #include "../dpwm/dpwm"
     #endif
 #else
     #include <dsoftpwm>
