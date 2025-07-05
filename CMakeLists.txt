@@ -192,8 +192,8 @@ endif()
 
 #### Setup target
 add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SRC})
-message_c(${BOLD_YELLOW} "SRC=${${PROJECT_NAME}_SRC}")
-message_c(${BOLD_YELLOW} "HDR=${${PROJECT_NAME}_HDR}")
+#message_c(${BOLD_YELLOW} "SRC=${${PROJECT_NAME}_SRC}")
+#message_c(${BOLD_YELLOW} "HDR=${${PROJECT_NAME}_HDR}")
 if (CMAKE_VERSION VERSION_LESS 3.28)
     # Use PUBLIC_HEADER
     target_sources(${PROJECT_NAME} PUBLIC ${${PROJECT_NAME}_HDR})

@@ -1,27 +1,53 @@
 #include <iostream>
 #include <ddigitalinput>
 #include <ddigitaloutput>
+#include <filesystem>
+
+void showUsage(std::filesystem::path binaryName)
+{
+    std::cout <<
+        "This program wait for INPUT pin changes and set OUTPUT pin to same state." << std::endl <<
+        "Usage: " << binaryName.stem().string() << " <INPUT pin> <OUTPUT pin>" << std::endl <<
+        "    <INPUT pin>    GPIO pin number used for INPUT" << std::endl <<
+        "    <OUTPUT pin>   GPIO pin number used for OUTPUT" << std::endl <<
+        "    -h, --help     Show this help" << std::endl <<
+        "Example:" << std::endl <<
+        binaryName.stem().string() << " 4 5" << std::endl <<
+        "will out on GPIO5 the GPIO4 level when changes." << std::endl;
+}
 
 int main(int argc, char** argv) {
 
     int inPin=0;
     int outPin=19;
+
+    if (argc > 1) {
+        std::string sArg(argv[1]);
+        if (sArg == "-h" || sArg == "--help") {
+            showUsage(argv[0]);
+            exit(1);
+        }
+    }
+
     if (argc == 3) {
         inPin=atoi(argv[1]);
         outPin=atoi(argv[2]);
     }
     else {
-        std::cout << "Missing Pin argument, must specify input and output pin" << std::endl;
+        std::cout << "Missing arguments." << std::endl;
+        showUsage(argv[0]);
         exit(1);
     }
 
     if (inPin <= 0 || inPin > 32) {
         std::cout << "Input pin nr not valid." << std::endl;
+        showUsage(argv[0]);
         exit(1);
     }
 
     if (outPin <= 0 || outPin > 32) {
         std::cout << "Output pin nr not valid." << std::endl;
+        showUsage(argv[0]);
         exit(1);
     }
 

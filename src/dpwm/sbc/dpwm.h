@@ -5,6 +5,8 @@
 
 class DPwmOut {
     public:
+        static const int MAX_PWM_FREQ=10000;
+
         DPwmOut(int gpioPin, DGpioHandle gpioHandle = -1);
         ~DPwmOut();
         

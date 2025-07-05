@@ -1,7 +1,5 @@
 #include "dpwm.h"
 
-#define MAX_PWM_FREQ 10000
-
 /**
  * @brief Construct a new DPwmOut::DPwmOut object.
  * N.B. Timer should have not been initialized in costructor (may be it doe not work).
