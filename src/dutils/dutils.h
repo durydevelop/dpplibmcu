@@ -8,8 +8,15 @@
     unsigned long micros(void);
 
     //#define mapValue(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
-    //template <typename T>
-    //T mapValue(T x, T in_min, T in_max, T out_min, T out_max) { return(x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min; }
+    template <typename T>
+    T mapValue(T x, T in_min, T in_max, T out_min, T out_max) {
+        return(x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    };
+    /*
+    long map(long x, long in_min, long in_max, long out_min, long out_max) {
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+    */
 
 /*@todo
 	#define HIBYTE(w) highByte(w)
