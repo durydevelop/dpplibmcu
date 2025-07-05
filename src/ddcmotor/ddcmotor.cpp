@@ -1,5 +1,5 @@
-#include <dpplib-gpio.h>
 #include "ddcmotor.h"
+#include <dutils>
 
 // Defaults
 #define DEFAULT_STEP_VALUE  10      //! Default vel step inc/dec value
@@ -277,7 +277,7 @@ void DDCMotor::SetIncValue(unsigned short int Value)
 unsigned short int DDCMotor::GetPwm(void)
 {
     if (CurrVel > 0) {
-        return(map(abs(CurrVel),0,MAX_VEL,0,PwmLimitFw));
+        return(mapValue(abs(CurrVel),0,MAX_VEL,0,PwmLimitFw));
     }
     else if (CurrVel < 0) {
         return(map(abs(CurrVel),0,MAX_VEL,0,PwmLimitRev));

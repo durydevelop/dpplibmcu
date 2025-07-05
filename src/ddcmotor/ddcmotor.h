@@ -1,7 +1,7 @@
 #ifndef DDCMotorH
 #define DDCMotorH
 
-#include <dsoftpwm>
+#include <dpwm>
 
 class DDCMotor {
     public:
@@ -10,7 +10,7 @@ class DDCMotor {
         // Rotation direction
         enum DRotationDir { ROT_CC, ROT_CW , ROT_NONE };
         // Constants
-        static const uint8_t          MAX_VEL=100;     //! Max vel value.
+        static const unsigned int MAX_VEL=100;     //! Max vel value.
         //static const uint16_t MAX_PWM=255;     //! Max pwm value.
         //static const uint16_t MIN_CAL_PWM=100; //! Limit pwm value for minimum calibration value.
         //static const unsigned short VEL_CURRENT=0;   //! Default value for indicating use current vel
