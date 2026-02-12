@@ -26,7 +26,11 @@ bool Initialized=false;
 // ********************************************************************************
 size_t TickCounter=0;
 #if defined(__AVR_ATtiny85__)
-    ISR(TIMER0_COMPA_vect)
+    #ifndef DPWM_USE_TIMER1
+        ISR(TIMER0_COMPA_vect)
+    #else
+        ISR(TIMER1_COMPA_vect)
+    #endif
 #elif defined (__AVR_ATmega328P__) || defined(__AVR_ATmega328__)
     ISR(TIMER1_COMPA_vect)
 #endif
