@@ -1,0 +1,6 @@
+{
+  "name": "dpwm",
+  "build": {
+    "srcDir": "avr"
+  }
+}

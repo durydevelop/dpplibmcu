@@ -40,6 +40,15 @@ void loop()
 /**
  * @param digitalPin	->	pin da utilizzare come input
  */
+#ifdef ARDUINO
+DDigitalInput::DDigitalInput(int digitalPin)
+{
+	pin=digitalPin;
+    currLevel=LOW;
+    prevLevel=currLevel;
+    lastResult=DERR_CLASS_NOT_BEGUN;
+}
+#else
 DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
 {
 	pin=digitalPin;
@@ -66,25 +75,33 @@ DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
         }
     }
 }
+#endif
 
 /**
  * @brief Destroy the DDigitalInput::DDigitalInput object and free pin use.
  */
+#ifndef ARDUINO
 DDigitalInput::~DDigitalInput()
 {
     releasePin(pin,handle);
 }
+#endif
 
 bool DDigitalInput::begin(bool pullUp, unsigned int msecDebounce)
 {
-    if (handle >= 0) {
-        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS,handle);
-        if (lastResult == DRES_OK) {
-            // Read current input state
-            read();
+    #ifdef ARDUINO
+        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS);
+    #else
+        if (handle >= 0) {
+            lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS,handle);
         }
-        prevLevel=currLevel;
+    #endif
+
+    if (lastResult == DRES_OK) {
+        // Read current input state
+        read();
     }
+    prevLevel=currLevel;
 
 	// Debounce msec
 	debounceMsec=msecDebounce;
@@ -181,7 +198,12 @@ DDigitalInput::operator int()
  * N.B. aggiorna currLevel.
  */
 int DDigitalInput::read(void) {
-    currLevel=readPin(pin,handle);
+    #ifdef ARDUINO
+        currLevel=readPin(pin);
+    #else
+        currLevel=readPin(pin,handle);
+    #endif
+    
     if (currLevel < 0) {
         lastResult=currLevel;
     }
@@ -204,7 +226,9 @@ bool DDigitalInput::isAttached(void)
     return lastResult == DRES_OK;
 }
 
+#ifndef ARDUINO
 std::string DDigitalInput::getLastError(void)
 {
     return getErrorCode(lastResult);
 }
+#endif

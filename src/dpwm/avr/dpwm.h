@@ -1,6 +1,14 @@
 #ifndef DSOFTPWM_H
 #define DSOFTPWM_H
 
+#ifdef ARDUINO
+    #ifdef PLATFORMIO
+        #include "../dgpio/dgpio.h"
+    #endif
+#else
+    #include <dgpio>
+#endif
+
 class DPwmOut {
     public:
         DPwmOut(uint8_t GpioPin);
@@ -21,12 +29,11 @@ class DPwmOut {
         uint16_t getPeriodUs(void);
         uint8_t getPin(void);
         uint8_t getDutyPerc(void);
-        void printInterruptLoad();
 
         uint8_t Pin;
         uint8_t BitMask=0;
         volatile uint8_t *OUTPORT;
-        bool Active=false;    //! Pwm active (default off).
+        bool Active=false;       //! Pwm active (default off).
         uint32_t TickCounter=0;  //! ISR call counter
         uint32_t TicksON=0;      //! Number of ticks for HIGH time.
         uint32_t TicksTOT=0;     //! Numebr of ticks of total period.

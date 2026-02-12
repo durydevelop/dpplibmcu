@@ -66,12 +66,12 @@ DDigitalButton::DDigitalButton(int digitalPin, DGpioHandle gpioHandle)
 /**
  * @brief Destroy the DDigitalButton::DDigitalButton object and free pin use.
  */
+#ifndef ARDUINO
 DDigitalButton::~DDigitalButton()
 {
-    #ifndef ARDUINO
-        releasePin(pin,handle);
-    #endif
+    releasePin(pin,handle);
 }
+#endif
 
 /**
  * @brief Constructor

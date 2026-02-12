@@ -31,7 +31,7 @@ class DDigitalButton{
         #else
 		    DDigitalButton(int digitalPin, DGpioHandle gpioHandle = -1);
         #endif
-        ~DDigitalButton();
+        
 
         bool begin(int pressedState = LOW, bool pullUp = true, unsigned int pressedMillis = 100, unsigned int longPressedMillis = 1000, unsigned int dblPressSpeedMillis=100);
 		void setEventCallback(DCallback eventCallback);

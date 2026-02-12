@@ -6,8 +6,12 @@
 class DDigitalInput {
 
 	public:
-        DDigitalInput(int digitalPin, DGpioHandle gpioHandle = -1);
-        ~DDigitalInput();
+        #ifdef ARDUINO
+            DDigitalInput(int digitalPin);
+        #else
+            DDigitalInput(int digitalPin, DGpioHandle gpioHandle = -1);
+            ~DDigitalInput();
+        #endif
 
         bool begin(bool pullUp = false, unsigned int msecDebounce = 0);
 		bool isChanged(short int *newLevel = nullptr);
@@ -16,7 +20,9 @@ class DDigitalInput {
         bool isAttached(void);
 		int read(void);
         int getPin(void);
-        std::string getLastError(void);
+        #ifndef ARDUINO
+            std::string getLastError(void);
+        #endif
         
 		operator int();
 
@@ -27,8 +33,10 @@ class DDigitalInput {
 		unsigned long currMsec;
 		unsigned long prevMsec;
 		unsigned long debounceMsec;
-
-        DGpioHandle handle;
         DResult lastResult;
+
+        #ifndef ARDUINO
+            DGpioHandle handle;
+        #endif
 };
 #endif

@@ -277,7 +277,7 @@ void DDCMotor::SetIncValue(unsigned short int Value)
 unsigned short int DDCMotor::GetPwm(void)
 {
     if (CurrVel > 0) {
-        return(mapValue(abs(CurrVel),0,MAX_VEL,0,PwmLimitFw));
+        return(map(abs(CurrVel),0,MAX_VEL,0,PwmLimitFw));
     }
     else if (CurrVel < 0) {
         return(map(abs(CurrVel),0,MAX_VEL,0,PwmLimitRev));
