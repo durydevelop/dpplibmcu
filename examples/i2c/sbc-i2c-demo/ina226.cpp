@@ -26,16 +26,20 @@ int main(int argc, char** argv) {
 
     DI2CBus i2c(busID);
 
-    INA226 ina226(devAddr,i2c.handle());
-    ina226.begin();
+    INA226 ina226(devAddr,0.002,i2c.handle());
+    bool ret=ina226.begin(10.0);
+    if (!ret) {
+        std::cerr << "Failed to initialize INA226: " << ina226.getLastError() << std::endl;
+        return 1;
+    }
     std::cout << "INA226 sensor info:" << std::endl << ina226.getInfo() << std::endl;
     std::cout << "Start reading sensor on /dev/i2c-" << busID << " address " << devAddr << std::endl;
     std::cout << "Press CTRL+C to stop" << std::endl;
 
     do{
-        printf("Voltage = %.02f V ", ina226.voltage());
-        printf("Current = %.02f A ", ina226.current());
-        printf("Power   = %.02f W\r\n", ina226.power());
+        printf("Voltage = %.02f V ", ina226.getBusVoltage());
+        printf("Current = %.02f A ", ina226.getCurrent());
+        printf("Power   = %.02f W\r\n", ina226.getPower());
         delay(1000);
     }while(true);
 

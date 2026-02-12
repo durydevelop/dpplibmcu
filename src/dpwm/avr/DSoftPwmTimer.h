@@ -39,44 +39,78 @@ bool SetupTimer(void)
   #ifdef TIMER_FREQ
     noInterrupts();
     #if defined(__AVR_ATtiny85__)
-        // Microcontroller: ATtiny85 Timer0
-        // Clear registers
-        TCCR0A = 0;
-        TCCR0B = 0;
-        TCNT0 = 0;
+        #ifndef DPWM_USE_TIMER1
+            // Microcontroller: ATtiny85 Timer0 (default)
+            // Clear registers
+            TCCR0A = 0;
+            TCCR0B = 0;
+            TCNT0 = 0;
 
-        #if (TIMER_FREQ == 50000)
-          // 50000 Hz (16000000/((4+1)*64))
-          OCR0A = 4;
-          // CTC
-          TCCR0A |= (1 << WGM01);
-          // Prescaler 64
-          TCCR0B |= (1 << CS01) | (1 << CS00);
-        #elif (TIMER_FREQ == 31250)
-          // 31250 Hz (16000000/((1+1)*256))
-          OCR0A = 1;
-          // CTC
-          TCCR0A |= (1 << WGM01);
-          // Prescaler 256
-          TCCR0B |= (1 << CS02);
-        #elif (TIMER_FREQ == 25000)
-          // 25000 Hz (16000000/((9+1)*64))
-          OCR0A = 9;
-          // CTC
-          TCCR0A |= (1 << WGM01);
-          // Prescaler 64
-          TCCR0B |= (1 << CS01) | (1 << CS00);
-        #elif (TIMER_FREQ == 40000)
-          // 40000 Hz (16000000/((49+1)*8))
-          OCR0A = 49;
-          // CTC
-          TCCR0A |= (1 << WGM01);
-          // Prescaler 8
-          TCCR0B |= (1 << CS01);
-        #endif
+            #if (TIMER_FREQ == 50000)
+            // 50000 Hz (16000000/((4+1)*64))
+            OCR0A = 4;
+            // CTC
+            TCCR0A |= (1 << WGM01);
+            // Prescaler 64
+            TCCR0B |= (1 << CS01) | (1 << CS00);
+            #elif (TIMER_FREQ == 31250)
+            // 31250 Hz (16000000/((1+1)*256))
+            OCR0A = 1;
+            // CTC
+            TCCR0A |= (1 << WGM01);
+            // Prescaler 256
+            TCCR0B |= (1 << CS02);
+            #elif (TIMER_FREQ == 25000)
+            // 25000 Hz (16000000/((9+1)*64))
+            OCR0A = 9;
+            // CTC
+            TCCR0A |= (1 << WGM01);
+            // Prescaler 64
+            TCCR0B |= (1 << CS01) | (1 << CS00);
+            #elif (TIMER_FREQ == 40000)
+            // 40000 Hz (16000000/((49+1)*8))
+            OCR0A = 49;
+            // CTC
+            TCCR0A |= (1 << WGM01);
+            // Prescaler 8
+            TCCR0B |= (1 << CS01);
+            #endif
 
-        // Output Compare Match A Interrupt Enable
-        TIMSK |= (1 << OCIE0A);
+            // Output Compare Match A Interrupt Enable
+            TIMSK |= (1 << OCIE0A);
+        #else
+            // Microcontroller: ATtiny85 Timer1
+            // --- Stop Timer1 ---
+            TCCR1 = 0;
+            GTCCR = 0;      // Reset prescaler (importantissimo su tiny85)
+            TCNT1 = 0;
+
+            // --- CTC mode ---
+            TCCR1 |= (1 << CTC1);
+
+            #if (TIMER_FREQ == 50000)
+                // 50000 Hz = 16MHz / (5 * 64)
+                OCR1A = 4;
+                TCCR1 |= (1 << CS12) | (1 << CS11);   // Prescaler 64
+
+            #elif (TIMER_FREQ == 31250)
+                // 31250 Hz = 16MHz / (2 * 256)
+                OCR1A = 1;
+                TCCR1 |= (1 << CS13);                 // Prescaler 256
+
+            #elif (TIMER_FREQ == 25000)
+                // 25000 Hz = 16MHz / (10 * 64)
+                OCR1A = 9;
+                TCCR1 |= (1 << CS12) | (1 << CS11);   // Prescaler 64
+
+            #elif (TIMER_FREQ == 40000)
+                // 40000 Hz = 16MHz / (50 * 8)
+                OCR1A = 49;
+                TCCR1 |= (1 << CS11);                 // Prescaler 8
+            #endif
+
+            // --- Enable Compare Match A interrupt ---
+            TIMSK |= (1 << OCIE1A);
     #elif defined (__AVR_ATmega328P__) || defined(__AVR_ATmega328__)
         // Microcontroller: ATmega328P Timer1
         // Clear registers
