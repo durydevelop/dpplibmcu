@@ -111,6 +111,7 @@ bool SetupTimer(void)
 
             // --- Enable Compare Match A interrupt ---
             TIMSK |= (1 << OCIE1A);
+        #endif
     #elif defined (__AVR_ATmega328P__) || defined(__AVR_ATmega328__)
         // Microcontroller: ATmega328P Timer1
         // Clear registers

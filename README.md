@@ -31,6 +31,6 @@ This code compiles on both Arduino and Raspberry.
 
 ### Doxygen support for doc.
 
-### Drivers modules for ready to use some sensor board:
+### Module drivers ready to use for sensor board:
 
 - INA226 and INA228 current/voltage sensors.

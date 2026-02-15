@@ -13,10 +13,10 @@ void setup() {
 void loop() {
 
   Servo->writeMicroseconds(1000);
-  delay(2000);
+  delay(1000);
   Servo->writeMicroseconds(1500);
-  delay(2000);
+  delay(1000);
   Servo->writeMicroseconds(2000);
-  delay(2000);
+  delay(1000);
 
 }

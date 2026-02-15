@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-## Create project
+#### Create project
 project(dpplibmcu
     VERSION 0.2.0
     LANGUAGES CXX
@@ -30,20 +30,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 list (REMOVE_DUPLICATES CMAKE_MODULE_PATH)
 include(DCMakeHelper)
 
-## USE_EXTERNAL_LG
-# If USE_EXTERNAL_LG is ON one of these variables can be specified:
-# Use custom git repo, i.e.:
-# NOT YET: set(lg_GIT_REPOSITORY https://github.com/joan2937/lg.git)
-# Use a local folder, i.e.:
-# get_filename_component(ld_ROOT ../../lg ABSOLUTE)
-# If none specified:
-# First:  Try to find it in system
-# NOT YET: Second: Load from default git repo (https://github.com/joan2937/lg.git)
-option(USE_EXTERNAL_LG "Do not use embedded version of Raylib library" ON)
-find_package(lg)
-option(GPIO_SUPPORT "Enable Gpio support if present." ${lg_FOUND})
-
-## Default options
+#### Default options
 if(CMAKE_VERSION VERSION_LESS 3.21)
     if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         set(PROJECT_IS_TOP_LEVEL TRUE)
@@ -74,11 +61,29 @@ else()
     option(${PROJECT_NAME}_BUILD_TESTING "Build tests suite" OFF)
 endif()
 
-## USE_EXTERNAL_DMPACKET
+#### USE_EXTERNAL_DMPACKET
 # TODO: quando DMPacket sarà stand alone
 option(USE_EXTERNAL_DMPACKET "Do not use embedded version of DMPacket library" OFF)
+if (NOT TARGET dmpacket)
+    message_c(${BOLD_MAGENTA} "${BOLD_MAGENTA}<${BOLD_CYAN}dmpacket${BOLD_MAGENTA}> build-in target added")
+    set(USE_EXTERNAL_DMPACKET ON)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/external/dmpacket)
+endif()
 
-## Handle options
+#### USE_EXTERNAL_LG
+# If USE_EXTERNAL_LG is ON one of these variables can be specified:
+# Use custom git repo, i.e.:
+# NOT YET: set(lg_GIT_REPOSITORY https://github.com/joan2937/lg.git)
+# Use a local folder, i.e.:
+# get_filename_component(ld_ROOT ../../lg ABSOLUTE)
+# If none specified:
+# First:  Try to find it in system
+# NOT YET: Second: Load from default git repo (https://github.com/joan2937/lg.git)
+option(USE_EXTERNAL_LG "Do not use embedded version of lg library" ON)
+find_package(lg)
+option(GPIO_SUPPORT "Enable Gpio support if present." ${lg_FOUND})
+
+#### Handle options
 # Shared / static lib
 if (${PROJECT_NAME}_BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
     set(${PROJECT_NAME}_BUILD_SHARED_LIBS ON)
@@ -158,15 +163,9 @@ set(${PROJECT_NAME}_HDR)
 # Include base dir
 set(${PROJECT_NAME}_INCLUDE_DIRS)
 
-## Add Platform indipendent modules
-if (NOT TARGET dmpacket)
-    message_c(${BOLD_MAGENTA} "${BOLD_MAGENTA}<${BOLD_CYAN}lg${BOLD_MAGENTA}> target already exists")
-    set(USE_EXTERNAL_DMPACKET ON)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/external/dmpacket)
-endif()
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/dutils)
 
-## Add GPIO_SUPPORT dependend modules
+# Add GPIO_SUPPORT dependend modules
 if(GPIO_SUPPORT)
     message_c(${BOLD_WHITE} "Library lg found, gpio control are enabled")
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/ddcmotor)
@@ -188,13 +187,12 @@ if(GPIO_SUPPORT)
         add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
     endif()
 else()
-    message_c(${BOLD_YELLOW} "Library lg not found, gpio control are NOT enabled")
+    message_c(${BOLD_YELLOW} "Library <${BOLD_CYAN}lg${BOLD_YELLOW}> not found, gpio control are NOT enabled")
 endif()
 
 #### Setup target
 add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SRC})
-#message_c(${BOLD_YELLOW} "SRC=${${PROJECT_NAME}_SRC}")
-#message_c(${BOLD_YELLOW} "HDR=${${PROJECT_NAME}_HDR}")
+
 if (CMAKE_VERSION VERSION_LESS 3.28)
     # Use PUBLIC_HEADER
     target_sources(${PROJECT_NAME} PUBLIC ${${PROJECT_NAME}_HDR})

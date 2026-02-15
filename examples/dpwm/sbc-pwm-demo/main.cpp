@@ -7,7 +7,7 @@ void showUsage(std::filesystem::path binaryName)
     std::cout <<
         "This program output a pwm signal on every pin." << std::endl <<
         "Usage: " << binaryName.stem().string() << " <pin> [frequency] [duty-cycle]" << std::endl <<
-        "    <pin> Servo pin." << std::endl <<
+        "    <pin>          Output pin." << std::endl <<
         "    [frequency]    Frequency in Hz (default 5 Hz)" << std::endl <<
         "    [duty-cycle]   Duty-cycle in percent (default 50 %)" << std::endl <<
         "    -h, --help     Show this help" << std::endl;
