@@ -2,7 +2,12 @@
 This folder contains example code for MCU and SBC.
 
 ## i2c
-
+A suite o tools for I2C.
+#### i2c-ask
+Read an I2C registry
+#### i2c-bus-info
+#### i2c-bus-lit
+#### i2c-scan
 ## dservo
 ### arduino-servo-demo
 Move servo to 0°, 90°, 180° and viveversa each 1000 ms.
