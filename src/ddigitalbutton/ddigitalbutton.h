@@ -30,6 +30,7 @@ class DDigitalButton{
             DDigitalButton(int digitalPin);
         #else
 		    DDigitalButton(int digitalPin, DGpioHandle gpioHandle = -1);
+            ~DDigitalButton();
         #endif
         
 

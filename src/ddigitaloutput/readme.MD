@@ -4,7 +4,7 @@ Class for digital pin manipulation as OUTPUT.
 
 ## Features:
 
-- Use = oprator to set state.
+- Use = operator to set state.
 
 - Toggle() function for toggle state.
 
