@@ -21,6 +21,20 @@ if(lg_FOUND)
     target_link_libraries(servo-demo PUBLIC dpplibmcu::dpplibmcu)
     target_link_libraries(servo-demo PUBLIC lgpio)
 
+    # dcmotor-demo
+    add_executable(dcmotor-demo ${CMAKE_CURRENT_SOURCE_DIR}/ddcmotor/sbc-dcmotor-demo/main.cpp)
+    target_link_libraries(dcmotor-demo PUBLIC dpplibmcu::dpplibmcu)
+    target_link_libraries(dcmotor-demo PUBLIC lgpio)
+
+    # dcmotorwheels-demo
+    add_executable(dcmotorwheels-demo ${CMAKE_CURRENT_SOURCE_DIR}/ddcmotorwheels/sbc-wheels-demo/main.cpp)
+    target_sources(dcmotorwheels-demo PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/ddcmotorwheels/sbc-wheels-demo/DNCurses.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/ddcmotorwheels/sbc-wheels-demo/DNCurses.h
+    )
+    target_link_libraries(dcmotorwheels-demo PUBLIC dpplibmcu::dpplibmcu)
+    target_link_libraries(dcmotorwheels-demo PUBLIC lgpio)
+
     # i2c-bus-list
     add_executable(i2c-bus-list
         ${CMAKE_CURRENT_SOURCE_DIR}/i2c/sbc-i2c-demo/i2c-bus-list.cpp

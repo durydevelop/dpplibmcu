@@ -4,14 +4,14 @@
 //#include <string>
 #include <chrono>
 #include <thread>
-#include <ddcmotor.h>
+#include <ddcmotor>
 
 using namespace std;
 
 int main(int argc, char** argv) {
     DDCMotor *Motor;
     if (argc < 3) {
-        cout << "Usage: "+std::string(argv[0])+" <PrmPin nr> <DirPwmPin nr>";
+        cout << "Usage: "+std::string(argv[0])+" <PwmPin nr> <DirPwmPin nr>";
         cout << "[Control mode] -> PHASE_ENABLED or IN_IN (default=PHASE_ENABLE)";
         exit(1);
     }
@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
     Motor = new DDCMotor(PwmPin,DirPwmPin,Mode);
     cout << "Speed up fw..." << endl;
     for (int v=1; v<=100 ;v++) {
-        Motor->Fw(v);
+        Motor->SetVel(v);
         this_thread::sleep_for(chrono::milliseconds(50));
     }
     cout << "Max speed reached, wait 2 sec..." << endl;
@@ -38,8 +38,8 @@ int main(int argc, char** argv) {
     cout << "Stop" << endl;
     Motor->Stop();
     cout << "Speed up rew..." << endl;
-    for (int v=0; v<=100 ;v++) {
-        Motor->Rev(v);
+    for (int v=100; v>=1 ;v--) {
+        Motor->SetVel(v);
         this_thread::sleep_for(chrono::milliseconds(50));
     }
     cout << "Max speed reached, wait 2 sec..." << endl;

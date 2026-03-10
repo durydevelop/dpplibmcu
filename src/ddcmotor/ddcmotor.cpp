@@ -5,9 +5,6 @@
 #define DEFAULT_STEP_VALUE  10      //! Default vel step inc/dec value
 #define PWM_FREQ 480
 
-// Ranges limits
-#define DEFAULT_CAL_LIMIT MAX_PWM_VALUE
-
 /**
  * @brief Construct a new DDCMotor::DDCMotor object
  * 
@@ -56,9 +53,9 @@ void DDCMotor::attach(void)
 //    PwmOut1=new DPwmOut(PinPwm);
     PwmOut1->begin(PWM_FREQ,50,true);
     // Max Value used for WriteMicros()
-    MAX_PWM_VALUE=PwmOut1->getPeriodUs();
-    // Max value for calibration
-    MIN_CAL_PWM_VALUE=MAX_PWM_VALUE/3;
+    maxPwmValue=PwmOut1->getPeriodUs();
+    // Min value for calibration
+    minCalPwmValue=maxPwmValue/3;
 /*
     // **** Pwm Out 2 / Dir Pin****
     if (PwmOut2) {
@@ -75,7 +72,7 @@ void DDCMotor::attach(void)
     PwmOut2->begin(PWM_FREQ,50,true);
 
     // Defaults
-	ResetCalLimit();
+	ResetPwmLimit();
 	CurrStepValue=DEFAULT_STEP_VALUE;
 	CurrVel=0;
     SwappedDir=0;
@@ -110,30 +107,29 @@ bool DDCMotor::attached(void)
 /**
  * @brief Reset all PWM calibration values to default.
  */
-void DDCMotor::ResetCalLimit(void)
+void DDCMotor::ResetPwmLimit(void)
 {
-	ResetCalLimitFw();
-	ResetCalLimitRev();
+	ResetPwmLimitFw();
+	ResetPwmLimitRev();
 }
 
 /**
- * @brief Reset forward PWM calibration value to default.
+ * @brief Reset forward PWM calibration value to default (maxPwmValue).
  */
-void DDCMotor::ResetCalLimitFw(void)
+void DDCMotor::ResetPwmLimitFw(void)
 {
-    PwmLimitFw=DEFAULT_CAL_LIMIT;
+    PwmLimitFw=maxPwmValue;
     if (CurrVel != 0) {
         // Motor is running, update vel
         SetVel(CurrVel);
 	}
 }
-
 /**
- * @brief Reset reverse PWM calibration value to default.
+ * @brief Reset reverse PWM calibration value to default (maxPwmValue).
  */
-void DDCMotor::ResetCalLimitRev(void)
+void DDCMotor::ResetPwmLimitRev(void)
 {
-    PwmLimitRev=DEFAULT_CAL_LIMIT;
+    PwmLimitRev=maxPwmValue;
     if (Running) {
         // Motor is running, update vel
         SetVel(CurrVel);
@@ -151,7 +147,7 @@ short int DDCMotor::GetVel(void)
 /**
 * @return current forward PWM calibration value
 **/
-unsigned short int DDCMotor::GetCalLimitFw(void)
+unsigned short int DDCMotor::GetPwmLimitFw(void)
 {
 	return(PwmLimitFw);
 }
@@ -159,24 +155,42 @@ unsigned short int DDCMotor::GetCalLimitFw(void)
 /**
 * @return current reverse PWM calibration value
 **/
-unsigned short int DDCMotor::GetCalLimitRev(void)
+unsigned short int DDCMotor::GetPwmLimitRev(void)
 {
 	return(PwmLimitRev);
 }
 
 /**
- * @brief Set PWM calibration for forward direction.
- * PwmLimitFw value will be used as maximun value for motor in forward direction (vel set to 100).
- * 
- * @param NewPwmLimitFw PWM value from MIN_CAL_LIMIT to MAX_PWM.
- */
-void DDCMotor::SetCalLimitFw(unsigned short int NewPwmLimitFw)
+* @return current max PWM value
+**/
+unsigned short int DDCMotor::GetMaxPwmValue(void)
 {
-    if (NewPwmLimitFw > MAX_PWM_VALUE) {
-        PwmLimitFw=MAX_PWM_VALUE;
+	return(maxPwmValue);
+}
+/*
+short int DDCMotor::GetVelLimitFw(void)
+{
+    return(PwmToVel(PwmLimitFw));
+}
+
+short int DDCMotor::GetVelLimitRev(void)
+{
+    return(PwmToVel(PwmLimitRev));
+}
+*/
+/**
+ * @brief Set PWM calibration for forward direction.
+ * PwmLimitFw value will be used as maximun value for motor in forward direction (when is vel set to 100).
+ * 
+ * @param NewPwmLimitFw PWM value from minCalPwmValue to maxPwmValue.
+ */
+void DDCMotor::SetPwmLimitFw(unsigned short int NewPwmLimitFw)
+{
+    if (NewPwmLimitFw > maxPwmValue) {
+        PwmLimitFw=maxPwmValue;
     }
-    else if (NewPwmLimitFw < MIN_CAL_PWM_VALUE) {
-        PwmLimitFw=MIN_CAL_PWM_VALUE;
+    else if (NewPwmLimitFw < minCalPwmValue) {
+        PwmLimitFw=minCalPwmValue;
     }
     else {
         PwmLimitFw=NewPwmLimitFw;
@@ -192,15 +206,15 @@ void DDCMotor::SetCalLimitFw(unsigned short int NewPwmLimitFw)
  * @brief Set PWM calibration for backward direction.
  * PwmLimitFw value will be used as maximun value for motor in forward direction (vel set to 100).
  * 
- * @param NewPwmLimitRev PWM value from MIN_CAL_LIMIT to MAX_PWM.
+ * @param NewPwmLimitRev PWM value from minCalPwmValue to maxPwmValue.
  */
-void DDCMotor::SetCalLimitRev(unsigned short int NewPwmLimitRev)
+void DDCMotor::SetPwmLimitRev(unsigned short int NewPwmLimitRev)
 {
-    if (NewPwmLimitRev > MAX_PWM_VALUE) {
-        PwmLimitRev=MAX_PWM_VALUE;
+    if (NewPwmLimitRev > maxPwmValue) {
+        PwmLimitRev=maxPwmValue;
     }
-    else if (NewPwmLimitRev < MIN_CAL_PWM_VALUE) {
-        PwmLimitRev=MIN_CAL_PWM_VALUE;
+    else if (NewPwmLimitRev < minCalPwmValue) {
+        PwmLimitRev=minCalPwmValue;
     }
     else {
         PwmLimitRev=NewPwmLimitRev;
@@ -276,15 +290,7 @@ void DDCMotor::SetIncValue(unsigned short int Value)
  */
 unsigned short int DDCMotor::GetPwm(void)
 {
-    if (CurrVel > 0) {
-        return(map(abs(CurrVel),0,MAX_VEL,0,PwmLimitFw));
-    }
-    else if (CurrVel < 0) {
-        return(map(abs(CurrVel),0,MAX_VEL,0,PwmLimitRev));
-    }
-    else {
-        return(0);
-    }
+    return VelToPwm(CurrVel);
 }
 
 /**
@@ -336,10 +342,11 @@ void DDCMotor::SetVel(int Speed)
         CurrVel=-MAX_VEL;
     }
 
+    // Calculate remapped PWM value
+    unsigned short int PwmValue=VelToPwm(CurrVel);
+
     // Output
     if (CurrVel > 0) {
-        // Calculate PWM value remapped from 0 to CalMaxPwmFw
-        unsigned short int PwmValue=map(abs(CurrVel),0,MAX_VEL,0,PwmLimitFw);
         // Forward
         if (ControlMode == PWM_PWM) {
             PwmOut1->setMicros(0);
@@ -353,8 +360,6 @@ void DDCMotor::SetVel(int Speed)
         Running=true;
 	}
 	else if (CurrVel < 0) {
-        // Calculate PWM value remapped from 0 to CalMaxPwmRev
-        unsigned short int PwmValue=map(abs(CurrVel),0,MAX_VEL,0,PwmLimitRev);
         // Reverse
         if (ControlMode == PWM_PWM) {
             PwmOut1->setMicros(PwmValue);
@@ -389,8 +394,8 @@ void DDCMotor::SetVel(int Speed)
 void DDCMotor::Brake(void)
 {
     if (ControlMode == PWM_PWM) {
-        PwmOut1->setMicros(MAX_PWM_VALUE);
-        PwmOut2->setMicros(MAX_PWM_VALUE);
+        PwmOut1->setMicros(maxPwmValue);
+        PwmOut2->setMicros(maxPwmValue);
     }
     else {
         // DIR_PWM
@@ -428,3 +433,43 @@ unsigned short int DDCMotor::GetPinDirPwm(void)
 {
     return(PwmOut2->getPin());
 }
+
+/**
+ * @brief Convert velocity value to PWM value.
+ * 
+ * @param Vel 
+ * @return unsigned short int 
+ */
+unsigned short int DDCMotor::VelToPwm(short int Vel)
+{
+    if (Vel > 0) {
+        return(mapValue(abs(Vel),0,MAX_VEL,0,PwmLimitFw));
+    }
+    else if (Vel < 0) {
+        return(mapValue(abs(Vel),0,MAX_VEL,0,PwmLimitRev));
+    }
+    else {
+        return(0);
+    }
+}
+
+/**
+ * @brief Convert PWM value to velocity value.
+ * 
+ * @param Pwm 
+ * @return short int 
+ */
+/*
+short int DDCMotor::PwmToVel(unsigned short int Pwm)
+{
+    if (Pwm > 0) {
+        return(mapValue(Pwm,0,PwmLimitFw,0,MAX_VEL));
+    }
+    else if (Pwm < 0) {
+        return(mapValue(Pwm,0,PwmLimitRev,0,-MAX_VEL));
+    }
+    else {
+        return(0);
+    }
+}
+*/

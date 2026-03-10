@@ -11,13 +11,7 @@ class DDCMotor {
         enum DRotationDir { ROT_CC, ROT_CW , ROT_NONE };
         // Constants
         static const int MAX_VEL=100;     //! Max vel value.
-        //static const uint16_t MAX_PWM=255;     //! Max pwm value.
-        //static const uint16_t MIN_CAL_PWM=100; //! Limit pwm value for minimum calibration value.
-        //static const unsigned short VEL_CURRENT=0;   //! Default value for indicating use current vel
-
-        uint16_t MAX_PWM_VALUE=255;     //! Max pwm value (255 is arduino max value for analogWrite()).
-        uint16_t MIN_CAL_PWM_VALUE=100; //! Limit pwm value for minimum calibration value.
-
+        
         DDCMotor(unsigned short int PinDirPwm, unsigned short int PinPwm, DControlMode Mode = DIR_PWM);
         ~DDCMotor();
 
@@ -25,13 +19,16 @@ class DDCMotor {
         void detach(void);
         bool attached(void);
 
-        void SetCalLimitFw(unsigned short int MaxPwmFw);
-        void SetCalLimitRev(unsigned short int MaxPwmRev);
-        void ResetCalLimit(void);
-        void ResetCalLimitRev(void);
-        void ResetCalLimitFw(void);
-        unsigned short int GetCalLimitFw(void);
-        unsigned short int GetCalLimitRev(void);
+        void SetPwmLimitFw(unsigned short int MaxPwmFw);
+        void SetPwmLimitRev(unsigned short int MaxPwmRev);
+        void ResetPwmLimit(void);
+        void ResetPwmLimitRev(void);
+        void ResetPwmLimitFw(void);
+        unsigned short int GetPwmLimitFw(void);
+        unsigned short int GetPwmLimitRev(void);
+        unsigned short int GetMaxPwmValue(void);
+        //short int GetVelLimitFw(void);
+        //short int GetVelLimitRev(void);
 
         void SetIncValue(unsigned short int Value);
         void SwappedDirMode(bool Enabled);
@@ -49,6 +46,8 @@ class DDCMotor {
         bool IsRunning(void);
         unsigned short int GetPinPwm(void);
         unsigned short int GetPinDirPwm(void);
+        unsigned short int VelToPwm(short int Vel);
+        //short int PwmToVel(unsigned short int PwmValue);
 
     protected:
         int CurrVel;
@@ -59,7 +58,9 @@ class DDCMotor {
         unsigned short SwappedDir;
         //bool Attached;
         bool Running;
-        
+
+        uint16_t maxPwmValue=255;     //! Max pwm value (255 is arduino max value for analogWrite()).
+        uint16_t minCalPwmValue=100; //! Limit pwm value for minimum calibration value.
         unsigned short int PwmLimitFw;
         unsigned short int PwmLimitRev;
         DControlMode       ControlMode;

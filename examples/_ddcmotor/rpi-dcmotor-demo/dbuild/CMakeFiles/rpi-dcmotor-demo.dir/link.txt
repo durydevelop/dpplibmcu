@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/rpi-dcmotor-demo.dir/main.cpp.o CMakeFiles/rpi-dcmotor-demo.dir/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotor.cpp.o CMakeFiles/rpi-dcmotor-demo.dir/home/pi/Dev/cpp/lib/mcu/ddcmotorwheels/src/DDCMotorWheels.cpp.o  -o rpi-dcmotor-demo  -lpigpio 

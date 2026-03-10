@@ -1,4 +1,4 @@
-#include "DDCMotorWheels.h"
+#include "ddcmotorwheels.h"
 #ifdef ARDUINO
 	// Arduino inlcudes
     #if ARDUINO >= 100
@@ -11,7 +11,8 @@
     #include <cstdlib>
 #endif
 
-#define DEFAULT_INCREMENTAL_VALUE  10      //! Default step for increment - decrement vel
+#define DEFAULT_INCREMENTAL_VALUE  10 //! Default step for increment - decrement vel
+#define LIMIT_BALANCING_VALUE 155     //! Max value for balancing
 
 /**
  * @brief Construct a new DDCMotorWheels::DDCMotorWheels object.
@@ -129,14 +130,12 @@ void DDCMotorWheels::detach(void)
  * A positive value means that dx wheel runs faster than sx, so, MotorSX::PwmLimitFw will decrease (but not under DMotor::MIN_CAL_PWM).
  * A zero value means that sx and dx wheel runs without compensation.
  * 
- * @param Value ->  from -[DDCMotor::MAX_PWM-DDCMotor::MIN_CAL_PWM] to [DDCMotor::MAX_PWM-DDCMotor::MIN_CAL_PWM]. Default: -155 to 155
+ * @param Value ->  each motor have its own values for minCalPwnValue and maxPwmValue, default values are -155 to 155, so we can use these limits, each motor will be protected by its own limits.
  */
 void DDCMotorWheels::SetBalancingFw(short int Value)
 {
-    // Limit for calibration value
-    unsigned short Limit=DDCMotor::MAX_PWM-DDCMotor::MIN_CAL_PWM;
-    if (Value > Limit) Value=Limit;
-    else if (Value < -Limit) Value=-Limit;
+    if (Value > LIMIT_BALANCING_VALUE) Value=LIMIT_BALANCING_VALUE;
+    else if (Value < -LIMIT_BALANCING_VALUE) Value=-LIMIT_BALANCING_VALUE;
 
     // Balancing=CalLimitSX-CalLimitDX
     // so...
@@ -146,19 +145,19 @@ void DDCMotorWheels::SetBalancingFw(short int Value)
         // To DX:
         // SX no limit
         // DX decrease limit
-        MotorSX->ResetCalLimitFw();
-        MotorDX->SetCalLimitFw(MotorSX->GetCalLimitFw()-Value);
+        MotorSX->ResetPwmLimitFw();
+        MotorDX->SetPwmLimitFw(MotorSX->GetPwmLimitFw()-Value);
     }
     else if (Value < 0) {
         // To SX:
         // SX decrese balancing
         // DX no limit
-        MotorSX->SetCalLimitFw(MotorDX->GetCalLimitFw()+Value);
-        MotorDX->ResetCalLimitFw();
+        MotorSX->SetPwmLimitFw(MotorDX->GetPwmLimitFw()+Value);
+        MotorDX->ResetPwmLimitFw();
     }
     else {
-        MotorSX->ResetCalLimitFw();
-        MotorDX->ResetCalLimitFw();
+        MotorSX->ResetPwmLimitFw();
+        MotorDX->ResetPwmLimitFw();
     }
 }
 
@@ -213,9 +212,8 @@ void DDCMotorWheels::MoveBalancingRevDX(unsigned short int Value)
 void DDCMotorWheels::SetBalancingRev(short int Value)
 {
     // Limits for calibration value
-    unsigned short Limit=DDCMotor::MAX_PWM-DDCMotor::MIN_CAL_PWM;
-    if (Value > Limit) Value=Limit;
-	if (Value < -Limit) Value=-Limit;
+    if (Value > LIMIT_BALANCING_VALUE) Value=LIMIT_BALANCING_VALUE;
+    else if (Value < -LIMIT_BALANCING_VALUE) Value=-LIMIT_BALANCING_VALUE;
 
 
     // Balancing=CalLimitSX-CalLimitDX
@@ -226,19 +224,19 @@ void DDCMotorWheels::SetBalancingRev(short int Value)
         // To DX:
         // SX no limit
         // DX decrease limit
-        MotorSX->ResetCalLimitRev();
-        MotorDX->SetCalLimitRev(MotorSX->GetCalLimitRev()-Value);
+        MotorSX->ResetPwmLimitRev();
+        MotorDX->SetPwmLimitRev(MotorSX->GetPwmLimitRev()-Value);
     }
     else if (Value < 0) {
         // To SX:
         // SX decrease limit
         // DX no limit
-        MotorSX->SetCalLimitRev(MotorDX->GetCalLimitRev()+Value);
-        MotorDX->ResetCalLimitRev();
+        MotorSX->SetPwmLimitRev(MotorDX->GetPwmLimitRev()+Value);
+        MotorDX->ResetPwmLimitRev();
     }
     else {
-        MotorSX->ResetCalLimitRev();
-        MotorDX->ResetCalLimitRev();
+        MotorSX->ResetPwmLimitRev();
+        MotorDX->ResetPwmLimitRev();
     }
 }
 
@@ -248,8 +246,8 @@ void DDCMotorWheels::SetBalancingRev(short int Value)
  */
 void DDCMotorWheels::ResetBalancing(void)
 {
-    MotorSX->ResetCalLimit();
-    MotorDX->ResetCalLimit();
+    MotorSX->ResetPwmLimit();
+    MotorDX->ResetPwmLimit();
 }
 
 /**
@@ -258,8 +256,8 @@ void DDCMotorWheels::ResetBalancing(void)
  */
 void DDCMotorWheels::ResetBalancingFw(void)
 {
-    MotorSX->ResetCalLimitFw();
-    MotorDX->ResetCalLimitFw();
+    MotorSX->ResetPwmLimitFw();
+    MotorDX->ResetPwmLimitFw();
 }
 
 /**
@@ -268,8 +266,8 @@ void DDCMotorWheels::ResetBalancingFw(void)
  */
 void DDCMotorWheels::ResetBalancingRev(void)
 {
-    MotorSX->ResetCalLimitRev();
-    MotorDX->ResetCalLimitRev();
+    MotorSX->ResetPwmLimitRev();
+    MotorDX->ResetPwmLimitRev();
 }
 
 /**
@@ -299,7 +297,7 @@ void DDCMotorWheels::SXSetVel(short int Vel)
     }
 
     if (Engaged) {
-        MotorSX->Set(CurrSXVel);
+        MotorSX->SetVel(CurrSXVel);
     }
 }
 
@@ -319,7 +317,7 @@ void DDCMotorWheels::DXSetVel(short int Vel)
     }
 
     if (Engaged) {
-        MotorDX->Set(CurrDXVel);
+        MotorDX->SetVel(CurrDXVel);
     }
 }
 
@@ -395,7 +393,7 @@ bool DDCMotorWheels::DXIsRunning(void)
 **/
 short int DDCMotorWheels::GetBalancingFw(void)
 {
-    return(MotorSX->GetCalLimitFw() - MotorDX->GetCalLimitFw());
+    return(MotorSX->GetPwmLimitFw() - MotorDX->GetPwmLimitFw());
 }
 
 /**
@@ -403,7 +401,7 @@ short int DDCMotorWheels::GetBalancingFw(void)
 **/
 short int DDCMotorWheels::GetBalancingRev(void)
 {
-    return(MotorSX->GetCalLimitRev() - MotorDX->GetCalLimitRev());
+    return(MotorSX->GetPwmLimitRev() - MotorDX->GetPwmLimitRev());
 }
 // *********************End direct motor input functions **************************
 
