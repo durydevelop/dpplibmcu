@@ -186,11 +186,11 @@ void WheelsCalibrate(DDCMotorWheels *dcWheels, DNCurses *nc)
                     // Decrease Motor SX
                     if (SXSet > 0) {
                         // Motor SX is running fw
-                        dcWheels->MotorSX->DecPwmLimitFw(dcWheels->MotorSX->GetPwmLimitFw()-2);
+                        dcWheels->MotorSX->DecPwmLimitFw();
                     }
                     else if (SXSet < 0) {
                         // Motor SX is running rev
-                        dcWheels->MotorSX->SetCalibrationVelRev(dcWheels->MotorSX->GetCalibrationVelRev()-2);
+                        dcWheels->MotorSX->DecPwmLimitRev();
                     }
                 }
                 else if (DXPwm < SXPwm) {
@@ -198,11 +198,11 @@ void WheelsCalibrate(DDCMotorWheels *dcWheels, DNCurses *nc)
                     // Increase Motor DX
                     if (DXSet > 0) {
                         // Motor DX is running fw
-                        dcWheels->MotorDX->SetCalibrationVelFw(dcWheels->MotorDX->GetCalibrationVelFw()+2);
+                        dcWheels->MotorDX->IncPwmLimitFw();
                     }
                     else if (DXSet < 0) {
                         // Motor DX is running rev
-                        dcWheels->MotorDX->SetCalibrationVelRev(dcWheels->MotorDX->GetCalibrationVelRev()+2);
+                        dcWheels->MotorDX->IncPwmLimitRev();
                     }
                 }
                 break;

@@ -2,7 +2,7 @@
 #include <dutils>
 
 // Defaults
-#define DEFAULT_STEP_VALUE  10      //! Default vel step inc/dec value
+#define DEFAULT_STEP_VEL_VALUE  10      //! Default vel step inc/dec value
 #define PWM_FREQ 480
 
 /**
@@ -73,7 +73,7 @@ void DDCMotor::attach(void)
 
     // Defaults
 	ResetPwmLimit();
-	CurrStepValue=DEFAULT_STEP_VALUE;
+	stepVelValue=DEFAULT_STEP_VEL_VALUE;
 	CurrVel=0;
     SwappedDir=0;
     Running=false;
@@ -224,6 +224,26 @@ void DDCMotor::SetPwmLimitRev(unsigned short int NewPwmLimitRev)
         // Motor is running, update vel
         SetVel(CurrVel);
 	}
+}
+
+void DDCMotor::DecPwmLimitFw(void)
+{
+    SetPwmLimitFw(GetPwmLimitFw()-VelToPwm(stepVelValue));
+}
+
+void DDCMotor::DecPwmLimitRev(void)
+{
+    SetPwmLimitRev(GetPwmLimitRev()-VelToPwm(stepVelValue));
+}
+
+void DDCMotor::IncPwmLimitFw(void)
+{
+    SetPwmLimitFw(GetPwmLimitFw()+VelToPwm(stepVelValue));
+}
+
+void DDCMotor::IncPwmLimitRev(void)
+{
+    SetPwmLimitRev(GetPwmLimitRev()+VelToPwm(stepVelValue));
 }
 
 /**

@@ -21,14 +21,16 @@ class DDCMotor {
 
         void SetPwmLimitFw(unsigned short int MaxPwmFw);
         void SetPwmLimitRev(unsigned short int MaxPwmRev);
+        void DecPwmLimitFw(void);
+        void DecPwmLimitRev(void);
+        void IncPwmLimitFw(void);
+        void IncPwmLimitRev(void);
         void ResetPwmLimit(void);
         void ResetPwmLimitRev(void);
         void ResetPwmLimitFw(void);
         unsigned short int GetPwmLimitFw(void);
         unsigned short int GetPwmLimitRev(void);
         unsigned short int GetMaxPwmValue(void);
-        //short int GetVelLimitFw(void);
-        //short int GetVelLimitRev(void);
 
         void SetIncValue(unsigned short int Value);
         void SwappedDirMode(bool Enabled);
@@ -64,6 +66,6 @@ class DDCMotor {
         unsigned short int PwmLimitFw;
         unsigned short int PwmLimitRev;
         DControlMode       ControlMode;
-        unsigned short int CurrStepValue;
+        unsigned short int stepVelValue;
 };
 #endif
