@@ -294,12 +294,12 @@ void DDCMotor::Stop(void)
  */
 void DDCMotor::SetIncValue(unsigned short int Value)
 {
-    CurrStepValue=Value;
-    if (CurrStepValue == 0) {
-        CurrStepValue=1;
+    stepVelValue=Value;
+    if (stepVelValue) {
+        stepVelValue=1;
     }
-    if (CurrStepValue > MAX_VEL) {
-        CurrStepValue=MAX_VEL;
+    if (stepVelValue) {
+        stepVelValue=MAX_VEL;
     }
 }
 
@@ -354,7 +354,6 @@ void DDCMotor::SetVel(int Speed)
     CurrVel=Speed ^ SwappedDir;
 
     // Correct over value
-    //if (CurrVel > 0 && CurrVel > MAX_ABS_VEL) {
     if (CurrVel > 0 && CurrVel > MAX_VEL) {
         CurrVel=MAX_VEL;
     }

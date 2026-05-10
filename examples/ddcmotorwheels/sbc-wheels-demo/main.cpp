@@ -1,3 +1,5 @@
+#include <iostream>
+#include <cstdlib>
 #include <ddcmotorwheels>
 #include "DNCurses.h"
 
@@ -5,6 +7,7 @@ void WheelsDiag(DDCMotorWheels *dcWheels, DNCurses *nc);
 void WheelsCalibrate(DDCMotorWheels *dcWeels, DNCurses *nc);
 
 #define map(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
+#define GetMapBalance(x) map(x,-255,255,2,75)
 
 void WheelsDiag(DDCMotorWheels *dcWheels, DNCurses *nc)
 {
@@ -89,7 +92,6 @@ void WheelsDiag(DDCMotorWheels *dcWheels, DNCurses *nc)
     delete wDiag;
 }
 
-#define GetMapBalance(x) map(x,-255,255,2,75);
 void WheelsCalibrate(DDCMotorWheels *dcWheels, DNCurses *nc)
 {
     DNCurses::DWindow *wDiag=nc->CreateWindow(2,2,22,78);
@@ -209,27 +211,27 @@ void WheelsCalibrate(DDCMotorWheels *dcWheels, DNCurses *nc)
             case 'd':
                 // Vel balancing to M2 (DX Balancing)
                 if (SXPwm < DXPwm) {
-                    // Already M1 decresed:
-                    // Increase M1
+                    // Already Motor SX decresed:
+                    // Increase Motor SX
                     if (SXSet > 0) {
-                        // M1 is running fw
-                        dcWheels->M1SetCalibrationVelFw(dcWheels->M1GetCalibrationVelFw()+2);
+                        // Motor SX is running fw
+                        dcWheels->MotorSX->IncPwmLimitFw();
                     }
                     else if (SXSet < 0) {
-                        // M1 is running rev
-                        dcWheels->M1SetCalibrationVelRev(dcWheels->M1GetCalibrationVelRev()+2);
+                        // MOtor SX is running rev
+                        dcWheels->MotorSX->IncPwmLimitRev();
                     }
                 }
                 else if (DXPwm <= SXPwm) {
-                    // Same vel or Already M2 decresed:
-                    // Decrease M2
+                    // Same vel or Already Motor DX decresed:
+                    // Decrease Motor DX
                     if (DXSet >= 0) {
-                        // M2 is running fw
-                        dcWheels->M2SetCalibrationVelFw(dcWheels->M2GetCalibrationVelFw()-2);
+                        // Motor DX is running fw
+                        dcWheels->MotorDX->DecPwmLimitFw();
                     }
                     else if (DXSet < 0) {
-                        // M2 is running rev
-                        dcWheels->M2SetCalibrationVelRev(dcWheels->M1GetCalibrationVelRev()-2);
+                        // Motor DX is running rev
+                        dcWheels->MotorDX->DecPwmLimitRev();
                     }
                 }
                 break;
@@ -237,54 +239,53 @@ void WheelsCalibrate(DDCMotorWheels *dcWheels, DNCurses *nc)
             	// PWM balancing to M1 (SX Balancing)
                 if (SXPwm <= DXPwm) {
                     // Same calibration or Already M1 decreased:
-                    // Decrease M1
+                    // Decrease Motor SX
                     if (SXSet > 0) {
-                        // M1 is running fw
-                        dcWheels->M1SetCalibrationPwmFw(dcWheels->M1GetCalibrationPwmFw()-2);
+                        // Motor SX is running fw
+                        dcWheels->MotorSX->DecPwmLimitFw();
                     }
                     else if (SXSet < 0) {
-                            // M1 is running rev
-                        dcWheels->M1SetCalibrationPwmRev(dcWheels->M1GetCalibrationPwmRev()-2);
+                        // Motor SX is running rev
+                        dcWheels->MotorSX->DecPwmLimitRev();
                     }
                 }
                 else if (DXPwm < SXPwm) {
-                    // Already M2 decreased:
-                    // Increase M2
+                    // Already Motor DX decreased:
+                    // Increase Motor DX
                     if (DXSet > 0) {
-                        // M2 is running fw
-                        dcWheels->M2SetCalibrationPwmFw(dcWheels->M2GetCalibrationPwmFw()+2);
+                        // Motor DX is running fw
+                        dcWheels->MotorDX->IncPwmLimitFw();
                     }
                     else if (DXSet < 0) {
-                        // M2 is running rev
-                        dcWheels->M2SetCalibrationPwmRev(dcWheels->M2GetCalibrationPwmRev()+2);
+                        // Motor DX is running rev
+                        dcWheels->MotorDX->IncPwmLimitRev();
                     }
                 }
-                break;
                 break;
             case 'c':
                 // PWM balancing to M2 (DX Balancing)
                 if (SXPwm < DXPwm) {
-                    // Already M1 decresed:
-                    // Increase M1
-                    if (SXSet > 0) {
-                        // M1 is running fw
-                        dcWheels->M1SetCalibrationPwmFw(dcWheels->M1GetCalibrationPwmFw()+2);
+                    // Already Motor SX decreased:
+                    // Increase Motor DX
+                    if (DXSet > 0) {
+                        // Motor DX is running fw
+                        dcWheels->MotorDX->IncPwmLimitFw();
                     }
                     else if (SXSet < 0) {
-                        // M1 is running rev
-                        dcWheels->M1SetCalibrationPwmRev(dcWheels->M1GetCalibrationPwmRev()+2);
+                        // Motor SX is running rev
+                        dcWheels->MotorSX->IncPwmLimitRev();
                     }
                 }
                 else if (DXPwm <= SXPwm) {
-                    // Same vel or Already M2 decresed:
-                    // Decrease M2
+                    // Same vel or Already Motor DX decreased:
+                    // Decrease Motor DX
                     if (DXSet >= 0) {
-                        // M2 is running fw
-                        dcWheels->M2SetCalibrationPwmFw(dcWheels->M2GetCalibrationPwmFw()-2);
+                        // Motor DX is running fw
+                        dcWheels->MotorDX->DecPwmLimitFw();
                     }
                     else if (DXSet < 0) {
-                        // M2 is running rev
-                        dcWheels->M2SetCalibrationPwmRev(dcWheels->M1GetCalibrationPwmRev()-2);
+                        // Motor DX is running rev
+                        dcWheels->MotorDX->DecPwmLimitRev();
                     }
                 }
                 break;
@@ -295,4 +296,10 @@ void WheelsCalibrate(DDCMotorWheels *dcWheels, DNCurses *nc)
     }while(ch != KEY_BACKSPACE);
 
     delete wDiag;
+}
+
+int main(int argc, char** argv) {
+    DDCMotorWheels dcWheels(2,3,4,5);
+    DNCurses nc;
+    WheelsDiag(&dcWheels,&nc);
 }

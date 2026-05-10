@@ -9,7 +9,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    DDCMotor *Motor;
+    
     if (argc < 3) {
         cout << "Usage: "+std::string(argv[0])+" <PwmPin nr> <DirPwmPin nr>";
         cout << "[Control mode] -> PHASE_ENABLED or IN_IN (default=PHASE_ENABLE)";
@@ -25,9 +25,8 @@ int main(int argc, char** argv) {
             Mode=DDCMotor::DControlMode::PWM_PWM;
         }
     }
-        
     
-    Motor = new DDCMotor(PwmPin,DirPwmPin,Mode);
+    DDCMotor *Motor = new DDCMotor(PwmPin,DirPwmPin,Mode);
     cout << "Speed up fw..." << endl;
     for (int v=1; v<=100 ;v++) {
         Motor->SetVel(v);

@@ -1,3 +1,5 @@
+find_package(Curses REQUIRED)
+
 if(lg_FOUND)
     ## Add gpio examples
 
@@ -34,6 +36,8 @@ if(lg_FOUND)
     )
     target_link_libraries(dcmotorwheels-demo PUBLIC dpplibmcu::dpplibmcu)
     target_link_libraries(dcmotorwheels-demo PUBLIC lgpio)
+    target_link_libraries(dcmotorwheels-demo PUBLIC ${CURSES_LIBRARIES})
+    target_include_directories(dcmotorwheels-demo PUBLIC ${CURSES_INCLUDE_DIRS})
 
     # i2c-bus-list
     add_executable(i2c-bus-list

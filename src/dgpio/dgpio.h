@@ -15,7 +15,7 @@
         #include "../dgpio/derrorcodes.h"
     #endif
 #else
-    // Not arduino (rpi or linux sbc)
+    // Not arduino
     #include <lgpio.h>
     #include <dgpiochip>
 
