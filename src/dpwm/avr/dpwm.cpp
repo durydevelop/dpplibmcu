@@ -24,15 +24,19 @@ bool Initialized=false;
 // ********************************************************************************
 // ********************************* ISR routine **********************************
 // ********************************************************************************
-size_t TickCounter=0;
+//size_t TickCounter=0;
 #if defined(__AVR_ATtiny85__)
-    #ifndef DPWM_USE_TIMER1
+    #ifdef DPWM_USE_TIMER1
+        ISR(TIMER1_OVF_vect)
+    #else
         ISR(TIMER0_COMPA_vect)
+    #endif
+#elif defined (__AVR_ATmega328P__) || defined(__AVR_ATmega328__)
+    #ifdef DPWM_USE_TIMER2
+        ISR(TIMER2_COMPA_vect)
     #else
         ISR(TIMER1_COMPA_vect)
     #endif
-#elif defined (__AVR_ATmega328P__) || defined(__AVR_ATmega328__)
-    ISR(TIMER1_COMPA_vect)
 #endif
 {
     for (uint8_t ixC=0; ixC<MAX_PWM_COUNT; ixC++) {
@@ -176,6 +180,9 @@ void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
     }
     // Total ticks per period
     TicksTOT=(TIMER_FREQ/freqHz);
+    
+    // Reset counter when setting new frequency
+    TickCounter=0;
 
     setDutyPerc(dutyCyclePerc);
 
