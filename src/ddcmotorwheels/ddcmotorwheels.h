@@ -1,14 +1,14 @@
 #ifndef DDCMotorWheelsH
 #define DDCMotorWheelsH
 
-#include "DDCMotor.h"
+#include <ddcmotor>
 
 class DDCMotorWheels {
 
 public:
 	//static const unsigned short int MIN_BALANCE_VALUE=DDCMotor::MIN_CAL_PWM;
 	//static const unsigned short int MAX_BALANCE_VALUE=DDCMotor::MAX_PWM;
-	enum DBalanceValues { MAX_SX=-DDCMotor::MIN_CAL_PWM, MAX_DX=DDCMotor::MAX_PWM };
+	//enum DBalanceValues { MAX_SX=-DDCMotor::MIN_CAL_PWM, MAX_DX=DDCMotor::MAX_PWM };
 
     DDCMotorWheels();
 	DDCMotorWheels(unsigned short int SXPwmPin, unsigned short int SXDirPwmPin, unsigned short int DXPwmPin, unsigned short int DXDirPwmPin, DDCMotor::DControlMode Mode = DDCMotor::DIR_PWM);

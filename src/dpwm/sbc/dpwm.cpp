@@ -39,6 +39,18 @@ DPwmOut::~DPwmOut()
 }
 
 /**
+ * @brief Release pin use.
+ * N.B. This function only release the pin from its pwm use, does not free memory.
+ * To do it you must call class destructor.
+ * 
+ */
+void DPwmOut::release(void) {
+    if (handle >= 0) {
+        releasePin(pin,handle);
+    }
+}
+
+/**
  * @brief Init all stuff for starting pwm on GpioPin.
  * MUST be calld before using the class.
  * 
