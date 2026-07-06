@@ -45,13 +45,13 @@
 // Enumations
 enum DPinMode { PIN_MODE_INPUT, PIN_MODE_OUTPUT, PIN_MODE_INPUT_PULLUP, PIN_MODE_SOFT_PWM }; //, OUTPUT_PWM };
 enum DPinFlags {
-    NO_FLAGS=    0,
-    ACTIVE_LOW=  4,
-    OPEN_DRAIN=  8,
-    OPEN_SOURCE= 16,
-    PULL_UP=     32,
-    PULL_DOWN=   64,
-    PULL_NONE=   128
+    PIN_FLAG_NONE=    0,
+    PIN_FLAG_ACTIVE_LOW=  4,
+    PIN_FLAG_OPEN_DRAIN=  8,
+    PIN_FLAG_OPEN_SOURCE= 16,
+    PIN_FLAG_PULL_UP=     32,
+    PIN_FLAG_PULL_DOWN=   64,
+    PIN_FLAG_PULL_NONE=   128
 };
 
 #ifdef ARDUINO
