@@ -1,17 +1,11 @@
+#ifdef ARDUINO_ARCH_ESP32
+
 #include <Arduino.h>
 #include "dpwm.h"
-#include "DSoftPwmTimer.h"
-
-
-/**
- * TODO:
- * 
-*/
-
 
 #define MAX_PWM_COUNT 5
+#define PWM_RESOLUTION_BITS 10
 
-//static std::vector<DPwm*> ChList;  //! List of Pwm channel
 DPwmOut *PwmList[MAX_PWM_COUNT];
 bool Initialized=false;
 
@@ -22,113 +16,57 @@ bool Initialized=false;
 #endif
 
 // ********************************************************************************
-// ********************************* ISR routine **********************************
-// ********************************************************************************
-//size_t TickCounter=0;
-#if defined(__AVR_ATtiny85__)
-    #ifdef DPWM_USE_TIMER1
-        ISR(TIMER1_OVF_vect)
-    #else
-        ISR(TIMER0_COMPA_vect)
-    #endif
-#elif defined (__AVR_ATmega328P__) || defined(__AVR_ATmega328__)
-    #ifdef DPWM_USE_TIMER2
-        ISR(TIMER2_COMPA_vect)
-    #else
-        ISR(TIMER1_COMPA_vect)
-    #endif
-#endif
-{
-    for (uint8_t ixC=0; ixC<MAX_PWM_COUNT; ixC++) {
-        if (PwmList[ixC] ) {
-            if (PwmList[ixC]->Active) {
-                PwmList[ixC]->TickCounter++;
-                if (PwmList[ixC]->TickCounter >= PwmList[ixC]->TicksTOT) {
-                    // Pwm period end, set to HIGH
-                    *PwmList[ixC]->OUTPORT|=PwmList[ixC]->BitMask;
-                    PwmList[ixC]->TickCounter=0;
-                }
-                else if (PwmList[ixC]->TickCounter >= PwmList[ixC]->TicksON) {
-                    // Pwm HIGH level time reached, change to LOW
-                    *PwmList[ixC]->OUTPORT&=~PwmList[ixC]->BitMask;
-                }
-            }
-        }
-    }
-}
-
-// ********************************************************************************
 // ****************************** DPwmOut class ***********************************
 // ********************************************************************************
 
-/**
- * @brief Construct a new DPwmOut::DPwmOut object.
- * N.B. Timer should have not been initialized in costructor (may be it doe not work).
- * Timer will be initialized in Begin().
- */
-DPwmOut::DPwmOut(uint8_t GpioPin) {
-    // Set defaults
-    Pin=GpioPin;
-    BitMask=0;
-    OUTPORT=nullptr;
-    Active=false;
-    TickCounter=0;
-    TicksON=0;
-    TicksTOT=0;
+static inline uint32_t dutyFromPercent(uint8_t dutyPerc, uint16_t maxDuty)
+{
+    return ((uint32_t)dutyPerc * maxDuty) / 100;
 }
 
-/**
- * @brief Destroy the DPwmOut::DPwmOut object and free slot on PwmList[].
- */
+DPwmOut::DPwmOut(uint8_t GpioPin) {
+    Pin = GpioPin;
+    BitMask = 0;
+    OUTPORT = nullptr;
+    Active = false;
+    TickCounter = 0;
+    TicksON = 0;
+    TicksTOT = 0;
+    dutyPerc = 0;
+    Channel = 255;
+    pwmResolution = PWM_RESOLUTION_BITS;
+    pwmMaxDuty = (1 << PWM_RESOLUTION_BITS) - 1;
+    freqHz = 0;
+}
+
 DPwmOut::~DPwmOut()
 {
     release();
 }
 
-/**
- * @brief Delete this instance pointer from PwmList.
- * N.B. This function only null the slot in PwmList, does not free memory.
- * To do it you must call class destructor.
- * 
- */
 void DPwmOut::release(void) {
-    for (uint8_t ixP=0; ixP<MAX_PWM_COUNT; ixP++) {
+    for (uint8_t ixP = 0; ixP < MAX_PWM_COUNT; ixP++) {
         if (PwmList[ixP] == this) {
-            // It's me, null slot
-            PwmList[ixP]=nullptr;
+            PwmList[ixP] = nullptr;
             break;
         }
     }
 }
 
-/**
- * @brief Init all stuffs for starting pwm on GpioPin.
- * MUST be called before using the class.
- * 
- * @param GpioPin 
- * @param FreqHz 
- * @param DutyCyclePerc 
- * @param Activate 
- */
 bool DPwmOut::begin(uint16_t FreqHz, uint8_t DutyCyclePerc, bool Activate) {
-    // Init globals
     if (!Initialized) {
-        // Execute only on first DPwmOut creation.
-        // Init PwmList
-        for (uint8_t ixC=0; ixC<MAX_PWM_COUNT; ixC++) {
-            PwmList[ixC]=nullptr;
+        for (uint8_t ixC = 0; ixC < MAX_PWM_COUNT; ixC++) {
+            PwmList[ixC] = nullptr;
         }
-        // Setup timer
-        SetupTimer();
-        Initialized=true;
+        Initialized = true;
     }
 
-    // Find free slot
-    bool Found=false;
-    for (uint8_t ixC=0; ixC<MAX_PWM_COUNT; ixC++) {
+    bool Found = false;
+    for (uint8_t ixC = 0; ixC < MAX_PWM_COUNT; ixC++) {
         if (PwmList[ixC] == nullptr) {
-            PwmList[ixC]=this;
-            Found=true;
+            PwmList[ixC] = this;
+            Channel = ixC;
+            Found = true;
             break;
         }
     }
@@ -137,222 +75,164 @@ bool DPwmOut::begin(uint16_t FreqHz, uint8_t DutyCyclePerc, bool Activate) {
         return false;
     }
 
-    // Get port register for pin
-    uint8_t Port=digitalPinToPort(Pin);
-    if (Port == NOT_A_PIN) {
-        Debug("Not a pin");
-        return false;
-    }
-
-    // Set all stuff
-    pinMode(Pin,OUTPUT);
-    BitMask=digitalPinToBitMask(Pin);
-    OUTPORT=portOutputRegister(Port);
-    set(FreqHz,DutyCyclePerc,Activate);
+    pinMode(Pin, OUTPUT);
+    pwmResolution = PWM_RESOLUTION_BITS;
+    pwmMaxDuty = (1 << pwmResolution) - 1;
+    freqHz = (FreqHz == 0 ? 1 : FreqHz);
+    ledcAttachChannel(Pin, freqHz, pwmResolution, Channel);
+    set(FreqHz, DutyCyclePerc, Activate);
     return true;
 }
 
-/**
- * @brief Set pwm frequency and duty-cycle.
- * - Pwm frequency must be betwen 1 and 1/2 Timer freq.
- * - Duty-cycle must be from 1 to 99
- * 
- * @param FreqHz 
- * @param DutyCyclePerc 
- * @param Activate 
- */
 void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
-    if (!OUTPORT) {
-        // Do nothing
+    if (Channel == 255) {
         return;
     }
 
-    dutyPerc=dutyCyclePerc;
-
-    // Pwm freq must from 1 to 1/2 Timer freq
     if (freqHz == 0) {
         low();
         return;
     }
-    else if (freqHz > (TIMER_FREQ/2)) {
-        // set to max
-        freqHz=TIMER_FREQ/2;
+
+    if (freqHz != this->freqHz) {
+        this->freqHz = freqHz;
+        ledcChangeFrequency(Pin, freqHz, pwmResolution);
     }
-    // Total ticks per period
-    TicksTOT=(TIMER_FREQ/freqHz);
-    
-    // Reset counter when setting new frequency
-    TickCounter=0;
 
+    TicksTOT = pwmMaxDuty;
+    TicksON = dutyFromPercent(dutyCyclePerc, pwmMaxDuty);
+    TickCounter = 0;
     setDutyPerc(dutyCyclePerc);
-
-    Active=activate;
+    Active = activate;
+    if (!activate) {
+        low();
+    }
 }
 
-/**
- * @brief Change the frequency of pwm.
- * 
- * @param FreqHz 
- */
 void DPwmOut::setHz(uint16_t FreqHz) {
-   set(FreqHz,dutyPerc,true);
+   set(FreqHz, dutyPerc, true);
 }
 
-/**
- * @brief Change the pwm duty-cycle.
-  * 
- * @param DutyCyclePerc ->  duty-cycle value in percentual (from 0 to 100):
- *                          1 to 99 :   generate pwm signal.
- *                          0       :   pin is put in LOW level.
- *                          >=100   :   pin is put in HIGH level.
- */
 void DPwmOut::setDutyPerc(uint8_t dutyCyclePerc)
 {
-    if (!OUTPORT) {
-        // Do nothing
+    if (Channel == 255) {
         return;
     }
 
-    if (TicksTOT == 0) {
+    if (freqHz == 0) {
         return;
     }
 
-    dutyPerc=dutyCyclePerc;
+    dutyPerc = dutyCyclePerc;
     if (dutyPerc == 0) {
        low();
        return;
     }
     else if (dutyPerc >= 100) {
-        dutyPerc=100;
+        dutyPerc = 100;
         high();
         return;
     }
-    // Number of ticks per pulse
-    TicksON=(TicksTOT*dutyPerc)/100;
-    
-    Active=true;
+
+    uint32_t duty = dutyFromPercent(dutyPerc, pwmMaxDuty);
+    TicksON = duty;
+    TicksTOT = pwmMaxDuty;
+    ledcWrite(Pin, duty);
+    Active = true;
 }
 
-/**
- * @brief Set duration of pwm pulse in microseconds.
- * N.B. Output pin wil be enabled.
- * 
- * @param Us 
- */
 void DPwmOut::setMicros(uint16_t Us)
 {
-    if (!OUTPORT) {
-        // Do nothing
+    if (Channel == 255) {
         return;
     }
-    
+
+    if (freqHz == 0) {
+        return;
+    }
+
+    uint32_t periodUs = getPeriodUs();
     if (Us == 0) {
-        dutyPerc=0;
+        dutyPerc = 0;
         low();
     }
-    else if (Us >= getPeriodUs()) {
-        dutyPerc=100;
+    else if (Us >= periodUs) {
+        dutyPerc = 100;
         high();
     }
     else {
-        TicksON=Us/US_PER_TICK;
-        // ricalculate duty-cycle
-        dutyPerc=(100*TicksON)/TicksTOT;
-        Active=true;
+        uint32_t duty = ((uint32_t)Us * pwmMaxDuty) / periodUs;
+        TicksON = duty;
+        TicksTOT = pwmMaxDuty;
+        dutyPerc = (uint8_t)((100U * duty) / pwmMaxDuty);
+        ledcWrite(Pin, duty);
+        Active = true;
     }
 }
 
 void DPwmOut::on(bool PwmOn) {
+    if (Channel == 255) {
+        return;
+    }
+
     if (PwmOn) {
-        Active=true;
+        Active = true;
     }
     else {
         low();
     }
 }
 
-/**
- * @brief Set still HIGH value on pin.
- * 
- */
 void DPwmOut::high(void) {
-    if (!OUTPORT) {
-        // Do nothing
+    if (Channel == 255) {
         return;
     }
-    Active=false;
-    digitalWrite(Pin,HIGH);
+    Active = false;
+    ledcWrite(Pin, pwmMaxDuty);
 }
 
-/**
- * @brief Set still LOW value on pin.
- * 
- */
 void DPwmOut::low(void) {
-    if (!OUTPORT) {
-        // Do nothing
+    if (Channel == 255) {
         return;
     }
-    Active=false;
-    digitalWrite(Pin,LOW);
+    Active = false;
+    ledcWrite(Pin, 0);
 }
 
-/**
- * @return true if Pwm for this pin is ready to use.
- * N.B. Does not return the output enable status (use IsEnabled() instead).
- */
 bool DPwmOut::isReady(void)
 {
-    if (OUTPORT) {
-        return true;
-    }
-
-    return false;
+    return (Channel != 255);
 }
 
-/**
- * @return true if on Pin is present a pwm signal.
- * @return false if Pin is in HIGH or LOW state.
- */
 bool DPwmOut::isActive(void) {
     return (Active);
 }
 
-/**
- * @return uint16_t the period of pwm pulse.
- */
 uint16_t DPwmOut::getPeriodUs(void)
 {
-    return(US_PER_TICK * TicksTOT);
+    return (freqHz == 0 ? 0 : (uint16_t)(1000000UL / freqHz));
 }
 
-/**
- * @return uint8_t pwm pin number.
- */
 uint8_t DPwmOut::getPin(void)
 {
-    return(Pin);
+    return (Pin);
 }
 
 uint8_t DPwmOut::getDutyPerc(void) {
-    return(dutyPerc);
+    return (dutyPerc);
 }
 
 void DPwmOut::printInfo(void) {
     #if defined(HAVE_HWSERIAL0)
         noInterrupts();
-        Serial.print("GpioPin ");Serial.println(Pin);
-        uint8_t Port=digitalPinToPort(Pin);
-        Serial.print("Port ");Serial.println(Port);
-        Serial.print("BitMask ");Serial.println(BitMask);
-        Serial.print("us per tick (resolution) ");Serial.println(US_PER_TICK);
-        Serial.print("Ticks ON ");Serial.println(TicksON);
-        Serial.print("Ticks TOT ");Serial.println(TicksTOT);
-        Serial.print("Pin freq ");Serial.println(TIMER_FREQ/TicksTOT);
-        Serial.print("Timer freq ");Serial.println(TIMER_FREQ);
-        Serial.print("Max freq (duty only 50 perc) ");Serial.println(TIMER_FREQ/2);
-        double f=static_cast<double>(F_CPU) / (OCR1A + 1);
-        Serial.print("Interrupt frequency ");Serial.println(f);
+        Serial.print("GpioPin "); Serial.println(Pin);
+        Serial.print("Channel "); Serial.println(Channel);
+        Serial.print("Resolution "); Serial.println(pwmResolution);
+        Serial.print("Max duty "); Serial.println(pwmMaxDuty);
+        Serial.print("Freq Hz "); Serial.println(freqHz);
+        Serial.print("Duty % "); Serial.println(dutyPerc);
         interrupts();
     #endif
 }
+
+#endif

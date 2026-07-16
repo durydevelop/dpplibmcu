@@ -1,4 +1,4 @@
-#ifdef __AVR__
+#ifdef ARDUINO_ARCH_AVR
 
 #include <Arduino.h>
 #include "dpwm.h"
@@ -360,6 +360,5 @@ void DPwmOut::printInfo(void) {
         interrupts();
     #endif
 }
-#else
-    #error "DPwm have no support for this platform"
+
 #endif

@@ -1,10 +1,9 @@
 #ifndef DSOFTPWM_H
 #define DSOFTPWM_H
 
-#ifdef ARDUINO
-    #ifdef PLATFORMIO
-        #include "../dgpio/dgpio.h"
-    #endif
+#ifdef ARDUINO_ARCH_ESP32
+#ifdef PLATFORMIO
+    #include "../dgpio/dgpio.h"
 #else
     #include <dgpio>
 #endif
@@ -38,7 +37,12 @@ class DPwmOut {
         uint32_t TicksON=0;      //! Number of ticks for HIGH time.
         uint32_t TicksTOT=0;     //! Numebr of ticks of total period.
         uint8_t dutyPerc;
+        uint8_t Channel=255;     //! ESP32 LEDC channel
+        uint8_t pwmResolution=10; //! ESP32 PWM resolution bits
+        uint16_t pwmMaxDuty=1023; //! Derived from pwmResolution
+        uint32_t freqHz=0;       //! Current PWM frequency
 
 };
 
+#endif
 #endif

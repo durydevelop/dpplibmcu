@@ -1,15 +1,13 @@
 #ifndef DSOFTPWM_H
 #define DSOFTPWM_H
 
-#ifdef ARDUINO
-    #ifdef PLATFORMIO
-        #include "../dgpio/dgpio.h"
-    #endif
+#ifdef ARDUINO_ARCH_AVR
+#ifdef PLATFORMIO
+    #include "../dgpio/dgpio.h"
 #else
     #include <dgpio>
 #endif
 
-#ifdef __AVR__
 class DPwmOut {
     public:
         DPwmOut(uint8_t GpioPin);
@@ -42,8 +40,5 @@ class DPwmOut {
 
 };
 
-#else
-    #error "DPwm have no support for this platform"
 #endif
-
 #endif
