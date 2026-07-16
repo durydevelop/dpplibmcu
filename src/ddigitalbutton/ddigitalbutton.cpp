@@ -94,7 +94,7 @@ bool DDigitalButton::begin(int pressedState, bool pullUp, unsigned int pressedMi
         lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS);
     #else
         if (handle >= 0) {
-            lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS,handle);
+            lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::PIN_FLAG_NONE,handle);
         }
     #endif
 

@@ -1,5 +1,9 @@
 # dpplib-mcu
 
+## prerequisites
+libncurses5-dev
+lg
+
 dpplib-mcu is a library that allow you (...or aim to) writing program for MCUs (like Arduino) and SBCs (like Raspberry pi) using the same code.
 
 For example, You can read a digital pin 4 instantiating the class and call begin() (arduino style):

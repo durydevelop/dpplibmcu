@@ -65,7 +65,7 @@ bool DPwmOut::begin(float frequecyHz, float dutyCyclePerc, bool activate) {
     active=false;
 
     if (handle >= 0) {
-        lastResult=initPin(pin,DPinMode::PIN_MODE_SOFT_PWM,DPinFlags::NO_FLAGS,handle);
+        lastResult=initPin(pin,DPinMode::PIN_MODE_SOFT_PWM,DPinFlags::PIN_FLAG_NONE,handle);
     }
 
     set(frequecyHz,dutyCyclePerc,activate);

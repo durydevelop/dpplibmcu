@@ -97,7 +97,7 @@ DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags, DGpioHandle handle)
                 ret=lgGpioClaimOutput(handle,flags,pin,0);
                 break;
             case DPinMode::PIN_MODE_INPUT_PULLUP:
-                ret=lgGpioClaimInput(handle,DPinFlags::PULL_UP,pin);
+                ret=lgGpioClaimInput(handle,DPinFlags::PIN_FLAG_PULL_UP,pin);
                 break;
             default:
                 break;
