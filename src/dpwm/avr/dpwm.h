@@ -9,6 +9,7 @@
     #include <dgpio>
 #endif
 
+#ifdef __AVR__
 class DPwmOut {
     public:
         DPwmOut(uint8_t GpioPin);
@@ -40,5 +41,9 @@ class DPwmOut {
         uint8_t dutyPerc;
 
 };
+
+#else
+    #error "DPwm have no support for this platform"
+#endif
 
 #endif

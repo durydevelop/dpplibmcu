@@ -15,11 +15,9 @@
         #include "../dgpio/derrorcodes.h"
     #endif
 #else
-    // Not arduino
+    // Not arduino framwork
     #include <lgpio.h>
     #include <dgpiochip>
-
-    #define mapValue(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
 
     #ifndef LOW
         #define LOW LG_LOW
@@ -41,6 +39,8 @@
     #define DWORD_B(msb,next_msb,next_lsb,lsb) (msb << 24) | (next_msb << 16) | (next_lsb << 8) | lsb
 */    
 #endif
+
+#define mapValue(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
 
 // Enumations
 enum DPinMode { PIN_MODE_INPUT, PIN_MODE_OUTPUT, PIN_MODE_INPUT_PULLUP, PIN_MODE_SOFT_PWM }; //, OUTPUT_PWM };
