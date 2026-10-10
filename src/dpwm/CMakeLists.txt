@@ -1,25 +1,3 @@
 if(lg_FOUND)
-    set(SRC
-        ${CMAKE_CURRENT_SOURCE_DIR}/sbc/dpwm.cpp
-    )
-    set(HDR
-        ${CMAKE_CURRENT_SOURCE_DIR}/sbc/dpwm.h
-    )
-    set(${PROJECT_NAME}_INCLUDE_DIRS "${${PROJECT_NAME}_INCLUDE_DIRS}" ${CMAKE_CURRENT_SOURCE_DIR}/sbc PARENT_SCOPE)
-else()
-    set(SRC
-        ${CMAKE_CURRENT_SOURCE_DIR}/mcu/dpwm.cpp
-    )
-    set(HDR
-        ${CMAKE_CURRENT_SOURCE_DIR}/mcu/dpwm.h
-    )
-    set(${PROJECT_NAME}_INCLUDE_DIRS "${${PROJECT_NAME}_INCLUDE_DIRS}" ${CMAKE_CURRENT_SOURCE_DIR}/mcu PARENT_SCOPE)
+    add_subdirectory(sbc)
 endif()
-
-set(HDR ${HDR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/dpwm
-)
-
-set(${PROJECT_NAME}_SRC ${${PROJECT_NAME}_SRC} ${SRC} PARENT_SCOPE)
-set(${PROJECT_NAME}_HDR ${${PROJECT_NAME}_HDR} ${HDR} PARENT_SCOPE)
-set(${PROJECT_NAME}_INCLUDE_DIRS "${${PROJECT_NAME}_INCLUDE_DIRS}" ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)

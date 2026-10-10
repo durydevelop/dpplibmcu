@@ -1,10 +1,9 @@
 #ifndef DSOFTPWM_H
 #define DSOFTPWM_H
 
-#ifdef ARDUINO
-    #ifdef PLATFORMIO
-        #include "../dgpio/dgpio.h"
-    #endif
+#ifdef ARDUINO_ARCH_AVR
+#ifdef PLATFORMIO
+    #include "../dgpio/dgpio.h"
 #else
     #include <dgpio>
 #endif
@@ -41,4 +40,5 @@ class DPwmOut {
 
 };
 
+#endif
 #endif

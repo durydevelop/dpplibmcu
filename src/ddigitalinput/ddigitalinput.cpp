@@ -90,7 +90,7 @@ DDigitalInput::~DDigitalInput()
 bool DDigitalInput::begin(bool pullUp, unsigned int msecDebounce)
 {
     #ifdef ARDUINO
-        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::NO_FLAGS);
+        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::PIN_FLAG_NONE);
     #else
         if (handle >= 0) {
             lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::PIN_FLAG_NONE,handle);

@@ -1,0 +1,8 @@
+
+#ifdef ARDUINO_ARCH_AVR
+    #include "avr/dpwm.h"
+#elif defined(ARDUINO_ARCH_ESP32)
+    #include "esp32/dpwm.h"
+#else
+    #error "Unsupported platform for dpwm library"
+#endif

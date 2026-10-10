@@ -1,6 +1,6 @@
 {
   "name": "dpwm",
   "build": {
-    "srcDir": "avr"
+    "srcDir": "mcu"
   }
 }
