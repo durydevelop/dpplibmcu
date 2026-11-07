@@ -1,3 +1,20 @@
+# Build dependencies:
+# - CMake 3.13 or newer and a C++20 compiler.
+# - GPIO support requires lg (lgpio.h and liblgpio). It can be installed on the
+#   system, provided as a local CMake source via lg_ROOT, or cloned from Git via
+#   lg_GIT_REPOSITORY. The Git option additionally requires Git, make, and a C compiler.
+# - Building examples requires Curses/ncurses development files.
+#   Debian/Ubuntu: sudo apt-get install libncurses-dev
+# Available Boolean CMake options (set with -D<name>=ON/OFF):
+# - dpplibmcu_BUILD_EXAMPLES: build examples (requires Curses/ncurses).
+# - dpplibmcu_BUILD_DRIVERS: build peripheral drivers.
+# - dpplibmcu_BUILD_TESTING: enable tests.
+# - dpplibmcu_INSTALL: create install targets.
+# - dpplibmcu_BUILD_SHARED_LIBS: build a shared library instead of a static one.
+# - GPIO_SUPPORT: enable GPIO-dependent modules when lg is available.
+# - USE_EXTERNAL_LG: use external lg instead of the bundled source.
+# Example: cmake -S . -B build -Ddpplibmcu_BUILD_EXAMPLES=OFF -DGPIO_SUPPORT=OFF
+
 cmake_minimum_required(VERSION 3.13)
 
 #### Create project
@@ -73,12 +90,14 @@ endif()
 #### USE_EXTERNAL_LG
 # If USE_EXTERNAL_LG is ON one of these variables can be specified:
 # Use custom git repo, i.e.:
-# NOT YET: set(lg_GIT_REPOSITORY https://github.com/joan2937/lg.git)
+set(lg_GIT_REPOSITORY https://github.com/joan2937/lg.git)
+# Optional branch, tag, or commit (defaults to master):
+# set(lg_GIT_TAG master)
 # Use a local folder, i.e.:
 # get_filename_component(ld_ROOT ../../lg ABSOLUTE)
 # If none specified:
 # First:  Try to find it in system
-# NOT YET: Second: Load from default git repo (https://github.com/joan2937/lg.git)
+# Second: Load from default git repo (https://github.com/joan2937/lg.git)
 option(USE_EXTERNAL_LG "Do not use embedded version of lg library" ON)
 find_package(lg)
 option(GPIO_SUPPORT "Enable Gpio support if present." ${lg_FOUND})
