@@ -43,7 +43,7 @@
 #define mapValue(x,in_min,in_max,out_min,out_max) (x-in_min)*(out_max-out_min)/(in_max-in_min)+out_min
 
 // Enumations
-enum DPinMode { PIN_MODE_INPUT, PIN_MODE_OUTPUT, PIN_MODE_INPUT_PULLUP, PIN_MODE_SOFT_PWM }; //, OUTPUT_PWM };
+enum DPinMode { PIN_MODE_INPUT, PIN_MODE_OUTPUT, PIN_MODE_INPUT_PULLUP};//, PIN_MODE_SOFT_PWM }; //, OUTPUT_PWM };
 enum DPinFlags {
     PIN_FLAG_NONE=    0,
     PIN_FLAG_ACTIVE_LOW=  4,
@@ -57,7 +57,7 @@ enum DPinFlags {
 #ifdef ARDUINO
     DResult initGpio(int gpioDevice);
     bool isGpioReady(void);
-    DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags);
+    DResult initPin(uint8_t pin, DPinMode mode);
     int readPin(uint8_t pin);
     DResult writePin(uint8_t pin, uint8_t level);
     DResult writeAnalog(uint8_t pin, uint8_t value);

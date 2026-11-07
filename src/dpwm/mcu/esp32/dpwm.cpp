@@ -1,19 +1,19 @@
 #ifdef ARDUINO_ARCH_ESP32
 
-#include <Arduino.h>
 #include "dpwm.h"
 
-#define MAX_PWM_COUNT 5
+/**
+ * N.B.
+ * To keep trace of all LEDC channels used for DPWM, a static list of DPWM instances is created and the LEDC channel is assigned to each instance.
+ * TODO: Set / get PWM resolution (bits) and max duty cycle (value) for each instance.
+ */
+
+#define MAX_PWM_CHANNELS 5
 #define PWM_RESOLUTION_BITS 10
 
-DPwmOut *PwmList[MAX_PWM_COUNT];
+// Pwm channels list
+DPwmOut *PwmList[MAX_PWM_CHANNELS];
 bool Initialized=false;
-
-#if defined(HAVE_HWSERIAL0)
-    #define Debug(s) Serial.println(s)
-#else
-    #define Debug(s)
-#endif
 
 // ********************************************************************************
 // ****************************** DPwmOut class ***********************************
@@ -24,19 +24,15 @@ static inline uint32_t dutyFromPercent(uint8_t dutyPerc, uint16_t maxDuty)
     return ((uint32_t)dutyPerc * maxDuty) / 100;
 }
 
-DPwmOut::DPwmOut(uint8_t GpioPin) {
-    Pin = GpioPin;
-    BitMask = 0;
-    OUTPORT = nullptr;
-    Active = false;
-    TickCounter = 0;
-    TicksON = 0;
-    TicksTOT = 0;
-    dutyPerc = 0;
-    Channel = 255;
+DPwmOut::DPwmOut(uint8_t gpioPin, bool invertOutput) {
+    pin = gpioPin;
+    active = false;
+    currDutyPerc = 0;
+    channel = 255;
     pwmResolution = PWM_RESOLUTION_BITS;
     pwmMaxDuty = (1 << PWM_RESOLUTION_BITS) - 1;
-    freqHz = 0;
+    currfreqHz = 0;
+    invertedOut = invertOutput;
 }
 
 DPwmOut::~DPwmOut()
@@ -44,8 +40,9 @@ DPwmOut::~DPwmOut()
     release();
 }
 
-void DPwmOut::release(void) {
-    for (uint8_t ixP = 0; ixP < MAX_PWM_COUNT; ixP++) {
+void DPwmOut::release(void)
+{
+    for (uint8_t ixP = 0; ixP < MAX_PWM_CHANNELS; ixP++) {
         if (PwmList[ixP] == this) {
             PwmList[ixP] = nullptr;
             break;
@@ -53,39 +50,37 @@ void DPwmOut::release(void) {
     }
 }
 
-bool DPwmOut::begin(uint16_t FreqHz, uint8_t DutyCyclePerc, bool Activate) {
+uint8_t DPwmOut::begin(uint16_t freqHz, uint8_t dutyCyclePerc, bool startPwm)
+{
     if (!Initialized) {
-        for (uint8_t ixC = 0; ixC < MAX_PWM_COUNT; ixC++) {
+        for (uint8_t ixC = 0; ixC < MAX_PWM_CHANNELS; ixC++) {
             PwmList[ixC] = nullptr;
         }
         Initialized = true;
     }
 
-    bool Found = false;
-    for (uint8_t ixC = 0; ixC < MAX_PWM_COUNT; ixC++) {
+    bool found = false;
+    for (uint8_t ixC = 0; ixC < MAX_PWM_CHANNELS; ixC++) {
         if (PwmList[ixC] == nullptr) {
             PwmList[ixC] = this;
-            Channel = ixC;
-            Found = true;
+            channel = ixC;
+            found = true;
             break;
         }
     }
-    if (!Found) {
-        Debug("No free slot");
-        return false;
+    if (!found) {
+        return 255;
     }
 
-    pinMode(Pin, OUTPUT);
-    pwmResolution = PWM_RESOLUTION_BITS;
-    pwmMaxDuty = (1 << pwmResolution) - 1;
-    freqHz = (FreqHz == 0 ? 1 : FreqHz);
-    ledcAttachChannel(Pin, freqHz, pwmResolution, Channel);
-    set(FreqHz, DutyCyclePerc, Activate);
-    return true;
+    pinMode(pin, OUTPUT);
+    ledcAttachChannel(pin, freqHz, pwmResolution, channel);
+    set(freqHz, dutyCyclePerc, startPwm);
+    return channel;
 }
 
-void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
-    if (Channel == 255) {
+void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool startPwm)
+{
+    if (channel == 255) {
         return;
     }
 
@@ -94,145 +89,154 @@ void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
         return;
     }
 
-    if (freqHz != this->freqHz) {
-        this->freqHz = freqHz;
-        ledcChangeFrequency(Pin, freqHz, pwmResolution);
+    if (freqHz != currfreqHz) {
+        currfreqHz = freqHz;
+        ledcChangeFrequency(pin, freqHz, pwmResolution);
     }
 
-    TicksTOT = pwmMaxDuty;
-    TicksON = dutyFromPercent(dutyCyclePerc, pwmMaxDuty);
-    TickCounter = 0;
     setDutyPerc(dutyCyclePerc);
-    Active = activate;
-    if (!activate) {
+    active = startPwm;
+    if (!active) {
         low();
     }
 }
 
-void DPwmOut::setHz(uint16_t FreqHz) {
-   set(FreqHz, dutyPerc, true);
+void DPwmOut::setHz(uint16_t freqHz)
+{
+   set(freqHz, currDutyPerc, true);
 }
 
 void DPwmOut::setDutyPerc(uint8_t dutyCyclePerc)
 {
-    if (Channel == 255) {
+    if (channel == 255) {
         return;
     }
 
-    if (freqHz == 0) {
+    if (currfreqHz == 0) {
         return;
     }
 
-    dutyPerc = dutyCyclePerc;
-    if (dutyPerc == 0) {
+    currDutyPerc = dutyCyclePerc;
+    if (currDutyPerc == 0) {
        low();
        return;
     }
-    else if (dutyPerc >= 100) {
-        dutyPerc = 100;
+    else if (currDutyPerc >= 100) {
+        currDutyPerc = 100;
         high();
         return;
     }
 
-    uint32_t duty = dutyFromPercent(dutyPerc, pwmMaxDuty);
-    TicksON = duty;
-    TicksTOT = pwmMaxDuty;
-    ledcWrite(Pin, duty);
-    Active = true;
+    uint32_t duty = dutyFromPercent(currDutyPerc, pwmMaxDuty);
+    if (invertedOut) {
+        duty = pwmMaxDuty - duty;
+    }
+    ledcWrite(pin, duty);
+    active = true;
 }
 
-void DPwmOut::setMicros(uint16_t Us)
+void DPwmOut::setMicros(uint16_t us)
 {
-    if (Channel == 255) {
+    if (channel == 255) {
         return;
     }
 
-    if (freqHz == 0) {
+    if (currfreqHz == 0) {
         return;
     }
 
     uint32_t periodUs = getPeriodUs();
-    if (Us == 0) {
-        dutyPerc = 0;
+    if (us == 0) {
+        currDutyPerc = 0;
         low();
     }
-    else if (Us >= periodUs) {
-        dutyPerc = 100;
+    else if (us >= periodUs) {
+        currDutyPerc = 100;
         high();
     }
     else {
-        uint32_t duty = ((uint32_t)Us * pwmMaxDuty) / periodUs;
-        TicksON = duty;
-        TicksTOT = pwmMaxDuty;
-        dutyPerc = (uint8_t)((100U * duty) / pwmMaxDuty);
-        ledcWrite(Pin, duty);
-        Active = true;
+        uint32_t duty = ((uint32_t)us * pwmMaxDuty) / periodUs;
+        currDutyPerc = (uint8_t)((100U * duty) / pwmMaxDuty);
+        if (invertedOut) {
+            duty = pwmMaxDuty - duty;
+        }
+        ledcWrite(pin, duty);
+        active = true;
     }
 }
 
-void DPwmOut::on(bool PwmOn) {
-    if (Channel == 255) {
+void DPwmOut::on(bool pwmOn)
+{
+    if (channel == 255) {
         return;
     }
 
-    if (PwmOn) {
-        Active = true;
+    if (pwmOn) {
+        active = true;
     }
     else {
         low();
     }
 }
 
-void DPwmOut::high(void) {
-    if (Channel == 255) {
+void DPwmOut::high(void)
+{
+    if (channel == 255) {
         return;
     }
-    Active = false;
-    ledcWrite(Pin, pwmMaxDuty);
+    active = false;
+    ledcWrite(pin, invertedOut ? 0 : pwmMaxDuty);
 }
 
-void DPwmOut::low(void) {
-    if (Channel == 255) {
+void DPwmOut::low(void)
+{
+    if (channel == 255) {
         return;
     }
-    Active = false;
-    ledcWrite(Pin, 0);
+    active = false;
+    ledcWrite(pin, invertedOut ? pwmMaxDuty : 0);
 }
 
 bool DPwmOut::isReady(void)
 {
-    return (Channel != 255);
+    return (channel != 255);
 }
 
 bool DPwmOut::isActive(void) {
-    return (Active);
+    return (active);
 }
 
 uint16_t DPwmOut::getPeriodUs(void)
 {
-    return (freqHz == 0 ? 0 : (uint16_t)(1000000UL / freqHz));
+    return (currfreqHz == 0 ? 0 : (uint16_t)(1000000UL / currfreqHz));
 }
 
 uint8_t DPwmOut::getPin(void)
 {
-    return (Pin);
+    return (pin);
 }
 
-uint8_t DPwmOut::getDutyPerc(void) {
-    return (dutyPerc);
+uint8_t DPwmOut::getDutyPerc(void)
+{
+    return (currDutyPerc);
 }
 
-void DPwmOut::printInfo(void) {
-    #if defined(HAVE_HWSERIAL0)
-        noInterrupts();
-        Serial.print("GpioPin "); Serial.println(Pin);
-        Serial.print("Channel "); Serial.println(Channel);
-        Serial.print("Resolution "); Serial.println(pwmResolution);
-        Serial.print("Max duty "); Serial.println(pwmMaxDuty);
-        Serial.print("Freq Hz "); Serial.println(freqHz);
-        Serial.print("Duty % "); Serial.println(dutyPerc);
-        interrupts();
-    #endif
+void DPwmOut::setInvertedOut(bool invertOutput)
+{
+    invertedOut = invertOutput;
+}
+
+String DPwmOut::getInfo(void)
+{
+    String info="\
+        GpioPin    " + String(pin) + "\n\
+        Channel    " + String(channel) + "\n\
+        Resolution " + String(pwmResolution) + "\n\
+        Max duty   " + String(pwmMaxDuty) + "\n\
+        Freq Hz    " + String(currfreqHz) + "\n\
+        Duty %     " + String(currDutyPerc);
+
+    return info;
 }
 
 #endif

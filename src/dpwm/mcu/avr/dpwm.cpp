@@ -4,24 +4,18 @@
 #include "dpwm.h"
 #include "DSoftPwmTimer.h"
 
-
 /**
- * TODO:
+ * N.B.
+ * There is only one ISR to handle many instatnces of DPWM, so the workaround is
+ * to create a static list of DPWM instances and call the ISR for each instance.
  * 
 */
 
-
 #define MAX_PWM_COUNT 5
 
-//static std::vector<DPwm*> ChList;  //! List of Pwm channel
+// List of pwm channels
 DPwmOut *PwmList[MAX_PWM_COUNT];
 bool Initialized=false;
-
-#if defined(HAVE_HWSERIAL0)
-    #define Debug(s) Serial.println(s)
-#else
-    #define Debug(s)
-#endif
 
 // ********************************************************************************
 // ********************************* ISR routine **********************************
@@ -45,16 +39,16 @@ bool Initialized=false;
 {
     for (uint8_t ixC=0; ixC<MAX_PWM_COUNT; ixC++) {
         if (PwmList[ixC] ) {
-            if (PwmList[ixC]->Active) {
-                PwmList[ixC]->TickCounter++;
-                if (PwmList[ixC]->TickCounter >= PwmList[ixC]->TicksTOT) {
+            if (PwmList[ixC]->active) {
+                PwmList[ixC]->tickCounter++;
+                if (PwmList[ixC]->tickCounter >= PwmList[ixC]->ticksTOT) {
                     // Pwm period end, set to HIGH
-                    *PwmList[ixC]->OUTPORT|=PwmList[ixC]->BitMask;
-                    PwmList[ixC]->TickCounter=0;
+                    *PwmList[ixC]->OUTPORT|=PwmList[ixC]->bitMask;
+                    PwmList[ixC]->tickCounter=0;
                 }
-                else if (PwmList[ixC]->TickCounter >= PwmList[ixC]->TicksON) {
+                else if (PwmList[ixC]->tickCounter >= PwmList[ixC]->ticksON) {
                     // Pwm HIGH level time reached, change to LOW
-                    *PwmList[ixC]->OUTPORT&=~PwmList[ixC]->BitMask;
+                    *PwmList[ixC]->OUTPORT&=~PwmList[ixC]->bitMask;
                 }
             }
         }
@@ -70,15 +64,15 @@ bool Initialized=false;
  * N.B. Timer should have not been initialized in costructor (may be it doe not work).
  * Timer will be initialized in Begin().
  */
-DPwmOut::DPwmOut(uint8_t GpioPin) {
+DPwmOut::DPwmOut(uint8_t gpioPin) {
     // Set defaults
-    Pin=GpioPin;
-    BitMask=0;
+    pin=gpioPin;
+    bitMask=0;
     OUTPORT=nullptr;
-    Active=false;
-    TickCounter=0;
-    TicksON=0;
-    TicksTOT=0;
+    active=false;
+    tickCounter=0;
+    ticksON=0;
+    ticksTOT=0;
 }
 
 /**
@@ -114,7 +108,7 @@ void DPwmOut::release(void) {
  * @param DutyCyclePerc 
  * @param Activate 
  */
-bool DPwmOut::begin(uint16_t FreqHz, uint8_t DutyCyclePerc, bool Activate) {
+bool DPwmOut::begin(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
     // Init globals
     if (!Initialized) {
         // Execute only on first DPwmOut creation.
@@ -137,22 +131,20 @@ bool DPwmOut::begin(uint16_t FreqHz, uint8_t DutyCyclePerc, bool Activate) {
         }
     }
     if (!Found) {
-        Debug("No free slot");
         return false;
     }
 
     // Get port register for pin
-    uint8_t Port=digitalPinToPort(Pin);
+    uint8_t Port=digitalPinToPort(pin);
     if (Port == NOT_A_PIN) {
-        Debug("Not a pin");
         return false;
     }
 
     // Set all stuff
-    pinMode(Pin,OUTPUT);
-    BitMask=digitalPinToBitMask(Pin);
+    pinMode(pin,OUTPUT);
+    bitMask=digitalPinToBitMask(pin);
     OUTPORT=portOutputRegister(Port);
-    set(FreqHz,DutyCyclePerc,Activate);
+    set(freqHz,dutyCyclePerc,activate);
     return true;
 }
 
@@ -171,7 +163,7 @@ void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
         return;
     }
 
-    dutyPerc=dutyCyclePerc;
+    currDutyPerc=dutyCyclePerc;
 
     // Pwm freq must from 1 to 1/2 Timer freq
     if (freqHz == 0) {
@@ -183,14 +175,14 @@ void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
         freqHz=TIMER_FREQ/2;
     }
     // Total ticks per period
-    TicksTOT=(TIMER_FREQ/freqHz);
+    ticksTOT=(TIMER_FREQ/freqHz);
     
     // Reset counter when setting new frequency
-    TickCounter=0;
+    tickCounter=0;
 
     setDutyPerc(dutyCyclePerc);
 
-    Active=activate;
+    active=activate;
 }
 
 /**
@@ -198,8 +190,8 @@ void DPwmOut::set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate) {
  * 
  * @param FreqHz 
  */
-void DPwmOut::setHz(uint16_t FreqHz) {
-   set(FreqHz,dutyPerc,true);
+void DPwmOut::setHz(uint16_t freqHz) {
+   set(freqHz,currDutyPerc,true);
 }
 
 /**
@@ -217,24 +209,24 @@ void DPwmOut::setDutyPerc(uint8_t dutyCyclePerc)
         return;
     }
 
-    if (TicksTOT == 0) {
+    if (ticksTOT == 0) {
         return;
     }
 
-    dutyPerc=dutyCyclePerc;
-    if (dutyPerc == 0) {
+    currDutyPerc=dutyCyclePerc;
+    if (currDutyPerc == 0) {
        low();
        return;
     }
-    else if (dutyPerc >= 100) {
-        dutyPerc=100;
+    else if (currDutyPerc >= 100) {
+        currDutyPerc=100;
         high();
         return;
     }
     // Number of ticks per pulse
-    TicksON=(TicksTOT*dutyPerc)/100;
+    ticksON=(ticksTOT*currDutyPerc)/100;
     
-    Active=true;
+    active=true;
 }
 
 /**
@@ -251,24 +243,24 @@ void DPwmOut::setMicros(uint16_t Us)
     }
     
     if (Us == 0) {
-        dutyPerc=0;
+        currDutyPerc=0;
         low();
     }
     else if (Us >= getPeriodUs()) {
-        dutyPerc=100;
+        currDutyPerc=100;
         high();
     }
     else {
-        TicksON=Us/US_PER_TICK;
+        ticksON=Us/US_PER_TICK;
         // ricalculate duty-cycle
-        dutyPerc=(100*TicksON)/TicksTOT;
-        Active=true;
+        currDutyPerc=(100*ticksON)/ticksTOT;
+        active=true;
     }
 }
 
-void DPwmOut::on(bool PwmOn) {
-    if (PwmOn) {
-        Active=true;
+void DPwmOut::on(bool pwmOn) {
+    if (pwmOn) {
+        active=true;
     }
     else {
         low();
@@ -284,8 +276,8 @@ void DPwmOut::high(void) {
         // Do nothing
         return;
     }
-    Active=false;
-    digitalWrite(Pin,HIGH);
+    active=false;
+    digitalWrite(pin,HIGH);
 }
 
 /**
@@ -297,8 +289,8 @@ void DPwmOut::low(void) {
         // Do nothing
         return;
     }
-    Active=false;
-    digitalWrite(Pin,LOW);
+    active=false;
+    digitalWrite(pin,LOW);
 }
 
 /**
@@ -319,7 +311,7 @@ bool DPwmOut::isReady(void)
  * @return false if Pin is in HIGH or LOW state.
  */
 bool DPwmOut::isActive(void) {
-    return (Active);
+    return (active);
 }
 
 /**
@@ -327,7 +319,7 @@ bool DPwmOut::isActive(void) {
  */
 uint16_t DPwmOut::getPeriodUs(void)
 {
-    return(US_PER_TICK * TicksTOT);
+    return(US_PER_TICK * ticksTOT);
 }
 
 /**
@@ -335,24 +327,24 @@ uint16_t DPwmOut::getPeriodUs(void)
  */
 uint8_t DPwmOut::getPin(void)
 {
-    return(Pin);
+    return(pin);
 }
 
 uint8_t DPwmOut::getDutyPerc(void) {
-    return(dutyPerc);
+    return(currDutyPerc);
 }
 
 void DPwmOut::printInfo(void) {
     #if defined(HAVE_HWSERIAL0)
         noInterrupts();
-        Serial.print("GpioPin ");Serial.println(Pin);
-        uint8_t Port=digitalPinToPort(Pin);
+        Serial.print("GpioPin ");Serial.println(pin);
+        uint8_t Port=digitalPinToPort(pin);
         Serial.print("Port ");Serial.println(Port);
-        Serial.print("BitMask ");Serial.println(BitMask);
+        Serial.print("BitMask ");Serial.println(bitMask);
         Serial.print("us per tick (resolution) ");Serial.println(US_PER_TICK);
-        Serial.print("Ticks ON ");Serial.println(TicksON);
-        Serial.print("Ticks TOT ");Serial.println(TicksTOT);
-        Serial.print("Pin freq ");Serial.println(TIMER_FREQ/TicksTOT);
+        Serial.print("Ticks ON ");Serial.println(ticksON);
+        Serial.print("Ticks TOT ");Serial.println(ticksTOT);
+        Serial.print("Pin freq ");Serial.println(TIMER_FREQ/ticksTOT);
         Serial.print("Timer freq ");Serial.println(TIMER_FREQ);
         Serial.print("Max freq (duty only 50 perc) ");Serial.println(TIMER_FREQ/2);
         double f=static_cast<double>(F_CPU) / (OCR1A + 1);

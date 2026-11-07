@@ -10,16 +10,16 @@
 
 class DPwmOut {
     public:
-        DPwmOut(uint8_t GpioPin);
+        DPwmOut(uint8_t gpioPin);
         ~DPwmOut();
         void release(void);
-        bool begin(uint16_t FreqHz = 0, uint8_t DutyCyclePerc = 50, bool Activate = false);
-        void set(uint16_t FreqHz, uint8_t DutyCyclePerc, bool Activate);
+        bool begin(uint16_t freqHz = 0, uint8_t dutyCyclePerc = 50, bool activate = false);
+        void set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate);
         //void SetHz(uint16_t FreqHz);
-        void setHz(uint16_t FreqHz);
-        void setDutyPerc(uint8_t DutyCyclePerc);
-        void setMicros(uint16_t Us);
-        void on(bool PwmOn = true);
+        void setHz(uint16_t freqHz);
+        void setDutyPerc(uint8_t dutyCyclePerc);
+        void setMicros(uint16_t us);
+        void on(bool pwmOn = true);
         void high(void);
         void low(void);
         void printInfo(void);
@@ -29,14 +29,14 @@ class DPwmOut {
         uint8_t getPin(void);
         uint8_t getDutyPerc(void);
 
-        uint8_t Pin;
-        uint8_t BitMask=0;
+        uint8_t pin;
+        uint8_t bitMask=0;
         volatile uint8_t *OUTPORT;
-        bool Active=false;       //! Pwm active (default off).
-        uint32_t TickCounter=0;  //! ISR call counter
-        uint32_t TicksON=0;      //! Number of ticks for HIGH time.
-        uint32_t TicksTOT=0;     //! Numebr of ticks of total period.
-        uint8_t dutyPerc;
+        bool active=false;       //! Pwm active (default off).
+        uint32_t tickCounter=0;  //! ISR call counter
+        uint32_t ticksON=0;      //! Number of ticks for HIGH time.
+        uint32_t ticksTOT=0;     //! Numebr of ticks of total period.
+        uint8_t currDutyPerc;    //! Current duty cycle percentage
 
 };
 
