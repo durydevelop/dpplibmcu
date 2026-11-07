@@ -6,11 +6,11 @@
 class DDigitalInput {
 
 	public:
-        #ifdef ARDUINO
-            DDigitalInput(int digitalPin);
-        #else
+        #ifndef ARDUINO
             DDigitalInput(int digitalPin, DGpioHandle gpioHandle = -1);
             ~DDigitalInput();
+        #else
+            DDigitalInput(int digitalPin);
         #endif
 
         bool begin(bool pullUp = false, unsigned int msecDebounce = 0);

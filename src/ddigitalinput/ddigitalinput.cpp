@@ -40,16 +40,11 @@ void loop()
 /**
  * @param digitalPin	->	pin da utilizzare come input
  */
-#ifdef ARDUINO
-DDigitalInput::DDigitalInput(int digitalPin)
-{
-	pin=digitalPin;
-    currLevel=LOW;
-    prevLevel=currLevel;
-    lastResult=DERR_CLASS_NOT_BEGUN;
-}
-#else
+#ifndef ARDUINO
 DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
+#else
+DDigitalInput::DDigitalInput(int digitalPin)
+#endif
 {
 	pin=digitalPin;
     currLevel=LOW;
@@ -57,7 +52,7 @@ DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
     lastResult=DERR_CLASS_NOT_BEGUN;
 
     //std::cout << "DDigitalInput() digitalPin=" << digitalPin<< " gpioHandle=" << gpioHandle << std::endl;
-
+#ifndef ARDUINO
     if (gpioHandle < 0) {
         // Try init on first device
         //std::cout << "auto set handle" << std::endl;
@@ -74,8 +69,8 @@ DDigitalInput::DDigitalInput(int digitalPin, DGpioHandle gpioHandle)
             lastResult=DERR_GPIO_NOT_READY;
         }
     }
-}
 #endif
+}
 
 /**
  * @brief Destroy the DDigitalInput::DDigitalInput object and free pin use.
@@ -89,12 +84,12 @@ DDigitalInput::~DDigitalInput()
 
 bool DDigitalInput::begin(bool pullUp, unsigned int msecDebounce)
 {
-    #ifdef ARDUINO
-        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::PIN_FLAG_NONE);
-    #else
+    #ifndef ARDUINO
         if (handle >= 0) {
             lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT,DPinFlags::PIN_FLAG_NONE,handle);
         }
+    #else
+        lastResult=initPin(pin,pullUp ? DPinMode::PIN_MODE_INPUT_PULLUP : DPinMode::PIN_MODE_INPUT);
     #endif
 
     if (lastResult == DRES_OK) {
@@ -198,10 +193,10 @@ DDigitalInput::operator int()
  * N.B. aggiorna currLevel.
  */
 int DDigitalInput::read(void) {
-    #ifdef ARDUINO
-        currLevel=readPin(pin);
-    #else
+    #ifndef ARDUINO
         currLevel=readPin(pin,handle);
+    #else
+        currLevel=readPin(pin);
     #endif
     
     if (currLevel < 0) {

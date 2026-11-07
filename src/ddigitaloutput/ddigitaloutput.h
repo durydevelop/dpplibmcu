@@ -13,9 +13,13 @@
 class DDigitalOutput
 {
 	public:
-        DDigitalOutput(int digitalPin, DGpioHandle gpioHandle = -1);
-        ~DDigitalOutput();
-
+        #ifndef ARDUINO
+            DDigitalOutput(int digitalPin, DGpioHandle gpioHandle = -1);
+            ~DDigitalOutput();
+        #else
+            DDigitalOutput(int digitalPin);
+        #endif
+        
         bool begin(int initialLevel = LOW);
         int read(void);
 		int write(int level);
@@ -24,7 +28,9 @@ class DDigitalOutput
 		void toggle(void);
         int getPin(void);
         bool isAttached(void);
-        std::string getLastError(void);
+        #ifndef ARDUINO
+            std::string getLastError(void);
+        #endif
         
 		operator int();
 		DDigitalOutput& operator= (bool level);
@@ -34,7 +40,9 @@ class DDigitalOutput
 		bool currLevel;
         //bool gpioAttached;
 
-        DGpioHandle handle;
+        #ifndef ARDUINO
+            DGpioHandle handle;
+        #endif
         DResult lastResult;
 };
 

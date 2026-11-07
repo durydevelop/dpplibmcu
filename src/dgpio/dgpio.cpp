@@ -64,17 +64,18 @@ bool isGpioReady(DGpioHandle handle)
  * @return DRES_OK on success otherwise a DResult error code (you can call getErrorCode(result) for retriving error string).
  */
 #ifdef ARDUINO
-DResult initPin(uint8_t pin, DPinMode mode, DPinFlags flags)
+DResult initPin(uint8_t pin, DPinMode mode)//, DPinFlags flags)
 {
-        if (mode == DPinMode::PIN_MODE_SOFT_PWM) {
-            #ifdef USE_DSOFT_PWM
-                /// @todo dPwmOut=new DPwmOut(Pin);
-            #else
+        switch (mode) {
+            case DPinMode::PIN_MODE_INPUT:
+                pinMode(pin,INPUT);
+                break;
+            case DPinMode::PIN_MODE_OUTPUT:
                 pinMode(pin,OUTPUT);
-            #endif
-        }
-        else {
-            pinMode(pin,mode);
+                break;
+            case DPinMode::PIN_MODE_INPUT_PULLUP:
+                pinMode(pin,INPUT_PULLUP);
+                break;
         }
         return DRES_OK;
 }

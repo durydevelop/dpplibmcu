@@ -2,45 +2,39 @@
 #define DSOFTPWM_H
 
 #ifdef ARDUINO_ARCH_ESP32
-#ifdef PLATFORMIO
-    #include "../dgpio/dgpio.h"
-#else
-    #include <dgpio>
-#endif
+
+#include <dgpio>
 
 class DPwmOut {
     public:
-        DPwmOut(uint8_t GpioPin);
+        DPwmOut(uint8_t gpioPin, bool invertOutput = false);
         ~DPwmOut();
         void release(void);
-        bool begin(uint16_t FreqHz = 0, uint8_t DutyCyclePerc = 50, bool Activate = false);
-        void set(uint16_t FreqHz, uint8_t DutyCyclePerc, bool Activate);
-        //void SetHz(uint16_t FreqHz);
-        void setHz(uint16_t FreqHz);
-        void setDutyPerc(uint8_t DutyCyclePerc);
-        void setMicros(uint16_t Us);
-        void on(bool PwmOn = true);
+        uint8_t begin(uint16_t freqHz = 0, uint8_t dutyCyclePerc = 50, bool activate = false);
+        void set(uint16_t freqHz, uint8_t dutyCyclePerc, bool activate);
+        void setHz(uint16_t freqHz);
+        void setDutyPerc(uint8_t dutyCyclePerc);
+        void setMicros(uint16_t us);
+        void on(bool pwmOn = true);
         void high(void);
         void low(void);
-        void printInfo(void);
         bool isReady(void);
         bool isActive(void);
         uint16_t getPeriodUs(void);
         uint8_t getPin(void);
         uint8_t getDutyPerc(void);
+        void setInvertedOut(bool invertOutput);
 
-        uint8_t Pin;
-        uint8_t BitMask=0;
-        volatile uint8_t *OUTPORT;
-        bool Active=false;       //! Pwm active (default off).
-        uint32_t TickCounter=0;  //! ISR call counter
-        uint32_t TicksON=0;      //! Number of ticks for HIGH time.
-        uint32_t TicksTOT=0;     //! Numebr of ticks of total period.
-        uint8_t dutyPerc;
-        uint8_t Channel=255;     //! ESP32 LEDC channel
+        String getInfo(void);
+
+        uint8_t pin;              //! Pin used
+        bool active=false;        //! Pwm out active
+        uint8_t currDutyPerc=0;   //! Current duty cycle percentage
+        uint8_t channel=255;      //! ESP32 LEDC channel
         uint8_t pwmResolution=10; //! ESP32 PWM resolution bits
         uint16_t pwmMaxDuty=1023; //! Derived from pwmResolution
-        uint32_t freqHz=0;       //! Current PWM frequency
+        uint32_t currfreqHz=0;    //! Current PWM frequency
+        bool invertedOut=false;   //! Invert PWM output for active-low loads
 
 };
 

@@ -42,14 +42,18 @@ void loop()
  * @param DigitalPin	->	pin da utilizzare come output
  * @param InitialState	-> Stato logico iniziale da attivare: [HIGH,LOW] oppure [1,0]
  */
+#ifndef ARDUINO
 DDigitalOutput::DDigitalOutput(int digitalPin, DGpioHandle gpioHandle)
+#else
+DDigitalOutput::DDigitalOutput(int digitalPin)
+#endif
 {
     pin=digitalPin;
     currLevel=LOW;
     lastResult=DERR_CLASS_NOT_BEGUN;
 
     //std::cout << "DDigitalOutput() digitalPin=" << digitalPin<< " gpioHandle=" << gpioHandle << std::endl;
-
+#ifndef ARDUINO
     if (gpioHandle < 0) {
         // Try init on first device
         //std::cout << "auto set handle" << std::endl;
@@ -66,29 +70,38 @@ DDigitalOutput::DDigitalOutput(int digitalPin, DGpioHandle gpioHandle)
             lastResult=DERR_GPIO_NOT_READY;
         }
     }
+#endif
 }
 
 /**
  * @brief Destroy the DDigitalOutput::DDigitalOutput object and free pin use.
  */
+#ifndef ARDUINO
 DDigitalOutput::~DDigitalOutput()
 {
     releasePin(pin,handle);
 }
+#endif
 
 bool DDigitalOutput::begin(int initialLevel)
 {
-    if (handle >= 0) {
-        lastResult=initPin(pin,DPinMode::PIN_MODE_OUTPUT,DPinFlags::PIN_FLAG_NONE,handle);
-        if (lastResult == DRES_OK) {
-            // Set initial level
-            write(initialLevel);
-            // Read current input state
-            //currLevel=read();
-            currLevel=initialLevel;
-            return true;
+    #ifndef ARDUINO
+        if (handle >= 0) {
+            lastResult=initPin(pin,DPinMode::PIN_MODE_OUTPUT,DPinFlags::PIN_FLAG_NONE,handle);
         }
+    #else
+        lastResult=initPin(pin,DPinMode::PIN_MODE_OUTPUT);
+    #endif
+    
+    if (lastResult == DRES_OK) {
+        // Set initial level
+        write(initialLevel);
+        // Read current input state
+        //currLevel=read();
+        currLevel=initialLevel;
+        return true;
     }
+    
     return false;
 }
 
@@ -129,7 +142,12 @@ DDigitalOutput& DDigitalOutput::operator= (bool level)
  * N.B. aggiorna currLevel.
  */
 int DDigitalOutput::read(void) {
-    currLevel=readPin(pin,handle);
+    #ifndef ARDUINO
+        currLevel=readPin(pin,handle);
+    #else
+        currLevel=readPin(pin);
+    #endif
+    
     if (currLevel < 0) {
         lastResult=currLevel;
     }
@@ -145,7 +163,12 @@ int DDigitalOutput::read(void) {
  */
 int DDigitalOutput::write(int level)
 {
-    lastResult=writePin(pin,level,handle);
+    #ifndef ARDUINO
+        lastResult=writePin(pin,level,handle);
+    #else
+        lastResult=writePin(pin,level);
+    #endif
+
 	currLevel=level;
     return lastResult;
 }
@@ -163,8 +186,10 @@ bool DDigitalOutput::isAttached(void)
     return lastResult == DRES_OK;
 }
 
+#ifndef ARDUINO
 std::string DDigitalOutput::getLastError(void)
 {
     //return std::string(lguErrorText(lastResult));
     return getErrorCode(lastResult);
 }
+#endif
